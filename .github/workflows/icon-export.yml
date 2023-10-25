@@ -2,6 +2,11 @@ name: 'Run Icon Update'
 
 on:
   workflow_call:
+    outputs:
+      nextVersionType:
+        description: 'The next type of version to release.'
+        value: ${{ jobs.update-icons.outputs.nextVersionType }}
+
     inputs:
       preid:
         description: 'The prerelease id used when doing a prerelease.'
@@ -101,16 +106,3 @@ jobs:
           string: ${{ steps.version-type-info.outputs.VERSION_INFO }}
           separator: ','
           limit: 2
-
-  release:
-    needs: update-icons
-    uses: ./.github/workflows/release-icons.yml
-    if: ${{ needs.update-icons.outputs.nextVersionType != '' }}
-    with:
-      preid: ${{ needs.update-icons.outputs.preid }}
-      ref: ${{ inputs.ref }}
-      tag: ${{ inputs.tag }}
-      version: ${{ needs.update-icons.outputs.nextVersionType }}
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-

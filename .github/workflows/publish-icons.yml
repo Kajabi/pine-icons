@@ -1,4 +1,4 @@
-name: 'Release Icons'
+name: 'Publish Icons'
 
 on:
   workflow_call:
@@ -28,7 +28,7 @@ on:
         required: true
 
 jobs:
-  release-icons:
+  publish-icons:
     runs-on: ubuntu-latest
     permissions:
       contents: write
