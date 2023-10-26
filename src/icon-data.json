@@ -461,6 +461,14 @@
       ]
     },
     {
+      "name": "blog-filled",
+      "category": "actions",
+      "tags": [
+        "blog",
+        "filled"
+      ]
+    },
+    {
       "name": "bold",
       "category": "text-editor",
       "tags": [
@@ -1746,6 +1754,21 @@
       ]
     },
     {
+      "name": "flash",
+      "category": "actions",
+      "tags": [
+        "flash"
+      ]
+    },
+    {
+      "name": "flash-filled",
+      "category": "actions",
+      "tags": [
+        "filled",
+        "flash"
+      ]
+    },
+    {
       "name": "folder",
       "category": "features",
       "tags": [
@@ -1822,6 +1845,14 @@
         "server",
         "storage",
         "sync"
+      ]
+    },
+    {
+      "name": "form-filled",
+      "category": "actions",
+      "tags": [
+        "filled",
+        "form"
       ]
     },
     {
@@ -2343,6 +2374,21 @@
         "post",
         "send",
         "write"
+      ]
+    },
+    {
+      "name": "mail-filled",
+      "category": "actions",
+      "tags": [
+        "filled",
+        "mail"
+      ]
+    },
+    {
+      "name": "map",
+      "category": "actions",
+      "tags": [
+        "map"
       ]
     },
     {
@@ -2984,6 +3030,13 @@
         "parcel",
         "product",
         "shape"
+      ]
+    },
+    {
+      "name": "publish",
+      "category": "actions",
+      "tags": [
+        "publish"
       ]
     },
     {
@@ -4201,6 +4254,13 @@
         "travel",
         "web",
         "world"
+      ]
+    },
+    {
+      "name": "wrench",
+      "category": "actions",
+      "tags": [
+        "wrench"
       ]
     },
     {
