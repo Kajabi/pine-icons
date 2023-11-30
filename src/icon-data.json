@@ -3839,6 +3839,26 @@
       ]
     },
     {
+      "name": "theme-store-filled",
+      "category": "features",
+      "tags": [
+        "commerce",
+        "commercial",
+        "ecommerce",
+        "food",
+        "home",
+        "mall",
+        "market",
+        "online",
+        "property",
+        "retail",
+        "retailer",
+        "shop",
+        "shopping",
+        "store"
+      ]
+    },
+    {
       "name": "thumbs-down",
       "category": "actions",
       "tags": [
