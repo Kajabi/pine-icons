@@ -40,6 +40,6 @@ runs:
       run: npm ci
       shell: bash
 
-    - name: Lint
+    - name: Run Test
       run : npx nx affected --target=test --parallel=3 --ci --coverage
       shell: bash
