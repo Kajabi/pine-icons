@@ -2990,6 +2990,13 @@
       ]
     },
     {
+      "name": "premium",
+      "category": "features",
+      "tags": [
+        "premium"
+      ]
+    },
+    {
       "name": "present",
       "category": "features",
       "tags": [
