@@ -26,6 +26,13 @@ export class PdsIcon {
   @Prop() color?: string;
 
   /**
+   * This a combination of both `name` and `src`. If a `src` url is detected
+   * it will set the `src` property. Otherwise it assumes it's a built-in named
+   * SVG and set the `name` property.
+   */
+  @Prop() icon?: any;
+
+  /**
    * The name of the icon to use from
    * the built-in set.
    */
@@ -79,6 +86,7 @@ export class PdsIcon {
   }
 
   @Watch('name')
+  @Watch('icon')
   loadIcon() {
     if (Build.isBrowser && this.isVisible) {
       const url = getUrl(this);
@@ -91,7 +99,7 @@ export class PdsIcon {
       }
     }
 
-    const label = getName(this.name);
+    const label = getName(this.name, this.icon);
 
     if (label) {
       this.ariaLabel = label.replace(/\-/g, ' ');
