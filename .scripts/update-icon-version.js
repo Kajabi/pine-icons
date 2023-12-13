@@ -2,6 +2,7 @@ const simpleGit = require('simple-git');
 const path =  require('path');
 const { execSync } = require('node:child_process')
 const fs = require('fs-extra');
+const { stat } = require("fs");
 
 const baseIconsPath = path.join(process.cwd())
 const srcIconsBasePath = path.join(baseIconsPath, 'src');
@@ -48,22 +49,29 @@ const run = async (nextVersionType = null, preid='') => {
 
     await git.stash(['save', '--include-untracked']);
     const iconPkgVersion = await getNextVersion(nextVersionType, preid);
-    await git.stash(['pop']);
 
-    if (iconPkgVersion == null)
-      throw Error('Icon package version could not be determined')
+    // We don't want to do anything for Icons if there were no changes
+    // but we still need to pass through to continue if there were values
+    // passed in e.g nextVersionType and preid
+    if (statusResults.files.length > 0) {
 
-    await updateChangelogFile(iconPkgVersion)
-    await git.add([
-      srcSvgBasePath, // svgs
-      changelogsPath, // Changelogs
-      path.join(srcIconsBasePath, 'index.html'), // updated homepage with new changelog file
-      path.join(srcIconsBasePath, 'icon-data.json'), // icon data
-    ])
+      await git.stash(['pop']);
 
-    const msg = `created: ${created.length}, modified: ${modified.length}, renamed: ${renamed.length}, deleted: ${deleted.length}`
-    await git.commit(`ci(icons): v${iconPkgVersion}, ${msg}`)
-    await git.tag([`@pine-ds/icons@${iconPkgVersion}`, '-a', '-m', msg]);
+      if (iconPkgVersion == null)
+        throw Error('Icon package version could not be determined')
+
+      await updateChangelogFile(iconPkgVersion)
+      await git.add([
+        srcSvgBasePath, // svgs
+        changelogsPath, // Changelogs
+        path.join(srcIconsBasePath, 'index.html'), // updated homepage with new changelog file
+        path.join(srcIconsBasePath, 'icon-data.json'), // icon data
+      ])
+
+      const msg = `created: ${created.length}, modified: ${modified.length}, renamed: ${renamed.length}, deleted: ${deleted.length}`
+      await git.commit(`ci(icons): v${iconPkgVersion}, ${msg}`)
+      await git.tag([`@pine-ds/icons@${iconPkgVersion}`, '-a', '-m', msg]);
+    }
 
     const output = [nextVersionType];
     if (preid != '' )
