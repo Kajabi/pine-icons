@@ -72,4 +72,50 @@ describe('pds-icon', () => {
     `);
   });
 
+  it('renders custom aria-label', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: `<pds-icon name="star" aria-label="custom label"></pds-icon>`,
+    });
+
+    expect(root).toEqualHtml(`
+      <pds-icon name="star" role="img" aria-label="custom label" size="regular" style="height: 16px; width: 16px;">
+        <mock:shadow-root>
+          <div class="icon-inner"></div>
+        </mock:shadow-root>
+      </pds-icon>
+    `);
+  });
+
+  it('renders custom label after changing source', async () => {
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      html: `<pds-icon name="youtube" aria-label="custom label"></pds-icon>`,
+    });
+
+    const icon = page.root;
+
+    expect(icon).toEqualHtml(`
+      <pds-icon name="youtube" role="img" aria-label="custom label" size="regular" style="height: 16px; width: 16px;">
+        <mock:shadow-root>
+          <div class="icon-inner"></div>
+        </mock:shadow-root>
+      </pds-icon>
+    `);
+
+    if (icon) {
+      icon.name = 'trash';
+    }
+    await page.waitForChanges();
+
+    expect(icon).toEqualHtml(`
+      <pds-icon name="trash" role="img" aria-label="custom label" size="regular" style="height: 16px; width: 16px;">
+        <mock:shadow-root>
+          <div class="icon-inner"></div>
+        </mock:shadow-root>
+      </pds-icon>
+    `);
+  });
+
+
 });
