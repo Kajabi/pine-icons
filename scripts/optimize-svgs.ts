@@ -347,7 +347,7 @@ const createIconPackage = async (version: string, iconDir: string, srcSvgData: A
   ]);
 
   const iconPkgJson = {
-    name: '@ju-skinner/icons',
+    name: '@pine-ds/icons/icons',
     version,
     module: 'index.mjs',
     main: 'index.js',
