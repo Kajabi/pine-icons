@@ -5,9 +5,11 @@ export const collectionCopy = async (rootDir: string) => {
   const optimizedSrc = join(rootDir, 'src', 'svg');
   const distSvgDest = join(rootDir, 'dist', 'svg');
   const collectionDest = join(rootDir, 'dist', 'collection', 'components', 'pds-icon', 'svg');
+  const pdsIconsSvsDest = join(rootDir, 'dist', 'pds-icons', 'svg');
 
   await fs.copy(optimizedSrc, collectionDest);
   await fs.copy(optimizedSrc, distSvgDest);
+  await fs.copy(optimizedSrc, pdsIconsSvsDest)
 
   // we don't want to copy the src/svgs to the collection (distribution)
   await fs.remove(join(rootDir, 'dist', 'collection', 'svg'));
