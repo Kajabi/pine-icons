@@ -67,7 +67,12 @@ export const getSrc = (src: string | undefined) => {
 }
 
 export const getUrl = (pdsIcon: PdsIcon) => {
-  let url = getName(pdsIcon.name, pdsIcon.icon);
+  let url = getSrc(pdsIcon.src);
+  if (url) {
+    return url;
+  }
+
+  url = getName(pdsIcon.name, pdsIcon.icon);
   if (url) {
     return getNamedUrl(url);
   }

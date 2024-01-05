@@ -28,6 +28,10 @@ export namespace Components {
     | 'large'   // 24px
     | 'auto'
     | string;
+        /**
+          * Specifies the exact `src` of an SVG file to use.
+         */
+        "src"?: string;
     }
 }
 declare global {
@@ -64,6 +68,10 @@ declare namespace LocalJSX {
     | 'large'   // 24px
     | 'auto'
     | string;
+        /**
+          * Specifies the exact `src` of an SVG file to use.
+         */
+        "src"?: string;
     }
     interface IntrinsicElements {
         "pds-icon": PdsIcon;
