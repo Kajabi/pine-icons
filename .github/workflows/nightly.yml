@@ -48,7 +48,7 @@ jobs:
     uses: ./.github/workflows/release.yml
     with:
       preid: ${{ inputs.preid || '' }}
-      ref: ${{ inputs.ref || 'next' }}
+      ref: ${{ inputs.ref || 'main' }}
       tag: ${{ inputs.tag || 'nightly' }}
       version: ${{inputs.version || '' }}
     secrets: inherit
