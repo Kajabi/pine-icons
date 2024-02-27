@@ -67,6 +67,31 @@
       ]
     },
     {
+      "name": "advanced",
+      "category": "actions",
+      "tags": [
+        "adjust",
+        "adjustment",
+        "advanced",
+        "configuration",
+        "configure",
+        "edit",
+        "filter",
+        "gear",
+        "nav",
+        "navigation",
+        "option",
+        "options",
+        "setting",
+        "setting",
+        "settings",
+        "setup",
+        "system",
+        "tool",
+        "wheel"
+      ]
+    },
+    {
       "name": "ai-sparkle",
       "category": "actions",
       "tags": [
@@ -1234,6 +1259,42 @@
       ]
     },
     {
+      "name": "cursor",
+      "category": "actions",
+      "tags": [
+        "active",
+        "arrow",
+        "click",
+        "cursor",
+        "design",
+        "development",
+        "finger",
+        "hand",
+        "mouse",
+        "point",
+        "pointer",
+        "tap"
+      ]
+    },
+    {
+      "name": "cursor-pointer",
+      "category": "actions",
+      "tags": [
+        "active",
+        "arrow",
+        "click",
+        "cursor",
+        "design",
+        "development",
+        "finger",
+        "hand",
+        "mouse",
+        "point",
+        "pointer",
+        "tap"
+      ]
+    },
+    {
       "name": "custom-field",
       "category": "actions",
       "tags": [
@@ -1510,6 +1571,34 @@
         "sheet",
         "single",
         "text"
+      ]
+    },
+    {
+      "name": "drawer-collapse",
+      "category": "actions",
+      "tags": [
+        "collapse",
+        "drawer",
+        "interface",
+        "move",
+        "out",
+        "right",
+        "settings",
+        "window"
+      ]
+    },
+    {
+      "name": "drawer-expand",
+      "category": "actions",
+      "tags": [
+        "drawer",
+        "expand",
+        "interface",
+        "left",
+        "move",
+        "out",
+        "settings",
+        "window"
       ]
     },
     {
@@ -2389,6 +2478,14 @@
       ]
     },
     {
+      "name": "logo-klarna",
+      "category": "payment-methods",
+      "tags": [
+        "buy now pay later",
+        "klarna"
+      ]
+    },
+    {
       "name": "loop",
       "category": "actions",
       "tags": [
@@ -2434,6 +2531,26 @@
       "tags": [
         "filled",
         "mail"
+      ]
+    },
+    {
+      "name": "mail-open",
+      "category": "actions",
+      "tags": [
+        "communication",
+        "contact",
+        "email",
+        "envelope",
+        "letter",
+        "mail",
+        "mailbox",
+        "message",
+        "messages",
+        "news",
+        "newsletter",
+        "post",
+        "send",
+        "write"
       ]
     },
     {
@@ -2745,6 +2862,28 @@
       ]
     },
     {
+      "name": "newsletter-2",
+      "category": "actions",
+      "tags": [
+        "communication",
+        "contact",
+        "email",
+        "envelope",
+        "letter",
+        "mail",
+        "mailbox",
+        "message",
+        "messages",
+        "news",
+        "newsletter",
+        "post",
+        "send",
+        "shopping",
+        "subscribe",
+        "write"
+      ]
+    },
+    {
       "name": "one-off-session",
       "category": "features",
       "tags": [
@@ -2899,6 +3038,27 @@
     },
     {
       "name": "phone-toolbar",
+      "category": "site-settings",
+      "tags": [
+        "android",
+        "call",
+        "communication",
+        "device",
+        "iOS",
+        "iPhone",
+        "menu",
+        "mobile",
+        "phone",
+        "smartphone",
+        "tech",
+        "technology",
+        "telephone",
+        "toolbar",
+        "touchscreen"
+      ]
+    },
+    {
+      "name": "phone-toolbar-filled",
       "category": "site-settings",
       "tags": [
         "android",
