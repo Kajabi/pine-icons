@@ -1,4 +1,5 @@
-import { getAssetPath } from '@stencil/core';
+import { getAssetPath } from './assetPath';
+
 import { PdsIcon } from './pds-icon';
 
 let CACHED_MAP: Map<string, string>;
