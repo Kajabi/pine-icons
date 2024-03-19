@@ -67,6 +67,22 @@
       ]
     },
     {
+      "name": "add-square",
+      "category": "text-editor",
+      "tags": [
+        "add",
+        "addition",
+        "create",
+        "expand",
+        "increase",
+        "interface",
+        "new",
+        "plus",
+        "positive",
+        "ui"
+      ]
+    },
+    {
       "name": "advanced",
       "category": "actions",
       "tags": [
@@ -467,6 +483,18 @@
       ]
     },
     {
+      "name": "block",
+      "category": "text-editor",
+      "tags": [
+        "block",
+        "design",
+        "rectangle",
+        "shape",
+        "shapes",
+        "square"
+      ]
+    },
+    {
       "name": "blog",
       "category": "site-settings",
       "tags": [
@@ -525,6 +553,19 @@
         "notification",
         "speaker",
         "voice"
+      ]
+    },
+    {
+      "name": "button",
+      "category": "text-editor",
+      "tags": [
+        "button",
+        "choice",
+        "control",
+        "design",
+        "rectangle",
+        "shape",
+        "shapes"
       ]
     },
     {
@@ -1007,6 +1048,25 @@
       "category": "text-editor",
       "tags": [
         "code"
+      ]
+    },
+    {
+      "name": "code-block",
+      "category": "text-editor",
+      "tags": [
+        "code",
+        "coding",
+        "develop",
+        "development",
+        "document",
+        "file",
+        "folder",
+        "paper",
+        "programming",
+        "script",
+        "source",
+        "tag",
+        "tool"
       ]
     },
     {
@@ -1897,6 +1957,22 @@
       ]
     },
     {
+      "name": "floppy-disk",
+      "category": "text-editor",
+      "tags": [
+        "backup",
+        "disk",
+        "diskette",
+        "download",
+        "drive",
+        "floppy",
+        "floppydisk",
+        "save",
+        "size",
+        "storage"
+      ]
+    },
+    {
       "name": "folder",
       "category": "features",
       "tags": [
@@ -2088,6 +2164,78 @@
         "tech",
         "technology",
         "video"
+      ]
+    },
+    {
+      "name": "heading-1",
+      "category": "text-editor",
+      "tags": [
+        "h1",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
+      ]
+    },
+    {
+      "name": "heading-2",
+      "category": "text-editor",
+      "tags": [
+        "h2",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
+      ]
+    },
+    {
+      "name": "heading-3",
+      "category": "text-editor",
+      "tags": [
+        "h3",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
+      ]
+    },
+    {
+      "name": "heading-4",
+      "category": "text-editor",
+      "tags": [
+        "h4",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
+      ]
+    },
+    {
+      "name": "heading-5",
+      "category": "text-editor",
+      "tags": [
+        "h5",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
+      ]
+    },
+    {
+      "name": "heading-6",
+      "category": "text-editor",
+      "tags": [
+        "h6",
+        "heading",
+        "one",
+        "text",
+        "title",
+        "typography"
       ]
     },
     {
@@ -3285,6 +3433,19 @@
       "category": "text-editor",
       "tags": [
         "quote"
+      ]
+    },
+    {
+      "name": "quote",
+      "category": "text-editor",
+      "tags": [
+        "bubble",
+        "editing",
+        "marks",
+        "message",
+        "quotation",
+        "quote",
+        "text"
       ]
     },
     {
