@@ -49,7 +49,7 @@ jobs:
     with:
       preid: ${{ inputs.preid || '' }}
       ref: ${{ inputs.ref || 'main' }}
-      tag: ${{ inputs.tag || 'nightly' }}
+      tag: ${{ inputs.tag || 'latest' }}
       version: ${{inputs.version || '' }}
     secrets: inherit
 
