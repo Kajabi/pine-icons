@@ -1,20 +1,6 @@
 {
   "icons": [
     {
-      "name": "Group",
-      "category": "spaceship-1",
-      "tags": [
-        "Group"
-      ]
-    },
-    {
-      "name": "Group",
-      "category": "spaceship-2",
-      "tags": [
-        "Group"
-      ]
-    },
-    {
       "name": "access-key",
       "category": "features",
       "tags": [
@@ -3603,6 +3589,21 @@
         "onwards",
         "out position",
         "right"
+      ]
+    },
+    {
+      "name": "rocket",
+      "category": "features",
+      "tags": [
+        "rocket"
+      ]
+    },
+    {
+      "name": "rocket-filled",
+      "category": "features",
+      "tags": [
+        "filled",
+        "rocket"
       ]
     },
     {
