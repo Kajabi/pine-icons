@@ -983,6 +983,14 @@
       ]
     },
     {
+      "name": "circle-dashed",
+      "category": "actions",
+      "tags": [
+        "circle",
+        "dashed"
+      ]
+    },
+    {
       "name": "clock",
       "category": "actions",
       "tags": [
@@ -4297,6 +4305,14 @@
       "category": "social",
       "tags": [
         "twitter"
+      ]
+    },
+    {
+      "name": "twitter-x",
+      "category": "social",
+      "tags": [
+        "twitter",
+        "x"
       ]
     },
     {
