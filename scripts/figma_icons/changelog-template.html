@@ -2,11 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{{date}} - {{version}} Changelog</title>
+  <title>Pine Icons - {{version}} - {{date}} - Changelog</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hedvig+Letters+Serif|Hedvig+Letters+Sans”>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: #fff;
+      background-color: #f4f4f4;
+      max-width: 1000px;
+      margin-right: auto;
+      margin-left: auto;
+      font-family: 'Hedvig Letters Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      font-style: normal;
     }
     h1 { margin: 0; }
     h2 { margin: 20px 0 0; }
@@ -54,28 +60,72 @@
     .type-bold {
       font-weight: bold;
     }
+
+    .changelog-meta {
+      margin-bottom: 30px;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    section {
+      margin-top: 60px;
+      border-radius: 20px;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 5px 5px #ececec;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-family: serif;
+      font-size: 60px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .changelog-dateversion {
+      position: relative;
+    }
+
+    .changelog-date {
+      padding: 15px 55px 15px 15px;
+      border: 1px solid gray;
+      background-color: white;
+      border-radius: 4px;
+    }
+
+    .changelog-version {
+      position: absolute;
+      left: 112px;
+      border-radius: 4px;
+      background-color: #71b469;
+      padding: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-weight: 300;
+    }
   </style>
 </head>
 <body>
-<h1>{{date}} - {{version}} Changelog</h1>
+  <section>
+    <h1>Pine Icons - Changelog</h1>
+    <p class="changelog-meta">Icons: Added <span class="type-bold">{{created}}</span>, Modifed <span class="type-bold">{{modified}}</span>, Deleted <span class="type-bold">{{deleted}}</span>, Renamed <span class="type-bold">{{renamed}}</span></p>
 
-Files: Modifed <span class="type-bold">{{modified}}</span>, Renamed <span class="type-bold">{{renamed}}</span>, Deleted <span class="type-bold">{{deleted}}</span>, Created <span class="type-bold">{{created}}</span>
+    <p class="changelog-dateversion">
+      <span class="changelog-date">{{date}}</span>
+      <span class="changelog-version">{{version}}</span>
+    </p>
 
+    <p><span class="type-bold">Added icons</span> are new icons introduced in this version. You will not see them in the "before" column because they didn't exist in the previous version.<p>
 
-<h2>Info</h2>
-<p>Added icons are new icons that have been introduced in this version. You won't see these icons listed in the "before" column because they did not exist in the previous version.<p>
+    <p><span class="type-bold">Modified icons</span> have changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."</p>
 
-<p>Modified icons have undergone some changes since the previous version, which could be a visual change or a change to the code behind the icon. If an icon has undergone a visible change,
-you will see the difference between the "before" and "after" columns. However, if the change was only to the code, you may not notice any difference in the icon's appearance, but it will
-still be listed in the “modified” category</p>
+    <p><span class="type-bold">Deleted icons</span> were present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.</p>
 
-<p>Deleted icons were present in the previous version but have been removed in this version. You will not see these icons listed in the "after" column because they are no longer available
-in the current version.</p>
+    <p><span class="type-bold">Renamed icons</span> were present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.</p>
 
-<p>Renamed icons were present in the previous version but have been renamed in this version. You will see a "Previous" and a "New" filename column. You will not see any visual change
-in the "before" or "after" column.</p>
-
-{{content}}
-
+    {{content}}
+  </section>
 </body>
 </html>
