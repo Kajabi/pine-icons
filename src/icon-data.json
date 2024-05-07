@@ -1117,6 +1117,14 @@
       ]
     },
     {
+      "name": "comment-no",
+      "category": "features",
+      "tags": [
+        "comment",
+        "no"
+      ]
+    },
+    {
       "name": "connect",
       "category": "features",
       "tags": [
@@ -2944,6 +2952,26 @@
         "mute",
         "off",
         "speaker"
+      ]
+    },
+    {
+      "name": "more-menu",
+      "category": "navigation",
+      "tags": [
+        "interface",
+        "nav",
+        "navigation",
+        "ui"
+      ]
+    },
+    {
+      "name": "more-menu-filled",
+      "category": "navigation",
+      "tags": [
+        "interface",
+        "nav",
+        "navigation",
+        "ui"
       ]
     },
     {
