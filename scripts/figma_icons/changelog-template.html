@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Pine Icons - {{version}} - {{date}} - Changelog</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hedvig+Letters+Serif|Hedvig+Letters+Sans”>
   <style>
     body {
       background-color: #f4f4f4;
       max-width: 1000px;
       margin-right: auto;
       margin-left: auto;
-      font-family: 'Hedvig Letters Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-weight: 400;
       font-style: normal;
     }
@@ -116,15 +115,7 @@
       <span class="changelog-date">{{date}}</span>
       <span class="changelog-version">{{version}}</span>
     </p>
-
-    <p><span class="type-bold">Added icons</span> are new icons introduced in this version. You will not see them in the "before" column because they didn't exist in the previous version.<p>
-
-    <p><span class="type-bold">Modified icons</span> have changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."</p>
-
-    <p><span class="type-bold">Deleted icons</span> were present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.</p>
-
-    <p><span class="type-bold">Renamed icons</span> were present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.</p>
-
+    
     {{content}}
   </section>
 </body>

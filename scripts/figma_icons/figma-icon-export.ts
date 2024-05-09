@@ -126,18 +126,21 @@ const buildBeforeAndAfterSvg = async (status: string, filePath: string, previous
 }
 
 /**
- * Generates a Header and table
+ * Generates a Header, table, and description
  *
  * @param sectionName - name used for the Header
- * @param data  - an array of {@link SVGDiffResult}
+ * @param data - an array of {@link SVGDiffResult}
+ * @param description - text to display under the table as a description
  * @returns The string of html used to represent a section e.g Added in the Changelog
  */
-const buildHTMLSection = (sectionName: string, data: Array<SvgDiffResult>) => {
-  const content = `<h2>${sectionName}</h2>`
+const buildHTMLSection = (sectionName: string, data: Array<SvgDiffResult>, description: string) => {
+  const content = `<h2>${sectionName}</h2>`;
   const table: string = buildHTMLTable(data, sectionName == 'Renamed');
+  const desc = `<p>${description}</p>`;
 
-  return [content, table].join('\n')
+  return [content, table, desc].join('\n');
 }
+
 
 /**
  * Generates a HTML Table
@@ -647,30 +650,31 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
 const processStatusResults = async (results: StatusResult) => {
   const { modified: m, created: n, deleted: d, renamed: r } = results;
 
-  let created, deleted, modified, renamed
+  let created, deleted, modified, renamed;
 
   if (n.length > 0) {
     created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created);
+    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they didn not exist in the previous version.');
   }
 
   if (d.length > 0) {
     deleted = await Promise.all(d.map((path) => ( buildBeforeAndAfterSvg('D', path))));
-    deleted = buildHTMLSection('Deleted', deleted);
+    deleted = buildHTMLSection('Deleted', deleted, 'Present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.');
   }
 
   if (m.length > 0) {
     modified = await Promise.all(m.map((path) => ( buildBeforeAndAfterSvg('M', path))));
-    modified = buildHTMLSection('Modified', modified);
+    modified = buildHTMLSection('Modified', modified, 'Changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."');
   }
 
   if (r.length > 0) {
     renamed = await Promise.all(r.map((path) => ( buildBeforeAndAfterSvg('R', path.to, path.from))));
-    renamed = buildHTMLSection('Renamed', renamed);
+    renamed = buildHTMLSection('Renamed', renamed, 'Present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.');
   }
 
-  return { created, deleted, modified, renamed }
+  return { created, deleted, modified, renamed };
 }
+
 
 /***************************/
 /*  Kicks off the Process  */
