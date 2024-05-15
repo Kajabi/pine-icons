@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-import { run as optimizeSvgs} from '../optimize-svgs'
+import { run as optimizeSvgs } from '../optimize-svgs'
 import { collectionCopy } from '../collection-copy';
 
 
@@ -10,13 +10,13 @@ import chalk from 'chalk'; // Terminal string styling done right
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
-import cliui  from 'cliui';
+import cliui from 'cliui';
 import { simpleGit, SimpleGitOptions, StatusResult } from 'simple-git';
 
 import { FigmaIcon, FigmaIconConfig, IconFileDetail, SvgDiffResult } from './types';
 
 if (process.env.NODE_ENV !== 'prod') {
-  dotenv.config({ path: `${process.cwd()}/.env` })
+  dotenv.config({ path: `${process.cwd()}/.env` });
 }
 
 
@@ -126,18 +126,21 @@ const buildBeforeAndAfterSvg = async (status: string, filePath: string, previous
 }
 
 /**
- * Generates a Header and table
+ * Generates a Header, table, and description
  *
  * @param sectionName - name used for the Header
- * @param data  - an array of {@link SVGDiffResult}
+ * @param data - an array of {@link SVGDiffResult}
+ * @param description - text to display under the table as a description
  * @returns The string of html used to represent a section e.g Added in the Changelog
  */
-const buildHTMLSection = (sectionName: string, data: Array<SvgDiffResult>) => {
-  const content = `<h2>${sectionName}</h2>`
+const buildHTMLSection = (sectionName: string, data: Array<SvgDiffResult>, description: string) => {
+  const content = `<h2>${sectionName}</h2>`;
   const table: string = buildHTMLTable(data, sectionName == 'Renamed');
+  const desc = `<p>${description}</p>`;
 
-  return [content, table].join('\n')
+  return [content, table, desc].join('\n');
 }
+
 
 /**
  * Generates a HTML Table
@@ -206,7 +209,7 @@ const client = (apiToken) => {
  * @returns The results from SimpleGit.status()
  */
 const createChangelogHTML = async (statusResults: StatusResult) => {
-  const {modified, created, deleted, renamed} =  await processStatusResults(statusResults);
+  const { modified, created, deleted, renamed } = await processStatusResults(statusResults);
 
   // Adding or Deleting will be Major version bump
   // Modifying will be a MINOR version bump
@@ -228,7 +231,7 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
 
   const arrChangelogs = fs.readdirSync(changelogPath);
 
-  const changelogRecords = []
+  const changelogRecords = [];
   let numberOfChangelogs = 0;
 
   arrChangelogs.reverse().forEach((filename, idx) => {
@@ -284,7 +287,7 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
  */
 const createJsonIconList = (icons: Array<FigmaIcon>, outputDir: string) => {
   try {
-    icons = icons.sort((a,b) => {
+    icons = icons.sort((a, b) => {
       if (a.name < b.name) return -1;
       if (a.name > b.name) return 1;
       return 0;
@@ -350,7 +353,7 @@ const createOutputDirectory = async (outputDir: string) => {
  * @returns a object with the name and size of the svg
  */
 const downloadImage = (icon: FigmaIcon, outputDir: string) => {
-  const nameClean = icon.name.toLowerCase();;
+  const nameClean = icon.name.toLowerCase();
   const directory = outputDir;
 
   const imagePath = path.resolve(directory, `${nameClean}.svg`);
@@ -359,7 +362,7 @@ const downloadImage = (icon: FigmaIcon, outputDir: string) => {
   // log('Image url: ', info(icon.url), 'Frame: ', info(icon.frame));
   // log('Image Path: ', info(imagePath));
 
-  axios.get(icon.url, {responseType: 'stream'})
+  axios.get(icon.url, { responseType: 'stream' })
     .then((res) => {
       res.data.pipe(writer)
     })
@@ -557,7 +560,7 @@ const getFileContentsFromDisk = async (filename: string) => {
  * @param options - list of SimpleGitOptions
  * @returns SimpleGit client
  */
- const gitClient = (options: Partial<SimpleGitOptions> = {baseDir: srcSvgBasePath, binary: 'git'} ) => {
+const gitClient = (options: Partial<SimpleGitOptions> = { baseDir: srcSvgBasePath, binary: 'git' } ) => {
   return simpleGit(options);
  }
 
@@ -571,7 +574,7 @@ const loadFigmaIconConfig = async (rootDir: string) => {
   try {
     const configFile =  path.resolve(path.join(rootDir, 'figma-icon-config.json'));
 
-    if ( fs.existsSync(configFile)) {
+    if (fs.existsSync(configFile)) {
       log(info('Config file located at: ', detail(configFile)));
 
       const strConfig = await fs.readFile(configFile, 'utf-8');
@@ -647,30 +650,31 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
 const processStatusResults = async (results: StatusResult) => {
   const { modified: m, created: n, deleted: d, renamed: r } = results;
 
-  let created, deleted, modified, renamed
+  let created, deleted, modified, renamed;
 
   if (n.length > 0) {
     created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created);
+    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they did not exist in the previous version.');
   }
 
   if (d.length > 0) {
     deleted = await Promise.all(d.map((path) => ( buildBeforeAndAfterSvg('D', path))));
-    deleted = buildHTMLSection('Deleted', deleted);
+    deleted = buildHTMLSection('Deleted', deleted, 'Present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.');
   }
 
   if (m.length > 0) {
     modified = await Promise.all(m.map((path) => ( buildBeforeAndAfterSvg('M', path))));
-    modified = buildHTMLSection('Modified', modified);
+    modified = buildHTMLSection('Modified', modified, 'Changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."');
   }
 
   if (r.length > 0) {
     renamed = await Promise.all(r.map((path) => ( buildBeforeAndAfterSvg('R', path.to, path.from))));
-    renamed = buildHTMLSection('Renamed', renamed);
+    renamed = buildHTMLSection('Renamed', renamed, 'Present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.');
   }
 
-  return { created, deleted, modified, renamed }
+  return { created, deleted, modified, renamed };
 }
+
 
 /***************************/
 /*  Kicks off the Process  */
