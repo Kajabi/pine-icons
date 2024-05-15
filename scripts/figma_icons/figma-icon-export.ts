@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-import { run as optimizeSvgs} from '../optimize-svgs'
+import { run as optimizeSvgs } from '../optimize-svgs'
 import { collectionCopy } from '../collection-copy';
 
 
@@ -10,13 +10,13 @@ import chalk from 'chalk'; // Terminal string styling done right
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
-import cliui  from 'cliui';
+import cliui from 'cliui';
 import { simpleGit, SimpleGitOptions, StatusResult } from 'simple-git';
 
 import { FigmaIcon, FigmaIconConfig, IconFileDetail, SvgDiffResult } from './types';
 
 if (process.env.NODE_ENV !== 'prod') {
-  dotenv.config({ path: `${process.cwd()}/.env` })
+  dotenv.config({ path: `${process.cwd()}/.env` });
 }
 
 
@@ -209,7 +209,7 @@ const client = (apiToken) => {
  * @returns The results from SimpleGit.status()
  */
 const createChangelogHTML = async (statusResults: StatusResult) => {
-  const {modified, created, deleted, renamed} =  await processStatusResults(statusResults);
+  const { modified, created, deleted, renamed } = await processStatusResults(statusResults);
 
   // Adding or Deleting will be Major version bump
   // Modifying will be a MINOR version bump
@@ -231,7 +231,7 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
 
   const arrChangelogs = fs.readdirSync(changelogPath);
 
-  const changelogRecords = []
+  const changelogRecords = [];
   let numberOfChangelogs = 0;
 
   arrChangelogs.reverse().forEach((filename, idx) => {
@@ -287,7 +287,7 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
  */
 const createJsonIconList = (icons: Array<FigmaIcon>, outputDir: string) => {
   try {
-    icons = icons.sort((a,b) => {
+    icons = icons.sort((a, b) => {
       if (a.name < b.name) return -1;
       if (a.name > b.name) return 1;
       return 0;
@@ -353,7 +353,7 @@ const createOutputDirectory = async (outputDir: string) => {
  * @returns a object with the name and size of the svg
  */
 const downloadImage = (icon: FigmaIcon, outputDir: string) => {
-  const nameClean = icon.name.toLowerCase();;
+  const nameClean = icon.name.toLowerCase();
   const directory = outputDir;
 
   const imagePath = path.resolve(directory, `${nameClean}.svg`);
@@ -362,7 +362,7 @@ const downloadImage = (icon: FigmaIcon, outputDir: string) => {
   // log('Image url: ', info(icon.url), 'Frame: ', info(icon.frame));
   // log('Image Path: ', info(imagePath));
 
-  axios.get(icon.url, {responseType: 'stream'})
+  axios.get(icon.url, { responseType: 'stream' })
     .then((res) => {
       res.data.pipe(writer)
     })
@@ -560,7 +560,7 @@ const getFileContentsFromDisk = async (filename: string) => {
  * @param options - list of SimpleGitOptions
  * @returns SimpleGit client
  */
- const gitClient = (options: Partial<SimpleGitOptions> = {baseDir: srcSvgBasePath, binary: 'git'} ) => {
+const gitClient = (options: Partial<SimpleGitOptions> = { baseDir: srcSvgBasePath, binary: 'git' } ) => {
   return simpleGit(options);
  }
 
@@ -574,7 +574,7 @@ const loadFigmaIconConfig = async (rootDir: string) => {
   try {
     const configFile =  path.resolve(path.join(rootDir, 'figma-icon-config.json'));
 
-    if ( fs.existsSync(configFile)) {
+    if (fs.existsSync(configFile)) {
       log(info('Config file located at: ', detail(configFile)));
 
       const strConfig = await fs.readFile(configFile, 'utf-8');
@@ -654,7 +654,7 @@ const processStatusResults = async (results: StatusResult) => {
 
   if (n.length > 0) {
     created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they didn not exist in the previous version.');
+    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they did not exist in the previous version.');
   }
 
   if (d.length > 0) {
