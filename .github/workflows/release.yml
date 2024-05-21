@@ -81,3 +81,34 @@ jobs:
       tag: ${{ inputs.tag }}
       version: ${{ inputs.version || needs.export-icons.outputs.nextVersionType }}
     secrets: inherit
+
+  send-slack-notification:
+    runs-on: ubuntu-latest
+    needs: publish-icons
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup ENV Vars
+        run: |
+          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
+          cat ./package.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 HEAD~)" >> $GITHUB_ENV
+
+      - name: Send Slack Notification
+        uses: slackapi/slack-github-action@v1.26.0
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          DATE: ${{ env.CURRENT_DATE }}
+          # RELEASE_URL: "${{ format('https://github.com/{0}/releases/tag', github.repository) }}/${{ needs.release-please.outputs['core--tag_name'] }}"
+          CHANGELOG_URL: "${{ format('https://pine-icons.netlify.app/changelogs/{0}-changelog.html', env.CURRENT_DATE) }}"
+          VERSION: ${{ fromJson(env.PACKAGE_JSON).version }}
+          COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
+        with:
+          channel-id: ${{ vars.SLACK_CHANNEL_NAME }}
+          payload-file-path: "./.github/workflows/slack_payloads/release-info.json"
