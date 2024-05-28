@@ -200,42 +200,6 @@
       ]
     },
     {
-      "name": "analytics-filled",
-      "category": "navigation",
-      "tags": [
-        "analytics",
-        "bar",
-        "business",
-        "chart",
-        "data",
-        "diagram",
-        "finance",
-        "graph",
-        "nav",
-        "navigation",
-        "report",
-        "statistics"
-      ]
-    },
-    {
-      "name": "analytics-outline",
-      "category": "navigation",
-      "tags": [
-        "analytics",
-        "bar",
-        "business",
-        "chart",
-        "data",
-        "diagram",
-        "finance",
-        "graph",
-        "nav",
-        "navigation",
-        "report",
-        "statistics"
-      ]
-    },
-    {
       "name": "app-store",
       "category": "features",
       "tags": [
@@ -622,7 +586,7 @@
       ]
     },
     {
-      "name": "card-bw-amex",
+      "name": "card-amex",
       "category": "payment-methods",
       "tags": [
         "american express",
@@ -632,7 +596,7 @@
       ]
     },
     {
-      "name": "card-bw-apple-card",
+      "name": "card-android",
       "category": "payment-methods",
       "tags": [
         "apple pay",
@@ -641,7 +605,16 @@
       ]
     },
     {
-      "name": "card-bw-diners-club",
+      "name": "card-apple",
+      "category": "payment-methods",
+      "tags": [
+        "apple pay",
+        "credit card",
+        "payment"
+      ]
+    },
+    {
+      "name": "card-diners-club",
       "category": "payment-methods",
       "tags": [
         "credit card",
@@ -650,7 +623,7 @@
       ]
     },
     {
-      "name": "card-bw-discover",
+      "name": "card-discover",
       "category": "payment-methods",
       "tags": [
         "credit card",
@@ -659,7 +632,27 @@
       ]
     },
     {
-      "name": "card-bw-gpay-card",
+      "name": "card-generic",
+      "category": "site-settings",
+      "tags": [
+        "buy",
+        "card",
+        "charge",
+        "checkout",
+        "credit",
+        "credit card",
+        "debit",
+        "finance",
+        "method",
+        "methods",
+        "money",
+        "payment",
+        "shop",
+        "shopping"
+      ]
+    },
+    {
+      "name": "card-gpay",
       "category": "payment-methods",
       "tags": [
         "android",
@@ -670,7 +663,7 @@
       ]
     },
     {
-      "name": "card-bw-mastercard",
+      "name": "card-mastercard",
       "category": "payment-methods",
       "tags": [
         "credit card",
@@ -679,7 +672,7 @@
       ]
     },
     {
-      "name": "card-bw-paypal",
+      "name": "card-paypal",
       "category": "payment-methods",
       "tags": [
         "credit card",
@@ -688,21 +681,12 @@
       ]
     },
     {
-      "name": "card-bw-stripe",
+      "name": "card-stripe",
       "category": "payment-methods",
       "tags": [
         "credit card",
         "payment",
         "stripe"
-      ]
-    },
-    {
-      "name": "card-bw-visa",
-      "category": "payment-methods",
-      "tags": [
-        "credit card",
-        "payment",
-        "visa"
       ]
     },
     {
@@ -727,6 +711,15 @@
         "subscription",
         "sync",
         "update"
+      ]
+    },
+    {
+      "name": "card-visa",
+      "category": "payment-methods",
+      "tags": [
+        "credit card",
+        "payment",
+        "visa"
       ]
     },
     {
@@ -845,6 +838,42 @@
         "patent",
         "ribbon",
         "school"
+      ]
+    },
+    {
+      "name": "chart",
+      "category": "navigation",
+      "tags": [
+        "analytics",
+        "bar",
+        "business",
+        "chart",
+        "data",
+        "diagram",
+        "finance",
+        "graph",
+        "nav",
+        "navigation",
+        "report",
+        "statistics"
+      ]
+    },
+    {
+      "name": "chart-filled",
+      "category": "navigation",
+      "tags": [
+        "analytics",
+        "bar",
+        "business",
+        "chart",
+        "data",
+        "diagram",
+        "finance",
+        "graph",
+        "nav",
+        "navigation",
+        "report",
+        "statistics"
       ]
     },
     {
@@ -1163,24 +1192,6 @@
       ]
     },
     {
-      "name": "contacts-filled",
-      "category": "navigation",
-      "tags": [
-        "contacts",
-        "nav",
-        "navigation"
-      ]
-    },
-    {
-      "name": "contacts-outline",
-      "category": "navigation",
-      "tags": [
-        "nav",
-        "navigation",
-        "sage-icon-user-circle"
-      ]
-    },
-    {
       "name": "conversation",
       "category": "actions",
       "tags": [
@@ -1315,26 +1326,6 @@
       ]
     },
     {
-      "name": "credit-card",
-      "category": "site-settings",
-      "tags": [
-        "buy",
-        "card",
-        "charge",
-        "checkout",
-        "credit",
-        "credit card",
-        "debit",
-        "finance",
-        "method",
-        "methods",
-        "money",
-        "payment",
-        "shop",
-        "shopping"
-      ]
-    },
-    {
       "name": "cursor",
       "category": "actions",
       "tags": [
@@ -1448,52 +1439,6 @@
       ]
     },
     {
-      "name": "dashboard-filled",
-      "category": "navigation",
-      "tags": [
-        "address",
-        "apartment",
-        "building",
-        "estate",
-        "home",
-        "home",
-        "homepage",
-        "house",
-        "interface",
-        "local",
-        "nav",
-        "navigation",
-        "office",
-        "page",
-        "real",
-        "shelter",
-        "ui"
-      ]
-    },
-    {
-      "name": "dashboard-outline",
-      "category": "navigation",
-      "tags": [
-        "address",
-        "apartment",
-        "building",
-        "estate",
-        "home",
-        "home",
-        "homepage",
-        "house",
-        "interface",
-        "local",
-        "nav",
-        "navigation",
-        "office",
-        "page",
-        "real",
-        "shelter",
-        "ui"
-      ]
-    },
-    {
       "name": "delete-circle",
       "category": "actions",
       "tags": [
@@ -1544,7 +1489,7 @@
       ]
     },
     {
-      "name": "dollar-sign",
+      "name": "dollar",
       "category": "actions",
       "tags": [
         "business",
@@ -1731,6 +1676,34 @@
       ]
     },
     {
+      "name": "editor",
+      "category": "actions",
+      "tags": [
+        "brightness",
+        "edit",
+        "effect",
+        "filter",
+        "light",
+        "photo",
+        "spark",
+        "sparkle"
+      ]
+    },
+    {
+      "name": "editor-filled",
+      "category": "actions",
+      "tags": [
+        "brightness",
+        "edit",
+        "effect",
+        "filter",
+        "light",
+        "photo",
+        "spark",
+        "sparkle"
+      ]
+    },
+    {
       "name": "email-activity",
       "category": "actions",
       "tags": [
@@ -1810,21 +1783,6 @@
         "reach",
         "window",
         "zoom"
-      ]
-    },
-    {
-      "name": "facebook",
-      "category": "social",
-      "tags": [
-        "facebook"
-      ]
-    },
-    {
-      "name": "facebook-2",
-      "category": "social",
-      "tags": [
-        "2",
-        "facebook"
       ]
     },
     {
@@ -2103,6 +2061,58 @@
       ]
     },
     {
+      "name": "gear",
+      "category": "navigation",
+      "tags": [
+        "adjust",
+        "adjustment",
+        "cog",
+        "cogwheel",
+        "configuration",
+        "configure",
+        "edit",
+        "filter",
+        "gear",
+        "nav",
+        "navigation",
+        "option",
+        "options",
+        "setting",
+        "settings",
+        "setup",
+        "system",
+        "tolls",
+        "tool",
+        "wheel"
+      ]
+    },
+    {
+      "name": "gear-filled",
+      "category": "navigation",
+      "tags": [
+        "adjust",
+        "adjustment",
+        "cog",
+        "cogwheel",
+        "configuration",
+        "configure",
+        "edit",
+        "filter",
+        "gear",
+        "nav",
+        "navigation",
+        "option",
+        "options",
+        "setting",
+        "settings",
+        "setup",
+        "system",
+        "tolls",
+        "tool",
+        "wheel"
+      ]
+    },
+    {
       "name": "grant-offer",
       "category": "actions",
       "tags": [
@@ -2293,6 +2303,15 @@
       ]
     },
     {
+      "name": "help",
+      "category": "navigation",
+      "tags": [
+        "help",
+        "nav",
+        "navigation"
+      ]
+    },
+    {
       "name": "help-filled",
       "category": "navigation",
       "tags": [
@@ -2302,17 +2321,54 @@
       ]
     },
     {
-      "name": "help-outline",
+      "name": "home",
       "category": "navigation",
       "tags": [
-        "help",
+        "address",
+        "apartment",
+        "building",
+        "estate",
+        "home",
+        "home",
+        "homepage",
+        "house",
+        "interface",
+        "local",
         "nav",
-        "navigation"
+        "navigation",
+        "office",
+        "page",
+        "real",
+        "shelter",
+        "ui"
       ]
     },
     {
       "name": "home-alt",
       "category": "site-settings",
+      "tags": [
+        "address",
+        "apartment",
+        "building",
+        "estate",
+        "home",
+        "home",
+        "homepage",
+        "house",
+        "interface",
+        "local",
+        "nav",
+        "navigation",
+        "office",
+        "page",
+        "real",
+        "shelter",
+        "ui"
+      ]
+    },
+    {
+      "name": "home-filled",
+      "category": "navigation",
       "tags": [
         "address",
         "apartment",
@@ -2398,13 +2454,6 @@
       ]
     },
     {
-      "name": "instagram",
-      "category": "social",
-      "tags": [
-        "instagram"
-      ]
-    },
-    {
       "name": "ios-battery",
       "category": "device-specific",
       "tags": [
@@ -2433,6 +2482,14 @@
       ]
     },
     {
+      "name": "kajabi",
+      "category": "site-settings",
+      "tags": [
+        "kajabi",
+        "logo"
+      ]
+    },
+    {
       "name": "kajabi-filled",
       "category": "site-settings",
       "tags": [
@@ -2441,11 +2498,11 @@
       ]
     },
     {
-      "name": "kajabi-outlined",
-      "category": "site-settings",
+      "name": "klarna",
+      "category": "payment-methods",
       "tags": [
-        "kajabi",
-        "logo"
+        "buy now pay later",
+        "klarna"
       ]
     },
     {
@@ -2551,17 +2608,18 @@
       ]
     },
     {
-      "name": "linkedin",
-      "category": "social",
-      "tags": [
-        "linkedin"
-      ]
-    },
-    {
       "name": "list-bullet",
       "category": "text-editor",
       "tags": [
         "bullet",
+        "list"
+      ]
+    },
+    {
+      "name": "list-details",
+      "category": "actions",
+      "tags": [
+        "details",
         "list"
       ]
     },
@@ -2642,11 +2700,69 @@
       ]
     },
     {
-      "name": "logo-klarna",
-      "category": "payment-methods",
+      "name": "logo-facebook",
+      "category": "social",
       "tags": [
-        "buy now pay later",
-        "klarna"
+        "facebook",
+        "logo"
+      ]
+    },
+    {
+      "name": "logo-facebook-round",
+      "category": "social",
+      "tags": [
+        "facebook",
+        "logo",
+        "round"
+      ]
+    },
+    {
+      "name": "logo-instagram",
+      "category": "social",
+      "tags": [
+        "instagram",
+        "logo"
+      ]
+    },
+    {
+      "name": "logo-linkedin",
+      "category": "social",
+      "tags": [
+        "linkedin",
+        "logo"
+      ]
+    },
+    {
+      "name": "logo-tiktok",
+      "category": "social",
+      "tags": [
+        "logo",
+        "tiktok"
+      ]
+    },
+    {
+      "name": "logo-twitter",
+      "category": "social",
+      "tags": [
+        "logo",
+        "twitter"
+      ]
+    },
+    {
+      "name": "logo-twitter-x",
+      "category": "social",
+      "tags": [
+        "logo",
+        "twitter",
+        "x"
+      ]
+    },
+    {
+      "name": "logo-youtube",
+      "category": "social",
+      "tags": [
+        "logo",
+        "youtube"
       ]
     },
     {
@@ -2804,7 +2920,7 @@
       ]
     },
     {
-      "name": "marketing-filled",
+      "name": "megaphone",
       "category": "navigation",
       "tags": [
         "alarm",
@@ -2832,7 +2948,7 @@
       ]
     },
     {
-      "name": "marketing-outline",
+      "name": "megaphone-filled",
       "category": "navigation",
       "tags": [
         "alarm",
@@ -2952,6 +3068,50 @@
         "mute",
         "off",
         "speaker"
+      ]
+    },
+    {
+      "name": "monitor",
+      "category": "navigation",
+      "tags": [
+        "apple",
+        "computer",
+        "desktop",
+        "device",
+        "display",
+        "imac",
+        "mac",
+        "monitor",
+        "nav",
+        "navigation",
+        "pc",
+        "personal",
+        "screen",
+        "tech",
+        "technology",
+        "workstation"
+      ]
+    },
+    {
+      "name": "monitor-filled",
+      "category": "navigation",
+      "tags": [
+        "apple",
+        "computer",
+        "desktop",
+        "device",
+        "display",
+        "imac",
+        "mac",
+        "monitor",
+        "nav",
+        "navigation",
+        "pc",
+        "personal",
+        "screen",
+        "tech",
+        "technology",
+        "workstation"
       ]
     },
     {
@@ -3088,6 +3248,30 @@
       ]
     },
     {
+      "name": "package",
+      "category": "features",
+      "tags": [
+        "backup",
+        "clone",
+        "copies",
+        "copy",
+        "document",
+        "duplicate",
+        "file",
+        "files",
+        "group",
+        "layer",
+        "layers",
+        "note",
+        "paper",
+        "paste",
+        "report",
+        "separate",
+        "split",
+        "ungroup"
+      ]
+    },
+    {
       "name": "partners-filled",
       "category": "navigation",
       "tags": [
@@ -3107,33 +3291,6 @@
         "person",
         "person",
         "profile",
-        "star",
-        "user",
-        "users",
-        "woman"
-      ]
-    },
-    {
-      "name": "partners-outline",
-      "category": "navigation",
-      "tags": [
-        "account",
-        "avatar",
-        "contact",
-        "favorite",
-        "follower",
-        "friend",
-        "human",
-        "like",
-        "love",
-        "man",
-        "member",
-        "nav",
-        "navigation",
-        "person",
-        "person",
-        "profile",
-        "sage-icon-user-star",
         "star",
         "user",
         "users",
@@ -3401,27 +3558,7 @@
       ]
     },
     {
-      "name": "products-filled",
-      "category": "navigation",
-      "tags": [
-        "block",
-        "box",
-        "component",
-        "cube",
-        "delivery",
-        "geometry",
-        "module",
-        "nav",
-        "navigation",
-        "note",
-        "package",
-        "parcel",
-        "product",
-        "shape"
-      ]
-    },
-    {
-      "name": "products-outline",
+      "name": "product",
       "category": "navigation",
       "tags": [
         "block",
@@ -3462,13 +3599,6 @@
         "support",
         "tooltip",
         "ui"
-      ]
-    },
-    {
-      "name": "quote",
-      "category": "text-editor",
-      "tags": [
-        "quote"
       ]
     },
     {
@@ -3671,44 +3801,6 @@
       ]
     },
     {
-      "name": "sales-filled",
-      "category": "navigation",
-      "tags": [
-        "attribute",
-        "category",
-        "discount",
-        "ecommerce",
-        "label",
-        "nav",
-        "navigation",
-        "organize",
-        "price",
-        "sale",
-        "shopping",
-        "store",
-        "tag"
-      ]
-    },
-    {
-      "name": "sales-outline",
-      "category": "navigation",
-      "tags": [
-        "attribute",
-        "category",
-        "discount",
-        "ecommerce",
-        "label",
-        "nav",
-        "navigation",
-        "organize",
-        "price",
-        "sale",
-        "shopping",
-        "store",
-        "tag"
-      ]
-    },
-    {
       "name": "scissor",
       "category": "actions",
       "tags": [
@@ -3825,82 +3917,6 @@
       ]
     },
     {
-      "name": "series",
-      "category": "features",
-      "tags": [
-        "backup",
-        "clone",
-        "copies",
-        "copy",
-        "document",
-        "duplicate",
-        "file",
-        "files",
-        "group",
-        "layer",
-        "layers",
-        "note",
-        "paper",
-        "paste",
-        "report",
-        "separate",
-        "split",
-        "ungroup"
-      ]
-    },
-    {
-      "name": "settings-filled",
-      "category": "navigation",
-      "tags": [
-        "adjust",
-        "adjustment",
-        "cog",
-        "cogwheel",
-        "configuration",
-        "configure",
-        "edit",
-        "filter",
-        "gear",
-        "nav",
-        "navigation",
-        "option",
-        "options",
-        "setting",
-        "settings",
-        "setup",
-        "system",
-        "tolls",
-        "tool",
-        "wheel"
-      ]
-    },
-    {
-      "name": "settings-outline",
-      "category": "navigation",
-      "tags": [
-        "adjust",
-        "adjustment",
-        "cog",
-        "cogwheel",
-        "configuration",
-        "configure",
-        "edit",
-        "filter",
-        "gear",
-        "nav",
-        "navigation",
-        "option",
-        "options",
-        "setting",
-        "settings",
-        "setup",
-        "system",
-        "tolls",
-        "tool",
-        "wheel"
-      ]
-    },
-    {
       "name": "share",
       "category": "actions",
       "tags": [
@@ -3952,34 +3968,6 @@
         "divider",
         "forward-slash",
         "slash"
-      ]
-    },
-    {
-      "name": "sparkle",
-      "category": "actions",
-      "tags": [
-        "brightness",
-        "edit",
-        "effect",
-        "filter",
-        "light",
-        "photo",
-        "spark",
-        "sparkle"
-      ]
-    },
-    {
-      "name": "sparkle-filled",
-      "category": "actions",
-      "tags": [
-        "brightness",
-        "edit",
-        "effect",
-        "filter",
-        "light",
-        "photo",
-        "spark",
-        "sparkle"
       ]
     },
     {
@@ -4190,6 +4178,44 @@
       ]
     },
     {
+      "name": "tag",
+      "category": "navigation",
+      "tags": [
+        "attribute",
+        "category",
+        "discount",
+        "ecommerce",
+        "label",
+        "nav",
+        "navigation",
+        "organize",
+        "price",
+        "sale",
+        "shopping",
+        "store",
+        "tag"
+      ]
+    },
+    {
+      "name": "tag-filled",
+      "category": "navigation",
+      "tags": [
+        "attribute",
+        "category",
+        "discount",
+        "ecommerce",
+        "label",
+        "nav",
+        "navigation",
+        "organize",
+        "price",
+        "sale",
+        "shopping",
+        "store",
+        "tag"
+      ]
+    },
+    {
       "name": "text-styles",
       "category": "text-editor",
       "tags": [
@@ -4238,7 +4264,7 @@
       ]
     },
     {
-      "name": "thumbs-down",
+      "name": "thumb-down",
       "category": "actions",
       "tags": [
         "dislike",
@@ -4255,7 +4281,7 @@
       ]
     },
     {
-      "name": "thumbs-down-filled",
+      "name": "thumb-down-filled",
       "category": "actions",
       "tags": [
         "dislike",
@@ -4272,7 +4298,7 @@
       ]
     },
     {
-      "name": "thumbs-up",
+      "name": "thumb-up",
       "category": "actions",
       "tags": [
         "approve",
@@ -4290,7 +4316,7 @@
       ]
     },
     {
-      "name": "thumbs-up-filled",
+      "name": "thumb-up-filled",
       "category": "actions",
       "tags": [
         "approve",
@@ -4305,13 +4331,6 @@
         "thumbs",
         "up",
         "vote"
-      ]
-    },
-    {
-      "name": "tiktok",
-      "category": "social",
-      "tags": [
-        "tiktok"
       ]
     },
     {
@@ -4326,21 +4345,6 @@
         "trash",
         "trashcan",
         "waste"
-      ]
-    },
-    {
-      "name": "twitter",
-      "category": "social",
-      "tags": [
-        "twitter"
-      ]
-    },
-    {
-      "name": "twitter-x",
-      "category": "social",
-      "tags": [
-        "twitter",
-        "x"
       ]
     },
     {
@@ -4489,6 +4493,24 @@
       ]
     },
     {
+      "name": "user-circle",
+      "category": "navigation",
+      "tags": [
+        "nav",
+        "navigation",
+        "sage-icon-user-circle"
+      ]
+    },
+    {
+      "name": "user-circle-filled",
+      "category": "navigation",
+      "tags": [
+        "contacts",
+        "nav",
+        "navigation"
+      ]
+    },
+    {
       "name": "user-filled",
       "category": "actions",
       "tags": [
@@ -4505,6 +4527,53 @@
         "user",
         "users",
         "woman"
+      ]
+    },
+    {
+      "name": "user-star",
+      "category": "navigation",
+      "tags": [
+        "account",
+        "avatar",
+        "contact",
+        "favorite",
+        "follower",
+        "friend",
+        "human",
+        "like",
+        "love",
+        "man",
+        "member",
+        "nav",
+        "navigation",
+        "person",
+        "person",
+        "profile",
+        "sage-icon-user-star",
+        "star",
+        "user",
+        "users",
+        "woman"
+      ]
+    },
+    {
+      "name": "user-star-filled",
+      "category": "navigation",
+      "tags": [
+        "block",
+        "box",
+        "component",
+        "cube",
+        "delivery",
+        "geometry",
+        "module",
+        "nav",
+        "navigation",
+        "note",
+        "package",
+        "parcel",
+        "product",
+        "shape"
       ]
     },
     {
@@ -4530,7 +4599,7 @@
       ]
     },
     {
-      "name": "users-wm",
+      "name": "users-alt",
       "category": "site-settings",
       "tags": [
         "",
@@ -4614,50 +4683,6 @@
       ]
     },
     {
-      "name": "website-filled",
-      "category": "navigation",
-      "tags": [
-        "apple",
-        "computer",
-        "desktop",
-        "device",
-        "display",
-        "imac",
-        "mac",
-        "monitor",
-        "nav",
-        "navigation",
-        "pc",
-        "personal",
-        "screen",
-        "tech",
-        "technology",
-        "workstation"
-      ]
-    },
-    {
-      "name": "website-outline",
-      "category": "navigation",
-      "tags": [
-        "apple",
-        "computer",
-        "desktop",
-        "device",
-        "display",
-        "imac",
-        "mac",
-        "monitor",
-        "nav",
-        "navigation",
-        "pc",
-        "personal",
-        "screen",
-        "tech",
-        "technology",
-        "workstation"
-      ]
-    },
-    {
       "name": "window-paragraph",
       "category": "site-settings",
       "tags": [
@@ -4737,13 +4762,6 @@
         "tool",
         "ui",
         "wrench"
-      ]
-    },
-    {
-      "name": "youtube",
-      "category": "social",
-      "tags": [
-        "youtube"
       ]
     }
   ]
