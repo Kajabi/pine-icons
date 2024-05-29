@@ -2,7 +2,6 @@
   "affected": {
     "defaultBase": "origin/main"
   },
-  "npmScope": "pine-ds",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",

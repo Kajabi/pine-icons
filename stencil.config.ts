@@ -39,5 +39,6 @@ export const config: Config = {
   ],
   testing: {
     browserHeadless: "new",
+    modulePathIgnorePatterns: ["<rootDir>/.nx/"],
   },
 };
