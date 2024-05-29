@@ -15,6 +15,7 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 
+.nx/
 .stencil/
 .idea/
 .vscode/

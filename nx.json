@@ -37,5 +37,40 @@
         "build"
       ]
     }
+  },
+  "release": {
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
+    },
+    "conventionalCommits": {
+      "types": {
+        "docs": {
+          "changelog": {
+            "hidden": false,
+            "title": "Documentation 📄"
+          }
+        },
+        "feat": {
+          "changelog": {
+            "hidden": false,
+            "title": "Features 🚀"
+          }
+        },
+        "fix": {
+          "changelog": {
+            "hidden": false,
+            "title": "Bug Fixes 🐛"
+          }
+        }
+      }
+    },
+    "git": {
+      "commitMessage": "chore(release): {version}"
+    },
+    "version": {
+      "conventionalCommits": true
+    }
   }
 }

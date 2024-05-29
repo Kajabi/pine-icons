@@ -71,20 +71,44 @@ jobs:
       version: ${{ inputs.version || '' }}
     secrets: inherit
 
-  publish-icons:
-    uses: ./.github/workflows/publish-icons.yml
+  release-changes:
+    runs-on: ubuntu-latest
     needs: export-icons
-    if: ${{ needs.export-icons.outputs.nextVersionType != '' }}
-    with:
-      preid: ${{ inputs.preid}}
-      ref: ${{ inputs.ref }}
-      tag: ${{ inputs.tag }}
-      version: ${{ inputs.version || needs.export-icons.outputs.nextVersionType }}
-    secrets: inherit
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest
+        run: git pull
+        shell: bash
+
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+        shell: bash
+
+      - name: Configure user
+        run: |
+          git config user.name "Automation Bot"
+          git config user.email "dev+ju.skinner@gmail.com"
+
+      - name: Prepare NPM Token
+        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> .npmrc
+        shell: bash
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        run: npx nx release  --yes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
   send-slack-notification:
     runs-on: ubuntu-latest
-    needs: publish-icons
+    needs: release-changes
 
     steps:
       - name: Checkout
@@ -98,14 +122,14 @@ jobs:
           cat ./package.json >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 HEAD~)" >> $GITHUB_ENV
+          echo "COMMIT_MESSAGE=$(git log --pretty=format:%s -n 1 HEAD~)" >> $GITHUB_ENV
 
       - name: Send Slack Notification
         uses: slackapi/slack-github-action@v1.26.0
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           DATE: ${{ env.CURRENT_DATE }}
-          # RELEASE_URL: "${{ format('https://github.com/{0}/releases/tag', github.repository) }}/${{ needs.release-please.outputs['core--tag_name'] }}"
+          RELEASE_URL: "${{ format('https://github.com/{0}/releases/tag/v{1}', github.repository, fromJSON(env.PACKAGE_JSON).version) }}"
           CHANGELOG_URL: "${{ format('https://pine-icons.netlify.app/changelogs/{0}-changelog.html', env.CURRENT_DATE) }}"
           VERSION: ${{ fromJson(env.PACKAGE_JSON).version }}
           COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
