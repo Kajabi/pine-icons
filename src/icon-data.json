@@ -3272,32 +3272,6 @@
       ]
     },
     {
-      "name": "partners-filled",
-      "category": "navigation",
-      "tags": [
-        "account",
-        "avatar",
-        "contact",
-        "favorite",
-        "follower",
-        "friend",
-        "human",
-        "like",
-        "love",
-        "man",
-        "member",
-        "nav",
-        "navigation",
-        "person",
-        "person",
-        "profile",
-        "star",
-        "user",
-        "users",
-        "woman"
-      ]
-    },
-    {
       "name": "pause",
       "category": "actions",
       "tags": [
@@ -3559,6 +3533,26 @@
     },
     {
       "name": "product",
+      "category": "navigation",
+      "tags": [
+        "block",
+        "box",
+        "component",
+        "cube",
+        "delivery",
+        "geometry",
+        "module",
+        "nav",
+        "navigation",
+        "note",
+        "package",
+        "parcel",
+        "product",
+        "shape"
+      ]
+    },
+    {
+      "name": "product-filled",
       "category": "navigation",
       "tags": [
         "block",
@@ -4560,20 +4554,26 @@
       "name": "user-star-filled",
       "category": "navigation",
       "tags": [
-        "block",
-        "box",
-        "component",
-        "cube",
-        "delivery",
-        "geometry",
-        "module",
+        "account",
+        "avatar",
+        "contact",
+        "favorite",
+        "follower",
+        "friend",
+        "human",
+        "like",
+        "love",
+        "man",
+        "member",
         "nav",
         "navigation",
-        "note",
-        "package",
-        "parcel",
-        "product",
-        "shape"
+        "person",
+        "person",
+        "profile",
+        "star",
+        "user",
+        "users",
+        "woman"
       ]
     },
     {
