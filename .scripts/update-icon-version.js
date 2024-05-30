@@ -69,8 +69,7 @@ const run = async (nextVersionType = null, preid='') => {
       ])
 
       const msg = `created: ${created.length}, modified: ${modified.length}, renamed: ${renamed.length}, deleted: ${deleted.length}`
-      await git.commit(`ci(icons): v${iconPkgVersion}, ${msg}`)
-      await git.tag([`@pine-ds/icons@${iconPkgVersion}`, '-a', '-m', msg]);
+      await git.commit(`feat(icons)${nextVersionType === 'major' ? '!' : ''}: v${iconPkgVersion}, ${msg}`)
     }
 
     const output = [nextVersionType];

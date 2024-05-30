@@ -48,7 +48,7 @@ runs:
       shell: bash
 
     - name: Build Icons
-      run: npx nx run icons:build
+      run: npx nx run @pine-ds/icons:build
       shell: bash
 
     - name: Upload Icons Build Archive
