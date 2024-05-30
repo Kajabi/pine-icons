@@ -1,0 +1,44 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": ":pine:  Pine Icon Release v${{ env.VERSION }} :pine:"
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"text": "*${{ env.DATE }}*  |  Design System Services",
+					"type": "mrkdwn"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": ":information_source: *Release Information*"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "The details for version *${{ env.VERSION }}* can be found at the link provided below."
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Commit Message*: ${{ env.COMMIT_MESSAGE }}\n\n *Release*: ${{ env.RELEASE_URL }}\n\n *Changelog*: ${{ env.CHANGELOG_URL }}"
+			}
+		}
+	]
+}
