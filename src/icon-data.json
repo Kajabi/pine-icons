@@ -1012,6 +1012,22 @@
       ]
     },
     {
+      "name": "circle-a",
+      "category": "features",
+      "tags": [
+        "a",
+        "circle"
+      ]
+    },
+    {
+      "name": "circle-b",
+      "category": "features",
+      "tags": [
+        "b",
+        "circle"
+      ]
+    },
+    {
       "name": "circle-dashed",
       "category": "actions",
       "tags": [
@@ -2992,7 +3008,23 @@
       ]
     },
     {
-      "name": "menu-2",
+      "name": "menu-alt",
+      "category": "actions",
+      "tags": [
+        "bars",
+        "burger",
+        "gallery",
+        "hamburger",
+        "lines",
+        "list",
+        "menu",
+        "navigation",
+        "options",
+        "settings"
+      ]
+    },
+    {
+      "name": "menu-bordered",
       "category": "site-settings",
       "tags": [
         "bars",
@@ -3007,22 +3039,6 @@
         "options",
         "settings",
         "ui"
-      ]
-    },
-    {
-      "name": "menu-alt",
-      "category": "actions",
-      "tags": [
-        "bars",
-        "burger",
-        "gallery",
-        "hamburger",
-        "lines",
-        "list",
-        "menu",
-        "navigation",
-        "options",
-        "settings"
       ]
     },
     {
@@ -3248,7 +3264,7 @@
       ]
     },
     {
-      "name": "package",
+      "name": "packages",
       "category": "features",
       "tags": [
         "backup",
@@ -4339,6 +4355,13 @@
         "trash",
         "trashcan",
         "waste"
+      ]
+    },
+    {
+      "name": "trophy",
+      "category": "features",
+      "tags": [
+        "trophy"
       ]
     },
     {
