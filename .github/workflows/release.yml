@@ -100,11 +100,21 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Build
+        run: npx nx run @pine-ds/icons:build
+        shell: bash
+
       - name: Release
+        if: inputs.version == ''
         run: npx nx release  --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Release using Input Version
+        if: inputs.version != ''
+        run: npx nx release ${{inputs.version}} --yes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   send-slack-notification:
     runs-on: ubuntu-latest

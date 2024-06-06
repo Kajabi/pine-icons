@@ -20,6 +20,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Pull latest
+        run: git pull
+
       - name: Setup ENV Vars
         run: |
           echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
