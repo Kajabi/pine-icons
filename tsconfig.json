@@ -7,10 +7,7 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noUnusedLocals": true,
@@ -19,12 +16,8 @@
       "@utils/*": ["src/utils/*"]
     },
     "removeComments": false,
-    "target": "es2017",
+    "target": "es2017"
   },
-  "include": [
-    "src",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
