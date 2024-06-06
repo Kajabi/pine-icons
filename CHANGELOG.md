@@ -1,3 +1,7 @@
+## 7.0.1 (2024-06-06)
+
+This was a version bump only, there were no code changes.
+
 # 7.0.0 (2024-06-06)
 
 
