@@ -1304,6 +1304,43 @@
       ]
     },
     {
+      "name": "course-filled",
+      "category": "features",
+      "tags": [
+        "app",
+        "boxes",
+        "browser",
+        "content",
+        "description",
+        "design",
+        "development",
+        "document",
+        "grid",
+        "header",
+        "image",
+        "internet",
+        "layout",
+        "list",
+        "masonry",
+        "mockup",
+        "page",
+        "paragraph",
+        "photo",
+        "picture",
+        "sidebar",
+        "site",
+        "tab",
+        "table",
+        "text",
+        "tile",
+        "view",
+        "web",
+        "webpage",
+        "website",
+        "wireframe"
+      ]
+    },
+    {
       "name": "creator-studio",
       "category": "actions",
       "tags": [
@@ -4640,6 +4677,28 @@
         "population",
         "team",
         "user"
+      ]
+    },
+    {
+      "name": "users-filled",
+      "category": "features",
+      "tags": [
+        "account",
+        "avatar",
+        "contact",
+        "follower",
+        "friend",
+        "group",
+        "human",
+        "man",
+        "member",
+        "network",
+        "person",
+        "profile",
+        "team",
+        "user",
+        "users",
+        "woman"
       ]
     },
     {
