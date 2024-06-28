@@ -126,6 +126,7 @@ export class PdsIcon {
 
       <Host
         aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null }
+        alt=""
         role="img"
         style={style}
         class={{
