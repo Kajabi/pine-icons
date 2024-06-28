@@ -8,7 +8,7 @@ describe('pds-icon', () => {
       html: '<pds-icon></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon role="img" size="regular" style="height: 16px; width: 16px;">
+      <pds-icon alt="" role="img" size="regular" style="height: 16px; width: 16px;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -22,7 +22,7 @@ describe('pds-icon', () => {
       html: '<pds-icon size="small"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon role="img" size="small" style="height: 12px; width: 12px;">
+      <pds-icon alt="" role="img" size="small" style="height: 12px; width: 12px;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -36,7 +36,7 @@ describe('pds-icon', () => {
       html: '<pds-icon size="32px"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon role="img" size="32px" style="height: 32px; width: 32px;">
+      <pds-icon alt="" role="img" size="32px" style="height: 32px; width: 32px;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -50,7 +50,7 @@ describe('pds-icon', () => {
       html: '<pds-icon name="archive"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon aria-label="archive" name="archive" role="img" size="regular" style="height: 16px; width: 16px;">
+      <pds-icon alt="" aria-label="archive" name="archive" role="img" size="regular" style="height: 16px; width: 16px;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
