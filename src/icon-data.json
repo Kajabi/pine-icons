@@ -520,6 +520,13 @@
       ]
     },
     {
+      "name": "bulb",
+      "category": "actions",
+      "tags": [
+        "bulb"
+      ]
+    },
+    {
       "name": "button",
       "category": "text-editor",
       "tags": [
