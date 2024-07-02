@@ -1,3 +1,19 @@
+## 7.2.0 (2024-07-02)
+
+
+### Features 🚀
+
+- **icons:** v7.2.0, created: 1, modified: 0, renamed: 0, deleted: 0 ([312b90f](https://github.com/Kajabi/pine-icons/commit/312b90f))
+
+### Bug Fixes 🐛
+
+- adds missing alt to icon ([f54fa8a](https://github.com/Kajabi/pine-icons/commit/f54fa8a))
+
+### ❤️  Thank You
+
+- Kajabi Automation Bot
+- Phillip Lovelace
+
 ## 7.1.0 (2024-06-27)
 
 
