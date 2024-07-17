@@ -24,7 +24,7 @@ export const collectionCopy = async (rootDir: string) => {
   const emptyCjs = `/*empty cjs*/`;
   await fs.writeFile(ceCjsPath, emptyCjs);
 
-  const cePackaageJson = {
+  const cePackageJson = {
     name: '@pine-ds/icons/components',
     description: 'Pine Icons custom element',
     main: './index.cjs.js',
@@ -33,5 +33,5 @@ export const collectionCopy = async (rootDir: string) => {
     private: true,
   };
 
-  await fs.writeFile(cePackageJsonPath, JSON.stringify(cePackaageJson, null, 2));
+  await fs.writeFile(cePackageJsonPath, JSON.stringify(cePackageJson, null, 2));
 }
