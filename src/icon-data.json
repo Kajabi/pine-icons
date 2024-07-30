@@ -1908,6 +1908,18 @@
       ]
     },
     {
+      "name": "file-02",
+      "category": "actions",
+      "tags": [
+        "attachment",
+        "file",
+        "paper",
+        "pdf",
+        "report",
+        "text"
+      ]
+    },
+    {
       "name": "file-money",
       "category": "site-settings",
       "tags": [
@@ -4405,6 +4417,14 @@
       "name": "trophy",
       "category": "features",
       "tags": [
+        "trophy"
+      ]
+    },
+    {
+      "name": "trophy-filled",
+      "category": "features",
+      "tags": [
+        "filled",
         "trophy"
       ]
     },
