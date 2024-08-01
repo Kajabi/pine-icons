@@ -103,6 +103,12 @@ export class PdsIcon {
     }
   }
 
+  @Watch('size')
+  @Watch('color')
+  updateStyles() {
+    this.setCSSVariables();
+  }
+
   @Watch('name')
   @Watch('src')
   @Watch('icon')
