@@ -1,3 +1,16 @@
+## 7.4.0 (2024-08-01)
+
+
+### Features 🚀
+
+- size prop now sets css variables ([#17](https://github.com/Kajabi/pine-icons/pull/17))
+- **icons:** v7.4.0, created: 15, modified: 14, renamed: 0, deleted: 0 ([7eef15d](https://github.com/Kajabi/pine-icons/commit/7eef15d))
+
+### ❤️  Thank You
+
+- Julian Skinner @ju-Skinner
+- Kajabi Automation Bot
+
 ## 7.3.0 (2024-07-30)
 
 
