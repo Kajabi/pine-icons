@@ -7,6 +7,9 @@
 
     <script type="module" src="/build/pds-icons.esm.js"></script>
     <script nomodule src="/build/pds-icons.js"></script>
+    <style>
+      .something { height: 120px; width: 120px; }
+    </style>
   </head>
   <body>
     <h1>Pine Icons</h1>
@@ -29,6 +32,10 @@
 
     <h3>Custom size</h3>
     <pds-icon name="youtube" size="140px"></pds-icon>
+
+    <h3>Custom size with class</h3>
+    <p>Style will override the size of 20px and be set to 120px</p>
+    <pds-icon name="pen" size="20px" class="something"></pds-icon>
 
     <h3>Color</h3>
     <pds-icon name="youtube" size="140px" color="red"></pds-icon>
