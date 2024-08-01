@@ -1,3 +1,14 @@
+## 7.4.1 (2024-08-01)
+
+
+### Bug Fixes 🐛
+
+- dynamic color and size updates will be reflected ([ca33cff](https://github.com/Kajabi/pine-icons/commit/ca33cff))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 7.4.0 (2024-08-01)
 
 
