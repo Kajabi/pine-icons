@@ -428,6 +428,17 @@
       ]
     },
     {
+      "name": "bar-chart-10-tone",
+      "category": "app-frame",
+      "tags": [
+        "bar",
+        "barchart",
+        "chart",
+        "data",
+        "graph"
+      ]
+    },
+    {
       "name": "bell",
       "category": "site-settings",
       "tags": [
@@ -444,6 +455,15 @@
         "sound",
         "ui",
         "wake"
+      ]
+    },
+    {
+      "name": "bell-01-tone",
+      "category": "app-frame",
+      "tags": [
+        "alert",
+        "bell",
+        "notification"
       ]
     },
     {
@@ -1043,6 +1063,15 @@
       ]
     },
     {
+      "name": "clapperboard-tone",
+      "category": "app-frame",
+      "tags": [
+        "clapperboard",
+        "film",
+        "tv"
+      ]
+    },
+    {
       "name": "clock",
       "category": "actions",
       "tags": [
@@ -1386,6 +1415,28 @@
       ]
     },
     {
+      "name": "credit-card-02-tone",
+      "category": "app-frame",
+      "tags": [
+        "card",
+        "credit card",
+        "currency",
+        "debit card",
+        "money"
+      ]
+    },
+    {
+      "name": "cube-01-tone",
+      "category": "app-frame",
+      "tags": [
+        "box",
+        "container",
+        "cube",
+        "shape",
+        "square"
+      ]
+    },
+    {
       "name": "cursor",
       "category": "actions",
       "tags": [
@@ -1581,6 +1632,18 @@
         "options",
         "overflow",
         "settings"
+      ]
+    },
+    {
+      "name": "dots-horizontal-tone",
+      "category": "app-frame",
+      "tags": [
+        "dots",
+        "horizontal",
+        "line",
+        "menu",
+        "more",
+        "options"
       ]
     },
     {
@@ -2375,6 +2438,15 @@
       ]
     },
     {
+      "name": "headset-tone",
+      "category": "app-frame",
+      "tags": [
+        "audio",
+        "earphones",
+        "headphones"
+      ]
+    },
+    {
       "name": "help",
       "category": "navigation",
       "tags": [
@@ -2413,6 +2485,17 @@
         "real",
         "shelter",
         "ui"
+      ]
+    },
+    {
+      "name": "home-02-tone",
+      "category": "app-frame",
+      "tags": [
+        "home",
+        "homepage",
+        "house",
+        "menu",
+        "return"
       ]
     },
     {
@@ -2878,6 +2961,17 @@
       ]
     },
     {
+      "name": "mail-01-tone",
+      "category": "app-frame",
+      "tags": [
+        "inbox",
+        "mail",
+        "mailbox",
+        "message",
+        "tray"
+      ]
+    },
+    {
       "name": "mail-filled",
       "category": "features",
       "tags": [
@@ -3165,6 +3259,16 @@
       ]
     },
     {
+      "name": "monitor-03-tone",
+      "category": "app-frame",
+      "tags": [
+        "mac",
+        "monitor",
+        "screen",
+        "tv"
+      ]
+    },
+    {
       "name": "monitor-filled",
       "category": "navigation",
       "tags": [
@@ -3402,6 +3506,17 @@
         "school",
         "text",
         "write"
+      ]
+    },
+    {
+      "name": "phone-02-tone",
+      "category": "app-frame",
+      "tags": [
+        "call",
+        "iphone",
+        "mobile",
+        "number",
+        "phone"
       ]
     },
     {
@@ -3937,6 +4052,18 @@
       ]
     },
     {
+      "name": "search-md-tone",
+      "category": "app-frame",
+      "tags": [
+        "filter",
+        "magnify",
+        "magnifying glass",
+        "search",
+        "search bar",
+        "searchbar"
+      ]
+    },
+    {
       "name": "search-small",
       "category": "actions",
       "tags": [
@@ -3980,6 +4107,15 @@
       "category": "features",
       "tags": [
         "sage-icon-sequences"
+      ]
+    },
+    {
+      "name": "settings-01-tone",
+      "category": "app-frame",
+      "tags": [
+        "cog",
+        "preferences",
+        "settings"
       ]
     },
     {
@@ -4098,6 +4234,17 @@
         "star",
         "win review",
         "winner"
+      ]
+    },
+    {
+      "name": "stars-01-tone",
+      "category": "app-frame",
+      "tags": [
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
@@ -4683,6 +4830,17 @@
         "user",
         "users",
         "woman"
+      ]
+    },
+    {
+      "name": "users-02-tone",
+      "category": "app-frame",
+      "tags": [
+        "account",
+        "people",
+        "persona",
+        "team",
+        "users"
       ]
     },
     {
