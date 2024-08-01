@@ -73,8 +73,20 @@ export class PdsIcon {
       return this.size;
     }
   }
+
+  componentDidLoad() {
+    this.setCSSVariables();
+  }
+
   componentWillLoad() {
     this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
+    this.setCSSVariables();
+  }
+
+  setCSSVariables() {
+    this.el.style.setProperty(`--dimension-icon-height`, this.iconSize());
+    this.el.style.setProperty(`--dimension-icon-width`, this.iconSize());
+    this.el.style.setProperty(`--color-icon-fill`, this.color);
   }
 
   connectedCallback() {
@@ -116,19 +128,12 @@ export class PdsIcon {
   render() {
     const { ariaLabel, inheritedAttributes } = this;
 
-    const style = {
-      height: this.iconSize(),
-      width: this.iconSize(),
-      color: this.color,
-    }
-
     return (
 
       <Host
         aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null }
         alt=""
         role="img"
-        style={style}
         class={{
           ...createColorClasses(this.color),
         }}

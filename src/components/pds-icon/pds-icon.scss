@@ -1,12 +1,16 @@
 :host {
+  --dimension-icon-height: 16px;
+  --dimension-icon-width: 16px;
+  --color-icon-fill: currentColor;
+
   contain: strict;
   display: inline-block;
-  fill: currentColor;
-  height: 1em;
-  width: 1em;
+  fill: var(--color-icon-fill);
+  height: var(--dimension-icon-height);
+  width: var(--dimension-icon-width);
 
   .pdsicon {
-    fill: currentColor;
+    fill: var(--color-icon-fill);
   }
 }
 
