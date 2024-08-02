@@ -86,7 +86,7 @@ export class PdsIcon {
   setCSSVariables() {
     this.el.style.setProperty(`--dimension-icon-height`, this.iconSize());
     this.el.style.setProperty(`--dimension-icon-width`, this.iconSize());
-    this.el.style.setProperty(`--color-icon-fill`, this.color);
+    this.el.style.setProperty(`--color-icon-fill`, typeof this.color !== 'undefined' ? this.color : 'currentColor');
   }
 
   connectedCallback() {
