@@ -1,3 +1,14 @@
+## 7.4.2 (2024-08-02)
+
+
+### Bug Fixes 🐛
+
+- set color to currentColor if undefined ([d2e6d5e](https://github.com/Kajabi/pine-icons/commit/d2e6d5e))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 7.4.1 (2024-08-01)
 
 
