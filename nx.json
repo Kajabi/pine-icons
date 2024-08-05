@@ -1,7 +1,5 @@
 {
-  "affected": {
-    "defaultBase": "origin/main"
-  },
+  "defaultBase": "origin/main",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
