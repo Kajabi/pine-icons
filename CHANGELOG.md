@@ -1,3 +1,7 @@
+## 7.4.3 (2024-08-05)
+
+This was a version bump only, there were no code changes.
+
 ## 7.4.2 (2024-08-02)
 
 
