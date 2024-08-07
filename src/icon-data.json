@@ -2248,6 +2248,15 @@
       ]
     },
     {
+      "name": "gift-01",
+      "category": "app-frame",
+      "tags": [
+        "gift",
+        "package",
+        "surprise"
+      ]
+    },
+    {
       "name": "grant-offer",
       "category": "actions",
       "tags": [
