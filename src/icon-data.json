@@ -439,6 +439,18 @@
       ]
     },
     {
+      "name": "bar-chart-square-01",
+      "category": "actions",
+      "tags": [
+        "bar",
+        "barchart",
+        "chart",
+        "data",
+        "graph",
+        "square"
+      ]
+    },
+    {
       "name": "bell",
       "category": "site-settings",
       "tags": [
@@ -1909,6 +1921,16 @@
       ]
     },
     {
+      "name": "expand-06",
+      "category": "actions",
+      "tags": [
+        "expand",
+        "full screen",
+        "fullscreen",
+        "open"
+      ]
+    },
+    {
       "name": "favorite",
       "category": "actions",
       "tags": [
@@ -1979,6 +2001,34 @@
         "paper",
         "pdf",
         "report",
+        "text"
+      ]
+    },
+    {
+      "name": "file-download-03",
+      "category": "actions",
+      "tags": [
+        "attachment",
+        "download",
+        "file",
+        "paper",
+        "pdf",
+        "report",
+        "text"
+      ]
+    },
+    {
+      "name": "file-lock-03",
+      "category": "actions",
+      "tags": [
+        "attachment",
+        "cybersecurity",
+        "file",
+        "lock",
+        "paper",
+        "pdf",
+        "report",
+        "security",
         "text"
       ]
     },
