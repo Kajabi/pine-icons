@@ -86,7 +86,7 @@ jobs:
         shell: bash
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
         shell: bash
 
       - name: Configure user
