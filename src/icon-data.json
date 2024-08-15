@@ -428,18 +428,7 @@
       ]
     },
     {
-      "name": "bar-chart-10-tone",
-      "category": "app-frame",
-      "tags": [
-        "bar",
-        "barchart",
-        "chart",
-        "data",
-        "graph"
-      ]
-    },
-    {
-      "name": "bar-chart-square-01",
+      "name": "bar-chart-square",
       "category": "actions",
       "tags": [
         "bar",
@@ -448,6 +437,17 @@
         "data",
         "graph",
         "square"
+      ]
+    },
+    {
+      "name": "bar-chart-tone",
+      "category": "app-frame",
+      "tags": [
+        "bar",
+        "barchart",
+        "chart",
+        "data",
+        "graph"
       ]
     },
     {
@@ -470,7 +470,7 @@
       ]
     },
     {
-      "name": "bell-01-tone",
+      "name": "bell-tone",
       "category": "app-frame",
       "tags": [
         "alert",
@@ -1427,7 +1427,7 @@
       ]
     },
     {
-      "name": "credit-card-02-tone",
+      "name": "credit-card-tone",
       "category": "app-frame",
       "tags": [
         "card",
@@ -1438,7 +1438,7 @@
       ]
     },
     {
-      "name": "cube-01-tone",
+      "name": "cube-tone",
       "category": "app-frame",
       "tags": [
         "box",
@@ -1921,7 +1921,7 @@
       ]
     },
     {
-      "name": "expand-06",
+      "name": "expand",
       "category": "actions",
       "tags": [
         "expand",
@@ -1993,19 +1993,15 @@
       ]
     },
     {
-      "name": "file-02",
+      "name": "file-add",
       "category": "actions",
       "tags": [
-        "attachment",
-        "file",
-        "paper",
-        "pdf",
-        "report",
-        "text"
+        "add",
+        "file"
       ]
     },
     {
-      "name": "file-download-03",
+      "name": "file-download",
       "category": "actions",
       "tags": [
         "attachment",
@@ -2018,7 +2014,7 @@
       ]
     },
     {
-      "name": "file-lock-03",
+      "name": "file-lock",
       "category": "actions",
       "tags": [
         "attachment",
@@ -2298,7 +2294,7 @@
       ]
     },
     {
-      "name": "gift-01",
+      "name": "gift-tone",
       "category": "app-frame",
       "tags": [
         "gift",
@@ -2547,17 +2543,6 @@
       ]
     },
     {
-      "name": "home-02-tone",
-      "category": "app-frame",
-      "tags": [
-        "home",
-        "homepage",
-        "house",
-        "menu",
-        "return"
-      ]
-    },
-    {
       "name": "home-alt",
       "category": "site-settings",
       "tags": [
@@ -2601,6 +2586,17 @@
         "real",
         "shelter",
         "ui"
+      ]
+    },
+    {
+      "name": "home-tone",
+      "category": "app-frame",
+      "tags": [
+        "home",
+        "homepage",
+        "house",
+        "menu",
+        "return"
       ]
     },
     {
@@ -3020,17 +3016,6 @@
       ]
     },
     {
-      "name": "mail-01-tone",
-      "category": "app-frame",
-      "tags": [
-        "inbox",
-        "mail",
-        "mailbox",
-        "message",
-        "tray"
-      ]
-    },
-    {
       "name": "mail-filled",
       "category": "features",
       "tags": [
@@ -3056,6 +3041,17 @@
         "post",
         "send",
         "write"
+      ]
+    },
+    {
+      "name": "mail-tone",
+      "category": "app-frame",
+      "tags": [
+        "inbox",
+        "mail",
+        "mailbox",
+        "message",
+        "tray"
       ]
     },
     {
@@ -3318,16 +3314,6 @@
       ]
     },
     {
-      "name": "monitor-03-tone",
-      "category": "app-frame",
-      "tags": [
-        "mac",
-        "monitor",
-        "screen",
-        "tv"
-      ]
-    },
-    {
       "name": "monitor-filled",
       "category": "navigation",
       "tags": [
@@ -3347,6 +3333,16 @@
         "tech",
         "technology",
         "workstation"
+      ]
+    },
+    {
+      "name": "monitor-tone",
+      "category": "app-frame",
+      "tags": [
+        "mac",
+        "monitor",
+        "screen",
+        "tv"
       ]
     },
     {
@@ -3568,17 +3564,6 @@
       ]
     },
     {
-      "name": "phone-02-tone",
-      "category": "app-frame",
-      "tags": [
-        "call",
-        "iphone",
-        "mobile",
-        "number",
-        "phone"
-      ]
-    },
-    {
       "name": "phone-portrait",
       "category": "actions",
       "tags": [
@@ -3595,6 +3580,17 @@
         "technology",
         "telephone",
         "touchscreen"
+      ]
+    },
+    {
+      "name": "phone-tone",
+      "category": "app-frame",
+      "tags": [
+        "call",
+        "iphone",
+        "mobile",
+        "number",
+        "phone"
       ]
     },
     {
@@ -4013,6 +4009,16 @@
       ]
     },
     {
+      "name": "rocket-tone",
+      "category": "app-frame",
+      "tags": [
+        "jet",
+        "missile",
+        "rocket",
+        "transport"
+      ]
+    },
+    {
       "name": "round-dollar",
       "category": "features",
       "tags": [
@@ -4169,7 +4175,7 @@
       ]
     },
     {
-      "name": "settings-01-tone",
+      "name": "settings-tone",
       "category": "app-frame",
       "tags": [
         "cog",
@@ -4296,7 +4302,7 @@
       ]
     },
     {
-      "name": "stars-01-tone",
+      "name": "stars-tone",
       "category": "app-frame",
       "tags": [
         "galaxy",
@@ -4892,17 +4898,6 @@
       ]
     },
     {
-      "name": "users-02-tone",
-      "category": "app-frame",
-      "tags": [
-        "account",
-        "people",
-        "persona",
-        "team",
-        "users"
-      ]
-    },
-    {
       "name": "users-alt",
       "category": "site-settings",
       "tags": [
@@ -4943,6 +4938,17 @@
         "user",
         "users",
         "woman"
+      ]
+    },
+    {
+      "name": "users-tone",
+      "category": "app-frame",
+      "tags": [
+        "account",
+        "people",
+        "persona",
+        "team",
+        "users"
       ]
     },
     {
