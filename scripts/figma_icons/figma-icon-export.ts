@@ -1,180 +1,49 @@
 import * as dotenv from 'dotenv';
 
-import { run as optimizeSvgs } from '../optimize-svgs'
-import { collectionCopy } from '../collection-copy';
-
-
 /* eslint-disable @typescript-eslint/no-var-requires */
 const axios = require('axios');
 import chalk from 'chalk'; // Terminal string styling done right
 import path from 'path';
 import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
-import cliui from 'cliui';
-import { simpleGit, SimpleGitOptions, StatusResult } from 'simple-git';
 
-import { FigmaIcon, FigmaIconConfig, IconFileDetail, SvgDiffResult } from './types';
+import { run as finalizeExport } from './finalize-export';
+import { run as optimize } from '../optimize-svgs'
+
+import { FigmaIcon, FigmaIconConfig } from './types';
 
 if (process.env.NODE_ENV !== 'prod') {
   dotenv.config({ path: `${process.cwd()}/.env` });
 }
-
 
 const info = chalk.white;
 const error = chalk.red.bold;
 const detail = chalk.yellowBright;
 const log = console.log;
 
-const baseDir = process.cwd();
-const scriptsDir = path.join(baseDir, 'scripts');
-const srcDir = path.join(baseDir, 'src');
-const srcSvgBasePath = path.join(srcDir, 'svg');
-
-const date = new Date();
-const strDate = [date.getFullYear().toString(), (date.getMonth() + 1).toString().padStart(2,'0'), date.getDate().toString().padStart(2, '0')].join('-');
+const defaultBatchSize = 500;
 
 let figmaClient;
+let config: FigmaIconConfig;
 
-const run = async (rootDir: string) => {
+const run = async (rootDir: string) : Promise<any> => {
   try {
-    const config: FigmaIconConfig = await loadFigmaIconConfig(rootDir);
+    config = await loadFigmaIconConfig(rootDir);
     figmaClient =  client(config.figmaAccessToken);
 
-    const data = await processData(rootDir, config);
+    const results = await processData(rootDir, config);
 
-    await optimizeSvgs(rootDir, true);
+    await optimize(rootDir, true);
 
-    const git = gitClient();
-    await git.add(srcSvgBasePath);
+    await finalizeExport(config, results, rootDir);
 
-    const statusResults: StatusResult = await git.status([srcSvgBasePath]);
-    const filesChanged = statusResults.files;
-
-    if (filesChanged.length <= 0) {
-      log(detail('No changes were found. Exiting the process!!!!'))
-
-      removeTmpDirectory(config);
-
-      return;
-    }
-
-    log('Copying collections...');
-    await collectionCopy(rootDir);
-
-    log(`${makeResultsTable(data.downloaded)}\n`);
-
-    console.log('Icon Count: ', data.icons.length, 'Result Count: ', data.downloaded.length);
-    createJsonIconList(data.icons, srcDir);
-
-    await createChangelogHTML(statusResults);
-
-    removeTmpDirectory(config)
-
-    // restore staged files in case of failure
-    const { exec } = require('node:child_process')
-    exec(`git restore --staged ${srcSvgBasePath}`)
+    return results;
   }
   catch (e) {
     log(error(e));
     process.exit(1);
   }
 }
-
-/**
- * Reads the file contents to read the Svg File and stores
- * into a property to be used later
- *
- * @param status - staus indicator, this could be D - deleted, M - modified, or empty - new
- * @param filePath - relattive path to the file
- * @returns - SvgDiffResult
- */
-const buildBeforeAndAfterSvg = async (status: string, filePath: string, previousFilePath: string = null):  Promise<SvgDiffResult> => {
-  const filename = path.basename(filePath);
-  const previousFileName = previousFilePath && path.basename(previousFilePath);
-
-  let beforeSvg = null;
-  let afterSvg = null;
-
-  switch(status) {
-    case 'D':
-      beforeSvg = await getFileContentsFromGit(filePath);
-      break;
-
-    case 'M':
-      beforeSvg = await getFileContentsFromGit(filePath);
-      afterSvg = await getFileContentsFromDisk(filename)
-      break;
-
-    case 'R':
-        beforeSvg = await getFileContentsFromGit(previousFilePath);
-        afterSvg = await getFileContentsFromDisk(filename)
-        break;
-
-    case '':
-      afterSvg = await getFileContentsFromDisk(filename);
-      break;
-  }
-
-
-  return {
-    previousFileName,
-    filename,
-    status,
-    before: beforeSvg,
-    after: afterSvg,
-  }
-}
-
-/**
- * Generates a Header, table, and description
- *
- * @param sectionName - name used for the Header
- * @param data - an array of {@link SVGDiffResult}
- * @param description - text to display under the table as a description
- * @returns The string of html used to represent a section e.g Added in the Changelog
- */
-const buildHTMLSection = (sectionName: string, data: Array<SvgDiffResult>, description: string) => {
-  const content = `<h2>${sectionName}</h2>`;
-  const table: string = buildHTMLTable(data, sectionName == 'Renamed');
-  const desc = `<p>${description}</p>`;
-
-  return [content, table, desc].join('\n');
-}
-
-
-/**
- * Generates a HTML Table
- *
- * @param data  an array of {@link SvgDiffResult}
- * @returns - The html table markup
- */
-const buildHTMLTable = (data: Array<SvgDiffResult>, isRenamed = false) => {
-  const tableRows = data.map((diff) => `<tr>
-  ${ isRenamed ? `<td>${diff.previousFileName}</td>` : ''}
-  <td>${diff.filename}</td>
-  <td>${diff.before || ''}</td>
-  <td>${diff.after || ''}</td>
-</tr>`);
-
-  const tableBody = `<tbody>
-    ${tableRows.join('')}
-  </tbody>`
-
-  const table = `<table>
-  <thead>
-    <tr>
-      ${ isRenamed ? `<td>Previous Filename</td>` : ''}
-      <td>${ isRenamed ? `New Filename</td>` : 'FileName'}</td>
-      <td>Before</td>
-      <td>After</td>
-    </tr>
-  </thead>
-  ${tableBody}
-</table>`
-
-  return table;
-}
-
 
 /**
  * Creates the axios client with the appropriate
@@ -201,125 +70,6 @@ const client = (apiToken) => {
 
   return instance;
 };
-
-/**
- * Creates the Changelog.html file based on the
- * latest data pulled from Figma
- *
- * @returns The results from SimpleGit.status()
- */
-const createChangelogHTML = async (statusResults: StatusResult) => {
-  const { modified, created, deleted, renamed } = await processStatusResults(statusResults);
-
-  // Adding or Deleting will be Major version bump
-  // Modifying will be a MINOR version bump
-
-  const html = fs.readFileSync(path.join(scriptsDir, 'figma_icons', 'changelog-template.html'), 'utf8')
-    .replace(/{{date}}/g, strDate)
-    .replace(/{{modified}}/g, statusResults.modified.length.toString())
-    .replace(/{{deleted}}/g, statusResults.deleted.length.toString())
-    .replace(/{{created}}/g, statusResults.created.length.toString())
-    .replace(/{{renamed}}/g, statusResults.renamed.length.toString())
-    .replace(/{{content}}/g, [created, modified, deleted, renamed].join('\n'));
-
-  const changelogFilename = `${strDate}-changelog.html`
-  const changelogPath = path.join(baseDir, 'changelogs');
-  const fullChangelogFilename = path.join(changelogPath, changelogFilename)
-
-  // Write file to changelogs directory
-  fs.writeFileSync(fullChangelogFilename, html);
-
-  const arrChangelogs = fs.readdirSync(changelogPath);
-
-  const changelogRecords = [];
-  let numberOfChangelogs = 0;
-
-  arrChangelogs.reverse().forEach((filename, idx) => {
-    if ( path.extname(filename) === '.html') {
-      if (idx < 10 ) {
-        changelogRecords.push(`<a href="changelogs/${filename}">${path.basename(filename)}</a>`)
-      }
-      numberOfChangelogs++
-    }
-  })
-  log('Number of Changelog files found: ', detail(numberOfChangelogs));
-
-  const indexHtml = fs.readFileSync(path.join(baseDir, 'src','index-template.html'), 'utf8')
-    .replace(/{{changelogs}}/g, changelogRecords.join(' <br/>'));
-
-  // Copy index.html file to www worker folder
-  fs.writeFileSync(path.join(baseDir, 'src', 'index.html'), indexHtml);
-
-  if ( fs.ensureDir(path.join(baseDir, 'www')) ) {
-    const wwwChangelogPath = path.join(baseDir, 'www', 'changelogs');
-    const wwwChangelogFile = path.join(wwwChangelogPath, changelogFilename);
-
-    // Create Changelogs folder in `www` worker folder
-    fs.mkdirSync(wwwChangelogPath, { recursive: true })
-    fs.copyFileSync(fullChangelogFilename, wwwChangelogFile)
-  }
-
-  return statusResults;
-}
-
-/**
- * Creates JSON data file that contains additional
- * metadata
- *
- * @example
- * ```
- * {
- *  "category": "features",
- *  "name": "access-key",
- *  "tags": [
- *    "access",
- *    "key",
- *    "license",
- *    "object",
- *    "password",
- *    "secure"
- *  ]
- * }
- * ```
- *
- * @param icons - array of FigmaIcons
- * @param outputDir - output directory to save the JSON data
- */
-const createJsonIconList = (icons: Array<FigmaIcon>, outputDir: string) => {
-  try {
-    icons = icons.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-
-    const outputObj = {
-      icons: icons.map((icon) => {
-          let tags;
-
-          if (icon.tags) {
-            tags = icon.tags?.split(',').map((tag) => (tag.trim())).sort();
-          }
-          else {
-            tags = icon.name.split('-');
-          }
-
-          return {
-            name: icon.name,
-            category: icon.frame || null,
-            tags: tags.sort(),
-          }
-        }
-      )};
-
-    const srcJsonStr = JSON.stringify(outputObj, null, 2) + '\n';
-    fs.writeFileSync(path.join(outputDir, 'icon-data.json'), srcJsonStr);
-
-  }
-  catch (e) {
-    logErrorMessage('createJsonIconList', e);
-  }
-}
 
 /**
  * Creates the directory that will
@@ -352,46 +102,51 @@ const createOutputDirectory = async (outputDir: string) => {
  * @param outputDir - The directory that the svg will be downloaded
  * @returns a object with the name and size of the svg
  */
-const downloadImage = (icon: FigmaIcon, outputDir: string) => {
-  const nameClean = icon.name.toLowerCase();
-  const directory = outputDir;
+const downloadImages = (icons: FigmaIcon[], outputDir: string) => {
+  // Ensure the output directory exists
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
 
-  const imagePath = path.resolve(directory, `${nameClean}.svg`);
-  const writer = fs.createWriteStream(imagePath);
+  // Map each icon to a promise that resolves when the download and write is complete
+  const downloadPromises = icons.map((icon) => {
+    const nameClean = icon.name.toLowerCase();
+    const imagePath = path.resolve(outputDir, `${nameClean}.svg`);
 
-  // log('Image url: ', info(icon.url), 'Frame: ', info(icon.frame));
-  // log('Image Path: ', info(imagePath));
+    return axios.get(icon.url, { responseType: 'arraybuffer' })
+      .then((res) => {
+        fs.writeFileSync(imagePath, res.data);
+        icon.filesize = fs.statSync(imagePath).size;
+        log(info('Successfully downloaded and saved:'), detail(`${icon.name}.svg`));
 
-  axios.get(icon.url, { responseType: 'stream' })
-    .then((res) => {
-      res.data.pipe(writer)
+        return {
+          name: `${icon.name}.svg`,
+          size: icon.filesize
+        };
+      })
+      .catch((err) => {
+        logErrorMessage(`Failed to download ${icon.name} from ${icon.url}:`, err.message);
+        throw err; // Re-throw to handle in Promise.all
+      });
+  });
+
+  return Promise.all(downloadPromises)
+    .then((results) => {
+      info('All downloads completed successfully.');
+      return results; // Array of all icon file details
     })
     .catch((err) => {
-      if (err.message === 'Socket connection timeout') {
-        log(detail('Create new Figma access Token'),)
-      }
-
-      log('Icon name: ', detail(icon.name))
-      log('Error details ', '\nMessage: ', error(err.message), '\nUrl: ', detail(err.config.url))
-      log(chalk.red.bold('Something went wrong fetching the image from S3, please try again'),)
-      log(chalk.red.bold(err),)
+      logErrorMessage('An error occurred while downloading images:', err);
+      throw err;
     });
+};
 
-  return new Promise<IconFileDetail>((resolve, reject) => {
-    writer.on('finish', () => {
-      // log(info(`Saved ${name}.svg`, fs.statSync(imagePath).size))
-      icon.filesize = fs.statSync(imagePath).size;
-      resolve({
-        name: `${icon.name}.svg`,
-        size: fs.statSync(imagePath).size
-      })
-    });
+const isNotIgnored = (value) => {
+  return !value.name.startsWith('_');
+}
 
-    writer.on('error', (err) => {
-      console.log('error writting file', err)
-      reject(err)
-    })
-  })
+const isNotText = (value) => {
+  return value.type.toLowerCase() !== 'text';
 }
 
 /**
@@ -403,24 +158,26 @@ const downloadImage = (icon: FigmaIcon, outputDir: string) => {
  * @returns An array of FigmaIcons
  */
 const extractIcons = (pageData, ignoreFrames: string[], componentMetadata) => {
-  const iconFrames = pageData.children;
 
+  const iconFrames = pageData.children.filter(isNotIgnored);
+
+  log(info('Frames to be processed: ', detail(iconFrames.length)));
   const iconLibrary: Array<FigmaIcon> = [];
 
   iconFrames.forEach((frame) => {
-    if ( ['COMPONENT_SET', 'FRAME'].includes(frame.type) && (!frame.name.startsWith('_') && !ignoreFrames?.includes(frame.name)) ) {
-      const components = frame.children;
+    if ( ['COMPONENT_SET', 'FRAME'].includes(frame.type) && !ignoreFrames?.includes(frame.name)) {
+      const components = frame.children.filter(isNotText);
 
+      log(info('---- Frame:', detail(frame.name), ':', detail(components.length).trim(), 'icons'));
+
+      const componentSuffix = config.pageName === pageData.name ? '' : `-${pageData.name}`;
       components.forEach( (component) => {
-        // if ( componentMetadata[component.id] === undefined) {
-        //   console.log('Frame: ', frame.name, 'Component Id: ', component.id, 'Metadata: ', componentMetadata[component.id])
-        // }
-
         const icon = {
           id: component.id,
           frame: frame.name.toLowerCase().replaceAll(' ', '-'),
-          name: !isNaN(component.name) ?  `number-${component.name}`: component.name
+          name: !isNaN(component.name) ?  `number-${component.name}${componentSuffix}`: `${component.name}${componentSuffix}`
         };
+
 
         if (componentMetadata[component.id] !== undefined ) {
           icon["tags"] = componentMetadata[component.id].description
@@ -437,27 +194,24 @@ const extractIcons = (pageData, ignoreFrames: string[], componentMetadata) => {
 /**
  * Process that finds and downloads SVGs
  *
- * @param page - Page object in figma
+
  * @param fileId - The unique Id for the Figma File
+ * @param config - The configuration object
+ * @param iconLibrary - The array of FigmaIcons
+ * @returns - An object with the icons and downloaded SVGs
  */
-const fetchAndDownloadIcons = async (page, fileId: string, config: FigmaIconConfig, componentMetadata) => {
+const fetchAndDownloadIcons = async (fileId: string, config: FigmaIconConfig, iconLibrary) => {
   try {
-    const iconLibrary = extractIcons(page, config.ignoreFrames, componentMetadata);
-
-    log(chalk.yellowBright(iconLibrary.length), info('icons have been extracted'))
-
     const icons: Array<FigmaIcon> = await fetchImageUrls(fileId, iconLibrary)
 
-    await createOutputDirectory(config.downloadPath);
-    fs.emptyDirSync(config.downloadPath);
+    const outputDirectory = config.downloadPath;
 
-    const allIcons = icons.map((icon) => downloadImage(icon, config.downloadPath));
-
-    const results = await Promise.all(allIcons).then((res) => { return res; });
+    const allIcons = await downloadImages(icons, outputDirectory);
+    console.log('allIcons: ', allIcons.length)
 
     return {
       icons: iconLibrary,
-      downloaded: results,
+      downloaded: allIcons,
     }
 
   } catch (e) {
@@ -536,35 +290,6 @@ const findPage = (document, pageName: string,) => {
 };
 
 /**
- * Reads the file contents using git cat-file
- * See {@link https://git-scm.com/docs/git-cat-file} for more details
- *
- * @param filePath - the relative path to the file on disk
- * @returns string
- */
-const getFileContentsFromGit = async (filePath: string) => {
-  return await gitClient().catFile(['blob', `HEAD:${filePath}`]);
-}
-
-/**
- * Reads the file contents located on disk
- * @param filename - the name of the file
- * @returns string
- */
-const getFileContentsFromDisk = async (filename: string) => {
-  return await fs.readFileSync(path.join(srcSvgBasePath, filename), 'utf8');
-}
-
-/**
- * Creates an instance of the SimpleGit object
- * @param options - list of SimpleGitOptions
- * @returns SimpleGit client
- */
-const gitClient = (options: Partial<SimpleGitOptions> = { baseDir: srcSvgBasePath, binary: 'git' } ) => {
-  return simpleGit(options);
- }
-
-/**
  * Loads the figma-icon-config
  *
  * @params rootDir - The source directory
@@ -582,6 +307,7 @@ const loadFigmaIconConfig = async (rootDir: string) => {
 
       let hasError = false;
 
+      hasError ||= setFigmaBatchSize(config);
       hasError ||= setFigmaAccessToken(config);
       hasError ||= setFigmaFileId(config);
 
@@ -616,7 +342,6 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
       const branch = figmaData.branches.find(b => b.name === config.branchName)
 
       if (!branch) {
-        // throw error(`No branch found with the name "${chalk.white.bgRed(config.branchName)}"`);
         log(error('No branch found with the name'), chalk.white.bgRed(config.branchName));
         process.exit(1);
       }
@@ -627,11 +352,40 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
       figmaData = await fetchFigmaData(figmaFileId);
     }
 
+    // TODO: Changes need to be made here to iterate multiple pages which will need to include the page name to name icons
     const page = findPage(figmaData.document, config.pageName);
+
+    const iconsArray = extractIcons(page, config.ignoreFrames, figmaData.components);
+    const batches = splitIntoBatches(iconsArray, config.batchSize);
+
+    log(chalk.yellowBright(iconsArray.length), info('icons have been extracted'))
 
     const response = await fs.emptyDir(config.downloadPath)
     .then(() => {
-      return fetchAndDownloadIcons(page, figmaFileId, config, figmaData.components);
+      let output = { icons: [], downloaded: [] };
+
+      const outputDirectory = config.downloadPath; //.concat(`-${batchNo}`)
+
+      createOutputDirectory(outputDirectory);
+      fs.emptyDirSync(outputDirectory);
+
+      const iconResults = Promise.all(batches.map(async (batch, idx) => {
+        log("Processing batch", chalk.yellowBright(idx+1), " of ", chalk.yellowBright(batches.length, " with ", chalk.yellowBright(batch.length), " icons"));
+
+        const downloaded = await fetchAndDownloadIcons(figmaFileId, config, batch);
+
+        return downloaded;
+      })).then((results) => {
+        output = results.reduce((acc, iconResult) => {
+          acc.icons = acc.icons.concat(iconResult.icons);
+          acc.downloaded = acc.downloaded.concat(iconResult.downloaded);
+          return acc;
+        });
+
+        return output;
+      });
+
+      return iconResults;
     })
 
     return response;
@@ -639,42 +393,6 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
     logErrorMessage('processData', e);
   }
 }
-
-/**
- * Processes the SimpleGit status results and builds
- * the HTML Section data
- *
- * @param results - list of results from SimpleGit.status
- * @returns object - string html data for modifed, created, deleted
- */
-const processStatusResults = async (results: StatusResult) => {
-  const { modified: m, created: n, deleted: d, renamed: r } = results;
-
-  let created, deleted, modified, renamed;
-
-  if (n.length > 0) {
-    created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they did not exist in the previous version.');
-  }
-
-  if (d.length > 0) {
-    deleted = await Promise.all(d.map((path) => ( buildBeforeAndAfterSvg('D', path))));
-    deleted = buildHTMLSection('Deleted', deleted, 'Present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.');
-  }
-
-  if (m.length > 0) {
-    modified = await Promise.all(m.map((path) => ( buildBeforeAndAfterSvg('M', path))));
-    modified = buildHTMLSection('Modified', modified, 'Changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."');
-  }
-
-  if (r.length > 0) {
-    renamed = await Promise.all(r.map((path) => ( buildBeforeAndAfterSvg('R', path.to, path.from))));
-    renamed = buildHTMLSection('Renamed', renamed, 'Present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.');
-  }
-
-  return { created, deleted, modified, renamed };
-}
-
 
 /***************************/
 /*  Kicks off the Process  */
@@ -690,17 +408,6 @@ run(path.join(__dirname, '../..'));
  */
 
 /**
- * Generates a string that represents the number
- * of KiB
- *
- * @param size - number -
- * @returns string
- */
-const formatSize = (size) => {
-  return (size / 1024).toFixed(2) + ' KiB'
-}
-
-/**
  * Logs an error message
  * @param methodName - the name of the method the error occurred in
  * @param err - the error
@@ -710,44 +417,36 @@ const logErrorMessage = (methodName: string, err) => {
 }
 
 /**
- * Outputs a table of Name and Filesize for each
- * file downloaded
+ * Reads the batchSize if set in the
+ * configuration file or environment variable.
+ * If one is not found, it will use the default of 500
  *
- * @param results - Collection of name and filesize
+ * @param config  - FigmaIconConfig object
+ * @returns boolean - hasError occurred
  */
-const makeResultsTable = (results) => {
-  const ui = cliui({width: 80});
 
-  ui.div(
-    makeRow(
-      chalk.cyan.bold(`File`),
-      chalk.cyan.bold(`Size`),
-    ) + `\n\n` +
-    results.map(asset => makeRow(
-      asset.name.includes('-duplicate-name')
-        ? chalk.red.bold(asset.name)
-        : chalk.green(asset.name),
-      formatSize(asset.size)
-    )).join(`\n`)
-  )
-  return ui.toString()
+const setFigmaBatchSize = (config: FigmaIconConfig) => {
+  let hasError = false;
+
+  switch(true) {
+    case (!!process.env.BATCH_SIZE == true):
+      log(info('Using Batch Size in ', detail('ENVIRONMENT variable')));
+      config.batchSize = parseInt(process.env.BATCH_SIZE);
+      break;
+
+    case (!!config.batchSize == true):
+      log(info('Using Batch Size in ', detail('CONFIGURATION file')));
+      break;
+
+    case (!config.batchSize && !process.env.BATCH_SIZE) == true:
+      config.batchSize = defaultBatchSize
+      log(info('Using default Batch Size of ', detail(defaultBatchSize)));
+      break;
+  }
+
+  return hasError;
 }
 
-const makeRow = (a, b) => {
-  return `  ${a}\t    ${b}\t`
-}
-
-/**
- * Removes the tmp directory created during
- * the download process from the FigmaAPI
- *
- * @param config - FigmaIconConfig object
- */
-const removeTmpDirectory = (config: FigmaIconConfig) => {
-  log('Removing tmp directory')
-  const tmpDir = path.join(config.downloadPath, '..');
-  fs.rmSync(tmpDir, { force: true, recursive: true });
-}
 /**
  * Reads and Sets the Figma access token
  *
@@ -813,3 +512,21 @@ const setFigmaFileId = (config: FigmaIconConfig) => {
 
   return hasError;
 }
+
+/**
+ * Splits the result set of FigmaIcons into
+ * smaller processible batches for Figma API
+ *
+ * @param array - an array of FigmaIcon objects
+ * @param batchSize - size of the batch
+ * @returns array - an array of arrays of FigmaIcon objects
+ */
+const splitIntoBatches = ( array: Array<FigmaIcon>, batchSize: number) => {
+  let batches = [];
+    for (let i = 0; i < array.length; i += batchSize) {
+      let batch = array.slice(i, i + batchSize);
+      batches.push(batch);
+    }
+    return batches;
+}
+
