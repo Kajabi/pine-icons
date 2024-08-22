@@ -1,4 +1,5 @@
 {
   "pageName": "Icons",
-  "downloadPath": "tmp/svg"
+  "downloadPath": "tmp/svg",
+  "batchSize": 200
 }

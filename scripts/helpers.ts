@@ -89,7 +89,6 @@ export const reservedKeywords = new Set([
   'throw',
   'while',
   'yield',
-  'delete',
   'export',
   'import',
   'public',
