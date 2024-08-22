@@ -1924,10 +1924,7 @@
       "name": "expand",
       "category": "actions",
       "tags": [
-        "expand",
-        "full screen",
-        "fullscreen",
-        "open"
+        "expand"
       ]
     },
     {
