@@ -8,7 +8,7 @@ import fs from 'fs-extra';
 import mkdirp from 'mkdirp';
 
 import { run as finalizeExport } from './finalize-export';
-import { run as optimize } from '../optimize-svgs'
+import { run as optimizeSvgs} from '../optimize-svgs'
 
 import { FigmaIcon, FigmaIconConfig } from './types';
 
@@ -28,14 +28,45 @@ let config: FigmaIconConfig;
 
 const run = async (rootDir: string) : Promise<any> => {
   try {
+    const optimizedOutputDir = path.join(rootDir, 'src');
+    const optimizedOutputSvgDir = path.join(optimizedOutputDir, 'svg');
+
     config = await loadFigmaIconConfig(rootDir);
     figmaClient =  client(config.figmaAccessToken);
 
-    const results = await processData(rootDir, config);
+    config.downloadPath = path.join(rootDir, config.downloadPath);
 
-    await optimize(rootDir, true);
+    await fs.emptyDir(config.downloadPath)
+    await fs.emptyDir(optimizedOutputSvgDir);
 
-    await finalizeExport(config, results, rootDir);
+    const results = await config.pageNames.reduce(async (accPromise, pageName) => {
+      const acc = await accPromise;
+
+      const result = await processData(rootDir, config, pageName);
+
+      await optimizeSvgs(rootDir, true);
+
+      log(info('Total results processed: ', detail(result.downloaded.length), 'for Page: ', detail(pageName)));
+
+      acc.push(result);
+
+      return acc;
+    }, Promise.resolve([]));  // Initial value is a resolved promise with an empty array
+
+
+    const flattenedResults = results.reduce((acc, item) => {
+      // Combine icons
+      acc.icons = [...acc.icons, ...item.icons];
+
+      // Combine downloaded
+      acc.downloaded = [...acc.downloaded, ...item.downloaded];
+
+      return acc;
+    }, { icons: [], downloaded: [] });
+
+    await finalizeExport(config, flattenedResults, rootDir);
+
+    removeTmpDirectory(config);
 
     return results;
   }
@@ -72,37 +103,13 @@ const client = (apiToken) => {
 };
 
 /**
- * Creates the directory that will
- * contain the SVGs
- *
- * @param outputDir - The directory name to create
- */
-const createOutputDirectory = async (outputDir: string) => {
-  return new Promise<void>((resolve) => {
-    const directory = path.resolve(outputDir);
-
-    if(!fs.existsSync(directory)) {
-      log(info(`Directory ${outputDir} does not exist`));
-
-      if (mkdirp.sync(directory)) {
-        log(info(`Created directory ${outputDir}`))
-        resolve();
-      }
-    }
-    else {
-      resolve();
-    }
-  })
-}
-
-/**
  * Downloads the images
  *
  * @param icon - The FigmaIcon object
  * @param outputDir - The directory that the svg will be downloaded
  * @returns a object with the name and size of the svg
  */
-const downloadImages = (icons: FigmaIcon[], outputDir: string) => {
+const downloadImages = (icons: FigmaIcon[], outputDir: string, pageName: string) => {
   // Ensure the output directory exists
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -111,16 +118,18 @@ const downloadImages = (icons: FigmaIcon[], outputDir: string) => {
   // Map each icon to a promise that resolves when the download and write is complete
   const downloadPromises = icons.map((icon) => {
     const nameClean = icon.name.toLowerCase();
-    const imagePath = path.resolve(outputDir, `${nameClean}.svg`);
+    const iconNameSuffix = pageName === 'Icons' ? '' : `-${pageName.toLowerCase()}`;
+    const filename= `${nameClean}${iconNameSuffix}.svg`;
+    const imagePath = path.resolve(outputDir, filename);
 
     return axios.get(icon.url, { responseType: 'arraybuffer' })
       .then((res) => {
         fs.writeFileSync(imagePath, res.data);
         icon.filesize = fs.statSync(imagePath).size;
-        log(info('Successfully downloaded and saved:'), detail(`${icon.name}.svg`));
+        log(info('Successfully downloaded and saved:'), detail(filename));
 
         return {
-          name: `${icon.name}.svg`,
+          name: filename,
           size: icon.filesize
         };
       })
@@ -157,11 +166,11 @@ const isNotText = (value) => {
  * @param componentMetadata - an object containing additional details for the icon
  * @returns An array of FigmaIcons
  */
-const extractIcons = (pageData, ignoreFrames: string[], componentMetadata) => {
+const extractIcons = (pageData, ignoreFrames: string[], componentMetadata, pageName) => {
 
   const iconFrames = pageData.children.filter(isNotIgnored);
 
-  log(info('Frames to be processed: ', detail(iconFrames.length)));
+  log(info('-- # of Frames to be processed: ', detail(iconFrames.length)));
   const iconLibrary: Array<FigmaIcon> = [];
 
   iconFrames.forEach((frame) => {
@@ -170,7 +179,7 @@ const extractIcons = (pageData, ignoreFrames: string[], componentMetadata) => {
 
       log(info('---- Frame:', detail(frame.name), ':', detail(components.length).trim(), 'icons'));
 
-      const componentSuffix = config.pageName === pageData.name ? '' : `-${pageData.name}`;
+      const componentSuffix = pageName === pageData.name ? '' : `-${pageData.name}`;
       components.forEach( (component) => {
         const icon = {
           id: component.id,
@@ -200,14 +209,13 @@ const extractIcons = (pageData, ignoreFrames: string[], componentMetadata) => {
  * @param iconLibrary - The array of FigmaIcons
  * @returns - An object with the icons and downloaded SVGs
  */
-const fetchAndDownloadIcons = async (fileId: string, config: FigmaIconConfig, iconLibrary) => {
+const fetchAndDownloadIcons = async (fileId: string, config: FigmaIconConfig, iconLibrary, pageName: string) => {
   try {
     const icons: Array<FigmaIcon> = await fetchImageUrls(fileId, iconLibrary)
 
     const outputDirectory = config.downloadPath;
 
-    const allIcons = await downloadImages(icons, outputDirectory);
-    console.log('allIcons: ', allIcons.length)
+    const allIcons = await downloadImages(icons, outputDirectory, pageName);
 
     return {
       icons: iconLibrary,
@@ -331,10 +339,8 @@ const loadFigmaIconConfig = async (rootDir: string) => {
  * @params rootDir - The initial starting directory
  * @params config - The config data
  */
-const processData = async (rootDir: string, config: FigmaIconConfig) => {
+const processData = async (rootDir: string, config: FigmaIconConfig, pageName) => {
   try {
-    config.downloadPath = path.join(rootDir, config.downloadPath);
-
     let figmaFileId = config.figmaFileId;
     let figmaData = await fetchFigmaData(figmaFileId);
 
@@ -352,43 +358,39 @@ const processData = async (rootDir: string, config: FigmaIconConfig) => {
       figmaData = await fetchFigmaData(figmaFileId);
     }
 
-    // TODO: Changes need to be made here to iterate multiple pages which will need to include the page name to name icons
-    const page = findPage(figmaData.document, config.pageName);
-
-    const iconsArray = extractIcons(page, config.ignoreFrames, figmaData.components);
+    log(info('Page to be processed: ', detail(pageName)));
+    const page = findPage(figmaData.document, pageName);
+    const iconsArray = extractIcons(page, config.ignoreFrames, figmaData.components, pageName);
     const batches = splitIntoBatches(iconsArray, config.batchSize);
 
     log(chalk.yellowBright(iconsArray.length), info('icons have been extracted'))
 
-    const response = await fs.emptyDir(config.downloadPath)
-    .then(() => {
-      let output = { icons: [], downloaded: [] };
+    let output = { icons: [], downloaded: [] };
 
-      const outputDirectory = config.downloadPath; //.concat(`-${batchNo}`)
+    const outputDirectory = config.downloadPath; //.concat(`-${batchNo}`)
 
-      createOutputDirectory(outputDirectory);
-      fs.emptyDirSync(outputDirectory);
+    const iconResults = Promise.all(batches.map(async (batch, idx) => {
+      log("Processing batch", chalk.yellowBright(idx+1), " of ", chalk.yellowBright(batches.length, " with ", chalk.yellowBright(batch.length), " icons"));
 
-      const iconResults = Promise.all(batches.map(async (batch, idx) => {
-        log("Processing batch", chalk.yellowBright(idx+1), " of ", chalk.yellowBright(batches.length, " with ", chalk.yellowBright(batch.length), " icons"));
+      const downloaded = await fetchAndDownloadIcons(figmaFileId, config, batch, pageName);
 
-        const downloaded = await fetchAndDownloadIcons(figmaFileId, config, batch);
-
-        return downloaded;
-      })).then((results) => {
-        output = results.reduce((acc, iconResult) => {
-          acc.icons = acc.icons.concat(iconResult.icons);
-          acc.downloaded = acc.downloaded.concat(iconResult.downloaded);
-          return acc;
-        });
-
+      return downloaded;
+    })).then((results) => {
+      if (results.length === 0) {
         return output;
+      }
+
+      output = results.reduce((acc, iconResult) => {
+        acc.icons = acc.icons.concat(iconResult.icons);
+        acc.downloaded = acc.downloaded.concat(iconResult.downloaded);
+        return acc;
       });
 
-      return iconResults;
-    })
+      return output;
+    });
 
-    return response;
+    return iconResults;
+
   } catch (e) {
     logErrorMessage('processData', e);
   }
@@ -414,6 +416,18 @@ run(path.join(__dirname, '../..'));
  */
 const logErrorMessage = (methodName: string, err) => {
   log('Error in ' , detail(methodName), '\n Message: ', error(err));
+}
+
+/**
+ * Removes the tmp directory created during
+ * the download process from the FigmaAPI
+ *
+ * @param config - FigmaIconConfig object
+ */
+const removeTmpDirectory = (config: FigmaIconConfig) => {
+  log('Removing tmp directory')
+  const tmpDir = path.join(config.downloadPath, '..');
+  fs.rmSync(tmpDir, { force: true, recursive: true });
 }
 
 /**
