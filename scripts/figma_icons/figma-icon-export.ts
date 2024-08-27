@@ -345,7 +345,7 @@ const processData = async (rootDir: string, config: FigmaIconConfig, pageName) =
     let figmaData = await fetchFigmaData(figmaFileId);
 
     if ( config.branchName && figmaData.branches.length > 0) {
-      const branch = figmaData.branches.find(b => b.name === config.branchName)
+      const branch = figmaData.branches.find(b => b.name.toLowerCase() === config.branchName.toLowerCase())
 
       if (!branch) {
         log(error('No branch found with the name'), chalk.white.bgRed(config.branchName));
