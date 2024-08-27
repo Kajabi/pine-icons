@@ -25,8 +25,6 @@ export const run = async(config, data, rootDir: string) => {
   const git = gitClient();
   await git.add(srcSvgBasePath);
 
-
-  console.log('SVG Base path: ', srcSvgBasePath);
   const statusResults: StatusResult = await git.status([srcSvgBasePath]);
   const filesChanged = statusResults.files;
 
@@ -41,13 +39,13 @@ export const run = async(config, data, rootDir: string) => {
   log('Copying collections...');
   await collectionCopy(rootDir);
 
-  log(`${makeResultsTable(data.downloaded)}\n`);
+  // log(`${makeResultsTable(data.downloaded)}\n`);
 
+  log(info('Creating JSON Icon List'));
   createJsonIconList(data.icons, srcDir);
 
+  log(info('Calling createChangelogHTML'));
   await createChangelogHTML(statusResults);
-
-  // removeTmpDirectory(config)
 
   // restore staged files in case of failure
   const { exec } = require('node:child_process')
@@ -240,7 +238,6 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
  * @param outputDir - output directory to save the JSON data
  */
 const createJsonIconList = (icons: Array<FigmaIcon>, outputDir: string) => {
-  console.log('Icon count: ', icons.length);
   try {
     icons = icons.sort((a, b) => {
       if (a.name < b.name) return -1;
@@ -314,42 +311,8 @@ const getFileContentsFromGit = async (filePath: string) => {
  */
 const gitClient = (options: Partial<SimpleGitOptions> = { baseDir: srcSvgBasePath, binary: 'git' } ) => {
   return simpleGit(options);
- }
-
- /**
- * Loads the figma-icon-config
- *
- * @params rootDir - The source directory
- * @returns FigmaIconConfig object
- */
-const loadFigmaIconConfig = async (rootDir: string) => {
-  try {
-    const configFile =  path.resolve(path.join(rootDir, 'figma-icon-config.json'));
-
-    if (fs.existsSync(configFile)) {
-      log(info('Config file located at: ', detail(configFile)));
-
-      const strConfig = await fs.readFile(configFile, 'utf-8');
-      const config = JSON.parse(strConfig) as FigmaIconConfig;
-
-      let hasError = false;
-
-      hasError ||= setDownloadPath(config);
-
-
-      if (hasError) {
-        logErrorMessage('loadFigmaIconConfig', null);
-        process.exit(1);
-      }
-
-      return config;
-    }
-  }
-  catch (e) {
-    logErrorMessage('loadFigmaIconConfig', e);
-    process.exit(1);
-  }
 }
+
 /**
  * Logs an error message
  * @param methodName - the name of the method the error occurred in
@@ -362,7 +325,12 @@ const logErrorMessage = (methodName: string, err) => {
 /**
  * Outputs a table of Name and Filesize for each
  * file downloaded
- *
+ * @example
+ *   File                                      Size
+ *   ios-battery.svg                           0.91 KiB
+ *   ios-wifi.svg                              1.23 KiB
+ *   ios-data.svg                              1.00 KiB
+ *   klarna.svg                                0.53 KiB
  * @param results - Collection of name and filesize
  */
 const makeResultsTable = (results) => {
@@ -433,28 +401,4 @@ const removeTmpDirectory = (config: FigmaIconConfig) => {
   log('Removing tmp directory')
   const tmpDir = path.join(config.downloadPath, '..');
   fs.rmSync(tmpDir, { force: true, recursive: true });
-}
-
-/**
- * Reads and Sets the Figma access token
- *
- * @params config - FigmaIconConfig object
- * @returns boolean - hasError occurred
- */
-const setDownloadPath = (config: FigmaIconConfig) => {
-  let hasError = false;
-
-  // DownloadPath check
-  switch(true) {
-    case (!!config.downloadPath == true):
-      log(info('Using Download Path in ', detail('CONFIGURATION file')));
-      break;
-
-    case (!config.downloadPath) == true:
-      hasError ||= true;
-      log(error('No downloadPath has been provided, please set in figma-icon-config.json!!!!!'));
-      break;
-  }
-
-  return hasError;
 }

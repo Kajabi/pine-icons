@@ -25,7 +25,7 @@ figma-icon-config.json
   "figmaAccessToken": "some-access-token",
   "figmaFileId": "figma-file-id",
   "branchName": "reorg",
-  "pageName": "Icons",
+  "pageNames": ["Icons"],
   "outputPath": "src/svg",
   "ignoreFrames": ["_Countries", "Docs"]
 }
@@ -37,7 +37,7 @@ figma-icon-config.json
 |figmaAccessToken|string|true|FIGMA_ACCESS_TOKEN|The Personal Access token that you have created in your account. See [above](#creating-a-figma-access-token). You can either set in the config or as environment variable, but one needs to be set.|
 |figmaFileId|string|true|FIGMA_FILE_ID|The unique id for the file. This can be found in the url, when viewing the Figma file. e.g `https://www.figma.com/file/some-unique-id`. In the example this would be `some-unique-id`|
 |branchName|string|false||Name of the branch|
-|pageName|string|true||Name of the page the icons can be found|
+|pageNames|string[]|true||A list of page names the icons can be found|
 |ouputPath|string|true||Location which the raw svgs should be saved|
 |ignoreFrames|array|false||Name of the frame(s) that may be located in the page you wish to ignore. Frames that are prefixed with `_` are automatically ignored. If there is only one frame, please add it in array format e.g ['Frame to Ignore']
 

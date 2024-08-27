@@ -51,7 +51,7 @@ export interface FigmaIconConfig {
   /**
    * Page that contains the icons
    */
-  pageName: string,
+  pageNames: string[],
 }
 
 export type FigmaIcon = {
