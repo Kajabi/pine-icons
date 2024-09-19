@@ -1,5 +1,5 @@
 {
-  "pageNames": ["Icons", "Filled", "Duotone"],
+  "pageNames": ["Icons"],
   "downloadPath": "tmp/svg",
   "batchSize": 500
 }
