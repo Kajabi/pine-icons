@@ -1,5 +1,11 @@
 export interface FigmaIconConfig {
   /**
+   * The number of images to process at a time
+   *
+   */
+  batchSize: number;
+
+  /**
    * Branch that is located in the
    * Figma file
    * @example spike-branch
@@ -45,7 +51,7 @@ export interface FigmaIconConfig {
   /**
    * Page that contains the icons
    */
-  pageName: string,
+  pageNames: string[],
 }
 
 export type FigmaIcon = {

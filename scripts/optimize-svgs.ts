@@ -52,7 +52,6 @@ export const run = async(rootDir: string, optimizeFiles = false) => {
 
     if (optimizeFiles) {
       log('Optimized OuputSvgDir: ', optimizedOutputSvgDir)
-      await fs.emptyDir(optimizedOutputSvgDir);
 
       log('Optimizing SVGs...');
       await optimizeSvgs(srcSvgData);
