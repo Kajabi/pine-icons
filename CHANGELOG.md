@@ -1,3 +1,14 @@
+## 8.2.0 (2024-09-24)
+
+
+### Features 🚀
+
+- add batching to figma export ([ae48d93](https://github.com/Kajabi/pine-icons/commit/ae48d93))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 8.1.0 (2024-08-22)
 
 
