@@ -4202,6 +4202,16 @@
       ]
     },
     {
+      "name": "shopping-cart-filled",
+      "category": "features",
+      "tags": [
+        "cart",
+        "ecommerce",
+        "purchase",
+        "shopping bag"
+      ]
+    },
+    {
       "name": "skipped",
       "category": "features",
       "tags": [
