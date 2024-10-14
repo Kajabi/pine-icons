@@ -4,12 +4,10 @@
       "name": "access-key",
       "category": "features",
       "tags": [
-        "access",
+        "cybersecurity",
         "key",
-        "license",
-        "object",
         "password",
-        "secure"
+        "security"
       ]
     },
     {
@@ -18,12 +16,9 @@
       "tags": [
         "add",
         "addition",
-        "create",
-        "expand",
-        "increase",
-        "new",
-        "plus",
-        "positive"
+        "calculate",
+        "mathematics",
+        "plus"
       ]
     },
     {
@@ -32,24 +27,22 @@
       "tags": [
         "add",
         "addition",
-        "create",
-        "expand",
-        "increase",
-        "new",
-        "plus",
-        "positive"
+        "calculate",
+        "circle",
+        "mathematics",
+        "plus"
       ]
     },
     {
       "name": "add-image",
       "category": "actions",
       "tags": [
-        "add",
         "image",
-        "media",
-        "multimedia",
+        "jpeg",
+        "jpg",
         "photo",
-        "picture"
+        "plus",
+        "png"
       ]
     },
     {
@@ -58,12 +51,9 @@
       "tags": [
         "add",
         "addition",
-        "create",
-        "expand",
-        "increase",
-        "new",
-        "plus",
-        "positive"
+        "calculate",
+        "mathematics",
+        "plus"
       ]
     },
     {
@@ -72,99 +62,55 @@
       "tags": [
         "add",
         "addition",
-        "create",
-        "expand",
-        "increase",
-        "interface",
-        "new",
-        "plus",
-        "positive",
-        "ui"
+        "calculate",
+        "mathematics",
+        "plus"
       ]
     },
     {
       "name": "advanced",
       "category": "actions",
       "tags": [
-        "adjust",
-        "adjustment",
-        "advanced",
-        "configuration",
-        "configure",
-        "edit",
-        "filter",
-        "gear",
-        "nav",
-        "navigation",
-        "option",
-        "options",
-        "setting",
-        "setting",
+        "preferences",
         "settings",
-        "setup",
-        "system",
-        "tool",
-        "wheel"
+        "slider",
+        "toggle"
       ]
     },
     {
       "name": "ai-sparkle",
       "category": "actions",
       "tags": [
-        "brightness",
-        "edit",
-        "effect",
-        "filter",
-        "light",
-        "photo",
-        "spark",
-        "sparkle"
+        "ai",
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
       "name": "ai-writer",
       "category": "features",
       "tags": [
-        "compose",
-        "create",
-        "design",
-        "development",
-        "draft",
-        "draw",
-        "edit",
-        "editing",
-        "editor",
-        "education",
-        "message",
-        "note",
-        "pen",
-        "pencil",
-        "school",
-        "text",
-        "write"
+        "ai",
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
       "name": "ai-writer-filled",
       "category": "features",
       "tags": [
-        "compose",
-        "create",
-        "design",
-        "development",
-        "draft",
-        "draw",
-        "edit",
-        "editing",
-        "editor",
-        "education",
-        "message",
-        "note",
-        "pen",
-        "pencil",
-        "school",
-        "text",
-        "write"
+        "ai",
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
@@ -172,7 +118,11 @@
       "category": "text-editor",
       "tags": [
         "align",
-        "center"
+        "center",
+        "centre",
+        "editor",
+        "paragraph",
+        "text"
       ]
     },
     {
@@ -180,7 +130,10 @@
       "category": "text-editor",
       "tags": [
         "align",
-        "justify"
+        "editor",
+        "justify",
+        "paragraph",
+        "text"
       ]
     },
     {
@@ -188,7 +141,10 @@
       "category": "text-editor",
       "tags": [
         "align",
-        "left"
+        "editor",
+        "left",
+        "paragraph",
+        "text"
       ]
     },
     {
@@ -196,7 +152,10 @@
       "category": "text-editor",
       "tags": [
         "align",
-        "right"
+        "editor",
+        "paragraph",
+        "right",
+        "text"
       ]
     },
     {
@@ -222,18 +181,9 @@
       "category": "actions",
       "tags": [
         "archive",
-        "available",
         "box",
-        "check",
-        "collection",
-        "container",
-        "document",
-        "drawer",
-        "editor",
-        "file",
-        "folder",
-        "storage",
-        "success"
+        "project",
+        "storage"
       ]
     },
     {
@@ -266,10 +216,8 @@
       "category": "actions",
       "tags": [
         "arrow",
-        "bottom",
-        "descend",
         "down",
-        "downward"
+        "narrow"
       ]
     },
     {
@@ -277,17 +225,8 @@
       "category": "actions",
       "tags": [
         "arrow",
-        "back",
-        "backward",
-        "backwards",
-        "direction",
-        "keyboard",
         "left",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "previous"
+        "narrow"
       ]
     },
     {
@@ -295,16 +234,7 @@
       "category": "actions",
       "tags": [
         "arrow",
-        "direction",
-        "forward",
-        "keyboard",
-        "move",
-        "navigation",
-        "next",
-        "onward",
-        "onwards",
-        "out",
-        "position",
+        "narrow",
         "right"
       ]
     },
@@ -313,16 +243,8 @@
       "category": "actions",
       "tags": [
         "arrow",
-        "direction",
-        "keyboard",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "top",
-        "up",
-        "upward",
-        "upwards"
+        "narrow",
+        "up"
       ]
     },
     {
@@ -347,34 +269,19 @@
       "name": "at-sign",
       "category": "site-settings",
       "tags": [
-        "address",
-        "at sign",
-        "contact",
-        "email",
-        "inbox"
+        "@",
+        "at",
+        "email"
       ]
     },
     {
       "name": "attach",
       "category": "actions",
       "tags": [
-        "attach",
-        "attached",
-        "attaching",
         "attachment",
-        "clip",
-        "collate",
-        "contact",
-        "copy",
-        "editing",
-        "email",
         "file",
-        "inbox",
-        "include",
-        "mail",
-        "paper",
         "paperclip",
-        "text"
+        "upload"
       ]
     },
     {
@@ -398,17 +305,11 @@
       "name": "ban",
       "category": "actions",
       "tags": [
-        "ban",
-        "banned",
-        "block",
-        "blocked",
         "cancel",
-        "forbidden",
-        "none",
-        "not",
-        "prevent",
-        "private",
-        "sign",
+        "circle",
+        "entry",
+        "no",
+        "slash",
         "stop"
       ]
     },
@@ -416,15 +317,10 @@
       "name": "bank",
       "category": "features",
       "tags": [
-        "account",
         "bank",
-        "business",
-        "columns",
-        "finance",
-        "landmark",
-        "museum",
-        "temple",
-        "travel"
+        "building",
+        "currency",
+        "deposit"
       ]
     },
     {
@@ -454,19 +350,9 @@
       "name": "bell",
       "category": "site-settings",
       "tags": [
-        "alarm",
         "alert",
         "bell",
-        "buzz",
-        "christmas",
-        "interface",
-        "notification",
-        "ring",
-        "ringing",
-        "ringtone",
-        "sound",
-        "ui",
-        "wake"
+        "notification"
       ]
     },
     {
@@ -482,11 +368,8 @@
       "name": "block",
       "category": "text-editor",
       "tags": [
-        "block",
-        "design",
-        "rectangle",
+        "box",
         "shape",
-        "shapes",
         "square"
       ]
     },
@@ -494,45 +377,34 @@
       "name": "blog",
       "category": "site-settings",
       "tags": [
-        "article",
-        "blog",
-        "blogger",
-        "cms",
-        "content",
-        "copywriting",
-        "documentation",
-        "feed",
-        "marketing",
-        "media",
-        "news",
-        "web",
-        "wordpress"
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "web"
       ]
     },
     {
       "name": "blog-filled",
       "category": "site-settings",
       "tags": [
-        "article",
-        "blog",
-        "blogger",
-        "cms",
-        "content",
-        "copywriting",
-        "documentation",
-        "feed",
-        "marketing",
-        "media",
-        "news",
-        "web",
-        "wordpress"
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "web"
       ]
     },
     {
       "name": "bold",
       "category": "text-editor",
       "tags": [
-        "bold"
+        "bold",
+        "editor",
+        "rich text",
+        "text"
       ]
     },
     {
@@ -555,7 +427,10 @@
       "name": "bulb",
       "category": "actions",
       "tags": [
-        "bulb"
+        "light",
+        "light mode",
+        "lightbulb",
+        "lightmode"
       ]
     },
     {
@@ -575,53 +450,29 @@
       "name": "calendar-date",
       "category": "features",
       "tags": [
-        "appointment",
+        "booking",
         "calendar",
-        "date",
-        "day",
-        "event",
-        "grid",
-        "holidays",
-        "month",
-        "plan",
-        "planning",
-        "schedule",
-        "time",
-        "timetable",
-        "year"
+        "date"
       ]
     },
     {
       "name": "calendar-schedule",
       "category": "actions",
       "tags": [
-        "alarm",
-        "appointment",
+        "add",
+        "booking",
         "calendar",
-        "event",
-        "hours",
-        "opening",
-        "schedule",
-        "time",
-        "times"
+        "date",
+        "plus"
       ]
     },
     {
       "name": "calendar-simple",
       "category": "actions",
       "tags": [
-        "appointment",
+        "booking",
         "calendar",
-        "date",
-        "day",
-        "even",
-        "month",
-        "plan",
-        "planning",
-        "schedule",
-        "time",
-        "timetable",
-        "year"
+        "date"
       ]
     },
     {
@@ -674,20 +525,11 @@
       "name": "card-generic",
       "category": "site-settings",
       "tags": [
-        "buy",
         "card",
-        "charge",
-        "checkout",
-        "credit",
         "credit card",
-        "debit",
-        "finance",
-        "method",
-        "methods",
-        "money",
-        "payment",
-        "shop",
-        "shopping"
+        "currency",
+        "debit card",
+        "money"
       ]
     },
     {
@@ -732,24 +574,12 @@
       "name": "card-update",
       "category": "site-settings",
       "tags": [
-        "buy",
         "card",
-        "charge",
-        "checkout",
-        "credit",
         "credit card",
-        "debit",
-        "finance",
-        "method",
-        "methods",
+        "currency",
+        "debit card",
         "money",
-        "refresh",
-        "reload",
-        "shop",
-        "shopping payment",
-        "subscription",
-        "sync",
-        "update"
+        "refresh"
       ]
     },
     {
@@ -765,46 +595,27 @@
       "name": "caret-down",
       "category": "actions",
       "tags": [
-        "arrow",
-        "bottom",
-        "descent",
+        "caret down",
+        "chevron",
         "down",
-        "downward"
+        "dropdown"
       ]
     },
     {
       "name": "caret-left",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backward",
-        "backwards",
-        "direction",
-        "keyboard",
-        "left",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "previous"
+        "caret left",
+        "chevron",
+        "left"
       ]
     },
     {
       "name": "caret-right",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "forward",
-        "keyboard",
-        "move",
-        "navigation",
-        "next",
-        "onward",
-        "onwards",
-        "out",
-        "position",
+        "caret right",
+        "chevron",
         "right"
       ]
     },
@@ -812,71 +623,41 @@
       "name": "caret-up",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "keyboard",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "top",
-        "up",
-        "upward",
-        "upwards"
+        "caret up",
+        "chevron",
+        "dropdown",
+        "up"
       ]
     },
     {
       "name": "cart",
       "category": "features",
       "tags": [
-        "bag",
-        "basket",
-        "but",
         "cart",
-        "checkout",
         "ecommerce",
-        "retail",
-        "sale",
-        "shop",
-        "shopping",
-        "trolley"
+        "purchase",
+        "shopping bag"
       ]
     },
     {
       "name": "cart-add",
       "category": "features",
       "tags": [
-        "add",
-        "bag",
-        "basket",
-        "but",
         "cart",
-        "checkout",
         "ecommerce",
-        "new",
-        "plus",
-        "retail",
-        "sale",
-        "shop",
-        "shopping",
-        "trolley"
+        "purchase",
+        "shopping bag"
       ]
     },
     {
       "name": "certificate",
       "category": "actions",
       "tags": [
-        "award",
-        "business",
+        "badge",
         "certificate",
+        "certification",
         "degree",
-        "diploma",
-        "education",
-        "finance",
-        "license",
-        "patent",
-        "ribbon",
-        "school"
+        "document"
       ]
     },
     {
@@ -919,21 +700,8 @@
       "name": "check",
       "category": "actions",
       "tags": [
-        "accept",
-        "approve",
-        "approved",
         "check",
-        "checkbox",
-        "checked",
-        "checkmark",
-        "complete",
-        "completed",
-        "done",
-        "mark",
-        "ok",
-        "select",
-        "selected",
-        "success",
+        "confirm",
         "tick"
       ]
     },
@@ -941,56 +709,29 @@
       "name": "check-circle",
       "category": "dialogues",
       "tags": [
-        "accept",
-        "approve",
-        "approved",
         "check",
         "checkbox",
-        "checked",
-        "checkmark",
-        "complete",
-        "completed",
-        "done",
-        "interface",
-        "mark",
-        "ok",
-        "sage-icon-check-circle",
-        "select",
-        "selected",
-        "success",
-        "tick",
-        "ui"
+        "circle",
+        "confirm",
+        "tick"
       ]
     },
     {
       "name": "check-circle-filled",
       "category": "dialogues",
       "tags": [
-        "accept",
-        "approve",
-        "approved",
         "check",
         "checkbox",
-        "checked",
-        "checkmark",
-        "complete",
-        "completed",
-        "done",
-        "interface",
-        "mark",
-        "ok",
-        "sage-icon-check-circle",
-        "select",
-        "selected",
-        "success",
-        "tick",
-        "ui"
+        "circle",
+        "confirm",
+        "tick"
       ]
     },
     {
       "name": "circle-1",
       "category": "number",
       "tags": [
+        "1",
         "sage-icon-one"
       ]
     },
@@ -998,6 +739,7 @@
       "name": "circle-2",
       "category": "number",
       "tags": [
+        "2",
         "sage-icon-two"
       ]
     },
@@ -1005,6 +747,7 @@
       "name": "circle-3",
       "category": "number",
       "tags": [
+        "3",
         "sage-icon-three"
       ]
     },
@@ -1012,6 +755,7 @@
       "name": "circle-4",
       "category": "number",
       "tags": [
+        "4",
         "sage-icon-four"
       ]
     },
@@ -1019,6 +763,7 @@
       "name": "circle-5",
       "category": "number",
       "tags": [
+        "5",
         "sage-icon-five"
       ]
     },
@@ -1026,6 +771,7 @@
       "name": "circle-6",
       "category": "number",
       "tags": [
+        "6",
         "sage-icon-six"
       ]
     },
@@ -1033,6 +779,7 @@
       "name": "circle-7",
       "category": "number",
       "tags": [
+        "7",
         "sage-icon-seven"
       ]
     },
@@ -1040,6 +787,7 @@
       "name": "circle-8",
       "category": "number",
       "tags": [
+        "8",
         "sage-icon-eight"
       ]
     },
@@ -1047,6 +795,7 @@
       "name": "circle-9",
       "category": "number",
       "tags": [
+        "9",
         "sage-icon-nine"
       ]
     },
@@ -1054,24 +803,24 @@
       "name": "circle-a",
       "category": "features",
       "tags": [
-        "a",
-        "circle"
+        "circle a"
       ]
     },
     {
       "name": "circle-b",
       "category": "features",
       "tags": [
-        "b",
-        "circle"
+        "circle b"
       ]
     },
     {
       "name": "circle-dashed",
       "category": "actions",
       "tags": [
+        "bullet",
         "circle",
-        "dashed"
+        "dashed",
+        "started"
       ]
     },
     {
@@ -1088,29 +837,9 @@
       "category": "actions",
       "tags": [
         "alarm",
-        "alert",
-        "appointment",
-        "availability",
-        "available",
         "clock",
-        "countdown",
-        "daily",
-        "day",
-        "deadline",
-        "event",
-        "hostory",
-        "hour",
-        "monthly",
-        "progress",
-        "schedule",
-        "time",
         "timer",
-        "track",
-        "tracking",
-        "wait",
-        "watch",
-        "weekly",
-        "yearly"
+        "watch"
       ]
     },
     {
@@ -1133,22 +862,21 @@
       "name": "cloud-upload",
       "category": "actions",
       "tags": [
-        "arrow",
         "cloud",
-        "data",
-        "file",
-        "publish",
-        "save",
+        "import",
         "share",
-        "storage",
-        "top"
+        "up",
+        "upload"
       ]
     },
     {
       "name": "code",
       "category": "text-editor",
       "tags": [
-        "code"
+        "code",
+        "css",
+        "div",
+        "markdown"
       ]
     },
     {
@@ -1156,146 +884,106 @@
       "category": "text-editor",
       "tags": [
         "code",
-        "coding",
-        "develop",
-        "development",
-        "document",
-        "file",
-        "folder",
-        "paper",
-        "programming",
-        "script",
-        "source",
-        "tag",
-        "tool"
+        "css",
+        "markdown",
+        "square"
       ]
     },
     {
       "name": "color",
       "category": "text-editor",
       "tags": [
-        "color"
+        "color",
+        "edit",
+        "font",
+        "style",
+        "text",
+        "theme",
+        "typography"
       ]
     },
     {
       "name": "columns",
       "category": "actions",
       "tags": [
-        "board",
         "columns",
+        "divider",
         "grid",
-        "list",
-        "template"
+        "vertical"
       ]
     },
     {
       "name": "comment",
       "category": "features",
       "tags": [
-        "answer",
-        "bubble",
-        "bubbles",
         "chat",
-        "comment",
-        "comments",
-        "communication",
-        "conversation",
-        "dialog",
-        "forum",
         "message",
-        "messages",
-        "reply",
-        "speaking",
-        "talk"
+        "notification"
       ]
     },
     {
       "name": "comment-no",
       "category": "features",
       "tags": [
-        "comment",
-        "no"
+        "chat",
+        "close",
+        "message",
+        "notification",
+        "x"
       ]
     },
     {
       "name": "connect",
       "category": "features",
       "tags": [
-        "attachment",
-        "chain",
-        "connection",
-        "connections",
-        "hyperlink",
-        "link",
-        "linked",
-        "links",
-        "share",
-        "url",
-        "web"
+        "add-on",
+        "api",
+        "application",
+        "cable",
+        "development",
+        "electric",
+        "electricity",
+        "energy",
+        "extension",
+        "integration",
+        "jack",
+        "plug",
+        "plugin",
+        "tools",
+        "widget"
       ]
     },
     {
       "name": "contact",
       "category": "features",
       "tags": [
-        "access",
-        "badge",
-        "card",
-        "contact",
-        "document",
-        "human",
-        "identification",
-        "identity",
-        "login",
-        "man",
-        "member",
-        "profile",
-        "tag",
-        "user",
-        "users"
+        "image",
+        "jpeg",
+        "jpg",
+        "photo",
+        "png",
+        "profile photo",
+        "user"
       ]
     },
     {
       "name": "conversation",
       "category": "actions",
       "tags": [
-        "bubble",
-        "bubbles",
         "chat",
-        "comment",
-        "comments",
-        "communication",
-        "conversation",
-        "dialog",
-        "forum",
-        "message",
-        "messages",
-        "speaking",
-        "talk"
+        "live chat",
+        "message"
       ]
     },
     {
       "name": "copy",
       "category": "actions",
       "tags": [
-        "backup",
-        "clone",
-        "copies",
         "copy",
-        "document",
         "duplicate",
-        "file",
-        "files",
-        "group",
-        "layer",
-        "layers",
-        "note",
-        "paper",
-        "paste",
-        "report",
-        "separate",
-        "split",
-        "ungroup"
+        "replicate",
+        "square",
+        "squares"
       ]
     },
     {
@@ -1303,15 +991,11 @@
       "category": "features",
       "tags": [
         "coupon",
-        "deal",
         "discount",
         "ecommerce",
-        "offer",
-        "reduction",
-        "sale",
-        "shop",
-        "shopping",
-        "ticket"
+        "online store",
+        "percentage",
+        "sale"
       ]
     },
     {
@@ -1392,38 +1076,18 @@
       "name": "creator-studio",
       "category": "actions",
       "tags": [
-        "album",
-        "camera",
-        "episodes",
+        "clapperboard",
         "film",
-        "gallery",
-        "media",
-        "movie",
-        "photography",
-        "player",
-        "playlist",
-        "video",
-        "video-gallery",
-        "youtube"
+        "tv"
       ]
     },
     {
       "name": "creator-studio-filled",
       "category": "actions",
       "tags": [
-        "album",
-        "camera",
-        "episodes",
+        "clapperboard",
         "film",
-        "gallery",
-        "media",
-        "movie",
-        "photography",
-        "player",
-        "playlist",
-        "video",
-        "video-gallery",
-        "youtube"
+        "tv"
       ]
     },
     {
@@ -1452,69 +1116,43 @@
       "name": "cursor",
       "category": "actions",
       "tags": [
-        "active",
-        "arrow",
         "click",
         "cursor",
-        "design",
-        "development",
-        "finger",
-        "hand",
-        "mouse",
-        "point",
-        "pointer",
-        "tap"
+        "editor",
+        "user"
       ]
     },
     {
       "name": "cursor-pointer",
       "category": "actions",
       "tags": [
-        "active",
-        "arrow",
         "click",
         "cursor",
-        "design",
-        "development",
-        "finger",
-        "hand",
-        "mouse",
-        "point",
-        "pointer",
-        "tap"
+        "editor",
+        "user"
       ]
     },
     {
       "name": "custom-field",
       "category": "actions",
       "tags": [
-        "bookmarks",
-        "collection",
-        "favorite",
-        "favourites",
-        "group",
-        "list",
-        "star",
-        "watchlist"
+        "custom",
+        "custom field",
+        "heart",
+        "personalize",
+        "square"
       ]
     },
     {
       "name": "customize",
       "category": "actions",
       "tags": [
-        "art",
-        "artist",
-        "brush",
         "color",
-        "colors",
+        "colour",
         "design",
-        "draw",
+        "editor",
         "paint",
-        "painter",
-        "painting",
-        "palette",
-        "swatches",
-        "tool"
+        "palette"
       ]
     },
     {
@@ -1522,20 +1160,8 @@
       "category": "dialogues",
       "tags": [
         "alert",
-        "attention",
-        "caution",
-        "danger",
+        "circle",
         "error",
-        "exclamation",
-        "info",
-        "information",
-        "interface",
-        "mark",
-        "notification",
-        "sage-icons-danger",
-        "sign",
-        "stop",
-        "ui",
         "warning"
       ]
     },
@@ -1544,20 +1170,8 @@
       "category": "dialogues",
       "tags": [
         "alert",
-        "attention",
-        "caution",
-        "danger",
+        "circle",
         "error",
-        "exclamation",
-        "info",
-        "information",
-        "interface",
-        "mark",
-        "notification",
-        "sage-icons-danger",
-        "sign",
-        "stop",
-        "ui",
         "warning"
       ]
     },
@@ -1565,85 +1179,50 @@
       "name": "delete-circle",
       "category": "actions",
       "tags": [
-        "cancel",
-        "close",
-        "decrease",
-        "delete",
-        "deletion",
-        "exit",
-        "less",
+        "circle",
+        "mathematics",
         "minus",
-        "removal",
-        "remove",
-        "subtract"
+        "subtract",
+        "subtraction"
       ]
     },
     {
       "name": "delete-key",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backward",
+        "backspace",
         "delete",
-        "direction",
-        "key",
-        "keyboard",
-        "left",
-        "previous",
-        "remove"
+        "editor"
       ]
     },
     {
       "name": "delete-x",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backward",
-        "cross",
+        "backspace",
         "delete",
-        "direction",
-        "key",
-        "keyboard",
-        "left",
-        "previous",
-        "remove"
+        "editor"
       ]
     },
     {
       "name": "dollar",
       "category": "actions",
       "tags": [
-        "business",
-        "cash",
         "currency",
         "dollar",
-        "finance",
-        "funding",
-        "investment",
-        "money",
-        "shopping"
+        "money"
       ]
     },
     {
       "name": "dot-menu-horizontal",
       "category": "actions",
       "tags": [
-        "circle",
-        "circles",
-        "dot",
-        "dot",
         "dots",
-        "gallery",
-        "interface",
-        "list",
+        "horizontal",
+        "line",
         "menu",
         "more",
-        "navigation",
-        "options",
-        "overflow",
-        "settings"
+        "options"
       ]
     },
     {
@@ -1662,70 +1241,43 @@
       "name": "down-small",
       "category": "actions",
       "tags": [
-        "arrow",
-        "bottom",
-        "descend",
+        "chevron",
         "down",
-        "downward"
+        "dropdown"
       ]
     },
     {
       "name": "download",
       "category": "actions",
       "tags": [
+        "archive",
         "arrow",
-        "bottom",
-        "data",
-        "descend",
+        "cloud",
         "down",
-        "download",
-        "downward",
-        "export",
-        "file",
-        "input",
-        "save",
-        "share",
-        "storage",
-        "transfer"
+        "download"
       ]
     },
     {
       "name": "downsell",
       "category": "actions",
       "tags": [
-        "arrow",
         "corner",
-        "direction",
-        "keyboard",
-        "move",
-        "navigation",
-        "next",
-        "out",
-        "position",
-        "right"
+        "down",
+        "enter",
+        "line break",
+        "right",
+        "rotate"
       ]
     },
     {
       "name": "draft",
       "category": "features",
       "tags": [
-        "article",
-        "blog",
-        "content",
-        "document",
-        "draft",
+        "attachment",
         "file",
-        "folded",
-        "folder",
-        "item",
-        "letter",
-        "note",
-        "page",
         "paper",
-        "post",
+        "pdf",
         "report",
-        "sheet",
-        "single",
         "text"
       ]
     },
@@ -1733,153 +1285,106 @@
       "name": "drawer-collapse",
       "category": "actions",
       "tags": [
-        "collapse",
-        "drawer",
-        "interface",
+        "align",
+        "box",
+        "distribute",
+        "flex",
+        "layout",
         "move",
-        "out",
         "right",
-        "settings",
-        "window"
+        "square"
       ]
     },
     {
       "name": "drawer-expand",
       "category": "actions",
       "tags": [
-        "drawer",
-        "expand",
-        "interface",
+        "align",
+        "box",
+        "distribute",
+        "flex",
+        "layout",
         "left",
         "move",
-        "out",
-        "settings",
-        "window"
+        "square"
       ]
     },
     {
       "name": "drop",
       "category": "features",
       "tags": [
-        "animal",
-        "blood",
-        "drip",
-        "dripping",
+        "color",
+        "colour",
+        "design",
         "drop",
         "droplet",
-        "energy",
-        "environment",
-        "health",
-        "healthcare",
-        "humid",
-        "ink",
-        "liquid",
-        "medical",
-        "nature",
-        "oil",
-        "petroleum",
-        "rain",
-        "tear",
-        "water",
-        "weather",
-        "wet"
+        "editor"
       ]
     },
     {
       "name": "duplicate",
       "category": "actions",
       "tags": [
-        "content",
         "copy",
-        "document",
-        "documents",
-        "draft",
         "duplicate",
-        "file",
-        "files",
-        "folder",
-        "group",
-        "item",
-        "letter",
-        "note",
-        "page",
-        "paper",
-        "report",
-        "sheet",
-        "single",
-        "text"
+        "replicate",
+        "square",
+        "squares"
       ]
     },
     {
       "name": "editor",
       "category": "actions",
       "tags": [
-        "brightness",
-        "edit",
-        "effect",
-        "filter",
-        "light",
-        "photo",
-        "spark",
-        "sparkle"
+        "ai",
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
       "name": "editor-filled",
       "category": "actions",
       "tags": [
-        "brightness",
-        "edit",
-        "effect",
-        "filter",
-        "light",
-        "photo",
-        "spark",
-        "sparkle"
+        "ai",
+        "galaxy",
+        "new",
+        "night time",
+        "stars",
+        "weather"
       ]
     },
     {
       "name": "email-activity",
       "category": "actions",
       "tags": [
-        "business",
+        "bar",
+        "barchart",
         "chart",
-        "computer",
-        "finance",
-        "graph",
-        "laptop",
-        "progress"
+        "data",
+        "graph"
       ]
     },
     {
       "name": "emoji",
       "category": "actions",
       "tags": [
-        "cheerful",
-        "emoticon",
+        "face",
         "happy",
-        "laugh",
-        "mouth",
-        "open",
-        "positive",
         "smile",
-        "smiley"
+        "user"
       ]
     },
     {
       "name": "enlarge",
       "category": "actions",
       "tags": [
-        "arrow",
-        "arrows",
-        "direction",
-        "down",
-        "enlarge",
+        "chevron",
         "expand",
-        "increase",
-        "maximize",
-        "select",
-        "up",
+        "open",
+        "selector",
         "vertical"
       ]
     },
@@ -1887,37 +1392,30 @@
       "name": "enlarge-vertical",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "enlarge",
         "expand",
         "fullscreen",
-        "increase",
         "maximize",
-        "move",
-        "out",
-        "reach",
-        "vertical",
-        "window",
-        "zoom"
+        "open"
       ]
     },
     {
       "name": "expand",
       "category": "actions",
       "tags": [
-        "arrow",
-        "disperse",
-        "enlarge",
         "expand",
         "fullscreen",
-        "increase",
         "maximize",
-        "move",
-        "out",
-        "reach",
-        "window",
-        "zoom"
+        "open"
+      ]
+    },
+    {
+      "name": "expand",
+      "category": "actions",
+      "tags": [
+        "expand",
+        "fullscreen",
+        "maximize",
+        "open"
       ]
     },
     {
@@ -1931,61 +1429,30 @@
       "name": "favorite",
       "category": "actions",
       "tags": [
-        "award",
-        "dating",
-        "day",
         "favorite",
-        "favourite",
-        "health",
-        "healthcare",
         "heart",
-        "like",
-        "love",
-        "medical",
-        "relationship",
-        "romance",
-        "romantic",
-        "valentine",
-        "wishlist"
+        "love"
       ]
     },
     {
       "name": "feedback",
       "category": "features",
       "tags": [
-        "bubble",
+        "alert",
         "chat",
-        "comment",
-        "customer",
-        "feedback",
         "message",
-        "opinion",
-        "rating",
-        "review",
-        "talk"
+        "notification"
       ]
     },
     {
       "name": "file",
       "category": "actions",
       "tags": [
-        "article",
-        "blog",
-        "content",
-        "document",
-        "draft",
+        "attachment",
         "file",
-        "folded",
-        "folder",
-        "item",
-        "letter",
-        "note",
-        "page",
         "paper",
-        "post",
+        "pdf",
         "report",
-        "sheet",
-        "single",
         "text"
       ]
     },
@@ -2029,134 +1496,84 @@
       "name": "file-money",
       "category": "site-settings",
       "tags": [
-        "agreement",
-        "bill",
-        "certificate",
-        "document",
+        "circle",
+        "currency",
         "dollar",
-        "file",
-        "folder",
-        "format",
-        "invoice",
-        "item",
-        "money",
-        "order",
-        "paper",
-        "payment",
-        "receipt"
+        "money"
       ]
     },
     {
       "name": "filter",
       "category": "actions",
       "tags": [
-        "categories",
-        "category",
-        "filter",
-        "filtering",
-        "filters",
-        "funnel",
-        "refine",
-        "search",
-        "seo",
+        "preferences",
         "settings",
-        "sort",
-        "tool"
+        "slider",
+        "toggle"
       ]
     },
     {
       "name": "flag",
       "category": "dialogues",
       "tags": [
-        "alert",
-        "banner",
         "flag",
-        "important",
-        "location",
         "map",
-        "maps",
-        "message",
-        "notify",
-        "tag"
+        "marker",
+        "milestone"
       ]
     },
     {
       "name": "flash",
       "category": "actions",
       "tags": [
-        "fast",
-        "flash",
-        "light",
+        "bolt",
         "lightning",
-        "media",
-        "multimedia",
-        "photo",
-        "weather"
+        "speed",
+        "weather",
+        "zap"
       ]
     },
     {
       "name": "flash-filled",
       "category": "actions",
       "tags": [
-        "fast",
-        "flash",
-        "light",
+        "bolt",
         "lightning",
-        "media",
-        "multimedia",
-        "photo",
-        "weather"
+        "speed",
+        "weather",
+        "zap"
       ]
     },
     {
       "name": "floppy-disk",
       "category": "text-editor",
       "tags": [
-        "backup",
-        "disk",
-        "diskette",
-        "download",
-        "drive",
-        "floppy",
-        "floppydisk",
-        "save",
-        "size",
-        "storage"
+        "confirm",
+        "floppy disk",
+        "save"
       ]
     },
     {
       "name": "folder",
       "category": "features",
       "tags": [
-        "archive",
-        "catalog",
-        "document",
-        "documents",
-        "envelope",
+        "attachment",
         "file",
-        "files",
         "folder",
-        "format",
-        "office",
-        "paper"
+        "project"
       ]
     },
     {
       "name": "folder-group",
       "category": "features",
       "tags": [
-        "archive",
-        "catalog",
-        "document",
-        "documents",
-        "envelope",
+        "add",
+        "attachment",
+        "check",
         "file",
-        "files",
         "folder",
-        "folders",
-        "format",
-        "office",
-        "paper"
+        "plus",
+        "project"
       ]
     },
     {
@@ -2166,12 +1583,15 @@
         "article",
         "blog",
         "clipboard",
+        "clipboard",
         "content",
         "document",
         "draft",
         "file",
+        "file",
         "folded",
         "folder",
+        "form",
         "item",
         "letter",
         "note",
@@ -2183,6 +1603,7 @@
         "paper",
         "post",
         "report",
+        "report",
         "sheet",
         "single",
         "text"
@@ -2192,50 +1613,41 @@
       "name": "form-field",
       "category": "features",
       "tags": [
-        "backup",
-        "cloud",
-        "data",
-        "ftp",
-        "hosting",
-        "rack",
-        "server",
-        "storage",
-        "sync"
+        "editor",
+        "rich text",
+        "text",
+        "text input",
+        "type"
       ]
     },
     {
       "name": "form-filled",
       "category": "features",
       "tags": [
-        "filled",
-        "form"
+        "editor",
+        "rich text",
+        "text",
+        "text input",
+        "type"
       ]
     },
     {
       "name": "fullscreen",
       "category": "text-editor",
       "tags": [
-        "fullscreen"
+        "expand",
+        "fullscreen",
+        "maximize",
+        "open"
       ]
     },
     {
       "name": "funnel",
       "category": "features",
       "tags": [
-        "categories",
-        "category",
         "filter",
-        "filtering",
-        "filters",
         "funnel",
-        "interface",
-        "refine",
-        "search",
-        "seo",
-        "settings",
-        "sort",
-        "tool",
-        "ui"
+        "settings"
       ]
     },
     {
@@ -2303,14 +1715,11 @@
       "name": "grant-offer",
       "category": "actions",
       "tags": [
-        "box",
-        "christmas",
-        "exchange",
-        "gift",
-        "gift",
-        "holidays",
-        "package",
-        "present"
+        "coins",
+        "currency",
+        "give",
+        "hand",
+        "money"
       ]
     },
     {
@@ -2357,13 +1766,9 @@
       "tags": [
         "hash",
         "hashtag",
-        "href",
-        "link",
-        "mark",
         "number",
-        "pound",
-        "sign",
-        "trending"
+        "phone",
+        "tag"
       ]
     },
     {
@@ -2383,88 +1788,96 @@
       "name": "heading-1",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h1",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-2",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h2",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-3",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h3",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-4",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h4",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-5",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h5",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-6",
       "category": "text-editor",
       "tags": [
+        "editor",
         "h6",
+        "header",
         "heading",
-        "one",
-        "text",
-        "title",
-        "typography"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-large",
       "category": "text-editor",
       "tags": [
+        "editor",
+        "h1",
+        "header",
         "heading",
-        "large"
+        "rich text",
+        "text"
       ]
     },
     {
       "name": "heading-small",
       "category": "text-editor",
       "tags": [
+        "editor",
+        "h1",
+        "header",
         "heading",
-        "small"
+        "rich text",
+        "text"
       ]
     },
     {
@@ -2543,23 +1956,12 @@
       "name": "home-alt",
       "category": "site-settings",
       "tags": [
-        "address",
-        "apartment",
-        "building",
-        "estate",
-        "home",
+        "dashboard",
         "home",
         "homepage",
         "house",
-        "interface",
-        "local",
-        "nav",
-        "navigation",
-        "office",
-        "page",
-        "real",
-        "shelter",
-        "ui"
+        "menu",
+        "return"
       ]
     },
     {
@@ -2600,64 +2002,46 @@
       "name": "horizontal-line",
       "category": "text-editor",
       "tags": [
-        "horizontal",
-        "line"
+        "circle",
+        "mathematics",
+        "minus",
+        "subtract",
+        "subtraction"
       ]
     },
     {
       "name": "image",
       "category": "actions",
       "tags": [
-        "album",
-        "canvas",
-        "format",
-        "gallery",
-        "graphic",
         "image",
-        "landscape",
-        "media",
-        "multimedia",
+        "jpeg",
+        "jpg",
         "photo",
-        "photography",
-        "picture"
+        "png"
       ]
     },
     {
       "name": "info-circle",
       "category": "dialogues",
       "tags": [
-        "about",
-        "alert",
-        "faq",
+        "circle",
+        "documentation",
         "help",
         "info",
         "information",
-        "interface",
-        "notification",
-        "sign",
-        "support",
-        "tooltip",
-        "travel",
-        "ui"
+        "question"
       ]
     },
     {
       "name": "info-circle-filled",
       "category": "dialogues",
       "tags": [
-        "about",
-        "alert",
-        "faq",
+        "circle",
+        "documentation",
         "help",
         "info",
         "information",
-        "interface",
-        "notification",
-        "sign",
-        "support",
-        "tooltip",
-        "travel",
-        "ui"
+        "question"
       ]
     },
     {
@@ -2685,7 +2069,11 @@
       "name": "italic",
       "category": "text-editor",
       "tags": [
-        "italic"
+        "editor",
+        "italic",
+        "italics",
+        "rich text",
+        "text"
       ]
     },
     {
@@ -2693,7 +2081,8 @@
       "category": "site-settings",
       "tags": [
         "kajabi",
-        "logo"
+        "logo",
+        "monogram (kajabi outline logo was remvoed with the new logo)"
       ]
     },
     {
@@ -2701,7 +2090,8 @@
       "category": "site-settings",
       "tags": [
         "kajabi",
-        "logo"
+        "logo",
+        "monogram"
       ]
     },
     {
@@ -2717,108 +2107,59 @@
       "category": "features",
       "tags": [
         "beaker",
-        "chemical",
-        "drug",
-        "education",
-        "equipment",
-        "experiment",
-        "flask",
-        "glass",
-        "healthcare",
-        "laboratory",
-        "medical",
-        "research",
-        "school",
+        "chemistry",
         "science",
-        "study",
-        "test",
-        "tube"
+        "test tube"
       ]
     },
     {
       "name": "launch",
       "category": "actions",
       "tags": [
-        "arrow",
-        "connection",
-        "export",
-        "file",
-        "launch",
-        "network",
-        "outbox",
-        "output",
-        "share",
-        "sharing",
-        "social",
-        "start",
-        "storage",
-        "transfer",
-        "up",
-        "upload"
+        "external",
+        "hyperlink",
+        "link",
+        "website"
       ]
     },
     {
       "name": "layout-grid",
       "category": "actions",
       "tags": [
-        "boxes",
-        "column",
-        "gallery",
+        "align",
+        "distribute",
+        "flex",
         "grid",
         "layout",
-        "row",
-        "shape",
-        "square",
-        "squares",
-        "table",
-        "tile",
-        "view"
+        "move",
+        "square"
       ]
     },
     {
       "name": "layout-list",
       "category": "actions",
       "tags": [
-        "bars",
-        "content",
-        "description",
-        "document",
-        "layout",
-        "lines",
-        "list",
-        "listing",
-        "organize",
-        "page",
-        "paragraph",
-        "tasks",
-        "text",
-        "text",
-        "todo"
+        "checklist",
+        "dot points",
+        "dotpoints",
+        "list"
       ]
     },
     {
       "name": "left-small",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backward",
-        "backwards",
-        "direction",
-        "keyboard",
-        "left",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "previous"
+        "chevron",
+        "left"
       ]
     },
     {
       "name": "list-bullet",
       "category": "text-editor",
       "tags": [
-        "bullet",
+        "checklist",
+        "dot points",
+        "dotpoints",
         "list"
       ]
     },
@@ -2826,53 +2167,40 @@
       "name": "list-details",
       "category": "actions",
       "tags": [
-        "details",
-        "list"
+        "columns",
+        "divider",
+        "grid",
+        "horizontal",
+        "table"
       ]
     },
     {
       "name": "list-numbers",
       "category": "text-editor",
       "tags": [
-        "list",
-        "numbers"
+        "checklist",
+        "dot points",
+        "dotpoints",
+        "list"
       ]
     },
     {
       "name": "location",
       "category": "features",
       "tags": [
-        "direction",
-        "gps",
-        "location",
         "map",
         "marker",
-        "navigation",
-        "pin",
-        "pin",
-        "place",
-        "position"
+        "pin"
       ]
     },
     {
       "name": "lock",
       "category": "features",
       "tags": [
-        "closed",
-        "encryption",
+        "cybersecurity",
         "lock",
         "locked",
-        "login",
-        "padlock",
         "password",
-        "policy",
-        "privacy",
-        "protect",
-        "protected",
-        "protection",
-        "safe",
-        "safety",
-        "secure",
         "security"
       ]
     },
@@ -2880,21 +2208,10 @@
       "name": "lock-alt",
       "category": "site-settings",
       "tags": [
-        "closed",
-        "encryption",
+        "cybersecurity",
         "lock",
         "locked",
-        "login",
-        "padlock",
         "password",
-        "policy",
-        "privacy",
-        "protect",
-        "protected",
-        "protection",
-        "safe",
-        "safety",
-        "secure",
         "security"
       ]
     },
@@ -2976,68 +2293,44 @@
       "name": "loop",
       "category": "actions",
       "tags": [
-        "arrow",
-        "arrows",
-        "infinite",
-        "infinity",
-        "load",
-        "loading",
-        "loop",
-        "process",
+        "clockwise",
+        "cw",
         "refresh",
-        "reload",
-        "repeat",
-        "replay",
-        "sync",
-        "update"
+        "refresh",
+        "rotate"
       ]
     },
     {
       "name": "mail",
       "category": "features",
       "tags": [
-        "communication",
-        "contact",
-        "email",
-        "envelope",
-        "letter",
+        "inbox",
         "mail",
         "mailbox",
         "message",
-        "messages",
-        "news",
-        "newsletter",
-        "post",
-        "send",
-        "write"
+        "tray"
       ]
     },
     {
       "name": "mail-filled",
       "category": "features",
       "tags": [
-        "filled",
-        "mail"
+        "inbox",
+        "mail",
+        "mailbox",
+        "message",
+        "tray"
       ]
     },
     {
       "name": "mail-open",
       "category": "actions",
       "tags": [
-        "communication",
-        "contact",
-        "email",
-        "envelope",
-        "letter",
+        "inbox",
         "mail",
         "mailbox",
         "message",
-        "messages",
-        "news",
-        "newsletter",
-        "post",
-        "send",
-        "write"
+        "tray"
       ]
     },
     {
@@ -3055,6 +2348,8 @@
       "name": "map",
       "category": "features",
       "tags": [
+        "compass",
+        "direction",
         "map"
       ]
     },
@@ -3085,16 +2380,18 @@
       "name": "margin-left",
       "category": "text-editor",
       "tags": [
-        "left",
-        "margin"
+        "align",
+        "left indent",
+        "paragraph"
       ]
     },
     {
       "name": "margin-right",
       "category": "text-editor",
       "tags": [
-        "margin",
-        "right"
+        "align",
+        "paragraph",
+        "right indent"
       ]
     },
     {
@@ -3197,50 +2494,36 @@
       "name": "menu",
       "category": "actions",
       "tags": [
-        "bars",
-        "burger",
-        "gallery",
         "hamburger",
+        "horizontal",
         "lines",
-        "list",
         "menu",
-        "navigation",
-        "options",
-        "settings"
+        "nav",
+        "navigation"
       ]
     },
     {
       "name": "menu-alt",
       "category": "actions",
       "tags": [
-        "bars",
-        "burger",
-        "gallery",
         "hamburger",
+        "horizontal",
         "lines",
-        "list",
         "menu",
-        "navigation",
-        "options",
-        "settings"
+        "nav",
+        "navigation"
       ]
     },
     {
       "name": "menu-bordered",
       "category": "site-settings",
       "tags": [
-        "bars",
-        "burger",
-        "gallery",
         "hamburger",
-        "interface",
+        "horizontal",
         "lines",
-        "list",
         "menu",
-        "navigation",
-        "options",
-        "settings",
-        "ui"
+        "nav",
+        "navigation"
       ]
     },
     {
@@ -3267,11 +2550,9 @@
       "category": "features",
       "tags": [
         "audio",
-        "media",
-        "mic",
+        "micro phone",
         "microphone",
-        "multimedia",
-        "speaker"
+        "record"
       ]
     },
     {
@@ -3279,13 +2560,10 @@
       "category": "actions",
       "tags": [
         "audio",
-        "media",
-        "mic",
+        "micro phone",
         "microphone",
-        "multimedia",
         "mute",
-        "off",
-        "speaker"
+        "record"
       ]
     },
     {
@@ -3366,35 +2644,21 @@
       "name": "move-left",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backward",
-        "backwards",
-        "direction",
-        "keyboard",
+        "align",
+        "distribute",
+        "layout",
         "left",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "previous"
+        "move"
       ]
     },
     {
       "name": "move-right",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "forward",
-        "keyboard",
+        "align",
+        "distribute",
+        "layout",
         "move",
-        "navigation",
-        "next",
-        "onward",
-        "onwards",
-        "out",
-        "position",
         "right"
       ]
     },
@@ -3415,10 +2679,15 @@
       "name": "newsletter",
       "category": "site-settings",
       "tags": [
+        "attachment",
         "communication",
         "contact",
         "email",
         "envelope",
+        "favorite",
+        "favorite",
+        "file",
+        "heart",
         "letter",
         "mail",
         "mailbox",
@@ -3426,10 +2695,14 @@
         "messages",
         "news",
         "newsletter",
+        "paper",
+        "pdf",
         "post",
+        "report",
         "send",
         "shopping",
         "subscribe",
+        "text",
         "write"
       ]
     },
@@ -3437,29 +2710,24 @@
       "name": "newsletter-2",
       "category": "actions",
       "tags": [
-        "communication",
-        "contact",
-        "email",
-        "envelope",
-        "letter",
-        "mail",
-        "mailbox",
-        "message",
-        "messages",
-        "news",
-        "newsletter",
-        "post",
-        "send",
-        "shopping",
-        "subscribe",
-        "write"
+        "attachment",
+        "favorite",
+        "favourite",
+        "file",
+        "heart",
+        "paper",
+        "pdf",
+        "report",
+        "text"
       ]
     },
     {
       "name": "one-off-session",
       "category": "features",
       "tags": [
-        "sage-icon-session"
+        "chat",
+        "live chat",
+        "message"
       ]
     },
     {
@@ -3503,21 +2771,17 @@
       "name": "pause",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "media",
-        "multimedia",
+        "audio",
         "pause",
-        "ui"
+        "square"
       ]
     },
     {
       "name": "pause-circle",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "multimedia",
+        "audio",
+        "circle",
         "pause"
       ]
     },
@@ -3525,38 +2789,22 @@
       "name": "payout",
       "category": "features",
       "tags": [
-        "business",
-        "cash",
+        "coins",
         "currency",
-        "dollar",
-        "dollar",
-        "finance",
-        "funding",
-        "investment",
-        "money",
-        "shopping"
+        "give",
+        "hand",
+        "money"
       ]
     },
     {
       "name": "pen",
       "category": "actions",
       "tags": [
-        "compose",
-        "create",
+        "change",
         "design",
-        "development",
-        "draft",
         "draw",
         "edit",
-        "editing",
-        "editor",
-        "education",
-        "message",
-        "note",
-        "pen",
         "pencil",
-        "school",
-        "text",
         "write"
       ]
     },
@@ -3564,19 +2812,11 @@
       "name": "phone-portrait",
       "category": "actions",
       "tags": [
-        "android",
         "call",
-        "communication",
-        "device",
-        "iOS",
-        "iPhone",
+        "iphone",
         "mobile",
-        "phone",
-        "smartphone",
-        "tech",
-        "technology",
-        "telephone",
-        "touchscreen"
+        "number",
+        "phone"
       ]
     },
     {
@@ -3636,33 +2876,40 @@
       "name": "play",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "media",
-        "multimedia",
-        "play"
+        "film",
+        "m4v",
+        "mp4",
+        "play",
+        "video",
+        "wav",
+        "youtube"
       ]
     },
     {
       "name": "play-circle",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "media",
-        "multimedia",
-        "play"
+        "circle",
+        "film",
+        "m4v",
+        "mp4",
+        "play",
+        "video",
+        "wav",
+        "youtube"
       ]
     },
     {
       "name": "play-outline",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "media",
-        "multimedia",
-        "play"
+        "film",
+        "m4v",
+        "mp4",
+        "play",
+        "video",
+        "wav",
+        "youtube"
       ]
     },
     {
@@ -3707,48 +2954,28 @@
       "name": "premium",
       "category": "features",
       "tags": [
-        "premium"
+        "currency",
+        "diamond",
+        "gem"
       ]
     },
     {
       "name": "present",
       "category": "features",
       "tags": [
-        "birthday",
-        "box",
-        "christmas",
-        "donation",
-        "exchange",
         "gift",
         "package",
-        "present",
-        "shopping",
-        "surprise",
-        "wrapped"
+        "surprise"
       ]
     },
     {
       "name": "preview-off",
       "category": "actions",
       "tags": [
-        "blind",
-        "disabled",
         "eye",
-        "hidden",
         "hide",
-        "invisible",
-        "look",
-        "observe",
-        "overview",
-        "preview",
-        "search",
-        "see",
-        "sight",
-        "view",
-        "visibility",
-        "visible",
-        "vision",
-        "watch"
+        "off",
+        "preview"
       ]
     },
     {
@@ -3756,18 +2983,9 @@
       "category": "actions",
       "tags": [
         "eye",
-        "look",
-        "observe",
-        "overview",
         "preview",
-        "search",
         "see",
-        "sight",
-        "view",
-        "visibility",
-        "visible",
-        "vision",
-        "watch"
+        "view"
       ]
     },
     {
@@ -3814,87 +3032,57 @@
       "name": "question-circle",
       "category": "dialogues",
       "tags": [
-        "",
-        "about",
-        "alert",
-        "ask",
-        "faq",
+        "circle",
+        "documentation",
         "help",
         "info",
         "information",
-        "interface",
-        "mark",
-        "notification",
-        "query",
-        "question",
-        "sage-icon-question-circle",
-        "sign",
-        "support",
-        "tooltip",
-        "ui"
+        "question"
       ]
     },
     {
       "name": "quote",
       "category": "text-editor",
       "tags": [
-        "bubble",
-        "editing",
-        "marks",
-        "message",
-        "quotation",
+        "block",
+        "edit",
+        "font",
         "quote",
-        "text"
+        "style",
+        "text",
+        "theme",
+        "typography"
       ]
     },
     {
       "name": "redo",
       "category": "text-editor",
       "tags": [
-        "redo"
+        "reverse",
+        "right",
+        "switch"
       ]
     },
     {
       "name": "refresh",
       "category": "actions",
       "tags": [
-        "",
-        "arrow",
-        "arrows",
-        "infinite",
-        "infinity",
-        "load",
-        "loader",
-        "loading",
-        "loop",
-        "process",
-        "progress",
+        "clockwise",
+        "cw",
         "refresh",
-        "reload",
-        "repeat",
-        "replay",
-        "spinner",
-        "sync",
-        "update",
-        "wait"
+        "refresh",
+        "rotate"
       ]
     },
     {
       "name": "remove",
       "category": "actions",
       "tags": [
-        "cancel",
         "close",
         "cross",
         "delete",
-        "deletion",
-        "denied",
-        "discard",
-        "dismiss",
         "exit",
-        "removal",
         "remove",
-        "wrong",
         "x"
       ]
     },
@@ -3902,18 +3090,12 @@
       "name": "remove-circle",
       "category": "actions",
       "tags": [
-        "cancel",
+        "circle",
         "close",
         "cross",
         "delete",
-        "deletion",
-        "denied",
-        "discard",
-        "dismiss",
         "exit",
-        "removal",
         "remove",
-        "wrong",
         "x"
       ]
     },
@@ -3921,55 +3103,36 @@
       "name": "rename",
       "category": "actions",
       "tags": [
-        "compose",
-        "create",
         "design",
-        "development",
-        "draft",
         "draw",
-        "edit",
-        "editing",
         "editor",
-        "education",
-        "message",
-        "note",
         "pen",
         "pencil",
-        "school",
-        "text",
-        "write"
+        "vector"
       ]
     },
     {
       "name": "reset-password",
       "category": "actions",
       "tags": [
-        "clean",
-        "clear",
+        "cybersecurity",
         "lock",
+        "pass word",
+        "passcode",
         "password",
-        "remove",
-        "reset"
+        "security"
       ]
     },
     {
       "name": "restore",
       "category": "actions",
       "tags": [
-        "arrow",
-        "back",
-        "backup",
-        "cloud",
-        "data",
-        "fix",
-        "machine",
+        "alarm",
+        "clock",
+        "cycle",
         "refresh",
-        "restore",
-        "revert",
-        "save",
-        "storage",
-        "time",
-        "up",
+        "rewind",
+        "timer",
         "watch"
       ]
     },
@@ -3977,16 +3140,7 @@
       "name": "right-small",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "forward",
-        "keyboard",
-        "move",
-        "navigation",
-        "next",
-        "onward",
-        "onwards",
-        "out position",
+        "chevron",
         "right"
       ]
     },
@@ -3994,15 +3148,20 @@
       "name": "rocket",
       "category": "features",
       "tags": [
-        "rocket"
+        "jet",
+        "missile",
+        "rocket",
+        "transport"
       ]
     },
     {
       "name": "rocket-filled",
       "category": "features",
       "tags": [
-        "filled",
-        "rocket"
+        "jet",
+        "missile",
+        "rocket",
+        "transport"
       ]
     },
     {
@@ -4019,27 +3178,20 @@
       "name": "round-dollar",
       "category": "features",
       "tags": [
-        "business",
-        "cashier",
+        "circle",
         "currency",
         "dollar",
-        "finance",
-        "money",
-        "shopping"
+        "money"
       ]
     },
     {
       "name": "rows",
       "category": "actions",
       "tags": [
-        "cells",
-        "column",
-        "data",
-        "database",
+        "columns",
+        "divider",
         "grid",
-        "rows",
-        "sheet",
-        "spreadsheet",
+        "horizontal",
         "table"
       ]
     },
@@ -4047,12 +3199,11 @@
       "name": "scissor",
       "category": "actions",
       "tags": [
-        "craft",
         "cut",
-        "edit",
+        "design",
+        "editor",
         "scissors",
-        "shears",
-        "tool"
+        "trim"
       ]
     },
     {
@@ -4100,17 +3251,12 @@
       "name": "search",
       "category": "actions",
       "tags": [
-        "explore",
-        "find",
-        "glass",
-        "lens",
-        "lookup",
-        "magnifier",
+        "filter",
         "magnify",
-        "magnifying",
+        "magnifying glass",
         "search",
-        "view",
-        "zoom"
+        "search bar",
+        "searchbar"
       ]
     },
     {
@@ -4129,46 +3275,48 @@
       "name": "search-small",
       "category": "actions",
       "tags": [
-        "explore",
-        "find",
-        "glass",
-        "lens",
-        "lookup",
-        "magnifier",
+        "filter",
         "magnify",
-        "magnifying",
+        "magnifying glass",
         "search",
-        "view",
-        "zoom"
+        "search bar",
+        "searchbar"
       ]
     },
     {
       "name": "send-message",
       "category": "actions",
       "tags": [
-        "airplane",
-        "communication",
-        "contact",
-        "email",
-        "flight",
-        "fly",
-        "letter",
+        "chat",
+        "dm",
         "mail",
         "message",
-        "messages",
-        "news",
-        "paper",
-        "plane",
-        "send",
-        "sending",
-        "write"
+        "send"
       ]
     },
     {
       "name": "sequences",
       "category": "features",
       "tags": [
-        "sage-icon-sequences"
+        "backup",
+        "clone",
+        "copies",
+        "copy",
+        "document",
+        "duplicate",
+        "file",
+        "files",
+        "group",
+        "layer",
+        "layers",
+        "note",
+        "paper",
+        "paste",
+        "report",
+        "separate",
+        "sequences",
+        "split",
+        "ungroup"
       ]
     },
     {
@@ -4184,21 +3332,23 @@
       "name": "share",
       "category": "actions",
       "tags": [
-        "arrow",
-        "connection",
-        "direction",
-        "forward",
-        "keyboard",
-        "move",
-        "navigation",
-        "next",
-        "onward",
-        "onwards",
-        "out",
-        "position",
-        "right",
+        "export",
+        "external",
+        "hyperlink",
+        "link",
+        "open",
         "share",
-        "social"
+        "website"
+      ]
+    },
+    {
+      "name": "shopping-cart-filled",
+      "category": "actions",
+      "tags": [
+        "cart",
+        "ecommerce",
+        "purchase",
+        "shopping bag"
       ]
     },
     {
@@ -4239,8 +3389,9 @@
       "name": "slash-divider",
       "category": "actions",
       "tags": [
+        "divide",
         "divider",
-        "forward-slash",
+        "no",
         "slash"
       ]
     },
@@ -4248,64 +3399,31 @@
       "name": "speaker",
       "category": "site-settings",
       "tags": [
-        "alarm",
-        "alert",
-        "announce",
         "announcement",
-        "attention",
-        "audio",
-        "chat",
-        "communication",
-        "interface",
         "megaphone",
-        "message",
-        "music",
-        "nav",
-        "navigation",
-        "notification",
-        "shout",
-        "sound",
-        "speaker",
-        "ui",
-        "update",
-        "voice",
-        "volume"
+        "speaker"
       ]
     },
     {
       "name": "stack",
       "category": "actions",
       "tags": [
-        "archive",
+        "isometic",
         "layer",
-        "layering",
         "layers",
-        "order",
-        "overlay",
-        "sheet",
-        "sheets",
         "stack",
-        "stackable",
-        "stacking"
+        "three"
       ]
     },
     {
       "name": "star",
       "category": "actions",
       "tags": [
-        "achievement",
-        "best",
-        "bookmark",
         "favorite",
-        "important",
-        "like",
-        "rank",
-        "rate",
-        "rating",
-        "scoring",
-        "star",
-        "win review",
-        "winner"
+        "favourite",
+        "galaxy",
+        "save",
+        "star"
       ]
     },
     {
@@ -4323,9 +3441,7 @@
       "name": "stop",
       "category": "actions",
       "tags": [
-        "button",
-        "control",
-        "multimedia",
+        "audio",
         "stop"
       ]
     },
@@ -4334,25 +3450,9 @@
       "category": "actions",
       "tags": [
         "alarm",
-        "alert",
-        "chronometer",
         "clock",
-        "countdown",
-        "deadline",
-        "event",
-        "history",
-        "hour",
-        "lap",
-        "measure",
-        "productivity",
-        "schedule",
-        "speed",
-        "sport",
         "stopwatch",
-        "time",
         "timer",
-        "track",
-        "tracking",
         "watch"
       ]
     },
@@ -4360,14 +3460,21 @@
       "name": "strikethrough",
       "category": "text-editor",
       "tags": [
-        "strikethrough"
+        "editor",
+        "rich text",
+        "strikethrough",
+        "text"
       ]
     },
     {
       "name": "subscript",
       "category": "text-editor",
       "tags": [
-        "subscript"
+        "editor",
+        "rich text",
+        "subscript",
+        "text",
+        "type"
       ]
     },
     {
@@ -4390,76 +3497,47 @@
       "name": "super-admin",
       "category": "features",
       "tags": [
-        "admin",
-        "super"
+        "CX",
+        "super admin"
       ]
     },
     {
       "name": "superscript",
       "category": "text-editor",
       "tags": [
-        "superscript"
+        "editor",
+        "rich text",
+        "subscript",
+        "text",
+        "type"
       ]
     },
     {
       "name": "sync",
       "category": "actions",
       "tags": [
-        "arrow",
-        "arrows",
-        "energy",
-        "environment",
-        "exchange",
-        "infinite",
-        "infinity",
-        "load",
-        "loading",
-        "loop",
-        "process",
+        "clockwise",
+        "cw",
         "refresh",
-        "reload",
-        "repeat",
-        "replay",
-        "sync",
-        "update"
+        "refresh",
+        "rotate"
       ]
     },
     {
       "name": "tablet-landscape",
       "category": "actions",
       "tags": [
-        "amazon",
-        "book",
-        "device",
-        "ebook",
-        "ereader",
-        "iPad",
-        "kindle",
-        "mobile",
-        "read",
-        "reader",
-        "tablet",
-        "touch",
-        "touchscreen"
+        "ipad",
+        "landscape",
+        "tablet"
       ]
     },
     {
       "name": "tablet-portrait",
       "category": "actions",
       "tags": [
-        "amazon",
-        "book",
-        "device",
-        "ebook",
-        "ereader",
-        "iPad",
-        "kindle",
-        "mobile",
-        "read",
-        "reader",
-        "tablet",
-        "touch",
-        "touchscreen"
+        "ipad",
+        "tablet"
       ]
     },
     {
@@ -4504,27 +3582,20 @@
       "name": "text-styles",
       "category": "text-editor",
       "tags": [
-        "styles",
-        "text"
+        "editor",
+        "rich text",
+        "text",
+        "type"
       ]
     },
     {
       "name": "theme-store",
       "category": "features",
       "tags": [
-        "commerce",
-        "commercial",
-        "ecommerce",
-        "food",
-        "home",
-        "mall",
-        "market",
-        "online",
-        "property",
-        "retail",
-        "retailer",
+        "building",
+        "business",
+        "house",
         "shop",
-        "shopping",
         "store"
       ]
     },
@@ -4532,90 +3603,45 @@
       "name": "theme-store-filled",
       "category": "features",
       "tags": [
-        "commerce",
-        "commercial",
-        "ecommerce",
-        "food",
-        "home",
-        "mall",
-        "market",
-        "online",
-        "property",
-        "retail",
-        "retailer",
-        "shop",
-        "shopping",
-        "store"
+        "building",
+        "business",
+        "house"
       ]
     },
     {
       "name": "thumb-down",
       "category": "actions",
       "tags": [
-        "dislike",
         "down",
-        "emoticon",
-        "favorite",
-        "finger",
-        "gesture",
-        "like",
-        "no",
-        "thumbs",
-        "unlike",
-        "vote"
+        "negative",
+        "thumbs"
       ]
     },
     {
       "name": "thumb-down-filled",
       "category": "actions",
       "tags": [
-        "dislike",
         "down",
-        "emoticon",
-        "favorite",
-        "finger",
-        "gesture",
-        "like",
-        "no",
-        "thumbs",
-        "unlike",
-        "vote"
+        "negative",
+        "thumbs"
       ]
     },
     {
       "name": "thumb-up",
       "category": "actions",
       "tags": [
-        "approve",
-        "favorite",
-        "favourite",
-        "finger",
-        "gesture",
-        "hand",
-        "like",
-        "rate",
-        "thumb",
+        "positive",
         "thumbs",
-        "up",
-        "vote"
+        "up"
       ]
     },
     {
       "name": "thumb-up-filled",
       "category": "actions",
       "tags": [
-        "approve",
-        "favorite",
-        "favourite",
-        "finger",
-        "gesture",
-        "hand",
-        "like",
-        "rate",
-        "thumb",
+        "positive",
         "thumbs",
-        "up",
-        "vote"
+        "up"
       ]
     },
     {
@@ -4624,18 +3650,18 @@
       "tags": [
         "bin",
         "delete",
-        "dump",
-        "garbage",
-        "rubbish",
+        "remove",
         "trash",
-        "trashcan",
-        "waste"
+        "trashcan"
       ]
     },
     {
       "name": "trophy",
       "category": "features",
       "tags": [
+        "award",
+        "certificate",
+        "medal",
         "trophy"
       ]
     },
@@ -4643,7 +3669,9 @@
       "name": "trophy-filled",
       "category": "features",
       "tags": [
-        "filled",
+        "award",
+        "certificate",
+        "medal",
         "trophy"
       ]
     },
@@ -4651,6 +3679,9 @@
       "name": "underline",
       "category": "text-editor",
       "tags": [
+        "editor",
+        "rich text",
+        "text",
         "underline"
       ]
     },
@@ -4658,34 +3689,20 @@
       "name": "undo",
       "category": "text-editor",
       "tags": [
-        "undo"
+        "left",
+        "reverse",
+        "switch"
       ]
     },
     {
       "name": "unlock",
       "category": "features",
       "tags": [
-        "closed",
-        "encryption",
+        "cybersecurity",
         "lock",
-        "locked",
-        "login",
-        "padlock",
         "password",
-        "policy",
-        "privacy",
-        "protect",
-        "protected",
-        "protection",
-        "safe",
-        "safety",
-        "secure",
         "security",
-        "theft",
-        "unlock",
-        "unlocked",
-        "unsafe",
-        "unsecure"
+        "unlocked"
       ]
     },
     {
@@ -4717,42 +3734,19 @@
       "name": "up-small",
       "category": "actions",
       "tags": [
-        "arrow",
-        "direction",
-        "keyboard",
-        "move",
-        "navigation",
-        "out",
-        "position",
-        "top",
-        "up",
-        "upward",
-        "upwards"
+        "chevron",
+        "dropdown",
+        "up"
       ]
     },
     {
       "name": "upload",
       "category": "actions",
       "tags": [
-        "arrow",
-        "backup",
-        "cloud",
-        "data",
-        "direction",
-        "file",
-        "ftp",
-        "hosting",
-        "import",
-        "input",
-        "save",
-        "server",
+        "export",
         "share",
-        "storage",
-        "top",
-        "transfer",
         "up",
-        "upload",
-        "upward"
+        "upload"
       ]
     },
     {
@@ -4761,16 +3755,9 @@
       "tags": [
         "chain",
         "connection",
-        "connections",
-        "editing",
         "hyperlink",
         "link",
-        "linked",
-        "links",
-        "share",
-        "text",
-        "url",
-        "web"
+        "website"
       ]
     },
     {
@@ -4778,18 +3765,9 @@
       "category": "actions",
       "tags": [
         "account",
-        "avatar",
-        "contact",
-        "follower",
-        "friend",
-        "human",
-        "man",
-        "member",
         "person",
-        "profile",
-        "user",
-        "users",
-        "woman"
+        "persona",
+        "user"
       ]
     },
     {
@@ -4815,18 +3793,9 @@
       "category": "actions",
       "tags": [
         "account",
-        "avatar",
-        "contact",
-        "follower",
-        "friend",
-        "human",
-        "man",
-        "member",
         "person",
-        "profile",
-        "user",
-        "users",
-        "woman"
+        "persona",
+        "user"
       ]
     },
     {
@@ -4887,42 +3856,21 @@
       "category": "features",
       "tags": [
         "account",
-        "avatar",
-        "contact",
-        "follower",
-        "friend",
-        "group",
-        "human",
-        "man",
-        "member",
-        "network",
-        "person",
-        "profile",
+        "people",
+        "persona",
         "team",
-        "user",
-        "users",
-        "woman"
+        "users"
       ]
     },
     {
       "name": "users-alt",
       "category": "site-settings",
       "tags": [
-        "",
-        "collective",
-        "community",
-        "coworking",
-        "family",
-        "friends",
-        "group",
-        "lineup",
-        "network",
-        "organization",
+        "account",
         "people",
-        "players",
-        "population",
+        "persona",
         "team",
-        "user"
+        "users"
       ]
     },
     {
@@ -4930,21 +3878,10 @@
       "category": "features",
       "tags": [
         "account",
-        "avatar",
-        "contact",
-        "follower",
-        "friend",
-        "group",
-        "human",
-        "man",
-        "member",
-        "network",
-        "person",
-        "profile",
+        "people",
+        "persona",
         "team",
-        "user",
-        "users",
-        "woman"
+        "users"
       ]
     },
     {
@@ -4962,29 +3899,28 @@
       "name": "video-off",
       "category": "actions",
       "tags": [
-        "ban",
-        "camera",
         "film",
-        "media",
-        "movie",
-        "not allowed",
-        "off",
+        "m4v",
+        "mp4",
         "play",
-        "show",
-        "video"
+        "video",
+        "video recorder",
+        "wav",
+        "youtube"
       ]
     },
     {
       "name": "video-on",
       "category": "actions",
       "tags": [
-        "camera",
         "film",
-        "media",
-        "movie",
+        "m4v",
+        "mp4",
         "play",
-        "show",
-        "video"
+        "video",
+        "video recorder",
+        "wav",
+        "youtube"
       ]
     },
     {
@@ -4992,15 +3928,8 @@
       "category": "dialogues",
       "tags": [
         "alert",
-        "attention",
-        "caution",
-        "danger",
         "error",
-        "exclamation",
-        "problem",
-        "red",
-        "sage-icon-warning",
-        "sign",
+        "triangle",
         "warning"
       ]
     },
@@ -5009,15 +3938,8 @@
       "category": "dialogues",
       "tags": [
         "alert",
-        "attention",
-        "caution",
-        "danger",
         "error",
-        "exclamation",
-        "problem",
-        "red",
-        "sage-icon-warning",
-        "sign",
+        "triangle",
         "warning"
       ]
     },
@@ -5025,82 +3947,33 @@
       "name": "window-paragraph",
       "category": "site-settings",
       "tags": [
-        "",
-        "app",
-        "boxes",
         "browser",
-        "content",
-        "description",
-        "design",
-        "development",
-        "document",
+        "flexbox",
         "grid",
-        "header",
-        "image",
-        "internet",
         "layout",
-        "list",
-        "masonry",
-        "mockup",
-        "page",
-        "paragraph",
-        "photo",
-        "picture",
-        "sidebar",
-        "site",
-        "tab",
         "table",
-        "text",
-        "tile",
-        "view",
-        "web",
-        "webpage",
-        "website",
-        "wireframe"
+        "web"
       ]
     },
     {
       "name": "world",
       "category": "site-settings",
       "tags": [
-        "browser",
-        "business",
         "earth",
-        "education",
-        "energy",
-        "environment",
-        "finance",
-        "global",
         "globe",
-        "internet",
-        "language",
-        "language",
         "map",
-        "school",
-        "travel",
-        "web",
-        "world"
+        "travel"
       ]
     },
     {
       "name": "wrench",
       "category": "actions",
       "tags": [
-        "adjust",
-        "adjustment",
-        "building",
-        "configure",
-        "control",
-        "edit",
-        "filter",
-        "option",
-        "options",
         "preferences",
         "settings",
-        "system",
+        "spanner",
         "tool",
-        "ui",
-        "wrench"
+        "tools"
       ]
     }
   ]
