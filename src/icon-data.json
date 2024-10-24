@@ -408,6 +408,15 @@
       ]
     },
     {
+      "name": "bookmark",
+      "category": "actions",
+      "tags": [
+        "bookmark",
+        "save",
+        "tag"
+      ]
+    },
+    {
       "name": "broadcast",
       "category": "actions",
       "tags": [
@@ -1412,17 +1421,17 @@
       "name": "expand",
       "category": "actions",
       "tags": [
-        "expand",
-        "fullscreen",
-        "maximize",
-        "open"
+        "expand"
       ]
     },
     {
       "name": "expand",
       "category": "actions",
       "tags": [
-        "expand"
+        "expand",
+        "fullscreen",
+        "maximize",
+        "open"
       ]
     },
     {
@@ -2133,6 +2142,18 @@
         "layout",
         "move",
         "square"
+      ]
+    },
+    {
+      "name": "layout-grid-02",
+      "category": "actions",
+      "tags": [
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "web"
       ]
     },
     {
