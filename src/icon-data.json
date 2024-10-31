@@ -1418,23 +1418,6 @@
       ]
     },
     {
-      "name": "expand",
-      "category": "actions",
-      "tags": [
-        "expand"
-      ]
-    },
-    {
-      "name": "expand",
-      "category": "actions",
-      "tags": [
-        "expand",
-        "fullscreen",
-        "maximize",
-        "open"
-      ]
-    },
-    {
       "name": "favorite",
       "category": "actions",
       "tags": [
