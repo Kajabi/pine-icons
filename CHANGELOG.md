@@ -1,3 +1,14 @@
+## 8.10.0 (2024-10-31)
+
+
+### Features 🚀
+
+- **icons:** v8.10.0, created: 0, modified: 1, renamed: 0, deleted: 0 ([faf1404](https://github.com/Kajabi/pine-icons/commit/faf1404))
+
+### ❤️  Thank You
+
+- Kajabi Automation Bot
+
 ## 8.9.0 (2024-10-29)
 
 
