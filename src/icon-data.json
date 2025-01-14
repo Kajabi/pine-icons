@@ -1495,6 +1495,19 @@
       ]
     },
     {
+      "name": "file-search",
+      "category": "actions",
+      "tags": [
+        "attachment",
+        "file",
+        "paper",
+        "pdf",
+        "report",
+        "search",
+        "text"
+      ]
+    },
+    {
       "name": "filter",
       "category": "actions",
       "tags": [
@@ -2258,6 +2271,14 @@
       "tags": [
         "linkedin",
         "logo"
+      ]
+    },
+    {
+      "name": "logo-snapchat",
+      "category": "social",
+      "tags": [
+        "logo",
+        "snapchat"
       ]
     },
     {
