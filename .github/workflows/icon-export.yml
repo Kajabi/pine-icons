@@ -47,13 +47,13 @@ jobs:
       preid: ${{ steps.split-version-info.outputs._1 }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ inputs.ref }}
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
@@ -68,7 +68,7 @@ jobs:
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
       - name: Cache node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-node-modules
         env:
           cache-name: cache-node-modules

@@ -20,7 +20,7 @@ jobs:
         node: ${{ fromJSON(vars.NODE_VERSIONS) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: ./.github/workflows/actions/build-icons
@@ -36,7 +36,7 @@ jobs:
         node: ${{ fromJSON(vars.NODE_VERSIONS) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/test-lint
         with:
           node-version: ${{ matrix.node }}
@@ -49,7 +49,7 @@ jobs:
         node: ${{ fromJSON(vars.NODE_VERSIONS) }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/test-spec
         with:
           node-version: ${{ matrix.node }}
