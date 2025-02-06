@@ -32,7 +32,7 @@ export const getAssetPath = (path: string) => {
   if ( assetBasePath.startsWith('https://cdn.jsdelivr.net/npm/') && !missingAssetPathWarning ) {
     missingAssetPathWarning = true;
     console.warn(`
-      Fetching Pine asssets from jsDelivr CDN.\n\n It's recommended that you bundle Pine Assets with your application and setting the path accordingly.\n\nFor more information you read the documentation: \nhttps://pine-design-system.netlify.app/?path=/docs/resources-assets--docs
+      Fetching Pine assets from jsDelivr CDN.\n\n It's recommended that you bundle Pine Assets with your application and set the path accordingly.\n\nFor more information, read the documentation: \nhttps://pine-design-system.netlify.app/?path=/docs/resources-assets--docs
     `)
   }
 
