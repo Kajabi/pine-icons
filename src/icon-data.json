@@ -3681,6 +3681,39 @@
       ]
     },
     {
+      "name": "trend-down",
+      "category": "actions",
+      "tags": [
+        "chart",
+        "down",
+        "graph",
+        "negative",
+        "trend"
+      ]
+    },
+    {
+      "name": "trend-none",
+      "category": "actions",
+      "tags": [
+        "circle",
+        "mathematics",
+        "minus",
+        "subtract",
+        "subtraction"
+      ]
+    },
+    {
+      "name": "trend-up",
+      "category": "actions",
+      "tags": [
+        "chart",
+        "graph",
+        "positive",
+        "trend",
+        "up"
+      ]
+    },
+    {
       "name": "trophy",
       "category": "features",
       "tags": [
