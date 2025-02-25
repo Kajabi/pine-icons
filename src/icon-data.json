@@ -126,6 +126,33 @@
       ]
     },
     {
+      "name": "align-horizontal-bottom",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "bottom",
+        "horizontal"
+      ]
+    },
+    {
+      "name": "align-horizontal-center",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "center",
+        "horizontal"
+      ]
+    },
+    {
+      "name": "align-horizontal-top",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "horizontal",
+        "top"
+      ]
+    },
+    {
       "name": "align-justify",
       "category": "text-editor",
       "tags": [
@@ -156,6 +183,33 @@
         "paragraph",
         "right",
         "text"
+      ]
+    },
+    {
+      "name": "align-vertical-center",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "center",
+        "vertical"
+      ]
+    },
+    {
+      "name": "align-vertical-left",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "left",
+        "vertical"
+      ]
+    },
+    {
+      "name": "align-vertical-right",
+      "category": "text-editor",
+      "tags": [
+        "align",
+        "right",
+        "vertical"
       ]
     },
     {
@@ -1883,6 +1937,15 @@
         "heading",
         "rich text",
         "text"
+      ]
+    },
+    {
+      "name": "headphones",
+      "category": "features",
+      "tags": [
+        "audio",
+        "earphones",
+        "headphones"
       ]
     },
     {
