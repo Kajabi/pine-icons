@@ -2226,6 +2226,19 @@
       ]
     },
     {
+      "name": "layout-top",
+      "category": "text-editor",
+      "tags": [
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "top",
+        "web"
+      ]
+    },
+    {
       "name": "left-small",
       "category": "actions",
       "tags": [
@@ -2961,6 +2974,17 @@
       ]
     },
     {
+      "name": "pie-chart-filled",
+      "category": "actions",
+      "tags": [
+        "chart",
+        "data",
+        "percentage",
+        "pie",
+        "piechart"
+      ]
+    },
+    {
       "name": "play",
       "category": "actions",
       "tags": [
@@ -3515,6 +3539,28 @@
       ]
     },
     {
+      "name": "star-03",
+      "category": "text-editor",
+      "tags": [
+        "favorite",
+        "favourite",
+        "galaxy",
+        "save",
+        "star"
+      ]
+    },
+    {
+      "name": "star-filled",
+      "category": "actions",
+      "tags": [
+        "favorite",
+        "favourite",
+        "galaxy",
+        "save",
+        "star"
+      ]
+    },
+    {
       "name": "stars-tone",
       "category": "app-frame",
       "tags": [
@@ -3794,6 +3840,16 @@
         "certificate",
         "medal",
         "trophy"
+      ]
+    },
+    {
+      "name": "type",
+      "category": "text-editor",
+      "tags": [
+        "editor",
+        "rich text",
+        "text",
+        "type"
       ]
     },
     {
