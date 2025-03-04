@@ -1050,6 +1050,17 @@
       ]
     },
     {
+      "name": "copy-07",
+      "category": "text-editor",
+      "tags": [
+        "copy",
+        "duplicate",
+        "replicate",
+        "square",
+        "squares"
+      ]
+    },
+    {
       "name": "coupon",
       "category": "features",
       "tags": [
@@ -2163,6 +2174,16 @@
       ]
     },
     {
+      "name": "keyboard-01",
+      "category": "text-editor",
+      "tags": [
+        "controller",
+        "input",
+        "keyboard",
+        "keys"
+      ]
+    },
+    {
       "name": "klarna",
       "category": "payment-methods",
       "tags": [
@@ -2188,6 +2209,19 @@
         "hyperlink",
         "link",
         "website"
+      ]
+    },
+    {
+      "name": "layout-bottom",
+      "category": "text-editor",
+      "tags": [
+        "bottom",
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "web"
       ]
     },
     {
@@ -2647,6 +2681,15 @@
       ]
     },
     {
+      "name": "message-text-square-02",
+      "category": "text-editor",
+      "tags": [
+        "chat",
+        "message",
+        "notification"
+      ]
+    },
+    {
       "name": "microphone",
       "category": "features",
       "tags": [
@@ -2774,6 +2817,17 @@
         "finance",
         "money",
         "payment"
+      ]
+    },
+    {
+      "name": "music-note-01",
+      "category": "text-editor",
+      "tags": [
+        "audio",
+        "mp3",
+        "music",
+        "note",
+        "wav"
       ]
     },
     {
@@ -3060,6 +3114,18 @@
         "plugin",
         "tools",
         "widget"
+      ]
+    },
+    {
+      "name": "plus-square",
+      "category": "text-editor",
+      "tags": [
+        "add",
+        "addition",
+        "calculate",
+        "mathematics",
+        "plus",
+        "square"
       ]
     },
     {
