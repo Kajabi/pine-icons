@@ -3583,6 +3583,17 @@
       ]
     },
     {
+      "name": "square-dollar",
+      "category": "features",
+      "tags": [
+        "editor",
+        "italic",
+        "italics",
+        "rich text",
+        "text"
+      ]
+    },
+    {
       "name": "stack",
       "category": "actions",
       "tags": [
