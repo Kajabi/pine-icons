@@ -96,8 +96,8 @@ export const toLower = (val: string) => val.toLowerCase();
 
 /**
  * Elements inside of web components sometimes need to inherit global attributes
- * set on the host. For example, the inner input in `ion-input` should inherit
- * the `title` attribute that developers set directly on `ion-input`. This
+ * set on the host. For example, the inner input in `pds-input` should inherit
+ * the `title` attribute that developers set directly on `pds-input`. This
  * helper function should be called in componentWillLoad and assigned to a variable
  * that is later used in the render function.
  *
