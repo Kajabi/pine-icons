@@ -1,3 +1,13 @@
+## 8.18.1 (2025-03-11)
+
+### Documentation 📄
+
+- update code comment ([43afc59](https://github.com/Kajabi/pine-icons/commit/43afc59))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 8.18.0 (2025-03-06)
 
 ### Features 🚀
