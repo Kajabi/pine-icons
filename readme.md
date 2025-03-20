@@ -18,7 +18,7 @@ npm install @pine-ds/icons
 
 ## Usage
 
-// Use in HTML
+```html
 <pds-icon name="icon-name"></pds-icon>
 ```
 
