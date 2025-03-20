@@ -18,23 +18,8 @@ npm install @pine-ds/icons
 
 ## Usage
 
-```javascript
-// Import the icon component
-import '@pine-ds/icons';
-
 // Use in HTML
 <pds-icon name="icon-name"></pds-icon>
-```
-
-### Customization
-
-Icons can be customized using CSS variables:
-
-```css
-pds-icon {
-  --icon-color: #000000;
-  --icon-size: 24px;
-}
 ```
 
 ## Local Development
