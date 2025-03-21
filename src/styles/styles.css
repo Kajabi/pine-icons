@@ -1,0 +1,22 @@
+body {
+  font-family: var(--pine-font-family-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--pine-font-family-greet);
+}
+
+h1 {
+  font-size: var(--pine-font-size-285);
+  font-weight: var(--pine-font-weight-600);
+}
+
+h2 {
+  font-size: var(--pine-font-size-228);
+  font-weight: var(--pine-font-weight-500);
+}
+
+h3 {
+  font-size: var(--pine-font-size-157);
+  font-weight: var(--pine-font-weight-400);
+}
