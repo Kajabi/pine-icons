@@ -14,20 +14,17 @@ h1 {
   margin-top: var(--pine-dimension-500);
   font-size: var(--pine-font-size-285);
   font-weight: var(--pine-font-weight-600);
-}
-
-h2 {
-  font-size: var(--pine-font-size-228);
-  font-weight: var(--pine-font-weight-500);
+  margin-bottom: var(--pine-dimension-500);
+  background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 h3 {
   font-size: var(--pine-font-size-157);
   font-weight: var(--pine-font-weight-400);
-}
-
-.changelog-subtitle {
-  margin-bottom: var(--pine-dimension-500);
 }
 
 .changelog-container {
