@@ -31,7 +31,8 @@ export const config: Config = {
       type: 'www',
       copy: [
         { src: '../changelogs', dest: 'changelogs'},
-        { src:' ./svg/*.svg', dest: './build/svg/'}
+        { src:' ./svg/*.svg', dest: './build/svg/'},
+        { src: 'styles/*.css', dest: 'build/styles/'}
       ],
       empty: false,
       serviceWorker: null, // disable service workers
