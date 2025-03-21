@@ -28,21 +28,18 @@ export const run = async(config, data, rootDir: string) => {
   const statusResults: StatusResult = await git.status([srcSvgBasePath]);
   const filesChanged = statusResults.files;
 
+  // Even if there are no changes, we still want to update the index.html
   if (filesChanged.length <= 0) {
-    log(detail('No changes were found. Exiting the process!!!!'))
-
-    removeTmpDirectory(config);
-
-    return;
+    log(detail('No SVG changes were found. Proceeding to update index.html...'))
   }
 
   log('Copying collections...');
   await collectionCopy(rootDir);
 
-  // log(`${makeResultsTable(data.downloaded)}\n`);
-
   log(info('Creating JSON Icon List'));
-  createJsonIconList(data.icons, srcDir);
+  if (data?.icons) {
+    createJsonIconList(data.icons, srcDir);
+  }
 
   log(info('Calling createChangelogHTML'));
   await createChangelogHTML(statusResults);
@@ -187,29 +184,36 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
   let numberOfChangelogs = 0;
 
   arrChangelogs.reverse().forEach((filename, idx) => {
-    if ( path.extname(filename) === '.html') {
-      if (idx < 10 ) {
-        changelogRecords.push(`<a href="changelogs/${filename}">${path.basename(filename)}</a>`)
+    if (path.extname(filename) === '.html') {
+      if (idx < 10) {
+        // Read the changelog file to get the version
+        const changelogContent = fs.readFileSync(path.join(changelogPath, filename), 'utf8');
+        const versionMatch = changelogContent.match(/Pine Icons - (v[\d.]+)/);
+        const version = versionMatch ? versionMatch[1] : '';
+        const date = filename.replace('-changelog.html', '');
+
+        changelogRecords.push(`<div class="changelog-entry"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
       }
-      numberOfChangelogs++
+      numberOfChangelogs++;
     }
-  })
+  });
   log('Number of Changelog files found: ', detail(numberOfChangelogs));
 
-  const indexHtml = fs.readFileSync(path.join(baseDir, 'src','index-template.html'), 'utf8')
-    .replace(/{{changelogs}}/g, changelogRecords.join(' <br/>'));
+  const indexHtml = fs.readFileSync(path.join(baseDir, 'src', 'index-template.html'), 'utf8')
+    .replace(/{{changelogs}}/g, changelogRecords.join('\n'));
 
-  // Copy index.html file to www worker folder
+  // Write to src/index.html which will be copied by Stencil's build process
   fs.writeFileSync(path.join(baseDir, 'src', 'index.html'), indexHtml);
 
-  if ( fs.ensureDir(path.join(baseDir, 'www')) ) {
-    const wwwChangelogPath = path.join(baseDir, 'www', 'changelogs');
-    const wwwChangelogFile = path.join(wwwChangelogPath, changelogFilename);
+  // Ensure www directory exists and copy changelogs
+  const wwwDir = path.join(baseDir, 'www');
+  fs.ensureDirSync(wwwDir);
+  const wwwChangelogPath = path.join(wwwDir, 'changelogs');
+  const wwwChangelogFile = path.join(wwwChangelogPath, changelogFilename);
 
-    // Create Changelogs folder in `www` worker folder
-    fs.mkdirSync(wwwChangelogPath, { recursive: true })
-    fs.copyFileSync(fullChangelogFilename, wwwChangelogFile)
-  }
+  // Create Changelogs folder in `www` worker folder
+  fs.mkdirSync(wwwChangelogPath, { recursive: true });
+  fs.copyFileSync(fullChangelogFilename, wwwChangelogFile);
 
   return statusResults;
 }
