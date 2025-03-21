@@ -18,7 +18,7 @@ arrChangelogs.reverse().forEach((filename, idx) => {
       const version = versionMatch ? versionMatch[1] : '';
       const date = filename.replace('-changelog.html', '');
 
-      changelogRecords.push(`<div class="changelog-entry"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
+      changelogRecords.push(`<div class="changelog-entry changelog-entry--${idx + 1}"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
     }
   }
 });
