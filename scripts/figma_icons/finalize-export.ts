@@ -374,22 +374,22 @@ const processStatusResults = async (results: StatusResult) => {
 
   if (n.length > 0) {
     created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they did not exist in the previous version.');
+    created = buildHTMLSection('Added', created, 'What does "Added" mean? These are new icons introduced in this version. They will not appear in the "before" column because they did not exist in the previous version.');
   }
 
   if (d.length > 0) {
     deleted = await Promise.all(d.map((path) => ( buildBeforeAndAfterSvg('D', path))));
-    deleted = buildHTMLSection('Deleted', deleted, 'Present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.');
+    deleted = buildHTMLSection('Deleted', deleted, 'What does "Deleted" mean? These icons were present in the previous version but have been removed. They will not appear in the "after" column because they no longer exist.');
   }
 
   if (m.length > 0) {
     modified = await Promise.all(m.map((path) => ( buildBeforeAndAfterSvg('M', path))));
-    modified = buildHTMLSection('Modified', modified, 'Changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."');
+    modified = buildHTMLSection('Modified', modified, 'What does "Modified" mean? These icons have changed since the previous version. Changes may be visual or in the underlying code. If visual, the difference will show in the "before" and "after" columns. If only the code changed, the icon may look the same but will still be listed as modified.');
   }
 
   if (r.length > 0) {
     renamed = await Promise.all(r.map((path) => ( buildBeforeAndAfterSvg('R', path.to, path.from))));
-    renamed = buildHTMLSection('Renamed', renamed, 'Present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.');
+    renamed = buildHTMLSection('Renamed', renamed, 'What does "Renamed" mean? These icons existed in the previous version but were renamed. You will see both the previous and new filenames. There are no visual changes between the "before" and "after" columns.');
   }
 
   return { created, deleted, modified, renamed };
