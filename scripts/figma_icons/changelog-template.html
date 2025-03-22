@@ -18,28 +18,23 @@
       max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -48,23 +43,23 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
     }
 
-    .changelog-meta {
-      margin-bottom: 30px;
-      font-size: 12px;
-      font-style: italic;
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
     }
 
     section {
@@ -84,37 +79,19 @@
       font-weight: 700;
     }
 
-    h2 { margin: 20px 0 0; }
-
-    .changelog-dateversion {
-      position: relative;
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+    -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .changelog-date {
-      padding: 15px 55px 15px 15px;
-      border: 1px solid gray;
-      background-color: white;
-      border-radius: 4px;
-    }
-
-    .changelog-version {
-      position: absolute;
-      left: 112px;
-      border-radius: 4px;
-      background-color: #71b469;
-      padding: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #fff;
-      font-weight: 300;
-    }
-
-    /* NEW STYLES HERE */
     p {
       margin: 0;
     }
 
-    /* Container for header */
     .changelog__header {
       padding: var(--pine-dimension-400);
       border-bottom: 1px solid #e0e0e0;
@@ -123,11 +100,10 @@
       position: relative;
     }
 
-    /* Title with gradient text */
     .changelog__title {
       margin-bottom: var(--pine-dimension-500);
       font-size: var(--pine-font-size-285);
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-700);
       font-family: var(--pine-font-family-greet);
       background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
       -webkit-background-clip: text;
@@ -135,7 +111,6 @@
       color: transparent;
     }
 
-    /* Meta information */
     .changelog__meta {
       display: flex;
       align-items: center;
@@ -157,12 +132,6 @@
       margin-right: var(--pine-dimension-100);
     }
 
-    /* Bold values within meta */
-    .changelog__meta-bold {
-      font-weight: var(--pine-font-weight-600);
-      color: #374151;
-    }
-
     .pdsicon {
       width: 16px;
       height: 16px;
@@ -178,22 +147,21 @@
 
     /* Version badge styling */
     .changelog__version {
-      padding: 0.25rem 0.75rem;
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
       background: linear-gradient(to right, #f97316, #ec4899);
       color: #fff;
-      border-radius: 9999px;
-      font-size: 0.875rem;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
       position: absolute;
       top: 52px;
       right: 0;
     }
-
   </style>
 </head>
 <body>
   <section>
     <header class="changelog__header">
-      <h1 class="changelog__title">Pine Icons - Changelog</h1>
+      <h1 class="changelog__title">Pine Icons - {{version}} - {{date}} - Changelog</h1>
       <div class="changelog__meta">
         <div class="changelog__date">
           <span><svg xmlns="http://www.w3.org/2000/svg" class="pdsicon pds-icon-date" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8 1a1 1 0 0 1 1 1v1h6V2a1 1 0 1 1 2 0v1.002c.476.003.891.013 1.252.042.562.046 1.079.145 1.564.392a4 4 0 0 1 1.748 1.748c.247.485.346 1.002.392 1.564C22 7.29 22 7.954 22 8.758v8.483c0 .805 0 1.47-.044 2.01-.046.563-.145 1.08-.392 1.565a4 4 0 0 1-1.748 1.748c-.485.247-1.002.346-1.564.392-.541.044-1.206.044-2.01.044H7.758c-.805 0-1.47 0-2.01-.044-.563-.046-1.08-.145-1.565-.392a4 4 0 0 1-1.748-1.748c-.247-.485-.346-1.002-.392-1.564C2 18.71 2 18.046 2 17.242V8.758c0-.805 0-1.47.044-2.01.046-.563.145-1.08.392-1.565a4 4 0 0 1 1.748-1.748c.485-.247 1.002-.346 1.564-.392.361-.03.777-.04 1.252-.042V2a1 1 0 0 1 1-1M7 5.002c-.446.003-.795.012-1.089.036-.438.035-.663.1-.819.18a2 2 0 0 0-.874.874c-.08.156-.145.38-.18.819C4 7.361 4 7.943 4 8.8V9h16v-.2c0-.857 0-1.439-.038-1.889-.035-.438-.1-.663-.18-.819a2 2 0 0 0-.874-.874c-.156-.08-.38-.145-.819-.18A15 15 0 0 0 17 5.002V6a1 1 0 1 1-2 0V5H9v1a1 1 0 1 1-2 0zM20 11H4v6.2c0 .857 0 1.439.038 1.889.035.438.1.663.18.819a2 2 0 0 0 .874.874c.156.08.38.145.819.18C6.361 21 6.943 21 7.8 21h8.4c.857 0 1.439 0 1.889-.038.438-.035.663-.1.819-.18a2 2 0 0 0 .874-.874c.08-.156.145-.38.18-.819.037-.45.038-1.032.038-1.889z"/></svg>
@@ -212,7 +180,6 @@
       </div>
       <p class="changelog__version">{{version}}</p>
     </header>
-
     {{content}}
   </section>
 </body>
