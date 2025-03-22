@@ -136,7 +136,7 @@ const buildHTMLTable = (data: Array<SvgDiffResult>, isRenamed = false) => {
     ${tableRows.join('')}
   </tbody>`
 
-  const table = `<table>
+  const table = `<table class="changelog-table">
   <thead>
     <tr>
       ${ isRenamed ? `<td>Previous Filename</td>` : ''}
