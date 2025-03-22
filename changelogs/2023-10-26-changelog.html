@@ -3,37 +3,35 @@
 <head>
   <meta charset="utf-8">
   <title>2023-10-26 - v2.1.0 Changelog</title>
+  
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/index.esm.js"></script>
+
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: #fff;
-    }
-    h1 { margin: 0; }
-    h2 { margin: 20px 0 0; }
-
-    label {
-      display: inline-block;
-      width: 100px;
-      font-size: 12px;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      background-color: #f4f4f4;
+      max-width: 1200px;
+      margin-right: auto;
+      margin-left: auto;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,21 +40,123 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
+    }
+
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
+    }
+
+    section {
+      margin-top: 60px;
+      border-radius: 20px;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 5px 5px #ececec;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: serif;
+      font-size: 60px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
+      position: relative;
+    }
+
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
+      color: #fff;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
 <body>
+  <section>
 <h1>2023-10-26 - v2.1.0 Changelog</h1>
 
 Files: Modifed <span class="type-bold">0</span>, Renamed <span class="type-bold">0</span>, Deleted <span class="type-bold">0</span>, Created <span class="type-bold">8</span>
@@ -133,5 +233,7 @@ in the "before" or "after" column.</p>
 
 
 
+
+  </section>
 </body>
 </html>

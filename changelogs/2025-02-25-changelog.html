@@ -6,34 +6,35 @@
   <link rel="icon shortcut" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
     <text y=%22.9em%22 font-size=%2290%22>🌲</text>
   </svg>">
+
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/index.esm.js"></script>
+
   <style>
     body {
       background-color: #f4f4f4;
-      max-width: 1000px;
+      max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,23 +43,23 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
     }
 
-    .changelog-meta {
-      margin-bottom: 30px;
-      font-size: 12px;
-      font-style: italic;
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
     }
 
     section {
@@ -78,47 +79,100 @@
       font-weight: 700;
     }
 
-    h2 { margin: 20px 0 0; }
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-    .changelog-dateversion {
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
       position: relative;
     }
 
-    .changelog-date {
-      padding: 15px 55px 15px 15px;
-      border: 1px solid gray;
-      background-color: white;
-      border-radius: 4px;
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .changelog-version {
-      position: absolute;
-      left: 112px;
-      border-radius: 4px;
-      background-color: #71b469;
-      padding: 5px;
-      top: 50%;
-      transform: translateY(-50%);
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
       color: #fff;
-      font-weight: 300;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
-<body>
-  <section>
-    <h1>Pine Icons - Changelog</h1>
+<body><section><header class="changelog__header">
+      <h1 class="changelog__title">Pine Icons - Changelog</h1>
     <p class="changelog-meta">Icons: Added <span class="type-bold">7</span>, Modifed <span class="type-bold">2</span>, Deleted <span class="type-bold">0</span>, Renamed <span class="type-bold">0</span></p>
 
     <p class="changelog-dateversion">
       <span class="changelog-date">2025-02-25</span>
-      <span class="changelog-version">v8.15.0</span>
+      <span class="changelog__version">v8.15.0</span>
     </p>
+</header>
 
-    <h2>Added</h2>
+<h2>Added</h2>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -126,37 +180,37 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>align-horizontal-bottom.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M6 3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM3 4a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm13 6a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3zM2 21a1 1 0 1 0 0 2h20a1 1 0 0 0 0-2z"/></svg></td>
 </tr><tr>
-  
+
   <td>align-horizontal-center.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M6 1a3 3 0 0 0-3 3v4a1 1 0 0 0 2 0V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 2 0V4a3 3 0 0 0-3-3zM1 12a1 1 0 0 1 1-1h20a1 1 0 0 1 0 2H2a1 1 0 0 1-1-1m3 3a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-4a1 1 0 0 1 1-1m10 0a1 1 0 0 1 1 1v1a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1a1 1 0 1 1 2 0v1a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-1a1 1 0 0 1 1-1m1-8c0-.548.452-1 1-1h2a1 1 0 0 1 1 1v1a1 1 0 1 0 2 0V7a3 3 0 0 0-3-3h-2c-1.652 0-3 1.348-3 3v1a1 1 0 1 0 2 0z"/></svg></td>
 </tr><tr>
-  
+
   <td>align-horizontal-top.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M2 1a1 1 0 1 0 0 2h20a1 1 0 0 0 0-2zm4 6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zM3 8a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm13-1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3z"/></svg></td>
 </tr><tr>
-  
+
   <td>align-vertical-center.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M12 1a1 1 0 0 1 1 1v20a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1M4 5c-.548 0-1 .452-1 1v2a1 1 0 0 0 1 1h4a1 1 0 0 1 0 2H4a3 3 0 0 1-3-3V6c0-1.652 1.347-3 3-3h4a1 1 0 0 1 0 2zm12-2a1 1 0 1 0 0 2h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 1 0 0 2h4a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zM7 15c-.548 0-1 .452-1 1v2a1 1 0 0 0 1 1h1a1 1 0 0 1 0 2H7a3 3 0 0 1-3-3v-2c0-1.652 1.347-3 3-3h1a1 1 0 0 1 0 2zm9-2a1 1 0 0 0 0 2h1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-1a1 1 0 0 0 0 2h1a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3z"/></svg></td>
 </tr><tr>
-  
+
   <td>align-vertical-left.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M3 2a1 1 0 1 0-2 0v20a1 1 0 1 0 2 0zm5 3a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zM5 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3zm3 9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h5a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/></svg></td>
 </tr><tr>
-  
+
   <td>align-vertical-right.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M23 2a1 1 0 1 0-2 0v20a1 1 0 1 0 2 0zM4 5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zM1 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3zm10 9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h5a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-5a3 3 0 0 1-3-3z"/></svg></td>
 </tr><tr>
-  
+
   <td>headphones.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10v6.5a3.5 3.5 0 1 1-7 0v-2a3.5 3.5 0 0 1 5-3.163V12a8 8 0 1 0-16 0v1.337A3.5 3.5 0 0 1 9 16.5v2a3.5 3.5 0 1 1-7 0zm2 6.5a1.5 1.5 0 0 0 3 0v-2a1.5 1.5 0 0 0-3 0zm16-2a1.5 1.5 0 0 0-3 0v2a1.5 1.5 0 0 0 3 0z"/></svg></td>
@@ -168,7 +222,7 @@
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -176,12 +230,12 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>course.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g clip-path="url(#a)"><path d="M13.333 15.333a.7.7 0 0 1-.253-.053.6.6 0 0 1-.22-.14L9.727 12h-1.06v2.667a.666.666 0 1 1-1.333 0V12h-1.06L3.14 15.14A.666.666 0 0 1 2 14.667a.67.67 0 0 1 .193-.474L4.393 12h-.926a3.6 3.6 0 0 1-1.707-.22c-.374-.194-.68-.5-.873-.873A3.63 3.63 0 0 1 .667 9.2V4.8a3.6 3.6 0 0 1 .22-1.707 2 2 0 0 1 .873-.873A3.54 3.54 0 0 1 3.467 2h3.866v-.667a.667.667 0 1 1 1.334 0V2h3.866a3.54 3.54 0 0 1 1.707.22 2 2 0 0 1 .873.873c.21.543.285 1.129.22 1.707v4.4a3.6 3.6 0 0 1-.22 1.707c-.194.374-.499.679-.873.873a3.6 3.6 0 0 1-1.707.22h-.926l2.2 2.193q.094.093.146.214a.669.669 0 0 1-.007.513.8.8 0 0 1-.146.22.6.6 0 0 1-.22.14.7.7 0 0 1-.247.053m-9.866-12a3.6 3.6 0 0 0-1.107.074.67.67 0 0 0-.287.293c-.08.36-.105.732-.073 1.1v4.4c-.032.368-.008.74.073 1.1.064.127.167.23.294.293.36.081.731.106 1.1.074h9.066c.369.032.74.007 1.1-.074a.67.67 0 0 0 .294-.293c.08-.36.105-.732.073-1.1V4.8c.033-.37.008-.744-.073-1.107a.67.67 0 0 0-.294-.286 3.6 3.6 0 0 0-1.1-.074z"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><g clip-path="url(#a)"><path d="M20 23a1 1 0 0 1-.38-.08.9.9 0 0 1-.33-.21L14.59 18H13v4a1.05 1.05 0 0 1-.29.71 1 1 0 0 1-1.42 0A1.05 1.05 0 0 1 11 22v-4H9.41l-4.7 4.71A1 1 0 0 1 3 22a1 1 0 0 1 .29-.71L6.59 18H5.2a5.44 5.44 0 0 1-2.56-.33 3.07 3.07 0 0 1-1.31-1.31A5.45 5.45 0 0 1 1 13.8V7.2a5.44 5.44 0 0 1 .33-2.56 3 3 0 0 1 1.31-1.31A5.3 5.3 0 0 1 5.2 3H11V2a1 1 0 1 1 2 0v1h5.8a5.3 5.3 0 0 1 2.56.33 3 3 0 0 1 1.31 1.31A5.44 5.44 0 0 1 23 7.2v6.6a5.45 5.45 0 0 1-.33 2.56 3.07 3.07 0 0 1-1.31 1.31 5.44 5.44 0 0 1-2.56.33h-1.39l3.3 3.29a1 1 0 0 1 .22.32q.07.189.07.39c-.002.13-.029.26-.08.38a1.2 1.2 0 0 1-.22.33.9.9 0 0 1-.33.21A1 1 0 0 1 20 23M5.2 5a5.4 5.4 0 0 0-1.66.11 1 1 0 0 0-.43.44A5.4 5.4 0 0 0 3 7.2v6.6a5.4 5.4 0 0 0 .11 1.65 1 1 0 0 0 .44.44A5.4 5.4 0 0 0 5.2 16h13.6a5.4 5.4 0 0 0 1.65-.11 1 1 0 0 0 .44-.44A5.4 5.4 0 0 0 21 13.8V7.2a5.4 5.4 0 0 0-.11-1.66 1 1 0 0 0-.44-.43A5.4 5.4 0 0 0 18.8 5z"/></g><defs><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath></defs></svg></td>
 </tr><tr>
-  
+
   <td>payout.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g clip-path="url(#a)"><path fill-rule="evenodd" d="M7.683 6.654c.408 0 .812-.081 1.187-.24a3 3 0 0 0 4.333-4.147 3 3 0 0 0-3.367-.707A3 3 0 0 0 7.13.707 3 3 0 0 0 4.923 2.5a3.1 3.1 0 0 0-.227 1.447c.047.493.214.967.487 1.38.277.404.648.736 1.08.967.436.237.924.36 1.42.36m3.17-3.992A1.67 1.67 0 0 1 12.57 3.7c.127.303.16.638.093.96a1.693 1.693 0 0 1-3.045.59 1.67 1.67 0 0 1-.288-.93 1.67 1.67 0 0 1 .506-1.18 1.67 1.67 0 0 1 1.017-.478m-3.17-.668c.386-.002.76.13 1.06.373a2.95 2.95 0 0 0-.667 1.373 2.9 2.9 0 0 0 .087 1.514 1.7 1.7 0 0 1-.48.073 1.66 1.66 0 0 1-1.18-.493 1.667 1.667 0 0 1 1.18-2.84m7.16 7.486a1.72 1.72 0 0 0-1.086-.486c-.41-.031-.818.087-1.147.333l-.987.72a1.73 1.73 0 0 0-.406-1 1.7 1.7 0 0 0-.927-.553l-1.587-.387a4 4 0 0 0-.947-.113 6.2 6.2 0 0 0-2.066.586l-1.074.447a1.29 1.29 0 0 0-.686-.887 2.1 2.1 0 0 0-1.007-.146H2.39a2.1 2.1 0 0 0-1 .14c-.25.127-.453.33-.58.58A2.1 2.1 0 0 0 .663 9.72v3.867c-.039.344.01.693.14 1.013.13.25.335.454.587.58.316.132.66.182 1 .147h.533c.345.046.695.004 1.02-.12.209-.106.384-.267.507-.467.129-.199.203-.43.213-.666h1.093q.265 0 .52.06l1.834.446a3.5 3.5 0 0 0 1.506.034l2.034-.394a3.5 3.5 0 0 0 1.753-.913l1.44-1.4a1.687 1.687 0 0 0 .507-1.213c0-.23-.045-.456-.133-.667a1.8 1.8 0 0 0-.374-.547M3.35 13.994a3 3 0 0 1-.4 0l-.954-.007a2.4 2.4 0 0 1 0-.433V9.3h.967c.187 0 .387 0 .387-.033v4.727m10.56-3.067-1.44 1.4v-.007c-.297.29-.673.487-1.08.567l-2 .393a2.2 2.2 0 0 1-.934 0l-1.84-.446a3.5 3.5 0 0 0-.833-.1h-1.12v-2.267l1.587-.693A5.3 5.3 0 0 1 7.783 9.3q.317.002.627.074l1.593.386a.38.38 0 0 1 .287.347v.207a.4.4 0 0 1-.12.26.4.4 0 0 1-.267.093H8.876a.67.67 0 0 0-.473.193.67.67 0 0 0-.193.474.667.667 0 0 0 .666.666h1.627c.441 0 .87-.14 1.227-.4l1.673-1.22a.41.41 0 0 1 .513.034.4.4 0 0 1 .08.113.3.3 0 0 1 0 .133.27.27 0 0 1-.013.16.24.24 0 0 1-.073.107"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="pdsicon"><g clip-path="url(#a)"><path fill-rule="evenodd" d="M11.525 9.98a4.5 4.5 0 0 0 1.78-.36 4.5 4.5 0 0 0 7.45-4.67 4.5 4.5 0 0 0-6-2.61 4.51 4.51 0 0 0-4.06-1.28 4.51 4.51 0 0 0-3.31 2.69 4.6 4.6 0 0 0-.34 2.17c.07.74.32 1.45.73 2.07a4.6 4.6 0 0 0 1.62 1.45 4.44 4.44 0 0 0 2.13.54m4.754-5.988a2.5 2.5 0 0 1 1.636.408c.42.282.748.682.94 1.15.19.455.24.957.14 1.44a2.54 2.54 0 0 1-.7 1.26 2.52 2.52 0 0 1-2.73.54 2.5 2.5 0 0 1-1.57-2.31 2.5 2.5 0 0 1 .76-1.77 2.5 2.5 0 0 1 1.524-.718M11.526 2.99a2.5 2.5 0 0 1 1.59.56 4.43 4.43 0 0 0-1 2.06 4.4 4.4 0 0 0 .13 2.27 2.6 2.6 0 0 1-.72.11 2.5 2.5 0 0 1-1.77-.74 2.5 2.5 0 0 1 1.77-4.26m10.74 11.23a2.58 2.58 0 0 0-1.63-.73 2.56 2.56 0 0 0-1.72.5l-1.48 1.08a2.6 2.6 0 0 0-.61-1.5 2.56 2.56 0 0 0-1.39-.83l-2.38-.58a6.2 6.2 0 0 0-1.42-.17 9.3 9.3 0 0 0-3.1.88l-1.61.67a2 2 0 0 0-.16-.46 2 2 0 0 0-.87-.87 3.1 3.1 0 0 0-1.51-.22h-.8a3.1 3.1 0 0 0-1.5.21 2 2 0 0 0-.87.87 3.1 3.1 0 0 0-.22 1.51v5.8a3.1 3.1 0 0 0 .21 1.52 2 2 0 0 0 .88.87c.473.198.99.274 1.5.22h.8a3.1 3.1 0 0 0 1.53-.18 1.9 1.9 0 0 0 .76-.7 2 2 0 0 0 .32-1h1.64q.394 0 .78.09l2.75.67a5.2 5.2 0 0 0 2.26.05l3.05-.59a5.23 5.23 0 0 0 2.63-1.37l2.16-2.1a2.529 2.529 0 0 0 .76-1.82 2.6 2.6 0 0 0-.2-1 2.7 2.7 0 0 0-.56-.82m-17.24 6.77q-.3.023-.6 0l-1.43-.01a3.5 3.5 0 0 1 0-.65v-6.38h1.45c.28 0 .58 0 .58-.05v7.09m15.84-4.6-2.16 2.1v-.01a3.2 3.2 0 0 1-1.62.85l-3 .59a3.3 3.3 0 0 1-1.4 0l-2.76-.67a5.3 5.3 0 0 0-1.25-.15h-1.68v-3.4l2.38-1.04a8 8 0 0 1 2.3-.71q.475.005.94.11l2.39.58a.57.57 0 0 1 .43.52v.31a.62.62 0 0 1-.18.39.6.6 0 0 1-.4.14h-1.54a1 1 0 0 0-.71.29 1 1 0 0 0-.29.71 1 1 0 0 0 1 1h2.44a3.14 3.14 0 0 0 1.84-.6l2.51-1.83a.62.62 0 0 1 .77.05q.073.076.12.17a.45.45 0 0 1 0 .2.4.4 0 0 1-.02.24.36.36 0 0 1-.11.16"/></g><defs><clipPath id="a"><path d="M0 0h24v24H0z"/></clipPath></defs></svg></td>
