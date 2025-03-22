@@ -6,34 +6,35 @@
   <link rel="icon shortcut" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
     <text y=%22.9em%22 font-size=%2290%22>🌲</text>
   </svg>">
+
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/index.esm.js"></script>
+
   <style>
     body {
       background-color: #f4f4f4;
-      max-width: 1000px;
+      max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,23 +43,23 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
     }
 
-    .changelog-meta {
-      margin-bottom: 30px;
-      font-size: 12px;
-      font-style: italic;
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
     }
 
     section {
@@ -78,47 +79,100 @@
       font-weight: 700;
     }
 
-    h2 { margin: 20px 0 0; }
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-    .changelog-dateversion {
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
       position: relative;
     }
 
-    .changelog-date {
-      padding: 15px 55px 15px 15px;
-      border: 1px solid gray;
-      background-color: white;
-      border-radius: 4px;
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .changelog-version {
-      position: absolute;
-      left: 112px;
-      border-radius: 4px;
-      background-color: #71b469;
-      padding: 5px;
-      top: 50%;
-      transform: translateY(-50%);
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
       color: #fff;
-      font-weight: 300;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
-<body>
-  <section>
-    <h1>Pine Icons - Changelog</h1>
+<body><section><header class="changelog__header">
+      <h1 class="changelog__title">Pine Icons - Changelog</h1>
     <p class="changelog-meta">Icons: Added <span class="type-bold">2</span>, Modifed <span class="type-bold">6</span>, Deleted <span class="type-bold">0</span>, Renamed <span class="type-bold">47</span></p>
 
     <p class="changelog-dateversion">
       <span class="changelog-date">2024-05-28</span>
-      <span class="changelog-version">v5.0.0</span>
+      <span class="changelog__version">v5.0.0</span>
     </p>
+</header>
 
-    <h2>Added</h2>
+<h2>Added</h2>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -126,12 +180,12 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>card-android.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M1.333 3.667c0-.184.15-.334.334-.334h12.666c.184 0 .334.15.334.334v8.666c0 .184-.15.334-.334.334H1.667a.333.333 0 0 1-.334-.334V3.667ZM1.667 2C.747 2 0 2.746 0 3.667v8.666C0 13.253.746 14 1.667 14h12.666c.92 0 1.667-.746 1.667-1.667V3.667C16 2.747 15.254 2 14.333 2H1.667Zm7.9 6.81a.346.346 0 1 0 .692 0 .346.346 0 0 0-.693 0Zm-3.825 0a.346.346 0 1 0 .693 0 .346.346 0 0 0-.693 0Zm4.986-2.935-.691 1.197c1.187.646 2 1.849 2.118 3.269h-8.31a4.083 4.083 0 0 1 2.119-3.269l-.692-1.197a.144.144 0 0 1 .25-.144l.7 1.213A4.269 4.269 0 0 1 8 6.564c.642 0 1.243.135 1.779.38l.7-1.213a.144.144 0 0 1 .25.144Z"/></svg></td>
 </tr><tr>
-  
+
   <td>list-details.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g fill-rule="evenodd" clip-path="url(#a)"><path d="M.667.667h6v6h-6v-6ZM2 2v3.333h3.333V2H2ZM.667 9.333h6v6h-6v-6ZM2 10.667V14h3.333v-3.333H2ZM8.667 1.333h6.666v1.334H8.667V1.333ZM8.667 4.667h6.666V6H8.667V4.667ZM8.667 10h6.666v1.333H8.667V10ZM8.667 13.333h6.666v1.334H8.667v-1.334Z"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>
@@ -143,7 +197,7 @@
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -151,32 +205,32 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>quote.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M4.255 2.616a.667.667 0 1 0-.51-1.232C2.533 1.885 1.581 2.698.94 3.83.306 4.954 0 6.35 0 8v6.666c0 .369.298.667.667.667H6a.667.667 0 0 0 .667-.667V8A.667.667 0 0 0 6 7.333H1.353c.071-1.174.334-2.112.748-2.846.485-.858 1.2-1.477 2.154-1.871ZM1.333 14V8.667h4V14h-4ZM13.588 2.616a.667.667 0 0 0-.51-1.232c-1.212.501-2.164 1.314-2.804 2.447-.635 1.123-.94 2.52-.94 4.169v6.666c0 .369.298.667.666.667h5.333a.667.667 0 0 0 .667-.667V8a.667.667 0 0 0-.667-.667h-4.647c.071-1.174.334-2.112.749-2.846.484-.858 1.199-1.477 2.153-1.871ZM10.667 14V8.667h4V14h-4Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M2.101 4.487c-.414.734-.677 1.673-.748 2.846h5.314v8H0V8c0-1.648.306-3.046.94-4.17.64-1.132 1.593-1.945 2.805-2.446l.51 1.232C3.3 3.011 2.586 3.63 2.1 4.486ZM1.333 14V8.667h4V14h-4Zm10.102-9.513c-.415.734-.678 1.673-.749 2.846H16v8H9.333V8c0-1.648.306-3.046.94-4.17.64-1.132 1.593-1.945 2.806-2.446l.51 1.232c-.955.395-1.67 1.013-2.154 1.87ZM10.667 14V8.667h4V14h-4Z"/></svg></td>
 </tr><tr>
-  
+
   <td>reset-password.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8.7 2c-1.48 0-2.834.541-3.878 1.439a.667.667 0 1 1-.87-1.01A7.255 7.255 0 0 1 8.7.666C12.735.667 16 3.953 16 8c0 4.047-3.265 7.333-7.3 7.333-3.787 0-6.895-2.893-7.264-6.593l-.229.317a.667.667 0 1 1-1.081-.78l1.57-2.178a.667.667 0 0 1 1.091.014l1.487 2.178a.667.667 0 1 1-1.1.752l-.428-.626C2.96 11.54 5.546 14 8.7 14c3.293 0 5.968-2.683 5.968-6s-2.675-6-5.968-6Z"/><path fill-rule="evenodd" d="M6 8.09c0-.736.597-1.333 1.333-1.333h3.334c.736 0 1.333.597 1.333 1.333V10c0 .736-.597 1.333-1.333 1.333H7.333A1.333 1.333 0 0 1 6 10V8.09Zm4.667 0H7.333V10h3.334V8.09Z"/><path fill-rule="evenodd" d="M9.039 5.333c-.165.001-.31.06-.405.146a.353.353 0 0 0-.13.26v2.27H7.17V5.735c.002-.486.22-.934.577-1.252A1.95 1.95 0 0 1 9.037 4l.002.667L9.04 4a1.95 1.95 0 0 1 1.29.483c.357.318.575.766.576 1.252V8.009H9.574v-2.27a.353.353 0 0 0-.13-.26.618.618 0 0 0-.405-.146Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8.7 2c-1.48 0-2.834.541-3.878 1.439a.667.667 0 1 1-.87-1.01A7.255 7.255 0 0 1 8.7.666C12.735.667 16 3.953 16 8c0 4.047-3.265 7.333-7.3 7.333-3.787 0-6.895-2.893-7.264-6.593l-.229.317a.667.667 0 1 1-1.081-.78l1.57-2.178a.667.667 0 0 1 1.091.014l1.487 2.178a.667.667 0 1 1-1.1.752l-.428-.626C2.96 11.54 5.546 14 8.7 14c3.293 0 5.968-2.683 5.968-6s-2.675-6-5.968-6Z"/><path fill-rule="evenodd" d="M6 8.09c0-.736.597-1.333 1.333-1.333h3.334c.736 0 1.333.597 1.333 1.333V10c0 .736-.597 1.333-1.333 1.333H7.333A1.333 1.333 0 0 1 6 10V8.09Zm4.667 0H7.333V10h3.334V8.09Z"/><path fill-rule="evenodd" d="M9.039 5.333c-.165.001-.31.06-.405.146a.353.353 0 0 0-.13.26v2.27H7.17V5.735c.002-.486.22-.934.577-1.252A1.95 1.95 0 0 1 9.037 4l.002.667L9.041 4a1.95 1.95 0 0 1 1.29.483c.357.318.575.766.576 1.252V8.009H9.574v-2.27a.353.353 0 0 0-.13-.26.618.618 0 0 0-.405-.146Z"/></svg></td>
 </tr><tr>
-  
+
   <td>scissor.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M12 10.67a2.652 2.652 0 0 0-2 .92l-.76-1.85a2.64 2.64 0 0 0 2.52-1.65l1.43-3.49a3.36 3.36 0 0 0 0-2.55 3.33 3.33 0 0 0-1.82-1.8L10.75 0 8 6.71 5.25 0l-.62.25A3.45 3.45 0 0 0 3.54 1a3.41 3.41 0 0 0-.72 1.08 3.29 3.29 0 0 0-.26 1.28c.006.425.091.846.25 1.24l1.43 3.49a2.64 2.64 0 0 0 2.52 1.65L6 11.59a2.66 2.66 0 1 0 .65 1.92L8 10.22l1.35 3.29A2.66 2.66 0 1 0 12 10.67Zm-.56-8.83c.218.202.392.447.51.72a2 2 0 0 1 0 1.53l-1.44 3.5a1.33 1.33 0 0 1-.57.65 1.4 1.4 0 0 1-.85.16l-.33-.05 2.68-6.51Zm-5.39 6.4a1.33 1.33 0 0 1-.57-.65L4 4.1a2.07 2.07 0 0 1-.15-.77 2.3 2.3 0 0 1 .16-.77 2 2 0 0 1 .43-.64.6.6 0 0 0 .08-.08l2.71 6.51-.33.05a1.4 1.4 0 0 1-.85-.16ZM4 14.67a1.34 1.34 0 1 1 1.33-1.34A1.33 1.33 0 0 1 4 14.67Zm8 0a1.34 1.34 0 1 1 1.33-1.34A1.33 1.33 0 0 1 12 14.67Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M12 10.67a2.651 2.651 0 0 0-2 .92l-.76-1.85a2.64 2.64 0 0 0 2.52-1.65l1.43-3.49a3.36 3.36 0 0 0 0-2.55 3.33 3.33 0 0 0-1.82-1.8L10.75 0 8 6.71 5.25 0l-.62.25A3.45 3.45 0 0 0 3.54 1a3.41 3.41 0 0 0-.72 1.08 3.29 3.29 0 0 0-.26 1.28c.006.425.091.846.25 1.24l1.43 3.49a2.64 2.64 0 0 0 2.52 1.65L6 11.59a2.66 2.66 0 1 0 .65 1.92L8 10.22l1.35 3.29A2.66 2.66 0 1 0 12 10.67Zm-.56-8.83c.218.202.392.447.51.72a2 2 0 0 1 0 1.53l-1.44 3.5a1.33 1.33 0 0 1-.57.65 1.4 1.4 0 0 1-.85.16l-.33-.05 2.68-6.51Zm-5.39 6.4a1.33 1.33 0 0 1-.57-.65L4 4.1a2.07 2.07 0 0 1-.15-.77 2.3 2.3 0 0 1 .16-.77 2 2 0 0 1 .43-.64.6.6 0 0 0 .08-.08l2.71 6.51-.33.05a1.4 1.4 0 0 1-.85-.16ZM4 14.67a1.34 1.34 0 1 1 1.33-1.34A1.33 1.33 0 0 1 4 14.67Zm8 0a1.34 1.34 0 1 1 1.33-1.34A1.33 1.33 0 0 1 12 14.67Z"/></svg></td>
 </tr><tr>
-  
+
   <td>send-message.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M14.66 1.96a.797.797 0 0 0-.033-.173c-.006-.02-.013-.04-.026-.067a.558.558 0 0 0-.134-.193.657.657 0 0 0-.433-.187c-.013-.007-.033-.007-.046-.007a.578.578 0 0 0-.214.04L1.107 6.04a.665.665 0 0 0-.073 1.22l5.133 2.567 2.567 5.133c.12.227.347.373.6.373h.04a.657.657 0 0 0 .587-.433l4.666-12.667c.027-.066.034-.14.04-.213 0-.027-.006-.047-.006-.06Zm-3.28 1.713L6.535 8.52 3.007 6.753l8.374-3.08Zm-2.14 9.314L7.48 9.46l4.848-4.847-3.087 8.374Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M14.66 1.96a.791.791 0 0 0-.033-.173c-.006-.02-.013-.04-.026-.067a.558.558 0 0 0-.134-.193.657.657 0 0 0-.433-.187c-.013-.007-.033-.007-.046-.007a.577.577 0 0 0-.214.04L1.107 6.04a.665.665 0 0 0-.073 1.22l5.133 2.567 2.567 5.133c.12.227.347.373.6.373h.04a.657.657 0 0 0 .587-.433l4.666-12.667c.027-.066.034-.14.04-.213 0-.027-.006-.047-.006-.06Zm-3.28 1.713L6.535 8.52 3.007 6.753l8.374-3.08Zm-2.14 9.314L7.48 9.46l4.848-4.847-3.087 8.374Z"/></svg></td>
 </tr><tr>
-  
+
   <td>tablet-portrait.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M2.667 14.667A.667.667 0 0 1 2 14V2a.667.667 0 0 1 .667-.667h10.666A.667.667 0 0 1 14 2v12a.667.667 0 0 1-.667.667H2.667Zm-1.415.747A2 2 0 0 0 2.667 16h10.666a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2.667a2 2 0 0 0-2 2v12a2 2 0 0 0 .585 1.414Z"/><path d="M8 12a.667.667 0 1 1 0 1.333A.667.667 0 0 1 8 12Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M2.667 14.667A.667.667 0 0 1 2 14V2a.667.667 0 0 1 .667-.667h10.666A.667.667 0 0 1 14 2v12a.666.666 0 0 1-.667.667H2.667Zm-1.415.747A2 2 0 0 0 2.667 16h10.666a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2.667a2 2 0 0 0-2 2v12a2 2 0 0 0 .585 1.414Z"/><path d="M8 12a.667.667 0 1 1 0 1.333A.667.667 0 0 1 8 12Z"/></svg></td>
 </tr><tr>
-  
+
   <td>wrench.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M11.228 0a6.024 6.024 0 0 1 1.694.23l1.094.312-2.387 2.377 1.455 1.448L15.44 2.02l.334 1.034a4.6 4.6 0 0 1 .08 2.55l-.003.011-.003.01a4.466 4.466 0 0 1-3.384 3.129l-.02.004-.018.003a5.165 5.165 0 0 1-1.786-.05l-5.549 6.24a2.862 2.862 0 0 1-4.28.166l-.002-.003a2.951 2.951 0 0 1 .177-4.232l.003-.002 6.253-5.512a3.482 3.482 0 0 1-.104-.877 4.416 4.416 0 0 1 4.037-4.49L11.202 0h.026Zm.037 1.333a3.083 3.083 0 0 0-2.793 3.14v.024c-.003.285.05.569.158.833l.177.438-6.932 6.11-.001.001a1.617 1.617 0 0 0-.097 2.318 1.529 1.529 0 0 0 2.29-.097l.01-.012 6.116-6.878.405.119a3.832 3.832 0 0 0 1.615.116 3.133 3.133 0 0 0 2.353-2.18c.048-.192.079-.387.091-.583l-1.573 1.566-3.345-3.33 1.592-1.584h-.066Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M11.228 0a6.024 6.024 0 0 1 1.694.23l1.094.312-2.387 2.377 1.455 1.448L15.44 2.02l.334 1.034a4.6 4.6 0 0 1 .08 2.55l-.003.011-.003.01a4.467 4.467 0 0 1-3.384 3.129l-.019.004-.02.003a5.165 5.165 0 0 1-1.785-.05l-5.549 6.24a2.862 2.862 0 0 1-4.28.166l-.002-.003a2.951 2.951 0 0 1 .177-4.232l.004-.002 6.252-5.512a3.482 3.482 0 0 1-.104-.877 4.416 4.416 0 0 1 4.037-4.49L11.202 0h.026Zm.037 1.333a3.083 3.083 0 0 0-2.793 3.14v.024c-.003.285.05.569.158.833l.177.438-6.932 6.11-.001.001a1.617 1.617 0 0 0-.097 2.318 1.529 1.529 0 0 0 2.29-.097l.01-.012 6.116-6.878.405.119a3.832 3.832 0 0 0 1.615.116 3.133 3.133 0 0 0 2.353-2.18c.048-.192.079-.387.091-.583l-1.573 1.566-3.345-3.33 1.592-1.584h-.066Z"/></svg></td>
