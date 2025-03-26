@@ -102,6 +102,8 @@ h3 {
   font-weight: var(--pine-font-weight-500);
   font-size: var(--pine-font-size-128);
   pointer-events: none;
+  font-size: var(--pine-font-size-142);
+  color: var(--pine-color-white)
 }
 
 .changelog-entry--1::after {
@@ -158,4 +160,26 @@ h3 {
 
 .changelog-entry:not(.changelog-entry--1) .changelog-entry_date {
   font-size: var(--pine-font-size-116);
+  line-height: var(--pine-line-height-125);
+}
+
+/* Footer Styles */
+footer {
+  margin-top: var(--pine-dimension-500);
+  padding: var(--pine-dimension-400);
+  text-align: right;
+  border-top: 1px solid var(--pine-color-mercury-100);
+}
+
+footer a {
+  color: var(--pine-color-purple-500);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer a + a {
+  margin-left: var(--pine-dimension-400);
 }

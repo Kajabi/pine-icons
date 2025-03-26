@@ -9,10 +9,11 @@
 
   <!-- Pine Design System -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.esm.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/index.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/core@2.16.3/dist/pine-core/pine-core.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@pine-ds/core@2.16.3/dist/pine-core/index.esm.js"></script>
 
   <style>
+
     body {
       background-color: #f4f4f4;
       max-width: 1200px;
@@ -164,13 +165,14 @@
       <h1 class="changelog__title">Pine Icons - {{version}} - {{date}} - Changelog</h1>
       <div class="changelog__meta">
         <div class="changelog__date">
-          <span><svg xmlns="http://www.w3.org/2000/svg" class="pdsicon pds-icon-date" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8 1a1 1 0 0 1 1 1v1h6V2a1 1 0 1 1 2 0v1.002c.476.003.891.013 1.252.042.562.046 1.079.145 1.564.392a4 4 0 0 1 1.748 1.748c.247.485.346 1.002.392 1.564C22 7.29 22 7.954 22 8.758v8.483c0 .805 0 1.47-.044 2.01-.046.563-.145 1.08-.392 1.565a4 4 0 0 1-1.748 1.748c-.485.247-1.002.346-1.564.392-.541.044-1.206.044-2.01.044H7.758c-.805 0-1.47 0-2.01-.044-.563-.046-1.08-.145-1.565-.392a4 4 0 0 1-1.748-1.748c-.247-.485-.346-1.002-.392-1.564C2 18.71 2 18.046 2 17.242V8.758c0-.805 0-1.47.044-2.01.046-.563.145-1.08.392-1.565a4 4 0 0 1 1.748-1.748c.485-.247 1.002-.346 1.564-.392.361-.03.777-.04 1.252-.042V2a1 1 0 0 1 1-1M7 5.002c-.446.003-.795.012-1.089.036-.438.035-.663.1-.819.18a2 2 0 0 0-.874.874c-.08.156-.145.38-.18.819C4 7.361 4 7.943 4 8.8V9h16v-.2c0-.857 0-1.439-.038-1.889-.035-.438-.1-.663-.18-.819a2 2 0 0 0-.874-.874c-.156-.08-.38-.145-.819-.18A15 15 0 0 0 17 5.002V6a1 1 0 1 1-2 0V5H9v1a1 1 0 1 1-2 0zM20 11H4v6.2c0 .857 0 1.439.038 1.889.035.438.1.663.18.819a2 2 0 0 0 .874.874c.156.08.38.145.819.18C6.361 21 6.943 21 7.8 21h8.4c.857 0 1.439 0 1.889-.038.438-.035.663-.1.819-.18a2 2 0 0 0 .874-.874c.08-.156.145-.38.18-.819.037-.45.038-1.032.038-1.889z"/></svg>
+          <span>
+            <pds-icon name="calendar-date" color="#ec4899"></pds-icon>
           </span>
           <span class="changelog__date">{{date}}</span>
         </div>
         <div class="changelog__meta-text">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pdsicon pds-icon-info" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12m10-4a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2H12a1 1 0 0 1-1-1m1 3a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1"/></svg>
+            <pds-icon name="info-circle" color="#f97316"></pds-icon>
           </span>
           Icons: Added {{created}},
           Modified {{modified}},
