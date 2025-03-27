@@ -26,6 +26,7 @@
       margin: 0 0 var(--pine-dimension-400) 0;
       font-size: var(--pine-font-size-285);
       font-weight: var(--pine-font-weight-700);
+      text-align: center;
     }
     h2 {
       font-size: var(--pine-font-size-200);
@@ -106,13 +107,8 @@
     }
     .search-container {
       margin-bottom: var(--pine-dimension-500);
-    }
-    .search-label {
-      display: block;
-      margin-bottom: var(--pine-dimension-200);
-      font-size: var(--pine-font-size-100);
-      font-weight: var(--pine-font-weight-500);
-      color: var(--pine-color-grey-700);
+      display: flex;
+      justify-content: center;
     }
     .search-input {
       width: 100%;
@@ -149,13 +145,30 @@
       background-clip: text;
       color: transparent;
     }
+    .icon-count-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon-count {
+      display: inline-block;
+      color: var(--pine-color-white);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      text-align: center;
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+    }
   </style>
 </head>
 <body>
+<div class="icon-count-container">
+  <p class="icon-count">{{count}} icons</p>
+</div>
 <h1>Pine Icons - {{version}}</h1>
 <div class="search-container">
-  <label for="search" class="search-label">Search all {{count}}  icons</label>
-  <input type="text" id="search" class="search-input" placeholder="Search icons..." oninput="filterIcons(this.value)">
+  <label for="search" class="visually-hidden">Search all {{count}} icons</label>
+  <input type="text" id="search" class="search-input" placeholder="Search icons by name or tag..." oninput="filterIcons(this.value)">
 </div>
 
 <div class="icon-container">
