@@ -76,12 +76,8 @@ export const run = async(rootDir: string, optimizeFiles = false) => {
 }
 
 const cleanDirectories = async (iconDir, distDir, distSvgDir, distPineIconsDir) => {
-  await Promise.all([
-    fs.emptyDir(iconDir),
-    fs.emptyDir(distDir),
-    fs.emptyDir(distSvgDir),
-    fs.emptyDir(distPineIconsDir)
-  ]);
+  await Promise.all([fs.emptyDir(iconDir), fs.emptyDir(distDir)]);
+  await fs.emptyDir(distSvgDir), await fs.emptyDir(distPineIconsDir);
 }
 
 const getSvgs = async (srcDir: string, distSvgDir: string, distPineIconsDir: string, outputSvgDir: string, isOptimizing: boolean): Promise<SvgData[]> => {
