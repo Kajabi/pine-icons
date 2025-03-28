@@ -3,37 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>2024-05-07 - v4.2.0 Changelog</title>
+
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: #fff;
-    }
-    h1 { margin: 0; }
-    h2 { margin: 20px 0 0; }
-
-    label {
-      display: inline-block;
-      width: 100px;
-      font-size: 12px;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      background-color: #f4f4f4;
+      max-width: 1200px;
+      margin-right: auto;
+      margin-left: auto;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,21 +38,123 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
+    }
+
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
+    }
+
+    section {
+      margin-top: 60px;
+      border-radius: 20px;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 5px 5px #ececec;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: serif;
+      font-size: 60px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
+      position: relative;
+    }
+
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
+      color: #fff;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
 <body>
+  <section>
 <h1>2024-05-07 - v4.2.0 Changelog</h1>
 
 Files: Modifed <span class="type-bold">11</span>, Renamed <span class="type-bold">0</span>, Deleted <span class="type-bold">0</span>, Created <span class="type-bold">3</span>
@@ -79,7 +177,7 @@ in the "before" or "after" column.</p>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -87,17 +185,17 @@ in the "before" or "after" column.</p>
   </thead>
   <tbody>
     <tr>
-  
+
   <td>comment-no.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g clip-path="url(#a)"><path fill-rule="evenodd" d="m13.739 1.233 1.14-1.14.94.947L1.152 15.707l-.94-.947 2.86-2.86h-1.06a2 2 0 0 1-2-2V3.233a2 2 0 0 1 2-2H13.74ZM1.541 10.371a.667.667 0 0 0 .471.196h2.394l8-8H2.012a.667.667 0 0 0-.666.666V9.9c0 .177.07.346.195.471Zm13.138-6.858 1.133-1.133c.128.28.188.586.174.893V9.94a2 2 0 0 1-2 2h-1.334v3.967L7.106 11.94h-.84l1.333-1.333 3.747 2.666v-2.706h2.666a.667.667 0 0 0 .667-.667V3.513Z"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>
 </tr><tr>
-  
+
   <td>more-menu-filled.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M6 8c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2ZM0 8c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2ZM12 8c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2Z"/></svg></td>
 </tr><tr>
-  
+
   <td>more-menu.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8 7.333a.667.667 0 1 0 0 1.334.667.667 0 0 0 0-1.334ZM6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0ZM2 7.333a.667.667 0 1 0 0 1.334.667.667 0 0 0 0-1.334ZM0 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0ZM14 7.333a.667.667 0 1 0 0 1.334.667.667 0 0 0 0-1.334ZM12 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z"/></svg></td>
@@ -108,7 +206,7 @@ in the "before" or "after" column.</p>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -116,57 +214,57 @@ in the "before" or "after" column.</p>
   </thead>
   <tbody>
     <tr>
-  
+
   <td>app-store.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M10.585 0c.2.8-.2 1.6-.6 2.2-.5.6-1.3 1-2.1 1-.1-.8.2-1.6.7-2.1.5-.6 1.3-1.1 2-1.1Zm-7.9 13.8c.7 1 1.6 2.2 3 2.2.435 0 .765-.105 1.066-.201.114-.037.224-.072.334-.099.3-.2.6-.3 1.1-.3.37 0 .63.11.862.207.082.034.16.067.238.093.056.019.115.04.178.064.278.104.634.236 1.122.236 1.3 0 2.2-1.1 3-2.3.5-.7.7-1 1-1.8l.3-.7-.7-.3c-.9-.3-1.5-1.1-1.6-2.1-.1-.9.4-1.8 1.2-2.3l.7-.4-.5-.6c-.8-1.1-2-1.7-3.2-1.7-.8 0-1.3.2-1.8.4a7.477 7.477 0 0 0-.327.091c-.209.062-.367.109-.573.109-.238 0-.475-.063-.762-.138L7.085 4.2c-.5-.2-1-.4-1.7-.4-1.3 0-2.7.8-3.5 2.1-1.3 2-.9 5.2.8 7.9Zm.3-7.1c.6-.9 1.5-1.5 2.4-1.5.5 0 .9.1 1.3.3.11.027.22.063.334.099.3.096.63.201 1.066.201.6 0 1-.1 1.2-.3.4-.2.8-.3 1.4-.3.6 0 1.2.3 1.7.7-.8.7-1.3 1.8-1.2 3 .1 1.3.8 2.4 1.8 3a4.215 4.215 0 0 0-.214.371c-.1.188-.208.391-.386.629a9.05 9.05 0 0 0-.14.195c-.366.518-1.063 1.505-1.76 1.505-.206 0-.318-.047-.464-.109-.068-.028-.142-.06-.236-.091-.4-.2-.9-.4-1.7-.4-.8 0-1.3.2-1.7.4-.2.1-.4.2-.7.2-.7 0-1.4-.8-1.9-1.6-1.6-2.4-1.6-5.1-.8-6.3Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M10.585 0c.2.8-.2 1.6-.6 2.2-.5.6-1.3 1-2.1 1-.1-.8.2-1.6.7-2.1.5-.6 1.3-1.1 2-1.1Zm-7.9 13.8c.7 1 1.6 2.2 3 2.2.435 0 .765-.105 1.066-.201.114-.037.224-.072.334-.099.3-.2.6-.3 1.1-.3.37 0 .63.11.862.207.082.034.16.067.238.093.056.019.115.04.178.064.278.104.634.236 1.122.236 1.3 0 2.2-1.1 3-2.3.5-.7.7-1 1-1.8l.3-.7-.7-.3c-.9-.3-1.5-1.1-1.6-2.1-.1-.9.4-1.8 1.2-2.3l.7-.4-.5-.6c-.8-1.1-2-1.7-3.2-1.7-.8 0-1.3.2-1.8.4a7.474 7.474 0 0 0-.327.091c-.209.062-.367.109-.573.109-.238 0-.475-.063-.762-.138a18.62 18.62 0 0 0-.238-.062c-.5-.2-1-.4-1.7-.4-1.3 0-2.7.8-3.5 2.1-1.3 2-.9 5.2.8 7.9Zm.3-7.1c.6-.9 1.5-1.5 2.4-1.5.5 0 .9.1 1.3.3.11.027.22.063.334.099.3.096.63.201 1.066.201.6 0 1-.1 1.2-.3.4-.2.8-.3 1.4-.3.6 0 1.2.3 1.7.7-.8.7-1.3 1.8-1.2 3 .1 1.3.8 2.4 1.8 3a4.215 4.215 0 0 0-.214.371c-.1.188-.208.391-.386.629a9.05 9.05 0 0 0-.14.195c-.366.518-1.063 1.505-1.76 1.505-.206 0-.318-.047-.464-.109-.068-.028-.142-.06-.236-.091-.4-.2-.9-.4-1.7-.4-.8 0-1.3.2-1.7.4-.2.1-.4.2-.7.2-.7 0-1.4-.8-1.9-1.6-1.6-2.4-1.6-5.1-.8-6.3Z"/></svg></td>
 </tr><tr>
-  
+
   <td>assessment.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M12.52 2.416a.667.667 0 1 0-1.04-.832l-7.535 9.418-2.14-2.14a.667.667 0 0 0-.943.943l2.667 2.666a.667.667 0 0 0 .992-.055l8-10Zm.813 2.25a.667.667 0 0 0 0 1.334h2a.667.667 0 1 0 0-1.333h-2Zm-3.333 4c0-.368.299-.666.667-.666h4.666a.667.667 0 1 1 0 1.333h-4.666A.667.667 0 0 1 10 8.667Zm-2 2.667a.667.667 0 0 0 0 1.334h7.333a.667.667 0 1 0 0-1.334H8Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M12.52 2.416a.667.667 0 1 0-1.04-.832l-7.535 9.418-2.14-2.14a.667.667 0 0 0-.943.943l2.667 2.666a.667.667 0 0 0 .992-.055l8-10Zm.813 2.25a.667.667 0 1 0 0 1.334h2a.667.667 0 1 0 0-1.333h-2Zm-3.333 4c0-.368.299-.666.667-.666h4.666a.667.667 0 1 1 0 1.333h-4.666A.667.667 0 0 1 10 8.667Zm-2 2.667a.667.667 0 0 0 0 1.334h7.333a.667.667 0 1 0 0-1.334H8Z"/></svg></td>
 </tr><tr>
-  
+
   <td>automations.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8 .667c.368 0 .667.298.667.666v14a.667.667 0 1 1-1.334 0v-14c0-.368.299-.666.667-.666Z"/><path fill-rule="evenodd" d="M3.333 6c.369 0 .667.298.667.667v4a2 2 0 0 0 2 2h2A.667.667 0 1 1 8 14H6a3.333 3.333 0 0 1-3.333-3.333v-4c0-.369.298-.667.666-.667Z"/><path fill-rule="evenodd" d="M12.667 4c.368 0 .666.298.666.667V8A3.333 3.333 0 0 1 10 11.333H8A.667.667 0 1 1 8 10h2a2 2 0 0 0 2-2V4.667c0-.369.299-.667.667-.667ZM7.529.862c.26-.26.682-.26.942 0l2 2a.667.667 0 0 1-.942.943L8 2.276 6.471 3.805a.667.667 0 0 1-.942-.943l2-2ZM2.862 6.195c.26-.26.682-.26.943 0l2 2a.667.667 0 1 1-.943.943L3.333 7.61 1.805 9.14a.667.667 0 0 1-.943-.944l2-2Z"/><path fill-rule="evenodd" d="M12.195 4.195c.26-.26.683-.26.943 0l2 2a.667.667 0 0 1-.943.943L12.667 5.61l-1.529 1.53a.667.667 0 1 1-.943-.944l2-2Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8 .667c.368 0 .667.298.667.666v14a.667.667 0 1 1-1.334 0v-14c0-.368.299-.666.667-.666Z"/><path fill-rule="evenodd" d="M3.333 6c.369 0 .667.298.667.667v4a2 2 0 0 0 2 2h2A.667.667 0 1 1 8 14H6a3.333 3.333 0 0 1-3.333-3.333v-4c0-.369.298-.667.666-.667Z"/><path fill-rule="evenodd" d="M12.667 4c.368 0 .666.298.666.667V8A3.333 3.333 0 0 1 10 11.333H8A.667.667 0 1 1 8 10h2a2 2 0 0 0 2-2V4.667c0-.369.299-.667.667-.667ZM7.529.862c.26-.26.682-.26.942 0l2 2a.667.667 0 0 1-.942.943L8 2.276 6.471 3.805a.667.667 0 1 1-.942-.943l2-2ZM2.862 6.195c.26-.26.682-.26.943 0l2 2a.667.667 0 1 1-.943.943L3.333 7.61 1.805 9.14a.667.667 0 0 1-.943-.944l2-2Z"/><path fill-rule="evenodd" d="M12.195 4.195c.26-.26.683-.26.943 0l2 2a.667.667 0 0 1-.943.943L12.667 5.61l-1.529 1.53a.667.667 0 1 1-.943-.944l2-2Z"/></svg></td>
 </tr><tr>
-  
+
   <td>course.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667.667A.667.667 0 0 0 0 1.333v13.334c0 .368.298.666.667.666h14.666a.667.667 0 0 0 .667-.666V1.333a.667.667 0 0 0-.667-.666H.667ZM3.333 2h-2v1.333h2V2Zm1.334 1.333V2h10v1.333h-10ZM1.333 4.667h13.334V14H1.333V4.667Zm1.334 2.666c0-.368.298-.666.666-.666h4c.369 0 .667.298.667.666v4a.667.667 0 0 1-.667.667h-4a.667.667 0 0 1-.666-.667v-4ZM4 8v2.667h2.667V8H4Zm6-1.333A.667.667 0 0 0 10 8h2.667a.667.667 0 1 0 0-1.333H10ZM9.333 10c0-.368.299-.667.667-.667h1.333a.667.667 0 1 1 0 1.334H10A.667.667 0 0 1 9.333 10Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667.667A.667.667 0 0 0 0 1.333v13.334c0 .368.298.666.667.666h14.666a.667.667 0 0 0 .667-.666V1.333a.667.667 0 0 0-.667-.666H.667ZM3.333 2h-2v1.333h2V2Zm1.334 1.333V2h10v1.333h-10ZM1.333 4.667h13.334V14H1.333V4.667Zm1.334 2.666c0-.368.298-.666.666-.666h4c.369 0 .667.298.667.666v4a.667.667 0 0 1-.667.667h-4a.667.667 0 0 1-.666-.667v-4ZM4 8v2.667h2.667V8H4Zm6-1.333A.667.667 0 1 0 10 8h2.667a.667.667 0 1 0 0-1.333H10ZM9.333 10c0-.368.299-.667.667-.667h1.333a.667.667 0 1 1 0 1.334H10A.667.667 0 0 1 9.333 10Z"/></svg></td>
 </tr><tr>
-  
+
   <td>form-field.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667.667A.667.667 0 0 0 0 1.333v5.334c0 .368.298.666.667.666h14.666A.667.667 0 0 0 16 6.667V1.333a.667.667 0 0 0-.667-.666H.667ZM1.333 6V2h13.334v4H1.333ZM.667 8.667A.667.667 0 0 0 0 9.333v5.334c0 .368.298.666.667.666h14.666a.667.667 0 0 0 .667-.666V9.333a.667.667 0 0 0-.667-.666H.667ZM1.333 14v-4h13.334v4H1.333Zm1.334-9.905c0-.368.298-.666.666-.666H6a.667.667 0 1 1 0 1.333H3.333a.667.667 0 0 1-.666-.667Zm.666 7.238a.667.667 0 0 0 0 1.334H6a.667.667 0 0 0 0-1.334H3.333Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667.667A.667.667 0 0 0 0 1.333v5.334c0 .368.298.666.667.666h14.666A.667.667 0 0 0 16 6.667V1.333a.667.667 0 0 0-.667-.666H.667ZM1.333 6V2h13.334v4H1.333ZM.667 8.667A.667.667 0 0 0 0 9.333v5.334c0 .368.298.666.667.666h14.666a.667.667 0 0 0 .667-.666V9.333a.667.667 0 0 0-.667-.666H.667ZM1.333 14v-4h13.334v4H1.333Zm1.334-9.905c0-.368.298-.666.666-.666H6a.667.667 0 0 1 0 1.333H3.333a.667.667 0 0 1-.666-.667Zm.666 7.238a.667.667 0 0 0 0 1.334H6a.667.667 0 0 0 0-1.334H3.333Z"/></svg></td>
 </tr><tr>
-  
+
   <td>headset.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M8 0A7.338 7.338 0 0 0 .667 7.333v4c0 1.1.9 2 2 2h2c.366 0 .666-.3.666-.666V8c0-.367-.3-.667-.666-.667H2c0-3.306 2.693-6 6-6s6 2.694 6 6h-2.667c-.366 0-.666.3-.666.667v4.667c0 .366.3.666.666.666h2c.234 0 .46-.046.667-.12v.12c0 .734-.6 1.334-1.333 1.334H9.333c-.366 0-.666.3-.666.666 0 .367.3.667.666.667h3.334a2.666 2.666 0 0 0 2.666-2.667v-6A7.338 7.338 0 0 0 8 0ZM4 8.667V12H2.667A.669.669 0 0 1 2 11.333V8.667h2ZM13.333 12H12V8.667h2v2.666c0 .367-.3.667-.667.667Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M8 0A7.338 7.338 0 0 0 .667 7.333v4c0 1.1.9 2 2 2h2c.366 0 .666-.3.666-.666V8c0-.367-.3-.667-.666-.667H2c0-3.306 2.693-6 6-6s6 2.694 6 6h-2.667c-.366 0-.666.3-.666.667v4.667c0 .366.3.666.666.666h2a2 2 0 0 0 .667-.12v.12c0 .734-.6 1.334-1.333 1.334H9.333c-.366 0-.666.3-.666.666 0 .367.3.667.666.667h3.334a2.666 2.666 0 0 0 2.666-2.667v-6A7.338 7.338 0 0 0 8 0ZM4 8.667V12H2.667A.669.669 0 0 1 2 11.333V8.667h2ZM13.333 12H12V8.667h2v2.666c0 .367-.3.667-.667.667Z"/></svg></td>
 </tr><tr>
-  
+
   <td>launch.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M15.138.862a.664.664 0 0 1 .195.461v5.344a.667.667 0 0 1-1.333 0V2.943L7.805 9.138a.667.667 0 1 1-.943-.943L13.057 2H9.333a.667.667 0 0 1 0-1.333h5.333c.171 0 .342.065.472.195ZM1.333 2a.667.667 0 0 0-.666.667v12c0 .368.298.666.666.666h12a.667.667 0 0 0 .667-.666V10a.667.667 0 0 0-1.333 0v4H2V3.333h4A.667.667 0 1 0 6 2H1.333Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M15.138.862a.664.664 0 0 1 .195.461v5.344a.667.667 0 0 1-1.333 0V2.943L7.805 9.138a.667.667 0 1 1-.943-.943L13.057 2H9.333a.667.667 0 0 1 0-1.333h5.333c.171 0 .342.065.472.195ZM1.333 2a.667.667 0 0 0-.666.667v12c0 .368.298.666.666.666h12a.667.667 0 0 0 .667-.666V10a.667.667 0 0 0-1.333 0v4H2V3.333h4A.667.667 0 0 0 6 2H1.333Z"/></svg></td>
 </tr><tr>
-  
+
   <td>move-left.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667 8c0-.368.298-.667.666-.667h10a.667.667 0 1 1 0 1.334h-10A.667.667 0 0 1 .667 8Z"/><path fill-rule="evenodd" d="M5.805 3.529c.26.26.26.682 0 .942L2.276 8l3.529 3.529a.667.667 0 1 1-.943.942l-4-4a.667.667 0 0 1 0-.942l4-4c.26-.26.682-.26.943 0ZM14.667.667c.368 0 .666.298.666.666v13.334a.667.667 0 1 1-1.333 0V1.333c0-.368.299-.666.667-.666Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.667 8c0-.368.298-.667.666-.667h10a.667.667 0 1 1 0 1.334h-10A.667.667 0 0 1 .667 8Z"/><path fill-rule="evenodd" d="M5.805 3.529c.26.26.26.682 0 .942L2.276 8l3.529 3.529a.667.667 0 1 1-.943.942l-4-4a.667.667 0 0 1 0-.942l4-4c.26-.26.682-.26.943 0ZM14.667.667c.368 0 .666.298.666.666v13.334a.667.667 0 0 1-1.333 0V1.333c0-.368.299-.666.667-.666Z"/></svg></td>
 </tr><tr>
-  
+
   <td>move-right.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M4 8c0-.368.298-.667.667-.667h10a.667.667 0 0 1 0 1.334h-10A.667.667 0 0 1 4 8Z"/><path fill-rule="evenodd" d="M10.195 3.529c.26-.26.683-.26.943 0l4 4c.26.26.26.682 0 .942l-4 4a.667.667 0 1 1-.943-.942L13.724 8l-3.529-3.529a.667.667 0 0 1 0-.942ZM1.333.667c.369 0 .667.298.667.666v13.334a.667.667 0 0 1-1.333 0V1.333c0-.368.298-.666.666-.666Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M4 8c0-.368.298-.667.667-.667h10a.667.667 0 0 1 0 1.334h-10A.667.667 0 0 1 4 8Z"/><path fill-rule="evenodd" d="M10.195 3.529c.26-.26.683-.26.943 0l4 4c.26.26.26.682 0 .942l-4 4a.667.667 0 0 1-.943-.942L13.724 8l-3.529-3.529a.667.667 0 0 1 0-.942ZM1.333.667c.369 0 .667.298.667.666v13.334a.667.667 0 0 1-1.333 0V1.333c0-.368.298-.666.666-.666Z"/></svg></td>
 </tr><tr>
-  
+
   <td>sequences.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M4.69.662c0-.366.296-.662.662-.662h5.296a.662.662 0 0 1 0 1.324H5.352A.662.662 0 0 1 4.69.662ZM3.366 2.648a.662.662 0 0 0 0 1.324h9.268a.662.662 0 0 0 0-1.324H3.366Zm-.332 2.318a1.65 1.65 0 0 0-1.153.468c-.31.3-.502.721-.502 1.187v7.724c0 .914.741 1.655 1.655 1.655h9.931c.915 0 1.656-.741 1.656-1.655V6.62c0-.914-.741-1.655-1.655-1.655H3.034Zm-.551 9.379v-7.58l5.146 4.678c.21.191.532.191.742 0l5.146-4.679v7.58a.552.552 0 0 1-.551.553H3.034a.552.552 0 0 1-.551-.552Zm.875-8.276h9.284L8 10.289l-4.642-4.22Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M4.69.662c0-.366.296-.662.662-.662h5.296a.662.662 0 1 1 0 1.324H5.352A.662.662 0 0 1 4.69.662ZM3.365 2.648a.662.662 0 0 0 0 1.324h9.27a.662.662 0 1 0 0-1.324h-9.27Zm-.33 2.318a1.65 1.65 0 0 0-1.155.468c-.309.3-.5.721-.5 1.187v7.724c0 .914.74 1.655 1.654 1.655h9.931c.915 0 1.656-.741 1.656-1.655V6.62c0-.914-.741-1.655-1.655-1.655H3.034Zm-.552 9.379v-7.58l5.146 4.678c.21.191.532.191.742 0l5.146-4.679v7.58a.552.552 0 0 1-.551.553H3.034a.552.552 0 0 1-.551-.552Zm.875-8.276h9.284L8 10.289l-4.642-4.22Z"/></svg></td>
 </tr><tr>
-  
+
   <td>warning.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M8 6.667c.368 0 .667.298.667.666V10a.667.667 0 1 1-1.334 0V7.333c0-.368.299-.666.667-.666ZM8.667 12a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0Z"/><path fill-rule="evenodd" d="M8 1.333c.248 0 .475.137.59.357l6.667 12.666a.666.666 0 0 1-.59.977H1.333a.666.666 0 0 1-.59-.977L7.41 1.69A.667.667 0 0 1 8 1.333ZM13.562 14 8 3.431 2.438 14h11.124Z"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M8 6.667c.368 0 .667.298.667.666V10a.667.667 0 1 1-1.334 0V7.333c0-.368.299-.666.667-.666ZM8.667 12a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0Z"/><path fill-rule="evenodd" d="M8 1.333c.248 0 .475.138.59.357l6.667 12.666a.667.667 0 0 1-.59.977H1.333a.667.667 0 0 1-.59-.977L7.41 1.69A.667.667 0 0 1 8 1.333ZM13.562 14 8 3.431 2.438 14h11.124Z"/></svg></td>
@@ -176,5 +274,7 @@ in the "before" or "after" column.</p>
 
 
 
+
+  </section>
 </body>
 </html>

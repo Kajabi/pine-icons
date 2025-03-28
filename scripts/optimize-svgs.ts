@@ -77,7 +77,7 @@ export const run = async(rootDir: string, optimizeFiles = false) => {
 
 const cleanDirectories = async (iconDir, distDir, distSvgDir, distPineIconsDir) => {
   await Promise.all([fs.emptyDir(iconDir), fs.emptyDir(distDir)]);
-    await fs.emptyDir(distSvgDir), await fs.emptyDir(distPineIconsDir);
+  await fs.emptyDir(distSvgDir), await fs.emptyDir(distPineIconsDir);
 }
 
 const getSvgs = async (srcDir: string, distSvgDir: string, distPineIconsDir: string, outputSvgDir: string, isOptimizing: boolean): Promise<SvgData[]> => {
@@ -145,6 +145,7 @@ const getSvgs = async (srcDir: string, distSvgDir: string, distPineIconsDir: str
         optimizedLocalSvgFilePath,
         srcFilePath,
         srcSvgContent: await fs.readFile(srcFilePath, 'utf8'),
+        tags: [],
         title,
       };
     }),
@@ -269,7 +270,7 @@ const createCheatSheet = async (version: string, rootDir: string, distDir: strin
   const distCheatsheetFilePath = join(distDir, 'cheatsheet.html');
 
   const c = srcSvgData.map(
-    (svgData) => `<a href="./svg/${svgData.fileName}"><svg><use href="#${svgData.iconName}" xlink:href="#${svgData.iconName}"/></svg></a>`,
+    (svgData) => `<button class="icon-button" title="Copy ${svgData.iconName} code snippet" data-tags="${svgData.tags}" data-icon-name="${svgData.iconName}"><svg><use href="#${svgData.iconName}" xlink:href="#${svgData.iconName}"/></svg><span class="visually-hidden">Copy ${svgData.iconName} icon code</span></button>`,
   );
 
   c.push(svgSymbolsContent);
@@ -304,6 +305,8 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
         name: svgData.iconName,
       })
     }
+    const matchingIcon = data.icons.find((i) => i.name === svgData.iconName);
+    svgData.tags = matchingIcon ? matchingIcon.tags || [] : [];
   });
 
   // remove deleted icons

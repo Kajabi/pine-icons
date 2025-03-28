@@ -51,6 +51,14 @@ export interface SvgData {
   srcFilePath: string;
 
   /**
+   * [
+   *  "airplane",
+   *  "outline",
+   * ]
+   */
+  tags: string[];
+
+  /**
    * airplane
    */
   title: string;

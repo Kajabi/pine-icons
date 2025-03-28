@@ -6,34 +6,33 @@
   <link rel="icon shortcut" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
     <text y=%22.9em%22 font-size=%2290%22>🌲</text>
   </svg>">
+
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+
   <style>
     body {
       background-color: #f4f4f4;
-      max-width: 1000px;
+      max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,23 +41,23 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
     }
 
-    .changelog-meta {
-      margin-bottom: 30px;
-      font-size: 12px;
-      font-style: italic;
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
     }
 
     section {
@@ -78,47 +77,100 @@
       font-weight: 700;
     }
 
-    h2 { margin: 20px 0 0; }
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-    .changelog-dateversion {
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
       position: relative;
     }
 
-    .changelog-date {
-      padding: 15px 55px 15px 15px;
-      border: 1px solid gray;
-      background-color: white;
-      border-radius: 4px;
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .changelog-version {
-      position: absolute;
-      left: 112px;
-      border-radius: 4px;
-      background-color: #71b469;
-      padding: 5px;
-      top: 50%;
-      transform: translateY(-50%);
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
       color: #fff;
-      font-weight: 300;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
-<body>
-  <section>
-    <h1>Pine Icons - Changelog</h1>
+<body><section><header class="changelog__header">
+      <h1 class="changelog__title">Pine Icons - Changelog</h1>
     <p class="changelog-meta">Icons: Added <span class="type-bold">2</span>, Modifed <span class="type-bold">2</span>, Deleted <span class="type-bold">2</span>, Renamed <span class="type-bold">15</span></p>
 
     <p class="changelog-dateversion">
       <span class="changelog-date">2024-08-15</span>
-      <span class="changelog-version">v8.0.0</span>
+      <span class="changelog__version">v8.0.0</span>
     </p>
+</header>
 
-    <h2>Added</h2>
+<h2>Added</h2>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -126,12 +178,12 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>file-add.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8.667 1.333v3.334H12V6H8.667v3.333H7.333V6H4V4.667h3.333V1.333zM2 12.667V9.333H.667v3.334a2 2 0 0 0 2 2h10.666a2 2 0 0 0 2-2V9.333H14v3.334a.666.666 0 0 1-.667.666H2.667A.666.666 0 0 1 2 12.667"/></svg></td>
 </tr><tr>
-  
+
   <td>rocket-tone.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M8 10 6 8c.355-.92.801-1.803 1.333-2.633a8.59 8.59 0 0 1 7.334-4.034c0 1.814-.52 5-4 7.334A15 15 0 0 1 8 10" opacity=".12"/><path fill-rule="evenodd" d="M13.973 2.026A7.92 7.92 0 0 0 7.899 5.72l-.004.006A14 14 0 0 0 6.783 7.84L8.161 9.22q1.117-.465 2.142-1.111c2.817-1.892 3.534-4.366 3.67-6.082M10.228 9.7q-.76.419-1.561.751v2.018q.096-.03.197-.068c.575-.208 1.054-.482 1.248-.772.096-.144.166-.365.195-.668.027-.298.01-.628-.032-.948a7 7 0 0 0-.047-.313M8 13.333l.12.656a.667.667 0 0 1-.787-.656v-3.057l-1.61-1.61H2.668a.667.667 0 0 1-.656-.785L2.667 8l-.656-.12v-.003l.002-.006.004-.022a5 5 0 0 1 .075-.335c.053-.216.136-.512.252-.832.216-.596.609-1.45 1.285-1.903h.001c.397-.265.862-.374 1.285-.413.428-.04.864-.013 1.242.036.35.045.667.11.906.168A9.25 9.25 0 0 1 14.671.667c.366.002.662.3.662.666 0 1.874-.525 5.139-3.901 7.611.057.239.121.552.166.9.049.377.076.813.036 1.241-.04.423-.148.888-.413 1.285-.453.677-1.307 1.07-1.903 1.286a8.4 8.4 0 0 1-1.167.327l-.022.004-.006.002H8.12zM6.312 5.775a15 15 0 0 0-.762 1.558H3.53q.03-.096.068-.197c.208-.575.482-1.054.772-1.248.144-.096.365-.166.668-.195.298-.027.628-.01.948.032q.17.021.326.05M2.57 10.49a2.12 2.12 0 0 1 2.83.088l.007.008c.793.782.783 2.037.102 2.844-.295.35-.702.608-1.093.8-.398.194-.829.342-1.215.453a12 12 0 0 1-1.411.306l-.025.004h-.007l-.003.001-.09-.66-.66-.09v-.003l.001-.007.004-.025a7 7 0 0 1 .068-.403c.05-.26.127-.619.238-1.008a7.5 7.5 0 0 1 .454-1.215c.19-.391.449-.798.8-1.093m-.904 3.843-.661-.088a.667.667 0 0 0 .75.749zm.847-.847q.155-.038.321-.085a6 6 0 0 0 .997-.37c.313-.152.533-.311.658-.46v-.001c.265-.313.243-.774-.014-1.032a.787.787 0 0 0-1.046-.028h-.001c-.149.125-.307.345-.46.658a6 6 0 0 0-.37.997 9 9 0 0 0-.085.321"/></svg></td>
@@ -143,7 +195,7 @@
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -151,12 +203,12 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>expand.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M.776 1.776v4a.667.667 0 1 0 1.334 0v-2.39l3.528 3.528a.667.667 0 0 0 .943-.943L3.052 2.443h2.39a.667.667 0 0 0 0-1.334h-4a.667.667 0 0 0-.666.667M15.11 14.443v-4a.667.667 0 0 0-1.334 0v2.39l-3.528-3.528a.667.667 0 1 0-.943.943l3.528 3.528h-2.39a.667.667 0 1 0 0 1.334h4a.667.667 0 0 0 .667-.667"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M2.667 3.61v1.723a.667.667 0 0 1-1.334 0V2c0-.368.299-.667.667-.667h3.333a.667.667 0 0 1 0 1.334H3.61l2.196 2.195a.667.667 0 1 1-.943.943zm8-.943a.667.667 0 0 1 0-1.334H14c.368 0 .667.299.667.667v3.333a.667.667 0 1 1-1.334 0V3.61l-2.195 2.196a.667.667 0 0 1-.943-.943l2.195-2.195zM2 10c.368 0 .667.299.667.667v1.723l2.195-2.195a.667.667 0 0 1 .943.943l-2.196 2.195h1.724a.667.667 0 0 1 0 1.334H2A.667.667 0 0 1 1.333 14v-3.333c0-.368.299-.667.667-.667m10.39 3.333-2.195-2.195a.667.667 0 0 1 .943-.943l2.195 2.195v-1.723a.667.667 0 0 1 1.334 0V14a.667.667 0 0 1-.667.667h-3.333a.667.667 0 0 1 0-1.334z"/></svg></td>
 </tr><tr>
-  
+
   <td>logo-twitter.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path d="M16 3.067c-.6.266-1.2.466-1.867.533A3.55 3.55 0 0 0 15.6 1.8c-.667.4-1.333.667-2.067.8a3.23 3.23 0 0 0-2.4-1.067A3.27 3.27 0 0 0 7.867 4.8c0 .267 0 .533.066.733a9.2 9.2 0 0 1-6.8-3.466 3 3 0 0 0-.466 1.666c0 1.134.6 2.134 1.466 2.734-.533 0-1.066-.134-1.466-.4v.066c0 1.6 1.133 2.934 2.6 3.2-.267.067-.534.134-.867.134-.2 0-.4 0-.6-.067a3.16 3.16 0 0 0 3.067 2.267c-1.134.866-2.534 1.4-4.067 1.4-.267 0-.533 0-.8-.067a9.33 9.33 0 0 0 5 1.467c6.067 0 9.333-5 9.333-9.334v-.4C15 4.267 15.533 3.667 16 3.067"/></svg></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g clip-path="url(#a)"><path fill-rule="evenodd" d="m10.63 15.333-3.7-5.273-4.63 5.273H.34l5.722-6.512L.34.667h5.03l3.488 4.97 4.368-4.97h1.96L9.73 6.877l5.931 8.456zm2.182-1.486h-1.319L3.146 2.153h1.319l3.343 4.682.578.813z"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>
@@ -168,7 +220,7 @@
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -176,12 +228,12 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>expand-06.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M2.667 3.61v1.723a.667.667 0 0 1-1.334 0V2c0-.368.299-.667.667-.667h3.333a.667.667 0 0 1 0 1.334H3.61l2.196 2.195a.667.667 0 1 1-.943.943zm8-.943a.667.667 0 0 1 0-1.334H14c.368 0 .667.299.667.667v3.333a.667.667 0 1 1-1.334 0V3.61l-2.195 2.196a.667.667 0 0 1-.943-.943l2.195-2.195zM2 10c.368 0 .667.299.667.667v1.723l2.195-2.195a.667.667 0 0 1 .943.943l-2.196 2.195h1.724a.667.667 0 0 1 0 1.334H2A.667.667 0 0 1 1.333 14v-3.333c0-.368.299-.667.667-.667m10.39 3.333-2.195-2.195a.667.667 0 0 1 .943-.943l2.195 2.195v-1.723a.667.667 0 0 1 1.334 0V14a.667.667 0 0 1-.667.667h-3.333a.667.667 0 0 1 0-1.334z"/></svg></td>
   <td></td>
 </tr><tr>
-  
+
   <td>file-02.svg</td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><path fill-rule="evenodd" d="M8.667 2.013A9 9 0 0 0 8.007 2h-2.14c-.571 0-.96 0-1.26.025-.292.024-.441.067-.546.12-.25.128-.455.332-.582.583-.053.104-.097.254-.12.546-.025.3-.026.688-.026 1.26v6.933c0 .57 0 .959.025 1.259.024.292.068.442.12.546.128.25.332.455.583.583.105.053.254.096.546.12.3.024.689.025 1.26.025h4.266c.571 0 .96 0 1.26-.025.292-.024.441-.067.546-.12.25-.128.454-.332.582-.583.053-.104.097-.254.12-.546.025-.3.026-.688.026-1.26V6.66c0-.352-.002-.535-.014-.659H10.38c-.168 0-.332 0-.471-.011a1.4 1.4 0 0 1-.513-.134 1.33 1.33 0 0 1-.583-.583 1.4 1.4 0 0 1-.134-.513c-.011-.139-.011-.303-.011-.471zM9.594.9A2.7 2.7 0 0 0 9.127.74C8.82.666 8.5.666 8.076.667H5.839c-.537 0-.98 0-1.34.03-.375.03-.72.095-1.043.26-.502.256-.91.664-1.165 1.166-.165.323-.23.668-.262 1.042C2 3.526 2 3.97 2 4.505v6.99c0 .536 0 .979.03 1.34.03.374.096.719.26 1.042.256.502.664.91 1.166 1.166.324.165.668.23 1.043.26.36.03.803.03 1.34.03h4.322c.537 0 .98 0 1.34-.03.375-.03.72-.096 1.043-.26.502-.256.91-.664 1.165-1.166.165-.323.23-.668.261-1.042.03-.361.03-.804.03-1.34V6.59c0-.423 0-.743-.074-1.052a2.7 2.7 0 0 0-.319-.77c-.166-.271-.392-.497-.691-.796l-.049-.048-2.125-2.126-.048-.048c-.3-.3-.525-.526-.796-.691a3 3 0 0 0-.304-.161M10 2.943v1.324c0 .197 0 .306.007.383v.009h.01c.077.007.185.008.383.008h1.324z"/></svg></td>
   <td></td>
