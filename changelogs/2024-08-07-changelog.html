@@ -6,34 +6,33 @@
   <link rel="icon shortcut" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
     <text y=%22.9em%22 font-size=%2290%22>🌲</text>
   </svg>">
+
+  <!-- Pine Design System -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+
   <style>
     body {
       background-color: #f4f4f4;
-      max-width: 1000px;
+      max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    svg {
-      width: 32px;
-      height: 32px;
+      font-family: var(--pine-font-family-greet);
+      font-weight: var(--pine-font-weight-400);
     }
 
     table {
-      display: block;
-      width: max-content;
-      max-width: 100%;
-      overflow: auto;
+      margin-top: var(--pine-dimension-250);
+      width: 100%;
+      border-collapse: collapse;
     }
 
     thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-      font-weight: bold;
+      font-weight: var(--pine-font-weight-600);
+      color: var(--pine-color-grey-800);
+    }
+
+    tr {
+      border-bottom: 1px solid var(--pine-color-grey-400);
     }
 
     tbody {
@@ -42,23 +41,23 @@
       border-color: inherit;
     }
 
-    tr {
-      border-top: 1px solid #21262d;
-    }
-
     td {
-      padding: 6px 13px;
-      border: 1px solid #30363d;
+      padding: var(--pine-dimension-200) var(--pine-dimension-200);
     }
 
-    .type-bold {
-      font-weight: bold;
+    td .pdsicon {
+      width: var(--pine-dimension-300);
+      height: var(--pine-dimension-300);
+      background: var(--pine-color-grey-150);
+      padding: var(--pine-dimension-100);
+      border-radius: var(--pine-dimension-050);
     }
 
-    .changelog-meta {
-      margin-bottom: 30px;
-      font-size: 12px;
-      font-style: italic;
+    table + p {
+      margin-top: var(--pine-dimension-250);
+      padding: 0 var(--pine-dimension-250);
+      font-size: var(--pine-typography-body);
+      line-height: 1.5;
     }
 
     section {
@@ -78,47 +77,100 @@
       font-weight: 700;
     }
 
-    h2 { margin: 20px 0 0; }
+    h2 {
+      margin: var(--pine-dimension-250) 0 0;
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-    .changelog-dateversion {
+    p {
+      margin: 0;
+    }
+
+    .changelog__header {
+      padding: var(--pine-dimension-400);
+      border-bottom: 1px solid #e0e0e0;
+      background-color: var(--pine-color-white);
+      font-family: var(--pine-font-family-greet);
       position: relative;
     }
 
-    .changelog-date {
-      padding: 15px 55px 15px 15px;
-      border: 1px solid gray;
-      background-color: white;
-      border-radius: 4px;
+    .changelog__title {
+      margin-bottom: var(--pine-dimension-500);
+      font-size: var(--pine-font-size-285);
+      font-weight: var(--pine-font-weight-700);
+      font-family: var(--pine-font-family-greet);
+      background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .changelog-version {
-      position: absolute;
-      left: 112px;
-      border-radius: 4px;
-      background-color: #71b469;
-      padding: 5px;
-      top: 50%;
-      transform: translateY(-50%);
+    .changelog__meta {
+      display: flex;
+      align-items: center;
+    }
+
+    .changelog__date {
+      padding-right: var(--pine-dimension-125);
+    }
+
+    .changelog__date,
+    .changelog__meta-text {
+      display: flex;
+    }
+
+    .changelog__date span,
+    .changelog__meta-text span {
+      display: flex;
+      align-self: center;
+      margin-right: var(--pine-dimension-100);
+    }
+
+    .pdsicon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pds-icon-date {
+      fill: #ec4899;
+    }
+
+    .pds-icon-info {
+      fill: #f97316;
+    }
+
+    /* Version badge styling */
+    .changelog__version {
+      padding: var(--pine-dimension-050) var(--pine-dimension-150);
+      background: linear-gradient(to right, #f97316, #ec4899);
       color: #fff;
-      font-weight: 300;
+      border-radius: var(--pine-border-radius-full);
+      font-size: var(--pine-font-size-100);
+      position: absolute;
+      top: 52px;
+      right: 0;
     }
   </style>
 </head>
-<body>
-  <section>
-    <h1>Pine Icons - Changelog</h1>
+<body><section><header class="changelog__header">
+      <h1 class="changelog__title">Pine Icons - Changelog</h1>
     <p class="changelog-meta">Icons: Added <span class="type-bold">1</span>, Modifed <span class="type-bold">0</span>, Deleted <span class="type-bold">0</span>, Renamed <span class="type-bold">0</span></p>
 
     <p class="changelog-dateversion">
       <span class="changelog-date">2024-08-07</span>
-      <span class="changelog-version">v7.5.0</span>
+      <span class="changelog__version">v7.5.0</span>
     </p>
+</header>
 
-    <h2>Added</h2>
+<h2>Added</h2>
 <table>
   <thead>
     <tr>
-      
+
       <td>FileName</td>
       <td>Before</td>
       <td>After</td>
@@ -126,7 +178,7 @@
   </thead>
   <tbody>
     <tr>
-  
+
   <td>gift-01.svg</td>
   <td></td>
   <td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="pdsicon"><g clip-path="url(#a)"><path d="M13.333 12.533v-5.2H2.667v5.2c0 .747 0 1.12.145 1.406.128.25.332.454.583.582.285.146.658.146 1.405.146h6.4c.747 0 1.12 0 1.405-.146.251-.128.455-.332.583-.582.145-.286.145-.659.145-1.406" opacity=".12"/><path fill-rule="evenodd" d="M5.643 2a.63.63 0 0 0-.45.191.68.68 0 0 0-.193.476c0 .18.07.351.193.475a.63.63 0 0 0 .45.191h1.446a4 4 0 0 0-.167-.35c-.324-.6-.74-.983-1.28-.983m1.69 2.667v2H2.4a6 6 0 0 1-.392-.008l-.001-.009A6 6 0 0 1 2 6.267v-1.2a6 6 0 0 1 .008-.393h.008c.078-.007.186-.007.384-.007zM3.78 3.333a2.02 2.02 0 0 1 .461-2.076c.37-.377.874-.59 1.402-.59C6.839.667 7.582 1.479 8 2.18 8.418 1.48 9.16.667 10.357.667c.528 0 1.032.213 1.402.59a2.01 2.01 0 0 1 .461 2.076h1.401c.168 0 .332 0 .471.012.152.012.332.041.513.134.251.127.455.331.583.582.092.181.122.361.134.514.011.138.011.302.011.47v1.243c0 .168 0 .332-.011.47a1.35 1.35 0 0 1-.134.514c-.128.25-.332.455-.583.583-.18.092-.36.121-.513.134L14 7.995v4.564c0 .352 0 .655-.02.904-.022.264-.07.526-.198.778a2 2 0 0 1-.874.874 2 2 0 0 1-.778.198c-.25.02-.553.02-.904.02H4.774c-.351 0-.654 0-.904-.02a2 2 0 0 1-.778-.198 2 2 0 0 1-.874-.874 2 2 0 0 1-.198-.778C2 13.213 2 12.911 2 12.56V7.995l-.092-.006a1.4 1.4 0 0 1-.513-.134 1.33 1.33 0 0 1-.583-.583 1.4 1.4 0 0 1-.134-.513 6 6 0 0 1-.011-.471V5.045c0-.168 0-.332.011-.47.012-.153.042-.333.134-.514.128-.25.332-.455.583-.582.18-.093.36-.122.513-.134.139-.012.302-.012.47-.012H3.78M3.333 8v4.533c0 .385 0 .633.016.822.015.18.04.248.057.281a.67.67 0 0 0 .291.291c.033.017.1.042.282.057.188.015.437.016.821.016h2.533V8zm5.334 0v6H11.2c.384 0 .633 0 .821-.016.181-.015.249-.04.282-.057a.67.67 0 0 0 .291-.291c.017-.033.042-.1.057-.281.015-.19.016-.437.016-.822V8zM13.6 6.667a6 6 0 0 0 .392-.008l.001-.009A5 5 0 0 0 14 6.267v-1.2c0-.198 0-.306-.007-.384v-.009h-.01a6 6 0 0 0-.383-.007H8.667v2zm-3.243-3.334a.63.63 0 0 0 .45-.19.68.68 0 0 0 .193-.476.68.68 0 0 0-.193-.476.63.63 0 0 0-.45-.191c-.54 0-.955.384-1.28.984a4 4 0 0 0-.167.35z"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg></td>

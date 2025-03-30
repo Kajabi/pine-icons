@@ -28,8 +28,9 @@ export const run = async(config, data, rootDir: string) => {
   const statusResults: StatusResult = await git.status([srcSvgBasePath]);
   const filesChanged = statusResults.files;
 
+  // Even if there are no changes, we still want to update the index.html
   if (filesChanged.length <= 0) {
-    log(detail('No changes were found. Exiting the process!!!!'))
+    log(detail('No SVG changes were found. Proceeding to update index.html...'))
 
     removeTmpDirectory(config);
 
@@ -38,8 +39,6 @@ export const run = async(config, data, rootDir: string) => {
 
   log('Copying collections...');
   await collectionCopy(rootDir);
-
-  // log(`${makeResultsTable(data.downloaded)}\n`);
 
   log(info('Creating JSON Icon List'));
   createJsonIconList(data.icons, srcDir);
@@ -139,7 +138,7 @@ const buildHTMLTable = (data: Array<SvgDiffResult>, isRenamed = false) => {
     ${tableRows.join('')}
   </tbody>`
 
-  const table = `<table>
+  const table = `<table class="changelog-table">
   <thead>
     <tr>
       ${ isRenamed ? `<td>Previous Filename</td>` : ''}
@@ -186,23 +185,28 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
   const changelogRecords = [];
   let numberOfChangelogs = 0;
 
-  arrChangelogs.reverse().forEach((filename, idx) => {
-    if ( path.extname(filename) === '.html') {
-      if (idx < 10 ) {
-        changelogRecords.push(`<a href="changelogs/${filename}">${path.basename(filename)}</a>`)
+    arrChangelogs.reverse().forEach((filename, idx) => {
+      if (path.extname(filename) === '.html') {
+        if (idx < 10) {
+          const changelogContent = fs.readFileSync(path.join(changelogPath, filename), 'utf8');
+          const versionMatch = changelogContent.match(/Pine Icons - (v[\d.]+)/);
+          const version = versionMatch ? versionMatch[1] : '';
+          const date = filename.replace('-changelog.html', '');
+
+          changelogRecords.push(`<div class="changelog-entry"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
+        }
+        numberOfChangelogs++;
       }
-      numberOfChangelogs++
-    }
-  })
-  log('Number of Changelog files found: ', detail(numberOfChangelogs));
+    });
+    log('Number of Changelog files found: ', detail(numberOfChangelogs));
 
-  const indexHtml = fs.readFileSync(path.join(baseDir, 'src','index-template.html'), 'utf8')
-    .replace(/{{changelogs}}/g, changelogRecords.join(' <br/>'));
+    const indexHtml = fs.readFileSync(path.join(baseDir, 'src', 'index-template.html'), 'utf8')
+    .replace(/{{changelogs}}/g, changelogRecords.join('\n'));
 
-  // Copy index.html file to www worker folder
-  fs.writeFileSync(path.join(baseDir, 'src', 'index.html'), indexHtml);
+    // Copy index.html file to www worker folder
+    fs.writeFileSync(path.join(baseDir, 'src', 'index.html'), indexHtml);
 
-  if ( fs.ensureDir(path.join(baseDir, 'www')) ) {
+    if ( fs.ensureDir(path.join(baseDir, 'www')) ) {
     const wwwChangelogPath = path.join(baseDir, 'www', 'changelogs');
     const wwwChangelogFile = path.join(wwwChangelogPath, changelogFilename);
 
@@ -210,7 +214,6 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
     fs.mkdirSync(wwwChangelogPath, { recursive: true })
     fs.copyFileSync(fullChangelogFilename, wwwChangelogFile)
   }
-
   return statusResults;
 }
 
@@ -370,22 +373,22 @@ const processStatusResults = async (results: StatusResult) => {
 
   if (n.length > 0) {
     created = await Promise.all(n.map((path) => { return buildBeforeAndAfterSvg('', path)}));
-    created = buildHTMLSection('Added', created, 'New icons introduced in this version. You will not see them in the "before" column because they did not exist in the previous version.');
+    created = buildHTMLSection('Added', created, 'What does "Added" mean? These are new icons introduced in this version. They will not appear in the "before" column because they did not exist in the previous version.');
   }
 
   if (d.length > 0) {
     deleted = await Promise.all(d.map((path) => ( buildBeforeAndAfterSvg('D', path))));
-    deleted = buildHTMLSection('Deleted', deleted, 'Present in the previous version but have been removed in this one. You will not see them in the "after" column because they are no longer available.');
+    deleted = buildHTMLSection('Deleted', deleted, 'What does "Deleted" mean? These icons were present in the previous version but have been removed. They will not appear in the "after" column because they no longer exist.');
   }
 
   if (m.length > 0) {
     modified = await Promise.all(m.map((path) => ( buildBeforeAndAfterSvg('M', path))));
-    modified = buildHTMLSection('Modified', modified, 'Changed since the previous version. The change could be visual or in the code behind the icon. If the change is visual, you will see the difference between the "before" and "after" columns. If the change is only in the code, the appearance might remain the same, but it will still be listed as "modified."');
+    modified = buildHTMLSection('Modified', modified, 'What does "Modified" mean? These icons have changed since the previous version. Changes may be visual or in the underlying code. If visual, the difference will show in the "before" and "after" columns. If only the code changed, the icon may look the same but will still be listed as modified.');
   }
 
   if (r.length > 0) {
     renamed = await Promise.all(r.map((path) => ( buildBeforeAndAfterSvg('R', path.to, path.from))));
-    renamed = buildHTMLSection('Renamed', renamed, 'Present in the previous version but have been renamed in this one. You will see both the "Previous" and "New" filename columns. There will not be any visual changes in the "before" or "after" columns.');
+    renamed = buildHTMLSection('Renamed', renamed, 'What does "Renamed" mean? These icons existed in the previous version but were renamed. You will see both the previous and new filenames. There are no visual changes between the "before" and "after" columns.');
   }
 
   return { created, deleted, modified, renamed };
