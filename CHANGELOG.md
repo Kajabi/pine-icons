@@ -1,3 +1,29 @@
+## 8.20.0 (2025-04-01)
+
+### Features 🚀
+
+- add Pine Design System core dependencies ([f3e26de](https://github.com/Kajabi/pine-icons/commit/f3e26de))
+- update changelog list structure ([54517ad](https://github.com/Kajabi/pine-icons/commit/54517ad))
+- update changelog individual template ([6719303](https://github.com/Kajabi/pine-icons/commit/6719303))
+- **changelog:** added basic updates to the previous changelogs ([df26fe9](https://github.com/Kajabi/pine-icons/commit/df26fe9))
+- **changelog-individiual:** update structure of header ([b38f3a4](https://github.com/Kajabi/pine-icons/commit/b38f3a4))
+- **changelogs:** update styles for more modern feel ([c4c299b](https://github.com/Kajabi/pine-icons/commit/c4c299b))
+- **cheatsheet:** modify styles across the changelogs and cheatsheet ([fd88107](https://github.com/Kajabi/pine-icons/commit/fd88107))
+- **ui:** enhance changelog entries with hover animations and responsive design ([70faaab](https://github.com/Kajabi/pine-icons/commit/70faaab))
+- **www:** add copy rule for CSS file ([6c7943d](https://github.com/Kajabi/pine-icons/commit/6c7943d))
+
+### Bug Fixes 🐛
+
+- **logic:** remove AI changed logic ([b91c464](https://github.com/Kajabi/pine-icons/commit/b91c464))
+
+### Documentation 📄
+
+- **definition:** improve the language of the created, deleted, modified, renamed defintions ([87aea97](https://github.com/Kajabi/pine-icons/commit/87aea97))
+
+### ❤️  Thank You
+
+- Monica Wheeler @monicawheeler
+
 ## 8.19.0 (2025-03-20)
 
 ### Features 🚀
