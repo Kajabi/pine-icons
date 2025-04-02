@@ -16,10 +16,14 @@ h1 {
   font-weight: var(--pine-font-weight-600);
   margin-bottom: var(--pine-dimension-500);
   background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
-    background-clip: border-box;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.changelog-intro {
+  text-align: center;
+  text-wrap: balance;
 }
 
 h3 {
@@ -39,7 +43,7 @@ h3 {
   gap: var(--pine-dimension-300);
 }
 
-@media (max-width: 930px) {
+@media (width <= 930px) {
   .changelog-container {
     display: initial;
   }
@@ -80,7 +84,7 @@ h3 {
   border: 1px solid var(--pine-color-purple-500);
 }
 
-.changelog-entry:not(.changelog-entry--1):after {
+.changelog-entry:not(.changelog-entry--1)::after {
   content: 'View';
   position: absolute;
   bottom: var(--pine-dimension-400);
@@ -88,22 +92,6 @@ h3 {
   font-weight: var(--pine-font-weight-300);
   font-size: var(--pine-font-size-116);
   pointer-events: none;
-}
-
-.changelog-entry--1::before {
-  content: 'Latest';
-  position: absolute;
-  top: 30%;
-  right: var(--pine-dimension-400);
-  background: linear-gradient(to right, #fb923c, var(--pine-color-mercury-500), var(--pine-color-purple-500));
-  border-radius: var(--pine-border-radius-full);
-  padding: var(--pine-dimension-100) var(--pine-dimension-200);
-  color: var(--pine-color-white);
-  font-weight: var(--pine-font-weight-500);
-  font-size: var(--pine-font-size-128);
-  pointer-events: none;
-  font-size: var(--pine-font-size-142);
-  color: var(--pine-color-white)
 }
 
 .changelog-entry--1::after {
@@ -116,7 +104,7 @@ h3 {
   pointer-events: none;
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .changelog-entry--1::after {
     content: 'View';
   }
@@ -176,10 +164,24 @@ footer a {
   text-decoration: none;
 }
 
+footer a + a {
+  margin-left: var(--pine-dimension-400);
+}
+
 footer a:hover {
   text-decoration: underline;
 }
 
-footer a + a {
-  margin-left: var(--pine-dimension-400);
+@media (width <= 500px) {
+  body {
+    padding: var(--pine-dimension-150);
+  }
+
+  footer {
+    padding: 0;
+  }
+
+  h1 {
+    margin-bottom: var(--pine-dimension-250);
+  }
 }

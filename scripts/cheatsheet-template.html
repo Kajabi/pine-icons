@@ -5,6 +5,7 @@
   <title>Pine icons Library - {{version}}</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>"/>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 
   <!-- Pine Design System CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
@@ -158,6 +159,11 @@
       padding: var(--pine-dimension-050) var(--pine-dimension-150);
       border-radius: var(--pine-border-radius-full);
       font-size: var(--pine-font-size-100);
+    }
+    @media (max-width: 500px) {
+      .icon-container {
+        gap: var(--pine-dimension-100);
+      }
     }
   </style>
 </head>
