@@ -6,6 +6,7 @@
   contain: strict;
   display: inline-block;
   fill: var(--color-icon-fill);
+  flex-shrink: 0;
   height: var(--dimension-icon-height);
   width: var(--dimension-icon-width);
 
