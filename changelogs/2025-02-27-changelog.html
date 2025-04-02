@@ -7,6 +7,8 @@
     <text y=%22.9em%22 font-size=%2290%22>🌲</text>
   </svg>">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+
   <!-- Pine Design System -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
 
@@ -61,17 +63,16 @@
     }
 
     section {
-      margin-top: 60px;
-      border-radius: 20px;
-      background: #fff;
-      padding: 30px;
+      margin-top: var(--pine-dimension-750);
+      border-radius: var(--pine-dimension-250);
+      background: var(--pine-color-white);
+      padding: var(--pine-dimension-400);
       box-shadow: 0 5px 5px #ececec;
-      margin-bottom: 60px;
+      margin-bottom: var(--pine-dimension-750);
     }
 
     h1 {
       margin: 0;
-      font-family: serif;
       font-size: 60px;
       text-align: center;
       font-weight: 700;
@@ -160,6 +161,32 @@
         top: 0;
       }
     }
+
+    @media (max-width: 500px) {
+      section {
+        margin: 0;
+        padding: var(--pine-dimension-200);
+        border-radius: 0;
+      }
+
+      .changelog__title {
+        margin-bottom: var(--pine-dimension-200);
+      }
+
+      .changelog__header {
+        padding: var(--pine-dimension-200);
+      }
+
+      .changelog__meta {
+        display: block;
+        padding: var(--pine-dimension-200);
+      }
+
+      .changelog__meta-text {
+        margin-top: var(--pine-dimension-100);
+      }
+    }
+
   </style>
 </head>
 <body><section><header class="changelog__header">
