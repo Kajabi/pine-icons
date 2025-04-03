@@ -28,8 +28,7 @@ npm install @pine-ds/icons
 
 1. Clone the repository
 2. Create your feature branch (`git checkout -b style/amazing-style`)
-3. Commit your changes (`git commit -m 'style(header): Add some amazing style'`)
-  - Use conventional commits for your commit messages
+3. Commit your changes (`git commit -m 'style(header): Add some amazing style'`). Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages
 4. Push to the branch (`git push origin style/amazing-style`)
 5. Open a Pull Request
 
