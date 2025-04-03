@@ -4,17 +4,20 @@
   <meta charset="utf-8">
   <title>2024-04-23 - v4.0.0 Changelog</title>
 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Pine Design System -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
 
   <style>
     body {
-      background-color: #f4f4f4;
+      background-color: var(--pine-color-grey-100);
       max-width: 1200px;
       margin-right: auto;
       margin-left: auto;
       font-family: var(--pine-font-family-greet);
-      font-weight: var(--pine-font-weight-400);
+      font-weight: var(--pine-font-weight-regular);
     }
 
     table {
@@ -24,7 +27,7 @@
     }
 
     thead {
-      font-weight: var(--pine-font-weight-600);
+      font-weight: var(--pine-font-weight-semi-bold);
       color: var(--pine-color-grey-800);
     }
 
@@ -54,28 +57,27 @@
       margin-top: var(--pine-dimension-250);
       padding: 0 var(--pine-dimension-250);
       font-size: var(--pine-typography-body);
-      line-height: 1.5;
+      line-height: var(--pine-line-height-body);
     }
 
     section {
-      margin-top: 60px;
-      border-radius: 20px;
-      background: #fff;
-      padding: 30px;
-      box-shadow: 0 5px 5px #ececec;
-      margin-bottom: 60px;
+      margin-top: var(--pine-dimension-750);
+      border-radius: var(--pine-dimension-250);
+      background: var(--pine-color-white);
+      padding: var(--pine-dimension-400);
+      box-shadow: var(--pine-box-shadow-200);
+      margin-bottom: var(--pine-dimension-750);
     }
 
     h1 {
-      margin: 0;
-      font-family: serif;
-      font-size: 60px;
+      margin: var(--pine-dimension-0);
+      font-size: calc(var(--pine-font-size-heading-4) * 3);
       text-align: center;
-      font-weight: 700;
+      font-weight: var(--pine-font-weight-bold);
     }
 
     h2 {
-      margin: var(--pine-dimension-250) 0 0;
+      margin: var(--pine-dimension-250) var(--pine-dimension-0) var(--pine-dimension-0);
       background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
       background-clip: border-box;
       -webkit-background-clip: text;
@@ -84,12 +86,12 @@
     }
 
     p {
-      margin: 0;
+      margin: var(--pine-dimension-0);
     }
 
     .changelog__header {
       padding: var(--pine-dimension-400);
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid var(--pine-color-grey-200);
       background-color: var(--pine-color-white);
       font-family: var(--pine-font-family-greet);
       position: relative;
@@ -98,7 +100,7 @@
     .changelog__title {
       margin-bottom: var(--pine-dimension-500);
       font-size: var(--pine-font-size-285);
-      font-weight: var(--pine-font-weight-700);
+      font-weight: var(--pine-font-weight-bold);
       font-family: var(--pine-font-family-greet);
       background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
       -webkit-background-clip: text;
@@ -128,8 +130,8 @@
     }
 
     .pdsicon {
-      width: 16px;
-      height: 16px;
+      width: var(--pine-dimension-sm);
+      height: var(--pine-dimension-sm);
     }
 
     .pds-icon-date {
@@ -144,7 +146,7 @@
     .changelog__version {
       padding: var(--pine-dimension-050) var(--pine-dimension-150);
       background: linear-gradient(to right, #f97316, #ec4899);
-      color: #fff;
+      color: var(--pine-color-white);
       border-radius: var(--pine-border-radius-full);
       font-size: var(--pine-font-size-100);
       position: absolute;

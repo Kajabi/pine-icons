@@ -7,24 +7,28 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--pine-font-family-greet);
   color: var(--pine-color-mercury-500);
   text-align: center;
-  margin: 0;
+  margin: var(--pine-dimension-0);
 }
 
 h1 {
   margin-top: var(--pine-dimension-500);
   font-size: var(--pine-font-size-285);
-  font-weight: var(--pine-font-weight-600);
+  font-weight: var(--pine-font-weight-semi-bold);
   margin-bottom: var(--pine-dimension-500);
   background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6);
-    background-clip: border-box;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+.changelog-intro {
+  text-align: center;
+  text-wrap: balance;
+}
+
 h3 {
   font-size: var(--pine-font-size-157);
-  font-weight: var(--pine-font-weight-400);
+  font-weight: var(--pine-font-weight-regular);
 }
 
 .changelog-container {
@@ -39,7 +43,7 @@ h3 {
   gap: var(--pine-dimension-300);
 }
 
-@media (max-width: 930px) {
+@media (width <= 930px) {
   .changelog-container {
     display: initial;
   }
@@ -62,8 +66,7 @@ h3 {
 .changelog-entry {
   border: 3px solid var(--pine-color-mercury-500);
   border-radius: var(--pine-dimension-150);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--pine-box-shadow-300);
   color: var(--pine-color-black);
   position: relative;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -72,38 +75,21 @@ h3 {
 
 .changelog-entry:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--pine-box-shadow-400);
 }
 
 .changelog-entry:not(.changelog-entry--1) {
   border: 1px solid var(--pine-color-purple-500);
 }
 
-.changelog-entry:not(.changelog-entry--1):after {
+.changelog-entry:not(.changelog-entry--1)::after {
   content: 'View';
   position: absolute;
   bottom: var(--pine-dimension-400);
   right: var(--pine-dimension-400);
-  font-weight: var(--pine-font-weight-300);
+  font-weight: var(--pine-font-weight-light);
   font-size: var(--pine-font-size-116);
   pointer-events: none;
-}
-
-.changelog-entry--1::before {
-  content: 'Latest';
-  position: absolute;
-  top: 30%;
-  right: var(--pine-dimension-400);
-  background: linear-gradient(to right, #fb923c, var(--pine-color-mercury-500), var(--pine-color-purple-500));
-  border-radius: var(--pine-border-radius-full);
-  padding: var(--pine-dimension-100) var(--pine-dimension-200);
-  color: var(--pine-color-white);
-  font-weight: var(--pine-font-weight-500);
-  font-size: var(--pine-font-size-128);
-  pointer-events: none;
-  font-size: var(--pine-font-size-142);
-  color: var(--pine-color-white)
 }
 
 .changelog-entry--1::after {
@@ -111,12 +97,12 @@ h3 {
   position: absolute;
   bottom: var(--pine-dimension-400);;
   right: var(--pine-dimension-400);
-  font-weight: var(--pine-font-weight-300);
+  font-weight: var(--pine-font-weight-light);
   font-size: var(--pine-font-size-128);
   pointer-events: none;
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .changelog-entry--1::after {
     content: 'View';
   }
@@ -130,14 +116,14 @@ h3 {
 }
 
 .changelog-entry p {
-  margin: 0;
+  margin: var(--pine-dimension-0);
 }
 
 .changelog-entry_version {
   order: 1;
   font-family: var(--pine-font-family-greet);
   font-size: var(--pine-font-size-285);
-  font-weight: var(--pine-font-weight-800);
+  font-weight: var(--pine-font-weight-extra-bold);
 }
 
 .changelog-entry--1 .changelog-entry_version {
@@ -150,7 +136,7 @@ h3 {
 .changelog-entry_date {
   order: 2;
   font-size: var(--pine-font-size-157);
-  font-weight: var(--pine-font-weight-300);
+  font-weight: var(--pine-font-weight-light);
   color: var(--pine-color-black);
 }
 
@@ -176,10 +162,24 @@ footer a {
   text-decoration: none;
 }
 
+footer a + a {
+  margin-left: var(--pine-dimension-400);
+}
+
 footer a:hover {
   text-decoration: underline;
 }
 
-footer a + a {
-  margin-left: var(--pine-dimension-400);
+@media (width <= 500px) {
+  body {
+    padding: var(--pine-dimension-150);
+  }
+
+  footer {
+    padding: var(--pine-dimension-0);
+  }
+
+  h1 {
+    margin-bottom: var(--pine-dimension-250);
+  }
 }
