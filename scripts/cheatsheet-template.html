@@ -5,7 +5,7 @@
   <title>Pine icons Library - {{version}}</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Pine Design System CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
@@ -86,9 +86,9 @@
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       pointer-events: none;
-      font-size: var(--pine-font-size-100);
+      font-size: var(--pine-font-size-142);
       font-weight: var(--pine-font-weight-medium);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--pine-box-shadow-400);
       border: 1px solid var(--pine-color-grey-200);
       max-width: 90vw;
       display: flex;
@@ -164,6 +164,9 @@
     @media (max-width: 500px) {
       .icon-container {
         gap: var(--pine-dimension-100);
+      }
+      .toast {
+        width: 80vw;
       }
     }
   </style>
