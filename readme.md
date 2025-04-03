@@ -1,4 +1,3 @@
-markdown
 # Pine Icon Library
 
 This is the Icon Library for Kajabi's Pine Design System. It provides a comprehensive set of optimized SVG icons as web components that can be easily integrated into your projects.
