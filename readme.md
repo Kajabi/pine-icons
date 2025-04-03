@@ -9,6 +9,7 @@ This is the Icon Library for Kajabi's Pine Design System. It provides a comprehe
 - SVG icons optimized for web use
 - Icon web component for easy integration
 - Customizable icon colors and sizes
+- Automated Figma integration for seamless icon updates
 
 ## Usage in Your App
 ### Installation
