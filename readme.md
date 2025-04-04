@@ -147,8 +147,7 @@ We welcome contributions! Please follow these guidelines when contributing to th
    npm start
    ```
    The server runs on **port 7200** and provides a live preview.
-2. **Modify icons:** Edit icons in the `src/icons` directory.
-3. **Run tests:** Ensure your changes pass all tests.
+2. **Run tests:** Ensure your changes pass all tests.
 
 ### Available Commands
 
