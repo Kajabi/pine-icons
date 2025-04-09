@@ -54,7 +54,8 @@
       "commitMessage": "chore(release): {version}"
     },
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "preVersionCommand": "npx nx run @pine-ds/icons:build"
     }
   }
 }
