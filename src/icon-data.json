@@ -2899,7 +2899,7 @@
       ]
     },
     {
-      "name": "packages",
+      "name": "package",
       "category": "features",
       "tags": [
         "backup",
