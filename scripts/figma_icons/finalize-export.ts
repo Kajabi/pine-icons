@@ -190,10 +190,10 @@ const createChangelogHTML = async (statusResults: StatusResult) => {
         if (idx < 10) {
           const changelogContent = fs.readFileSync(path.join(changelogPath, filename), 'utf8');
           const versionMatch = changelogContent.match(/Pine Icons - (v[\d.]+)/);
-          const version = versionMatch ? versionMatch[1] : '';
+          const version = versionMatch ? versionMatch[1] : '{{version}}';
           const date = filename.replace('-changelog.html', '');
 
-          changelogRecords.push(`<div class="changelog-entry"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
+          changelogRecords.push(`<div class="changelog-entry changelog-entry--${idx}"><a class="changelog-entry_link" href="changelogs/${filename}"><p class="changelog-entry_date">${date}</p><p class="changelog-entry_version">${version}</p></a></div>`);
         }
         numberOfChangelogs++;
       }
