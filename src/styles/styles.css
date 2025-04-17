@@ -53,15 +53,16 @@ h3 {
   }
 }
 
-.changelog-entry--1 { grid-area: latest; }
-.changelog-entry--2 { grid-area: recent1; }
-.changelog-entry--3 { grid-area: recent2; }
-.changelog-entry--4 { grid-area: recent3; }
-.changelog-entry--5 { grid-area: recent4; }
-.changelog-entry--6 { grid-area: recent5; }
-.changelog-entry--7 { grid-area: recent6; }
-.changelog-entry--8 { grid-area: recent7; }
-.changelog-entry--9 { grid-area: recent8; }
+.changelog-entry--0 { grid-area: latest; }
+.changelog-entry--1 { grid-area: recent1; }
+.changelog-entry--2 { grid-area: recent2; }
+.changelog-entry--3 { grid-area: recent3; }
+.changelog-entry--4 { grid-area: recent4; }
+.changelog-entry--5 { grid-area: recent5; }
+.changelog-entry--6 { grid-area: recent6; }
+.changelog-entry--7 { grid-area: recent7; }
+.changelog-entry--8 { grid-area: recent8; }
+.changelog-entry--9 { grid-area: recent9; }
 
 .changelog-entry {
   border: 3px solid var(--pine-color-mercury-500);
@@ -78,11 +79,11 @@ h3 {
   box-shadow: var(--pine-box-shadow-400);
 }
 
-.changelog-entry:not(.changelog-entry--1) {
+.changelog-entry:not(.changelog-entry--0) {
   border: 1px solid var(--pine-color-purple-500);
 }
 
-.changelog-entry:not(.changelog-entry--1)::after {
+.changelog-entry:not(.changelog-entry--0)::after {
   content: 'View';
   position: absolute;
   bottom: var(--pine-dimension-400);
@@ -92,7 +93,7 @@ h3 {
   pointer-events: none;
 }
 
-.changelog-entry--1::after {
+.changelog-entry--0::after {
   content: 'View Changes';
   position: absolute;
   bottom: var(--pine-dimension-400);;
@@ -103,7 +104,7 @@ h3 {
 }
 
 @media (width <= 400px) {
-  .changelog-entry--1::after {
+  .changelog-entry--0::after {
     content: 'View';
   }
 }
@@ -126,7 +127,7 @@ h3 {
   font-weight: var(--pine-font-weight-extra-bold);
 }
 
-.changelog-entry--1 .changelog-entry_version {
+.changelog-entry--0 .changelog-entry_version {
   background-image: linear-gradient(to right, var(--pine-color-mercury-500), #6b62f2);
   -webkit-background-clip: text;
   background-clip: text;
@@ -140,11 +141,11 @@ h3 {
   color: var(--pine-color-black);
 }
 
-.changelog-entry:not(.changelog-entry--1) .changelog-entry_version {
+.changelog-entry:not(.changelog-entry--0) .changelog-entry_version {
   font-size: var(--pine-font-size-142);
 }
 
-.changelog-entry:not(.changelog-entry--1) .changelog-entry_date {
+.changelog-entry:not(.changelog-entry--0) .changelog-entry_date {
   font-size: var(--pine-font-size-116);
   line-height: var(--pine-line-height-125);
 }
