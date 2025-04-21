@@ -9,7 +9,6 @@ A simple way to add beautiful icons to your web projects using Kajabi's Pine Des
 - Works in any modern browser
 - Easy to change colors and sizes
 - Works with TypeScript
-- Automatic updates from Figma designs
 - Built for accessibility
 
 ## Quick Start
@@ -20,24 +19,7 @@ Choose one of these two simple ways to start:
 
 Add this line to your HTML:
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/icons@9.1.0/dist/pds-icons/pds-icons.esm.js"></script>
-```
-
-Then use icons anywhere in your HTML:
-```html
-<pds-icon name="icon-name"></pds-icon>
-```
-
-### 2. Using with React/npm
-
-Install the package:
-```bash
-npm install @pine-ds/icons
-```
-
-Use in your code:
-```jsx
-<pds-icon name="icon-name"></pds-icon>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@pine-ds/icons@latest/dist/pds-icons/pds-icons.esm.js"></script>
 ```
 
 ## How to Use Icons
@@ -59,7 +41,6 @@ Change the size:
 
 <!-- Using custom sizes -->
 <pds-icon name="icon-name" size="24px"></pds-icon>
-<pds-icon name="icon-name" size="24"></pds-icon>
 ```
 
 Change the color:
