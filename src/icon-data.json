@@ -2910,7 +2910,7 @@
       ]
     },
     {
-      "name": "package",
+      "name": "packages",
       "category": "features",
       "tags": [
         "backup",
