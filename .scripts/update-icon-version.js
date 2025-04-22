@@ -127,8 +127,14 @@ const updateChangelogFile = async (iconPkgVersion) => {
   const html = fs.readFileSync(fullChangelogFilename, 'utf8')
     .replace(/{{version}}/g, `v${iconPkgVersion}`)
 
+  const indexHtml = fs.readFileSync(path.join(srcIconsBasePath, 'index.html'), 'utf8')
+    .replace(/{{version}}/g, `v${iconPkgVersion}`)
+
   // Write file to changelogs directory
   fs.writeFileSync(fullChangelogFilename, html);
+
+  // Write file to index.html
+  fs.writeFileSync(path.join(srcIconsBasePath, 'index.html'), indexHtml);
 }
 
 let [,,versionType, preVersionId] = process.argv;
