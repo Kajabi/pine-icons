@@ -5,7 +5,6 @@ const axios = require('axios');
 import chalk from 'chalk'; // Terminal string styling done right
 import path from 'path';
 import fs from 'fs-extra';
-import mkdirp from 'mkdirp';
 
 import { run as finalizeExport } from './finalize-export';
 import { run as optimizeSvgs} from '../optimize-svgs'
@@ -315,7 +314,7 @@ const loadFigmaIconConfig = async (rootDir: string) => {
 
       let hasError = false;
 
-      hasError ||= setFigmaBatchSize(config);
+      setFigmaBatchSize(config);
       hasError ||= setFigmaAccessToken(config);
       hasError ||= setFigmaFileId(config);
 
@@ -339,7 +338,7 @@ const loadFigmaIconConfig = async (rootDir: string) => {
  * @params rootDir - The initial starting directory
  * @params config - The config data
  */
-const processData = async (rootDir: string, config: FigmaIconConfig, pageName) => {
+const processData = async (_rootDir: string, config: FigmaIconConfig, pageName) => {
   try {
     let figmaFileId = config.figmaFileId;
     let figmaData = await fetchFigmaData(figmaFileId);
@@ -366,8 +365,6 @@ const processData = async (rootDir: string, config: FigmaIconConfig, pageName) =
     log(chalk.yellowBright(iconsArray.length), info('icons have been extracted'))
 
     let output = { icons: [], downloaded: [] };
-
-    const outputDirectory = config.downloadPath; //.concat(`-${batchNo}`)
 
     const iconResults = Promise.all(batches.map(async (batch, idx) => {
       log("Processing batch", chalk.yellowBright(idx+1), " of ", chalk.yellowBright(batches.length, " with ", chalk.yellowBright(batch.length), " icons"));
@@ -440,8 +437,6 @@ const removeTmpDirectory = (config: FigmaIconConfig) => {
  */
 
 const setFigmaBatchSize = (config: FigmaIconConfig) => {
-  let hasError = false;
-
   switch(true) {
     case (!!process.env.BATCH_SIZE == true):
       log(info('Using Batch Size in ', detail('ENVIRONMENT variable')));
@@ -457,8 +452,6 @@ const setFigmaBatchSize = (config: FigmaIconConfig) => {
       log(info('Using default Batch Size of ', detail(defaultBatchSize)));
       break;
   }
-
-  return hasError;
 }
 
 /**
@@ -536,9 +529,9 @@ const setFigmaFileId = (config: FigmaIconConfig) => {
  * @returns array - an array of arrays of FigmaIcon objects
  */
 const splitIntoBatches = ( array: Array<FigmaIcon>, batchSize: number) => {
-  let batches = [];
+  const batches = [];
     for (let i = 0; i < array.length; i += batchSize) {
-      let batch = array.slice(i, i + batchSize);
+      const batch = array.slice(i, i + batchSize);
       batches.push(batch);
     }
     return batches;

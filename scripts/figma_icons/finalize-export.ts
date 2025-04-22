@@ -1,9 +1,9 @@
 import { collectionCopy } from '../collection-copy';
 
 import chalk from 'chalk'; // Terminal string styling done right
-import cliui from 'cliui';
 import path from 'path';
 import fs from 'fs-extra';
+import { exec } from 'node:child_process';
 import { simpleGit, SimpleGitOptions, StatusResult } from 'simple-git';
 import { FigmaIcon, FigmaIconConfig, SvgDiffResult } from './types';
 
@@ -47,7 +47,6 @@ export const run = async(config, data, rootDir: string) => {
   await createChangelogHTML(statusResults);
 
   // restore staged files in case of failure
-  const { exec } = require('node:child_process')
   exec(`git restore --staged ${srcSvgBasePath}`)
 }
 
@@ -277,17 +276,6 @@ const createJsonIconList = (icons: Array<FigmaIcon>, outputDir: string) => {
 }
 
 /**
- * Generates a string that represents the number
- * of KiB
- *
- * @param size - number -
- * @returns string
- */
-const formatSize = (size) => {
-  return (size / 1024).toFixed(2) + ' KiB'
-}
-
-/**
  * Reads the file contents located on disk
  * @param filename - the name of the file
  * @returns string
@@ -323,40 +311,6 @@ const gitClient = (options: Partial<SimpleGitOptions> = { baseDir: srcSvgBasePat
  */
 const logErrorMessage = (methodName: string, err) => {
   log('Error in ' , detail(methodName), '\n Message: ', error(err));
-}
-
-/**
- * Outputs a table of Name and Filesize for each
- * file downloaded
- * @example
- *   File                                      Size
- *   ios-battery.svg                           0.91 KiB
- *   ios-wifi.svg                              1.23 KiB
- *   ios-data.svg                              1.00 KiB
- *   klarna.svg                                0.53 KiB
- * @param results - Collection of name and filesize
- */
-const makeResultsTable = (results) => {
-  const ui = cliui({width: 80});
-
-  console.log('Results: ', results.length);
-  ui.div(
-    makeRow(
-      chalk.cyan.bold(`File`),
-      chalk.cyan.bold(`Size`),
-    ) + `\n\n` +
-    results.map(asset => makeRow(
-      asset.name.includes('-duplicate-name')
-        ? chalk.red.bold(asset.name)
-        : chalk.green(asset.name),
-      formatSize(asset.size)
-    )).join(`\n`)
-  )
-  return ui.toString()
-}
-
-const makeRow = (a, b) => {
-  return `  ${a}\t    ${b}\t`
 }
 
 /**
