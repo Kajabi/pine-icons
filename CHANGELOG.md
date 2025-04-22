@@ -1,3 +1,19 @@
+## 9.2.0 (2025-04-22)
+
+### Features 🚀
+
+- ⚠️  remove package.svg ([d53df10](https://github.com/Kajabi/pine-icons/commit/d53df10))
+- **icons:** v9.2.0, created: 1, modified: 0, renamed: 0, deleted: 0 ([c53edb1](https://github.com/Kajabi/pine-icons/commit/c53edb1))
+
+### ⚠️  Breaking Changes
+
+- ⚠️  remove package.svg ([d53df10](https://github.com/Kajabi/pine-icons/commit/d53df10))
+
+### ❤️  Thank You
+
+- Julian Skinner
+- Kajabi Automation Bot
+
 ## 9.1.0 (2025-04-17)
 
 ### Features 🚀
