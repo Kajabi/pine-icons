@@ -18,6 +18,6 @@
     "removeComments": false,
     "target": "es2017"
   },
-  "include": ["src"],
+  "include": ["src", "scripts/**/*.ts"],
   "exclude": ["node_modules"]
 }
