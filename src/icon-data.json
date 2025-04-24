@@ -2292,6 +2292,20 @@
       ]
     },
     {
+      "name": "link-broken",
+      "category": "actions",
+      "tags": [
+        "break",
+        "broken",
+        "chain",
+        "connection",
+        "hyperlink",
+        "link",
+        "unlink",
+        "website"
+      ]
+    },
+    {
       "name": "list-bullet",
       "category": "text-editor",
       "tags": [
