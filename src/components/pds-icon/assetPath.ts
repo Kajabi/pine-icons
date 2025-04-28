@@ -24,7 +24,7 @@ export const getAssetPath = (path: string) => {
   const windowAssetPath = window.__PINE_ASSET_PATH__;
 
   // Set the CDN Asset path using the latest version
-  const cdnAssetPath = 'https://cdn.jsdelivr.net/npm/@pine-ds/icons/dist/pds-icons/';
+  const cdnAssetPath = 'https://cdn.jsdelivr.net/npm/@pine-ds/icons/';
 
   const assetBasePath  = Build.isTesting ? '/dist/pds-icons' : metaPineAssetPath || windowAssetPath || cdnAssetPath || '/'
 
