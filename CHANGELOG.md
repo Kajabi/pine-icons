@@ -1,3 +1,13 @@
+## 9.3.1 (2025-04-29)
+
+### Bug Fixes 🐛
+
+- changes the location which we should look for svgs ([#37](https://github.com/Kajabi/pine-icons/pull/37))
+
+### ❤️  Thank You
+
+- Julian Skinner @ju-Skinner
+
 ## 9.3.0 (2025-04-24)
 
 ### Features 🚀
