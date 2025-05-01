@@ -11,6 +11,17 @@
       ]
     },
     {
+      "name": "activity",
+      "category": "icons",
+      "tags": [
+        "activity",
+        "exercise",
+        "heart rate",
+        "heartbeat",
+        "pulse"
+      ]
+    },
+    {
       "name": "add",
       "category": "actions",
       "tags": [
@@ -468,6 +479,17 @@
         "bookmark",
         "save",
         "tag"
+      ]
+    },
+    {
+      "name": "brackets",
+      "category": "icons",
+      "tags": [
+        "brackets",
+        "code",
+        "css",
+        "markdown",
+        "parenthesis"
       ]
     },
     {
@@ -1261,6 +1283,17 @@
       ]
     },
     {
+      "name": "dataflow-01",
+      "category": "icons",
+      "tags": [
+        "data",
+        "database",
+        "dataflow",
+        "flow",
+        "server"
+      ]
+    },
+    {
       "name": "delete-circle",
       "category": "actions",
       "tags": [
@@ -1491,6 +1524,17 @@
         "fullscreen",
         "maximize",
         "open"
+      ]
+    },
+    {
+      "name": "facebook-messenger",
+      "category": "icons",
+      "tags": [
+        "data",
+        "database",
+        "dataflow",
+        "flow",
+        "server"
       ]
     },
     {
@@ -1790,6 +1834,19 @@
         "gift",
         "package",
         "surprise"
+      ]
+    },
+    {
+      "name": "git-pull-request",
+      "category": "icons",
+      "tags": [
+        "data",
+        "database",
+        "dataflow",
+        "flow",
+        "git",
+        "pull",
+        "request"
       ]
     },
     {
@@ -2223,6 +2280,18 @@
       ]
     },
     {
+      "name": "layout-alt-03",
+      "category": "icons",
+      "tags": [
+        "browser",
+        "flexbox",
+        "grid",
+        "layout",
+        "table",
+        "web"
+      ]
+    },
+    {
       "name": "layout-bottom",
       "category": "text-editor",
       "tags": [
@@ -2406,6 +2475,17 @@
       "tags": [
         "linkedin",
         "logo"
+      ]
+    },
+    {
+      "name": "logo-openai",
+      "category": "icons",
+      "tags": [
+        "calculate",
+        "mathematics",
+        "percent",
+        "percentage",
+        "split"
       ]
     },
     {
@@ -2986,6 +3066,17 @@
         "edit",
         "pencil",
         "write"
+      ]
+    },
+    {
+      "name": "percent-02",
+      "category": "icons",
+      "tags": [
+        "calculate",
+        "mathematics",
+        "percent",
+        "percentage",
+        "split"
       ]
     },
     {
@@ -3605,6 +3696,13 @@
         "announcement",
         "megaphone",
         "speaker"
+      ]
+    },
+    {
+      "name": "split",
+      "category": "icons",
+      "tags": [
+        "split"
       ]
     },
     {
@@ -4253,6 +4351,24 @@
         "spanner",
         "tool",
         "tools"
+      ]
+    },
+    {
+      "name": "zoom-in",
+      "category": "icons",
+      "tags": [
+        "plus",
+        "zoom",
+        "zoom in"
+      ]
+    },
+    {
+      "name": "zoom-out",
+      "category": "icons",
+      "tags": [
+        "minus",
+        "zoom",
+        "zoom out"
       ]
     }
   ]
