@@ -1,3 +1,13 @@
+## 9.4.2 (2025-05-01)
+
+### Bug Fixes 🐛
+
+- path to CDN ([dd38fa0](https://github.com/Kajabi/pine-icons/commit/dd38fa0))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 9.4.1 (2025-05-01)
 
 ### Bug Fixes 🐛
