@@ -7,8 +7,34 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script>
+    const LOCAL_PORT = 7200;
+    const host = window.location.host;
+    const timestamp = new Date().getTime(); // Generate a unique timestamp
+
+    if ( host.includes('localhost') ) {
+      window.ICONS_URL = `http://localhost:${LOCAL_PORT}/build`;
+    } else {
+      window.ICONS_URL = 'https://cdn.jsdelivr.net/npm/@pine-ds/icons/dist/';
+    }
+
+    function setScriptLinks() {
+      const scriptModule = document.getElementById("scriptModule");
+      const scriptNoModule = document.getElementById("scriptNoModule");
+
+      scriptModule.src = `${window.ICONS_URL}/pds-icons.esm.js?v=${timestamp}`;
+      scriptNoModule.src = `${window.ICONS_URL}/index.esm.js?v=${timestamp}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', setScriptLinks);
+  </script>
+
+  <script id="scriptNoModule" nomodule></script>
+  <script id="scriptModule" type="module"></script>
+
   <!-- Pine Design System CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pine-ds/core@latest/dist/pine-core/pine-core.css" />
+
   <style>
     body {
       font-family: var(--pine-font-family-greet);
