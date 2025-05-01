@@ -1,6 +1,6 @@
 import { Build, Component, Element, Host, Prop, State, Watch, h } from '@stencil/core';
 import { getSvgContent, pdsIconContent } from './request';
-import { getName, getUrl, inheritAttributes } from './utils';
+import { getName, getUrl, inheritAttributes, isRTL, shouldRtlFlipIcon } from './utils';
 
 @Component({
   tag: 'pds-icon',
@@ -9,6 +9,8 @@ import { getName, getUrl, inheritAttributes } from './utils';
   shadow: true,
 })
 export class PdsIcon {
+  private didLoadIcon = false;
+  private iconName: string | null = null;
   private io?: IntersectionObserver;
   private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -26,9 +28,17 @@ export class PdsIcon {
   @Prop() color?: string;
 
   /**
-   * This a combination of both `name` and `src`. If a `src` url is detected
+   * Determines if the icon should be flipped when the `dir` is right-to-left (`"rtl"`).
+   * This is automatically enabled for icons that are in the `ICONS_TO_FLIP` list and
+   * when the `dir` is `"rtl"`. If `flipRtl` is set to `false`, the icon will not be flipped
+   * even if the `dir` is `"rtl"`.
+   */
+  @Prop() flipRtl?: boolean;
+
+  /**
+   * This is a combination of both `name` and `src`. If a `src` URL is detected,
    * it will set the `src` property. Otherwise it assumes it's a built-in named
-   * SVG and set the `name` property.
+   * SVG and sets the `name` property.
    */
   @Prop() icon?: any;
 
@@ -40,7 +50,7 @@ export class PdsIcon {
 
   /**
    * The size of the icon. This can be
-   * 'small', 'regular', 'medium', large, or a
+   * 'small', 'regular', 'medium', 'large', or a
    * custom value (40px, 1rem, etc)
    *
    */
@@ -76,6 +86,10 @@ export class PdsIcon {
 
   componentDidLoad() {
     this.setCSSVariables();
+
+    if (!this.didLoadIcon) {
+      this.loadIcon();
+    }
   }
 
   componentWillLoad() {
@@ -121,18 +135,23 @@ export class PdsIcon {
         } else {
           getSvgContent(url).then(() => (this.svgContent = pdsIconContent.get(url)));
         }
+        this.didLoadIcon = true;
       }
     }
 
-    const label = getName(this.name, this.icon);
+    this.iconName = getName(this.name, this.icon);
 
-    if (label) {
-      this.ariaLabel = label.replace(/\-/g, ' ');
+    if (this.iconName) {
+      this.ariaLabel = this.iconName.replace(/\-/g, ' ');
     }
   }
 
   render() {
-    const { ariaLabel, inheritedAttributes } = this;
+    const { ariaLabel, flipRtl, iconName,inheritedAttributes } = this;
+    const shouldIconAutoFlip = iconName
+      ? shouldRtlFlipIcon(iconName, this.el) && flipRtl !== false
+      : false;
+    const shouldFlip = flipRtl || shouldIconAutoFlip;
 
     return (
 
@@ -142,6 +161,8 @@ export class PdsIcon {
         role="img"
         class={{
           ...createColorClasses(this.color),
+          'flip-rtl': shouldFlip,
+          'icon-rtl': shouldFlip && isRTL(this.el)
         }}
         {...inheritedAttributes}
       >

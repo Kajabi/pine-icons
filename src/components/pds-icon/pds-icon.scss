@@ -26,3 +26,22 @@ svg {
   height: 100%;
   width: 100%;
 }
+
+/* :host-context is supported in chromium; :dir is supported in safari & firefox */
+:host(.flip-rtl):host-context([dir='rtl']) .icon-inner {
+  transform: scaleX(-1);
+}
+
+:host(.flip-rtl:dir(rtl)) .icon-inner {
+  transform: scaleX(-1);
+}
+
+/**
+  * This is needed for WebKit otherwise the fallback
+  * will always cause the icon to be flipped if the document
+  * loads in RTL.
+  */
+:host(.flip-rtl:dir(ltr)) .icon-inner {
+  transform: scaleX(1);
+}
+

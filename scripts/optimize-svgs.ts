@@ -270,7 +270,7 @@ const createCheatSheet = async (version: string, rootDir: string, distDir: strin
   const distCheatsheetFilePath = join(distDir, 'cheatsheet.html');
 
   const c = srcSvgData.map(
-    (svgData) => `<button class="icon-button" title="Copy ${svgData.iconName} code snippet" data-tags="${svgData.tags}" data-icon-name="${svgData.iconName}"><svg><use href="#${svgData.iconName}" xlink:href="#${svgData.iconName}"/></svg><span class="visually-hidden">Copy ${svgData.iconName} icon code</span></button>`,
+    (svgData) => `<button class="icon-button" title="Copy ${svgData.iconName} code snippet" data-tags="${svgData.tags}" data-icon-name="${svgData.iconName}"><pds-icon name="${svgData.iconName}"></pds-icon><span class="visually-hidden">Copy ${svgData.iconName} icon code</span></button>`,
   );
 
   c.push(svgSymbolsContent);
