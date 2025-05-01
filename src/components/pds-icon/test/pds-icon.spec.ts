@@ -118,4 +118,71 @@ describe('pds-icon', () => {
   });
 
 
+  it('flips an icon that should be flipped in RTL mode', async () => {
+    // Use an icon from the ICONS_TO_FLIP list (e.g., 'arrow-left')
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      direction: 'rtl',
+      html: '<pds-icon icon="arrow-left"></pds-icon>',
+    });
+
+    const icon = page.body.querySelector('pds-icon');
+    expect(icon).toHaveClass('flip-rtl');
+    expect(icon).toHaveClass('icon-rtl');
+  });
+
+  it('does not flip an icon that should not be flipped in RTL mode', async () => {
+    // Use an icon not in the ICONS_TO_FLIP list (e.g., 'home')
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      direction: 'rtl',
+      html: '<pds-icon icon="home"></pds-icon>',
+    });
+
+    const icon = page.body.querySelector('pds-icon');
+    expect(icon).not.toHaveClass('flip-rtl');
+    expect(icon).not.toHaveClass('icon-rtl');
+  });
+
+  it('respects the flipRTL prop when set to true', async () => {
+    // Force flip an icon that would not normally be flipped
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      direction: 'rtl',
+      html: '<pds-icon name="home" flip-rtl></pds-icon>',
+    });
+
+    const icon = page.body.querySelector('pds-icon');
+    console.log(icon.outerHTML);
+    expect(icon).toHaveClass('flip-rtl');
+    expect(icon).toHaveClass('icon-rtl');
+  });
+
+  it('respects the flipRTL prop when set to false', async () => {
+    // Prevent flipping an icon that would normally be flipped
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      direction: 'rtl',
+      html: '<pds-icon icon="arrow-left" flip-rtl="false"></pds-icon>',
+    });
+
+    const icon = page.body.querySelector('pds-icon');
+
+    expect(icon.className.includes('flip-rtl')).toBe(false);
+    expect(icon.className.includes('icon-rtl')).toBe(false);
+  });
+
+  it('does not flip icons when not in RTL mode', async () => {
+    // Even an icon in the ICONS_TO_FLIP list should not flip in LTR mode
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      direction: 'ltr',
+      html: '<pds-icon icon="arrow-left"></pds-icon>',
+    });
+
+    const icon = page.body.querySelector('pds-icon');
+
+    expect(icon.className.includes('flip-rtl')).toBe(false);
+    expect(icon.className.includes('icon-rtl')).toBe(false);
+  });
 });

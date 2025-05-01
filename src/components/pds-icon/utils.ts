@@ -90,6 +90,20 @@ export const getUrl = (pdsIcon: PdsIcon) => {
 };
 
 
+/**
+ * Returns `true` if the document or host element
+ * has a `dir` set to `rtl`. The host value will always
+ * take priority over the root document value.
+ */
+export const isRTL = (hostEl?: Pick<HTMLElement, 'dir'>) => {
+  if (hostEl) {
+    if (hostEl.dir !== '') {
+      return hostEl.dir.toLowerCase() === 'rtl';
+    }
+  }
+  return document?.dir.toLowerCase() === 'rtl';
+};
+
 export const isSrc = (str: string) => str.length > 0 && /(\/|\.)/.test(str);
 export const isStr = (val: any): val is string => typeof val === 'string'; // eslint-disable-line @typescript-eslint/no-explicit-any
 export const toLower = (val: string) => val.toLowerCase();
@@ -119,3 +133,79 @@ export const toLower = (val: string) => val.toLowerCase();
 
   return attributeObject;
 }
+
+/**
+ * Determines if an icon should be flipped when RTL is enabled
+ * @param iconName - The name of the icon to check
+ * @param hostEl - Optional host element to check for RTL direction
+ * @returns {boolean} - True if the icon should be flipped in RTL mode, false otherwise
+ */
+export const shouldRtlFlipIcon = (iconName: string, hostEl?: Pick<HTMLElement, 'dir'>): boolean => {
+  // First check if we're in RTL mode
+  const rtlEnabled = isRTL(hostEl);
+
+  // Only flip if we're in RTL mode and the icon is in the flip list
+  return rtlEnabled && ICONS_TO_FLIP.includes(iconName);
+}
+
+/**
+ * Array of available icon names
+ */
+export const ICONS_TO_FLIP = [
+  'align-horizontal-bottom',
+  'align-horizontal-center',
+  'align-horizontal-top',
+  'align-left',
+  'align-right',
+  'align-vertical-left',
+  'align-vertical-right',
+  'arrow-corner',
+  'arrow-left',
+  'arrow-right',
+  'calendar-schedule',
+  'caret-left',
+  'caret-right',
+  'cart',
+  'cart-add',
+  'comment',
+  'comment-no',
+  'conversation',
+  'copy',
+  'copy-07',
+  'delete-key',
+  'delete-x',
+  'downsell',
+  'drawer-collapse',
+  'drawer-expand',
+  'duplicate',
+  'feedback',
+  'file-lock',
+  'file-search',
+  'form-field',
+  'form-filled',
+  'left-small',
+  'launch',
+  'list-bullet',
+  'list-numbers',
+  'margin-left',
+  'margin-right',
+  'move-left',
+  'move-right',
+  'newsletter-2',
+  'one-off-session',
+  'quote',
+  'redo',
+  'reset-password',
+  'right-small',
+  'send-message',
+  'share',
+  'super-admin',
+  'tablet-landscape',
+  'undo',
+  'user-star',
+  'user-star-filled',
+  'users',
+  'users-filled',
+  'users-tone'
+];
+
