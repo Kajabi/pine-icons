@@ -153,7 +153,7 @@ describe('pds-icon', () => {
     });
 
     const icon = page.body.querySelector('pds-icon');
-    console.log(icon.outerHTML);
+
     expect(icon).toHaveClass('flip-rtl');
     expect(icon).toHaveClass('icon-rtl');
   });
