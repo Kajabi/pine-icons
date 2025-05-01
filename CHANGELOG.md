@@ -1,3 +1,20 @@
+## 9.4.0 (2025-05-01)
+
+### Features 🚀
+
+- add rtl support icon ([#38](https://github.com/Kajabi/pine-icons/pull/38))
+- **icons:** v9.4.0, created: 10, modified: 0, renamed: 0, deleted: 0 ([bf3f0bc](https://github.com/Kajabi/pine-icons/commit/bf3f0bc))
+
+### Documentation 📄
+
+- **readme:** create a base readme ([#35](https://github.com/Kajabi/pine-icons/pull/35))
+
+### ❤️  Thank You
+
+- Julian Skinner @ju-Skinner
+- Kajabi Automation Bot
+- Monica Wheeler @monicawheeler
+
 ## 9.3.1 (2025-04-29)
 
 ### Bug Fixes 🐛
