@@ -1,3 +1,13 @@
+## 9.4.1 (2025-05-01)
+
+### Bug Fixes 🐛
+
+- classnames weren't updated in code ([b8e2011](https://github.com/Kajabi/pine-icons/commit/b8e2011))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 9.4.0 (2025-05-01)
 
 ### Features 🚀
