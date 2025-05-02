@@ -1,3 +1,7 @@
+## 9.4.3 (2025-05-02)
+
+This was a version bump only, there were no code changes.
+
 ## 9.4.2 (2025-05-01)
 
 ### Bug Fixes 🐛
