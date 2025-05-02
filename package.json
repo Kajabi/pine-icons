@@ -66,6 +66,8 @@
     "@commitlint/config-conventional": "^17.7.0",
     "@nx/js": "20.1.2",
     "@stencil/sass": "^3.2.0",
+    "@swc-node/register": "^1.10.10",
+    "@swc/core": "^1.11.24",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^29.5.14",
     "@types/mkdirp": "^1.0.2",
