@@ -8,6 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface PdsIcon {
         /**
+          * The `alt` attribute of the icon.
+         */
+        "alt"?: string;
+        /**
           * The color of the icon
          */
         "color"?: string;
@@ -51,6 +55,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PdsIcon {
+        /**
+          * The `alt` attribute of the icon.
+         */
+        "alt"?: string;
         /**
           * The color of the icon
          */
