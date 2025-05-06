@@ -1,3 +1,13 @@
+## 9.4.4 (2025-05-06)
+
+### Documentation 📄
+
+- update index page with correct class names ([e6f9345](https://github.com/Kajabi/pine-icons/commit/e6f9345))
+
+### ❤️  Thank You
+
+- Julian Skinner
+
 ## 9.4.3 (2025-05-02)
 
 This was a version bump only, there were no code changes.
