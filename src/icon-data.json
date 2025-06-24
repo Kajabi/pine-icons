@@ -1,6 +1,13 @@
 {
   "icons": [
     {
+      "name": "Property 1=Default",
+      "category": ".icon",
+      "tags": [
+        "Property 1=Default"
+      ]
+    },
+    {
       "name": "access-key",
       "category": "features",
       "tags": [
@@ -12,7 +19,7 @@
     },
     {
       "name": "activity",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "activity",
         "exercise",
@@ -483,7 +490,7 @@
     },
     {
       "name": "brackets",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "brackets",
         "code",
@@ -1284,7 +1291,7 @@
     },
     {
       "name": "dataflow-01",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "data",
         "database",
@@ -1528,7 +1535,7 @@
     },
     {
       "name": "facebook-messenger",
-      "category": "icons",
+      "category": "social",
       "tags": [
         "data",
         "database",
@@ -1838,7 +1845,7 @@
     },
     {
       "name": "git-pull-request",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "data",
         "database",
@@ -2281,7 +2288,7 @@
     },
     {
       "name": "layout-alt-03",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "browser",
         "flexbox",
@@ -2479,7 +2486,7 @@
     },
     {
       "name": "logo-openai",
-      "category": "icons",
+      "category": "social",
       "tags": [
         "calculate",
         "mathematics",
@@ -3070,7 +3077,7 @@
     },
     {
       "name": "percent-02",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "calculate",
         "mathematics",
@@ -3637,7 +3644,7 @@
     },
     {
       "name": "shopping-cart-filled",
-      "category": "actions",
+      "category": "features",
       "tags": [
         "cart",
         "ecommerce",
@@ -3647,7 +3654,7 @@
     },
     {
       "name": "shopping-cart-filled",
-      "category": "features",
+      "category": "actions",
       "tags": [
         "cart",
         "ecommerce",
@@ -3700,7 +3707,7 @@
     },
     {
       "name": "split",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "split"
       ]
@@ -4355,7 +4362,7 @@
     },
     {
       "name": "zoom-in",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "plus",
         "zoom",
@@ -4364,7 +4371,7 @@
     },
     {
       "name": "zoom-out",
-      "category": "icons",
+      "category": "actions",
       "tags": [
         "minus",
         "zoom",
