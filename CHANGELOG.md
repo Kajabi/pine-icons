@@ -1,3 +1,13 @@
+## 9.5.1 (2025-06-27)
+
+### Bug Fixes 🐛
+
+- **icon:** update icon prop type to string, enhance loading logic ([#41](https://github.com/Kajabi/pine-icons/pull/41))
+
+### ❤️  Thank You
+
+- Phillip Lovelace
+
 ## 9.5.0 (2025-06-24)
 
 ### Features 🚀
