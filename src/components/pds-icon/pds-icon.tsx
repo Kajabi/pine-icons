@@ -40,7 +40,7 @@ export class PdsIcon {
    * it will set the `src` property. Otherwise it assumes it's a built-in named
    * SVG and sets the `name` property.
    */
-  @Prop() icon?: any;
+  @Prop() icon?: string;
 
   /**
    * The name of the icon to use from
@@ -87,9 +87,14 @@ export class PdsIcon {
   componentDidLoad() {
     this.setCSSVariables();
 
-    if (!this.didLoadIcon) {
-      this.loadIcon();
-    }
+    // Always attempt to load icon, but add delay for IntersectionObserver to complete
+    setTimeout(() => {
+      if (!this.didLoadIcon || !this.svgContent) {
+        console.warn('Icon not loaded after component mount, forcing load attempt');
+        this.isVisible = true; // Force visibility for fallback loading
+        this.loadIcon();
+      }
+    }, 50);
   }
 
   componentWillLoad() {
@@ -104,7 +109,18 @@ export class PdsIcon {
   }
 
   connectedCallback() {
+    // Set a fallback timeout in case IntersectionObserver never fires
+    // This prevents icons from never loading due to intersection issues
+    const fallbackTimeout = setTimeout(() => {
+      if (!this.isVisible) {
+        console.warn('IntersectionObserver timeout, forcing icon visibility');
+        this.isVisible = true;
+        this.loadIcon();
+      }
+    }, 100); // 100ms fallback
+
     this.waitUntilVisible(this.el, '50px', () => {
+      clearTimeout(fallbackTimeout);
       this.isVisible = true;
       this.loadIcon();
     })
@@ -127,13 +143,31 @@ export class PdsIcon {
   @Watch('src')
   @Watch('icon')
   loadIcon() {
-    if (Build.isBrowser && this.isVisible) {
+    if (Build.isBrowser) {
       const url = getUrl(this);
       if (url) {
         if (pdsIconContent.has(url)) {
           this.svgContent = pdsIconContent.get(url);
         } else {
-          getSvgContent(url).then(() => (this.svgContent = pdsIconContent.get(url)));
+          // Add comprehensive error handling and timeout
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error('Icon loading timeout')), 10000); // 10 second timeout
+          });
+
+          Promise.race([getSvgContent(url), timeoutPromise])
+            .then(() => {
+              this.svgContent = pdsIconContent.get(url);
+              // Force re-render if content was loaded after initial render
+              if (!this.svgContent) {
+                console.warn(`Icon content not found after successful load: ${url}`);
+              }
+            })
+            .catch((error) => {
+              console.error(`Failed to load icon: ${url}`, error);
+              // Set empty content to prevent infinite loading state
+              pdsIconContent.set(url, '');
+              this.svgContent = '';
+            });
         }
         this.didLoadIcon = true;
       }
@@ -152,6 +186,9 @@ export class PdsIcon {
       ? shouldRtlFlipIcon(iconName, this.el) && flipRtl !== false
       : false;
     const shouldFlip = flipRtl || shouldIconAutoFlip;
+
+    // Debug information when enabled
+    this.debugIconState();
 
     return (
 
@@ -179,20 +216,52 @@ export class PdsIcon {
    * Private Methods
    ****/
 
+  private debugIconState() {
+    if (typeof window !== 'undefined' && (window as Window & { __PDS_ICON_DEBUG__?: boolean }).__PDS_ICON_DEBUG__) {
+      console.log('PDS Icon Debug:', {
+        name: this.name,
+        src: this.src,
+        icon: this.icon,
+        isVisible: this.isVisible,
+        didLoadIcon: this.didLoadIcon,
+        svgContent: this.svgContent ? 'loaded' : 'empty',
+        url: getUrl(this),
+        hasIntersectionObserver: !!this.io,
+        element: this.el
+      });
+    }
+  }
+
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
     if (Build.isBrowser && typeof window !== 'undefined' && (window).IntersectionObserver) {
-      const io = (this.io = new (window).IntersectionObserver(
-        (data: IntersectionObserverEntry[]) => {
-          if (data[0].isIntersecting) {
-            io.disconnect();
+      try {
+        const io = (this.io = new (window).IntersectionObserver(
+          (data: IntersectionObserverEntry[]) => {
+            if (data[0].isIntersecting) {
+              io.disconnect();
+              this.io = undefined;
+              cb();
+            }
+          },
+          { rootMargin },
+        ));
+
+        io.observe(el);
+
+        // Add a safety timeout for IntersectionObserver
+        setTimeout(() => {
+          if (this.io) {
+            console.warn('IntersectionObserver did not trigger within 5 seconds, forcing callback');
+            this.io.disconnect();
             this.io = undefined;
             cb();
           }
-        },
-        { rootMargin },
-      ));
-
-      io.observe(el);
+        }, 5000);
+      } catch (error) {
+        console.error('IntersectionObserver initialization failed:', error);
+        // Fall back to immediate execution
+        cb();
+      }
     } else {
       // browser doesn't support IntersectionObserver
       // so just fallback to always show it
