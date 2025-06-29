@@ -21,6 +21,11 @@ export class PdsIcon {
   @State() private svgContent?: string;
 
   /**
+   * The `alt` attribute of the icon.
+   */
+  @Prop() alt?: string;
+
+  /**
    *
    * The color of the icon
    *
@@ -157,7 +162,7 @@ export class PdsIcon {
 
       <Host
         aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null }
-        alt=""
+        alt={this.alt}
         role="img"
         class={{
           ...createColorClasses(this.color),
