@@ -3854,6 +3854,16 @@
       ]
     },
     {
+      "name": "switch-vertical",
+      "category": "actions",
+      "tags": [
+        "arrows",
+        "swap",
+        "switch",
+        "vertical"
+      ]
+    },
+    {
       "name": "sync",
       "category": "actions",
       "tags": [
