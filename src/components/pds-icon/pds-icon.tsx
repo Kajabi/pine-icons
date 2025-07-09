@@ -9,10 +9,12 @@ import { getName, getUrl, inheritAttributes, isRTL, shouldRtlFlipIcon } from './
   shadow: true,
 })
 export class PdsIcon {
-  private didLoadIcon = false;
-  private iconName: string | null = null;
   private io?: IntersectionObserver;
   private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
+  private hasInitialized = false;
+  private isCurrentlyLoading = false;
+  private loadingTimeoutId?: NodeJS.Timeout;
+  private iconName: string | null = null;
 
   @Element() el!: HTMLPdsIconElement;
 
@@ -21,9 +23,7 @@ export class PdsIcon {
   @State() private svgContent?: string;
 
   /**
-   *
    * The color of the icon
-   *
    */
   @Prop() color?: string;
 
@@ -52,7 +52,6 @@ export class PdsIcon {
    * The size of the icon. This can be
    * 'small', 'regular', 'medium', 'large', or a
    * custom value (40px, 1rem, etc)
-   *
    */
   @Prop({ reflect: true }) size?:
     | 'small'   // 12px
@@ -63,14 +62,12 @@ export class PdsIcon {
     | string = 'regular'
 
   /**
-   *
    * Specifies the exact `src` of an SVG file to use.
    */
   @Prop() src?: string;
 
   private iconSize() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sizes: { [key: string]: any } = {
+    const sizes: { [key: string]: any } = { // eslint-disable-line @typescript-eslint/no-explicit-any
       small: '12px',
       regular: '16px',
       medium: '20px',
@@ -84,17 +81,32 @@ export class PdsIcon {
     }
   }
 
+  componentWillLoad() {
+    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
+    this.iconName = getName(this.name, this.icon);
+    if (this.iconName) {
+      this.ariaLabel = this.iconName.replace(/\-/g, ' ');
+    }
+    this.setCSSVariables();
+  }
+
   componentDidLoad() {
     this.setCSSVariables();
 
-    if (!this.didLoadIcon) {
-      this.loadIcon();
+    if (!this.svgContent) {
+      this.loadingTimeoutId = setTimeout(() => {
+        if (!this.svgContent && !this.isCurrentlyLoading) {
+          this.isVisible = true;
+          this.loadIcon();
+        }
+      }, 100);
     }
   }
 
-  componentWillLoad() {
-    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
-    this.setCSSVariables();
+  componentDidUpdate() {
+    if (this.isVisible && !this.svgContent && !this.isCurrentlyLoading) {
+      this.loadIcon();
+    }
   }
 
   setCSSVariables() {
@@ -104,16 +116,23 @@ export class PdsIcon {
   }
 
   connectedCallback() {
-    this.waitUntilVisible(this.el, '50px', () => {
+    if (!this.hasInitialized) {
+      this.setupVisibilityDetection();
+      this.hasInitialized = true;
+    } else if (this.svgContent && !this.isVisible) {
       this.isVisible = true;
-      this.loadIcon();
-    })
+    }
   }
 
   disconnectedCallback() {
     if (this.io) {
       this.io.disconnect();
       this.io = undefined;
+    }
+
+    if (this.loadingTimeoutId) {
+      clearTimeout(this.loadingTimeoutId);
+      this.loadingTimeoutId = undefined;
     }
   }
 
@@ -127,36 +146,49 @@ export class PdsIcon {
   @Watch('src')
   @Watch('icon')
   loadIcon() {
-    if (Build.isBrowser && this.isVisible) {
-      const url = getUrl(this);
-      if (url) {
-        if (pdsIconContent.has(url)) {
-          this.svgContent = pdsIconContent.get(url);
-        } else {
-          getSvgContent(url).then(() => (this.svgContent = pdsIconContent.get(url)));
-        }
-        this.didLoadIcon = true;
-      }
-    }
-
     this.iconName = getName(this.name, this.icon);
-
     if (this.iconName) {
       this.ariaLabel = this.iconName.replace(/\-/g, ' ');
+    }
+    if (this.isCurrentlyLoading) {
+      return;
+    }
+
+    if (Build.isBrowser) {
+      const url = getUrl(this);
+      if (url) {
+        this.isCurrentlyLoading = true;
+
+        if (pdsIconContent.has(url)) {
+          const cachedContent = pdsIconContent.get(url);
+          this.svgContent = cachedContent;
+          this.isCurrentlyLoading = false;
+        } else {
+          getSvgContent(url)
+            .then(() => {
+              this.svgContent = pdsIconContent.get(url);
+            })
+            .catch(err => {
+              console.error(err);
+            })
+            .finally(() => {
+              this.isCurrentlyLoading = false;
+            });
+        }
+      }
     }
   }
 
   render() {
-    const { ariaLabel, flipRtl, iconName,inheritedAttributes } = this;
+    const { ariaLabel, flipRtl, iconName, inheritedAttributes } = this;
     const shouldIconAutoFlip = iconName
       ? shouldRtlFlipIcon(iconName, this.el) && flipRtl !== false
       : false;
     const shouldFlip = flipRtl || shouldIconAutoFlip;
 
     return (
-
       <Host
-        aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null }
+        aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null}
         alt=""
         role="img"
         class={{
@@ -172,39 +204,71 @@ export class PdsIcon {
           <div class="icon-inner"></div>
         )}
       </Host>
-    )
+    );
   }
 
-  /*****
-   * Private Methods
-   ****/
+  private setupVisibilityDetection() {
+    const el = this.el;
+    if (this.isElementInViewport()) {
+      this.isVisible = true;
+      return;
+    }
+
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      this.handleRenderOptimization(el);
+    } else {
+      this.isVisible = true;
+    }
+  }
+
+  private isElementInViewport(): boolean {
+    if (typeof window === 'undefined') return false;
+
+    const rect = this.el.getBoundingClientRect();
+    const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    const viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+
+    return !(rect.bottom < 0 ||
+      rect.top > viewHeight ||
+      rect.right < 0 ||
+      rect.left > viewWidth);
+  }
+
+  private handleRenderOptimization = (el: HTMLElement | undefined) => {
+    if (!el) return;
+
+    const rootMargin = '50px';
+
+    if (Build.isBrowser) {
+      if (this.io) {
+        this.io.disconnect();
+        this.io = undefined;
+      }
+
+      this.waitUntilVisible(el, rootMargin, () => {
+        this.isVisible = true;
+      });
+    }
+  };
 
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
-    if (Build.isBrowser && typeof window !== 'undefined' && (window).IntersectionObserver) {
-      const io = (this.io = new (window).IntersectionObserver(
-        (data: IntersectionObserverEntry[]) => {
-          if (data[0].isIntersecting) {
-            io.disconnect();
-            this.io = undefined;
-            cb();
-          }
-        },
-        { rootMargin },
-      ));
+    if (Build.isBrowser && el) {
+      const io = this.io = new IntersectionObserver(data => {
+        if (data[0].isIntersecting) {
+          io.disconnect();
+          this.io = undefined;
+          cb();
+        }
+      }, { rootMargin });
 
       io.observe(el);
-    } else {
-      // browser doesn't support IntersectionObserver
-      // so just fallback to always show it
-      cb();
     }
   }
 
   private hasAriaHidden = () => {
-    const { el } = this;
-
-    return el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
-  }
+    const hidden = this.inheritedAttributes['aria-hidden'];
+    return hidden === '' || hidden === 'true';
+  };
 }
 
 const createColorClasses = (color: string | undefined) => {
