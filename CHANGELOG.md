@@ -1,3 +1,15 @@
+## 9.6.1 (2025-07-10)
+
+### Bug Fixes 🐛
+
+- **pds-icon:** resolve icon loading issue ([c92ecbd](https://github.com/Kajabi/pine-icons/commit/c92ecbd))
+- **pds-icon:** enhance visibility detection and loading logic for client-side navigation ([d0a2b21](https://github.com/Kajabi/pine-icons/commit/d0a2b21))
+- **pds-icon:** resolve icon loading issue ([7657dcc](https://github.com/Kajabi/pine-icons/commit/7657dcc))
+
+### ❤️  Thank You
+
+- Quinton Jason
+
 ## 9.6.0 (2025-07-03)
 
 ### Features 🚀
