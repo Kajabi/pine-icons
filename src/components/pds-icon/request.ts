@@ -15,11 +15,17 @@ export const getSvgContent = (url: string, sanitize = false) => {
           parser = new DOMParser();
         }
 
-        const doc = parser.parseFromString(url, 'text/html');
-        const svg = doc.querySelector('svg');
+        try {
+          const doc = parser.parseFromString(url, 'text/html');
+          const svg = doc.querySelector('svg');
 
-        if (svg) {
-          pdsIconContent.set(url, svg.outerHTML);
+          if (svg) {
+            pdsIconContent.set(url, svg.outerHTML);
+          } else {
+            pdsIconContent.set(url, '');
+          }
+        } catch (error) {
+          pdsIconContent.set(url, '');
         }
 
         return Promise.resolve();
@@ -29,12 +35,23 @@ export const getSvgContent = (url: string, sanitize = false) => {
           if (rsp.ok) {
             return rsp.text().then((svgContent) => {
               if (svgContent && sanitize !== false) {
-                svgContent = validateContent(svgContent);
+                try {
+                  svgContent = validateContent(svgContent);
+                } catch (validationError) {
+                  svgContent = '';
+                }
               }
               pdsIconContent.set(url, svgContent || '');
             });
+          } else {
+            // Handle HTTP errors
+            throw new Error(`Failed to load SVG: ${rsp.status} ${rsp.statusText}`);
           }
+        }).catch((error) => {
+          // Handle all fetch errors gracefully
+          console.warn('Failed to load SVG:', url, error);
           pdsIconContent.set(url, '');
+          // Don't re-throw to prevent unhandled promise rejections
         });
 
         requests.set(url, req);

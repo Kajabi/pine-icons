@@ -90,6 +90,14 @@ export class PdsIcon {
     if (!this.didLoadIcon) {
       this.loadIcon();
     }
+
+    // Fallback: Ensure icon loads even if IntersectionObserver doesn't fire
+    setTimeout(() => {
+      if (!this.svgContent && !this.isVisible) {
+        this.isVisible = true;
+        this.loadIcon();
+      }
+    }, 100);
   }
 
   componentWillLoad() {
@@ -127,13 +135,30 @@ export class PdsIcon {
   @Watch('src')
   @Watch('icon')
   loadIcon() {
+    // Reset load state when URL changes
+    this.didLoadIcon = false;
+
+    // Clear existing content to prevent stale content when switching icons
+    this.svgContent = undefined;
+
     if (Build.isBrowser && this.isVisible) {
       const url = getUrl(this);
       if (url) {
         if (pdsIconContent.has(url)) {
           this.svgContent = pdsIconContent.get(url);
         } else {
-          getSvgContent(url).then(() => (this.svgContent = pdsIconContent.get(url)));
+          // Fix: Ensure promise callback triggers re-render and handle errors
+          getSvgContent(url)
+            .then(() => {
+              // Force re-render by setting state in next tick
+              setTimeout(() => {
+                this.svgContent = pdsIconContent.get(url);
+              }, 0);
+            })
+            .catch(() => {
+              // Handle fetch errors gracefully
+              this.svgContent = '';
+            });
         }
         this.didLoadIcon = true;
       }
@@ -204,6 +229,28 @@ export class PdsIcon {
     const { el } = this;
 
     return el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
+  }
+
+  /**
+   * Debug method to help diagnose loading issues
+   * Call from browser console: document.querySelector('pds-icon').debugIconState()
+   */
+  debugIconState() {
+    const url = getUrl(this);
+    console.log('PdsIcon Debug State:', {
+      name: this.name,
+      src: this.src,
+      icon: this.icon,
+      iconName: this.iconName,
+      url,
+      isVisible: this.isVisible,
+      didLoadIcon: this.didLoadIcon,
+      hasSvgContent: !!this.svgContent,
+      svgContentLength: this.svgContent?.length || 0,
+      isInCache: url ? pdsIconContent.has(url) : false,
+      cachedContent: url ? pdsIconContent.get(url) : null,
+      element: this.el
+    });
   }
 }
 
