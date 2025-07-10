@@ -90,6 +90,23 @@ export class PdsIcon {
     if (!this.didLoadIcon) {
       this.loadIcon();
     }
+
+    // Fallback: Ensure icon loads even if IntersectionObserver doesn't fire
+    setTimeout(() => {
+      if (!this.svgContent && !this.isVisible) {
+        this.isVisible = true;
+        this.loadIcon();
+      }
+    }, 100);
+
+    // Additional fallback for client-side navigation (React Router, etc.)
+    // React's useLayoutEffect and rendering cycles can delay visibility detection
+    setTimeout(() => {
+      if (!this.svgContent && !this.isVisible) {
+        this.isVisible = true;
+        this.loadIcon();
+      }
+    }, 500);
   }
 
   componentWillLoad() {
@@ -104,10 +121,19 @@ export class PdsIcon {
   }
 
   connectedCallback() {
-    this.waitUntilVisible(this.el, '50px', () => {
+    // Handle re-connection during client-side navigation
+    if (!this.isVisible && !this.svgContent) {
+      this.waitUntilVisible(this.el, '50px', () => {
+        this.isVisible = true;
+        this.loadIcon();
+      });
+    }
+
+    // Immediate load attempt if already visible (e.g., during React navigation)
+    if (this.isElementInViewport(this.el)) {
       this.isVisible = true;
       this.loadIcon();
-    })
+    }
   }
 
   disconnectedCallback() {
@@ -127,13 +153,30 @@ export class PdsIcon {
   @Watch('src')
   @Watch('icon')
   loadIcon() {
+    // Reset load state when URL changes
+    this.didLoadIcon = false;
+
+    // Clear existing content to prevent stale content when switching icons
+    this.svgContent = undefined;
+
     if (Build.isBrowser && this.isVisible) {
       const url = getUrl(this);
       if (url) {
         if (pdsIconContent.has(url)) {
           this.svgContent = pdsIconContent.get(url);
         } else {
-          getSvgContent(url).then(() => (this.svgContent = pdsIconContent.get(url)));
+          // Fix: Ensure promise callback triggers re-render and handle errors
+          getSvgContent(url)
+            .then(() => {
+              // Force re-render by setting state in next tick
+              setTimeout(() => {
+                this.svgContent = pdsIconContent.get(url);
+              }, 0);
+            })
+            .catch(() => {
+              // Handle fetch errors gracefully
+              this.svgContent = '';
+            });
         }
         this.didLoadIcon = true;
       }
@@ -193,6 +236,19 @@ export class PdsIcon {
       ));
 
       io.observe(el);
+
+      // Safety timeout for client-side navigation scenarios
+      // Sometimes IntersectionObserver doesn't fire during React navigation
+      setTimeout(() => {
+        if (this.io && !this.isVisible) {
+          // Check if element is actually visible in viewport
+          if (this.isElementInViewport(el)) {
+            this.io.disconnect();
+            this.io = undefined;
+            cb();
+          }
+        }
+      }, 1000);
     } else {
       // browser doesn't support IntersectionObserver
       // so just fallback to always show it
@@ -200,10 +256,64 @@ export class PdsIcon {
     }
   }
 
+  private isElementInViewport(el: HTMLElement): boolean {
+    if (!el || !el.isConnected) return false;
+
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= windowHeight &&
+      rect.right <= windowWidth
+    ) || (
+      // Also consider partially visible elements
+      rect.top < windowHeight &&
+      rect.bottom > 0 &&
+      rect.left < windowWidth &&
+      rect.right > 0
+    );
+  }
+
   private hasAriaHidden = () => {
     const { el } = this;
 
     return el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
+  }
+
+  /**
+   * Debug method to help diagnose loading issues
+   * Call from browser console: document.querySelector('pds-icon').debugIconState()
+   */
+  debugIconState() {
+    const url = getUrl(this);
+    const rect = this.el.getBoundingClientRect();
+
+    console.log('PdsIcon Debug State:', {
+      name: this.name,
+      src: this.src,
+      icon: this.icon,
+      iconName: this.iconName,
+      url,
+      isVisible: this.isVisible,
+      didLoadIcon: this.didLoadIcon,
+      hasSvgContent: !!this.svgContent,
+      svgContentLength: this.svgContent?.length || 0,
+      isInCache: url ? pdsIconContent.has(url) : false,
+      cachedContent: url ? pdsIconContent.get(url) : null,
+      element: this.el,
+      // Client-side navigation specific debug info
+      isConnected: this.el.isConnected,
+      isInViewport: this.isElementInViewport(this.el),
+      hasIntersectionObserver: !!this.io,
+      boundingClientRect: rect,
+      windowDimensions: {
+        width: window.innerWidth || document.documentElement.clientWidth,
+        height: window.innerHeight || document.documentElement.clientHeight
+      }
+    });
   }
 }
 
