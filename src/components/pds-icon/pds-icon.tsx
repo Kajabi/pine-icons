@@ -112,6 +112,7 @@ export class PdsIcon {
   componentWillLoad() {
     this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
     this.setCSSVariables();
+    this.setupInitialAriaLabel();
   }
 
   setCSSVariables() {
@@ -152,6 +153,12 @@ export class PdsIcon {
   @Watch('name')
   @Watch('src')
   @Watch('icon')
+  onIconPropertyChange() {
+    this.loadIcon();
+    // Update aria-label when icon properties change
+    this.setupInitialAriaLabel();
+  }
+
   loadIcon() {
     // Reset load state when URL changes
     this.didLoadIcon = false;
@@ -183,11 +190,6 @@ export class PdsIcon {
     }
 
     this.iconName = getName(this.name, this.icon);
-
-    // Only auto-generate aria-label if one isn't already provided
-    if (this.iconName && !this.inheritedAttributes['aria-label']) {
-      this.ariaLabel = this.iconName.replace(/\-/g, ' ');
-    }
   }
 
   render() {
@@ -225,6 +227,16 @@ export class PdsIcon {
   /*****
    * Private Methods
    ****/
+
+  private setupInitialAriaLabel() {
+    // Only set aria-label during initial load if one isn't already provided
+    if (!this.inheritedAttributes['aria-label']) {
+      const iconName = getName(this.name, this.icon);
+      if (iconName) {
+        this.ariaLabel = iconName.replace(/\-/g, ' ');
+      }
+    }
+  }
 
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
     if (Build.isBrowser && typeof window !== 'undefined' && (window).IntersectionObserver) {
