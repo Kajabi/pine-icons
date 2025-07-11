@@ -184,7 +184,8 @@ export class PdsIcon {
 
     this.iconName = getName(this.name, this.icon);
 
-    if (this.iconName) {
+    // Only auto-generate aria-label if one isn't already provided
+    if (this.iconName && !this.inheritedAttributes['aria-label']) {
       this.ariaLabel = this.iconName.replace(/\-/g, ' ');
     }
   }
@@ -196,10 +197,13 @@ export class PdsIcon {
       : false;
     const shouldFlip = flipRtl || shouldIconAutoFlip;
 
+    // Use inherited aria-label if provided, otherwise fall back to auto-generated one
+    const finalAriaLabel = inheritedAttributes['aria-label'] || ariaLabel;
+
     return (
 
       <Host
-        aria-label={ariaLabel !== undefined && !this.hasAriaHidden() ? ariaLabel : null }
+        aria-label={finalAriaLabel !== undefined && !this.hasAriaHidden() ? finalAriaLabel : null }
         alt=""
         role="img"
         class={{
