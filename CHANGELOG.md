@@ -1,3 +1,13 @@
+## 9.6.2 (2025-07-15)
+
+### Bug Fixes 🐛
+
+- prevent aria-label re-renders in pds-icon component ([#46](https://github.com/Kajabi/pine-icons/pull/46))
+
+### ❤️  Thank You
+
+- Quinton Jason
+
 ## 9.6.1 (2025-07-10)
 
 ### Bug Fixes 🐛
