@@ -3706,6 +3706,17 @@
       ]
     },
     {
+      "name": "speedometer",
+      "category": "features",
+      "tags": [
+        "dial",
+        "meter",
+        "revs",
+        "speed",
+        "speedometer"
+      ]
+    },
+    {
       "name": "split",
       "category": "actions",
       "tags": [
