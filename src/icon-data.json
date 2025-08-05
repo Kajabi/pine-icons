@@ -935,6 +935,14 @@
       ]
     },
     {
+      "name": "closed-captioning",
+      "category": "actions",
+      "tags": [
+        "captioning",
+        "closed"
+      ]
+    },
+    {
       "name": "closed-captions",
       "category": "actions",
       "tags": [
@@ -3356,6 +3364,17 @@
       ]
     },
     {
+      "name": "recording-02",
+      "category": "actions",
+      "tags": [
+        "audio",
+        "mp3",
+        "record",
+        "recording",
+        "wav"
+      ]
+    },
+    {
       "name": "redo",
       "category": "text-editor",
       "tags": [
@@ -4004,6 +4023,26 @@
         "positive",
         "thumbs",
         "up"
+      ]
+    },
+    {
+      "name": "transcription-01",
+      "category": "actions",
+      "tags": [
+        "mac",
+        "monitor",
+        "screen",
+        "tv"
+      ]
+    },
+    {
+      "name": "translate-02",
+      "category": "actions",
+      "tags": [
+        "conversion",
+        "interpret",
+        "language",
+        "translate"
       ]
     },
     {
