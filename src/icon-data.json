@@ -4368,6 +4368,17 @@
       ]
     },
     {
+      "name": "volume-min",
+      "category": "actions",
+      "tags": [
+        "audio",
+        "min",
+        "mp3",
+        "volume",
+        "wav"
+      ]
+    },
+    {
       "name": "warning",
       "category": "dialogues",
       "tags": [
