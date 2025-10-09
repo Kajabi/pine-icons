@@ -820,6 +820,17 @@
       ]
     },
     {
+      "name": "circle",
+      "category": "actions",
+      "tags": [
+        "circle",
+        "filled",
+        "shape",
+        "status",
+        "unfilled"
+      ]
+    },
+    {
       "name": "circle-1",
       "category": "number",
       "tags": [
