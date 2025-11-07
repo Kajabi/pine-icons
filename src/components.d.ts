@@ -25,6 +25,7 @@ export namespace Components {
         "name"?: string;
         /**
           * The size of the icon. This can be 'small', 'regular', 'medium', 'large', or a custom value (40px, 1rem, etc)
+          * @default 'regular'
          */
         "size"?: | 'small'   // 12px
     | 'regular'  // 16px
@@ -69,6 +70,7 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * The size of the icon. This can be 'small', 'regular', 'medium', 'large', or a custom value (40px, 1rem, etc)
+          * @default 'regular'
          */
         "size"?: | 'small'   // 12px
     | 'regular'  // 16px

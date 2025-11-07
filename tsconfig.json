@@ -16,7 +16,9 @@
       "@utils/*": ["src/utils/*"]
     },
     "removeComments": false,
-    "target": "es2017"
+    "target": "es2017",
+    "skipLibCheck": true,
+    "types": ["jest"]
   },
   "include": ["src", "scripts/**/*.ts"],
   "exclude": ["node_modules"]

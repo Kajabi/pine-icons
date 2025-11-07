@@ -59,7 +59,7 @@
     "icons/"
   ],
   "dependencies": {
-    "@stencil/core": "4.28.2"
+    "@stencil/core": "4.38.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
