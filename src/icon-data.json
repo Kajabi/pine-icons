@@ -2797,6 +2797,7 @@
       "category": "actions",
       "tags": [
         "arrow",
+        "automation",
         "combine",
         "control",
         "direction",
@@ -3750,6 +3751,8 @@
       "name": "split",
       "category": "actions",
       "tags": [
+        "automation",
+        "branch",
         "split"
       ]
     },
@@ -3821,6 +3824,14 @@
     },
     {
       "name": "stop",
+      "category": "actions",
+      "tags": [
+        "audio",
+        "stop"
+      ]
+    },
+    {
+      "name": "stop-filled",
       "category": "actions",
       "tags": [
         "audio",
