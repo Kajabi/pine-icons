@@ -1,3 +1,7 @@
+## 9.12.0 (2025-11-12)
+
+This was a version bump only, there were no code changes.
+
 ## 9.11.0 (2025-11-11)
 
 ### Features 🚀
