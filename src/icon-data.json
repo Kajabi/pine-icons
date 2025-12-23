@@ -1001,6 +1001,21 @@
       ]
     },
     {
+      "name": "cofounder",
+      "category": "features",
+      "tags": [
+        "cofounder"
+      ]
+    },
+    {
+      "name": "cofounder-filled",
+      "category": "features",
+      "tags": [
+        "cofounder",
+        "filled"
+      ]
+    },
+    {
       "name": "color",
       "category": "text-editor",
       "tags": [
