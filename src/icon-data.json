@@ -2217,6 +2217,17 @@
       ]
     },
     {
+      "name": "image-tone",
+      "category": "app-frame",
+      "tags": [
+        "image",
+        "jpeg",
+        "jpg",
+        "photo",
+        "png"
+      ]
+    },
+    {
       "name": "info-circle",
       "category": "dialogues",
       "tags": [
