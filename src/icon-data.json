@@ -374,6 +374,13 @@
       ]
     },
     {
+      "name": "backstage",
+      "category": "features",
+      "tags": [
+        "backstage"
+      ]
+    },
+    {
       "name": "ban",
       "category": "actions",
       "tags": [
