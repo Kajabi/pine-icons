@@ -3072,6 +3072,14 @@
       ]
     },
     {
+      "name": "package-plus",
+      "category": "features",
+      "tags": [
+        "package",
+        "plus"
+      ]
+    },
+    {
       "name": "packages",
       "category": "features",
       "tags": [
