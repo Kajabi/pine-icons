@@ -231,6 +231,24 @@
       ]
     },
     {
+      "name": "amplify",
+      "category": "features",
+      "tags": [
+        "currency",
+        "diamond",
+        "gem"
+      ]
+    },
+    {
+      "name": "amplify-filled",
+      "category": "features",
+      "tags": [
+        "currency",
+        "diamond",
+        "gem"
+      ]
+    },
+    {
       "name": "app-store",
       "category": "features",
       "tags": [
@@ -832,6 +850,13 @@
         "circle",
         "confirm",
         "tick"
+      ]
+    },
+    {
+      "name": "checklist",
+      "category": "actions",
+      "tags": [
+        "checklist"
       ]
     },
     {
@@ -2133,6 +2158,13 @@
       ]
     },
     {
+      "name": "history",
+      "category": "actions",
+      "tags": [
+        "history"
+      ]
+    },
+    {
       "name": "home",
       "category": "navigation",
       "tags": [
@@ -2831,6 +2863,14 @@
         "menu",
         "nav",
         "navigation"
+      ]
+    },
+    {
+      "name": "menu-collapse",
+      "category": "actions",
+      "tags": [
+        "collapse",
+        "menu"
       ]
     },
     {
