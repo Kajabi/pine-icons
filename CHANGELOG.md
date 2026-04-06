@@ -1,3 +1,13 @@
+## 9.20.0 (2026-04-06)
+
+### Features 🚀
+
+- **icons:** v9.20.0, created: 5, modified: 2, renamed: 0, deleted: 0 ([9365289](https://github.com/Kajabi/pine-icons/commit/9365289))
+
+### ❤️  Thank You
+
+- Kajabi Automation Bot
+
 ## 9.19.0 (2026-03-05)
 
 ### Features 🚀
