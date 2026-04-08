@@ -8,6 +8,20 @@
       ]
     },
     {
+      "name": "Subtract",
+      "category": "frame-8",
+      "tags": [
+        "Subtract"
+      ]
+    },
+    {
+      "name": "Subtract",
+      "category": "frame-8",
+      "tags": [
+        "Subtract"
+      ]
+    },
+    {
       "name": "access-key",
       "category": "features",
       "tags": [
@@ -241,6 +255,15 @@
     },
     {
       "name": "amplify-filled",
+      "category": "features",
+      "tags": [
+        "currency",
+        "diamond",
+        "gem"
+      ]
+    },
+    {
+      "name": "amplify-outlined",
       "category": "features",
       "tags": [
         "currency",
