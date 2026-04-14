@@ -1,3 +1,17 @@
+# 10.0.0 (2026-04-14)
+
+### Features 🚀
+
+- ⚠️  **icons:** v10.0.0, created: 0, modified: 0, renamed: 0, deleted: 1 ([d530eff](https://github.com/Kajabi/pine-icons/commit/d530eff))
+
+### ⚠️  Breaking Changes
+
+- ⚠️  **icons:** v10.0.0, created: 0, modified: 0, renamed: 0, deleted: 1 ([d530eff](https://github.com/Kajabi/pine-icons/commit/d530eff))
+
+### ❤️  Thank You
+
+- Kajabi Automation Bot
+
 ## 9.21.0 (2026-04-08)
 
 ### Features 🚀
