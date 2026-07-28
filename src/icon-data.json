@@ -2288,6 +2288,14 @@
       ]
     },
     {
+      "name": "inbox-tone",
+      "category": "app-frame",
+      "tags": [
+        "inbox",
+        "tone"
+      ]
+    },
+    {
       "name": "info-circle",
       "category": "dialogues",
       "tags": [
