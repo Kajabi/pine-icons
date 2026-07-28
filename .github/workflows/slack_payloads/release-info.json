@@ -1,4 +1,6 @@
 {
+	"channel": "${{ env.CHANNEL_ID }}",
+	"text": ":pine: Pine Icon Release v${{ env.VERSION }}",
 	"blocks": [
 		{
 			"type": "header",

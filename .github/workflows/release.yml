@@ -141,12 +141,15 @@ jobs:
       - name: Send Slack Notification
         uses: slackapi/slack-github-action@v3.0.3
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_NAME }}
           DATE: ${{ env.CURRENT_DATE }}
           RELEASE_URL: "${{ format('https://github.com/{0}/releases/tag/v{1}', github.repository, fromJSON(env.PACKAGE_JSON).version) }}"
           CHANGELOG_URL: "${{ format('https://pine-icons.netlify.app/changelogs/{0}-changelog.html', env.CURRENT_DATE) }}"
           VERSION: ${{ fromJson(env.PACKAGE_JSON).version }}
           COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
         with:
-          channel-id: ${{ vars.SLACK_CHANNEL_NAME }}
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          errors: true
+          payload-templated: true
           payload-file-path: "./.github/workflows/slack_payloads/release-info.json"
