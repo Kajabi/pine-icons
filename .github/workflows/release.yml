@@ -161,7 +161,7 @@ jobs:
           echo "COMMIT_MESSAGE=$(git log --pretty=format:%s -n 1 HEAD~)" >> $GITHUB_ENV
 
       - name: Send Slack Notification
-        uses: slackapi/slack-github-action@v3.0.3
+        uses: slackapi/slack-github-action@v4.0.0
         env:
           CHANNEL_ID: ${{ vars.SLACK_CHANNEL_NAME }}
           DATE: ${{ env.CURRENT_DATE }}
