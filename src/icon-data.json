@@ -580,6 +580,13 @@
       ]
     },
     {
+      "name": "bullseye",
+      "category": "actions",
+      "tags": [
+        "bullseye"
+      ]
+    },
+    {
       "name": "button",
       "category": "text-editor",
       "tags": [
@@ -3286,6 +3293,15 @@
         "telephone",
         "toolbar",
         "touchscreen"
+      ]
+    },
+    {
+      "name": "picture-in-picture",
+      "category": "actions",
+      "tags": [
+        "in",
+        "picture",
+        "picture"
       ]
     },
     {
