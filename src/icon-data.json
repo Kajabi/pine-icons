@@ -1937,6 +1937,13 @@
       ]
     },
     {
+      "name": "gif",
+      "category": "text-editor",
+      "tags": [
+        "gif"
+      ]
+    },
+    {
       "name": "gift-tone",
       "category": "app-frame",
       "tags": [
