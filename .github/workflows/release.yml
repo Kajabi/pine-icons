@@ -105,14 +105,35 @@ jobs:
         shell: bash
 
       - name: Release
+        id: release
         if: inputs.version == ''
-        run: npx nx release  --yes
+        shell: bash
+        run: |
+          set -o pipefail
+          npx nx release --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
+          # nx exits 0 whether it published or skipped (no conventional-commit
+          # changes). Record which, so the verify step below only runs when a
+          # publish was actually attempted.
+          if grep -q "Skipped publishing packages" "$RUNNER_TEMP/nx-release.log"; then
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "published=true" >> "$GITHUB_OUTPUT"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release using Input Version
+        id: release_input
         if: inputs.version != ''
-        run: npx nx release ${{inputs.version}} --yes
+        shell: bash
+        run: |
+          set -o pipefail
+          npx nx release ${{inputs.version}} --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
+          if grep -q "Skipped publishing packages" "$RUNNER_TEMP/nx-release.log"; then
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "published=true" >> "$GITHUB_OUTPUT"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -121,7 +142,13 @@ jobs:
       # tags the version and writes the changelog, so the job reads green while
       # nothing reaches npm — which is exactly how 10.1.0 and 10.2.0 were
       # tagged but never published. See DSS-215.
+      #
+      # Only runs when the release step actually attempted a publish. On a night
+      # with no conventional-commit changes, nx skips versioning and publishing
+      # ("Skipped publishing packages") and exits 0 — nothing was meant to reach
+      # npm, so asserting the current version is published would fail spuriously.
       - name: Verify npm publish landed
+        if: steps.release.outputs.published == 'true' || steps.release_input.outputs.published == 'true'
         shell: bash
         run: |
           PKG=$(node -p "require('./package.json').name")
