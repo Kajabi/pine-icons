@@ -74,6 +74,12 @@ jobs:
   release-changes:
     runs-on: ubuntu-latest
     needs: export-icons
+    # Surface whether a publish actually happened so downstream jobs (e.g. the
+    # Slack announcement) don't fire on no-op nights. Exactly one of the two
+    # release steps runs; the other's output is empty, so `||` yields the value
+    # of whichever ran.
+    outputs:
+      published: ${{ steps.release.outputs.published || steps.release_input.outputs.published }}
 
     steps:
       - name: Checkout
@@ -126,9 +132,12 @@ jobs:
         id: release_input
         if: inputs.version != ''
         shell: bash
+        # Pass inputs.version through the environment instead of interpolating
+        # ${{ }} directly into the shell, so a caller-supplied value can't be
+        # injected into the command (template-injection hardening).
         run: |
           set -o pipefail
-          npx nx release ${{inputs.version}} --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
+          npx nx release "$VERSION_INPUT" --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
           if grep -q "Skipped publishing packages" "$RUNNER_TEMP/nx-release.log"; then
             echo "published=false" >> "$GITHUB_OUTPUT"
           else
@@ -136,6 +145,7 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_INPUT: ${{ inputs.version }}
 
       # Guard against `nx release` exiting 0 even when its npm publish phase
       # fails. Without this, a broken publish (e.g. an expired NPM_TOKEN) still
@@ -168,6 +178,11 @@ jobs:
   send-slack-notification:
     runs-on: ubuntu-latest
     needs: release-changes
+    # Only announce when a publish actually happened. On no-op nights (nx skips
+    # publishing, verify is gated off and the job goes green) there is nothing to
+    # announce, so this must not fire a "Pine Icon Release" for a version that was
+    # never tagged or shipped.
+    if: needs.release-changes.outputs.published == 'true'
 
     steps:
       - name: Checkout
