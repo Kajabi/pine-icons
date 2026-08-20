@@ -198,6 +198,48 @@ jobs:
           echo "::error::${PKG}@${VERSION} was NOT published to npm. Check the nx-release-publish output above and the NPM_TOKEN secret."
           exit 1
 
+  # A failed release used to be entirely silent: the announcement job only fires
+  # on success, so nothing told the team when a publish was rejected. The Aug 11
+  # and Aug 13 failures went unnoticed for nine days while npm sat on 10.2.0 and
+  # every later run reported success. Alerting on failure is what turns that from
+  # a nine-day gap into a same-day fix. See DSS-215.
+  #
+  # `failure()` covers the release job failing and the icon export failing before
+  # it; a skipped or cancelled run does not alert.
+  notify-release-failure:
+    runs-on: ubuntu-latest
+    needs: [export-icons, release-changes]
+    if: failure()
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup ENV Vars
+        shell: bash
+        run: |
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
+          echo "PKG_VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+          # Report what the registry actually has, so the alert shows at a glance
+          # whether git and npm have diverged. Never fail the alert over this.
+          PKG=$(node -p "require('./package.json').name")
+          echo "NPM_LATEST=$(npm view "${PKG}" version 2>/dev/null || echo 'unknown')" >> "$GITHUB_ENV"
+
+      - name: Send Slack Notification
+        uses: slackapi/slack-github-action@v3.0.3
+        env:
+          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_NAME }}
+          DATE: ${{ env.CURRENT_DATE }}
+          VERSION: ${{ env.PKG_VERSION }}
+          NPM_LATEST: ${{ env.NPM_LATEST }}
+          RUN_URL: "${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}"
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          errors: true
+          payload-templated: true
+          payload-file-path: "./.github/workflows/slack_payloads/release-failure.json"
+
   send-slack-notification:
     runs-on: ubuntu-latest
     needs: release-changes
