@@ -1,0 +1,46 @@
+{
+	"channel": "${{ env.CHANNEL_ID }}",
+	"text": ":rotating_light: Pine Icon release failed \u2014 nothing published to npm",
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": ":rotating_light:  Pine Icon Release Failed  :rotating_light:"
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"text": "*${{ env.DATE }}*  |  Design System Services",
+					"type": "mrkdwn"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": ":warning: *This release did not reach npm.* If the version below was already tagged in git, the registry is behind until a run succeeds. The next successful run republishes a stranded version automatically."
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Version in package.json*: ${{ env.VERSION }}\n\n *Latest on npm*: ${{ env.NPM_LATEST }}\n\n *Failed run*: ${{ env.RUN_URL }}"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "A rejected npm token is the most common cause. The run log names the failing step."
+			}
+		}
+	]
+}

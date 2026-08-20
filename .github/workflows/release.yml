@@ -75,11 +75,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: export-icons
     # Surface whether a publish actually happened so downstream jobs (e.g. the
-    # Slack announcement) don't fire on no-op nights. Exactly one of the two
-    # release steps runs; the other's output is empty, so `||` yields the value
-    # of whichever ran.
+    # Slack announcement) don't fire on no-op nights.
     outputs:
-      published: ${{ steps.release.outputs.published || steps.release_input.outputs.published }}
+      published: ${{ steps.publish.outputs.published }}
 
     steps:
       - name: Checkout
@@ -106,59 +104,84 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # Fail before `nx release` touches git. nx versions, commits, tags, pushes
+      # and creates the GitHub release *before* it publishes, and none of that is
+      # undone when the publish fails. Because nx then resolves the current
+      # version from the newest git tag, one bad-token night leaves git
+      # permanently ahead of npm: every later run reports "No changes were
+      # detected using git history and the conventional commits standard", skips,
+      # and reports success. That is how 10.3.0 and 10.4.0 came to be tagged and
+      # released on GitHub while npm stayed on 10.2.0. Checking auth up front
+      # keeps an unusable token from ever reaching that state. See DSS-215.
+      - name: Verify npm authentication
+        shell: bash
+        run: |
+          # Keep the registry's full reply in the log, but the annotation on one
+          # line — newlines inside ::error:: truncate the rendered message.
+          if ! NPM_AUTH_OUTPUT=$(npm whoami 2>&1); then
+            echo "npm whoami failed:"
+            echo "${NPM_AUTH_OUTPUT}"
+            echo "::error::npm authentication failed — the NPM_TOKEN secret is empty, expired, or revoked. Rotate it before releasing. Nothing has been versioned, tagged, or published."
+            exit 1
+          fi
+          echo "Authenticated to npm as ${NPM_AUTH_OUTPUT}"
+
       - name: Build
         run: npx nx run @pine-ds/icons:build
         shell: bash
 
       - name: Release
-        id: release
         if: inputs.version == ''
         shell: bash
-        run: |
-          set -o pipefail
-          npx nx release --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
-          # nx exits 0 whether it published or skipped (no conventional-commit
-          # changes). Record which, so the verify step below only runs when a
-          # publish was actually attempted.
-          if grep -q "Skipped publishing packages" "$RUNNER_TEMP/nx-release.log"; then
-            echo "published=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "published=true" >> "$GITHUB_OUTPUT"
-          fi
+        run: npx nx release --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release using Input Version
-        id: release_input
         if: inputs.version != ''
         shell: bash
         # Pass inputs.version through the environment instead of interpolating
         # ${{ }} directly into the shell, so a caller-supplied value can't be
         # injected into the command (template-injection hardening).
-        run: |
-          set -o pipefail
-          npx nx release "$VERSION_INPUT" --yes 2>&1 | tee "$RUNNER_TEMP/nx-release.log"
-          if grep -q "Skipped publishing packages" "$RUNNER_TEMP/nx-release.log"; then
-            echo "published=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "published=true" >> "$GITHUB_OUTPUT"
-          fi
+        run: npx nx release "$VERSION_INPUT" --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION_INPUT: ${{ inputs.version }}
 
-      # Guard against `nx release` exiting 0 even when its npm publish phase
-      # fails. Without this, a broken publish (e.g. an expired NPM_TOKEN) still
-      # tags the version and writes the changelog, so the job reads green while
-      # nothing reaches npm — which is exactly how 10.1.0 and 10.2.0 were
-      # tagged but never published. See DSS-215.
+      # The authoritative publish. The release step above already attempts one,
+      # but `nx release` discards the publish result and exits 0 even when npm
+      # rejects the upload (nx 20.1.2, src/command-line/release/release.js:219) —
+      # which is why a failed publish used to read as a green job. `nx release
+      # publish` inspects the per-project exit codes and returns 1 on failure
+      # (src/command-line/release/publish.js:21), so a rejected upload fails here.
       #
-      # Only runs when the release step actually attempted a publish. On a night
-      # with no conventional-commit changes, nx skips versioning and publishing
-      # ("Skipped publishing packages") and exits 0 — nothing was meant to reach
-      # npm, so asserting the current version is published would fail spuriously.
+      # Publishing is driven by "is this version on npm?" rather than by whether
+      # this run cut a new version. That also makes the pipeline self-healing: a
+      # version stranded in git by an earlier failed publish ships on the next run
+      # instead of wedging releases indefinitely. On a normal no-op night, when the
+      # version is already published, this costs a single `npm view`.
+      #
+      # Note `--yes` and `--skip-publish` are mutually exclusive in nx 20.1.2, so
+      # the release step's own publish attempt cannot simply be turned off.
+      - name: Publish any version missing from npm
+        id: publish
+        shell: bash
+        run: |
+          PKG=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "${PKG}@${VERSION}" version >/dev/null 2>&1; then
+            echo "${PKG}@${VERSION} is already on npm — nothing to publish."
+            echo "published=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "${PKG}@${VERSION} is not on npm — publishing…"
+          npx nx release publish
+          echo "published=true" >> "$GITHUB_OUTPUT"
+
+      # Belt and braces: confirm the upload is actually queryable, covering a
+      # publish that reports success without landing.
       - name: Verify npm publish landed
-        if: steps.release.outputs.published == 'true' || steps.release_input.outputs.published == 'true'
+        if: steps.publish.outputs.published == 'true'
         shell: bash
         run: |
           PKG=$(node -p "require('./package.json').name")
@@ -172,16 +195,57 @@ jobs:
             echo "  not visible yet (attempt ${attempt}/6), waiting 10s…"
             sleep 10
           done
-          echo "::error::${PKG}@${VERSION} was NOT published to npm. The release step exited 0 but the publish phase did not land — check the nx-release-publish output above and the NPM_TOKEN secret."
+          echo "::error::${PKG}@${VERSION} was NOT published to npm. Check the nx-release-publish output above and the NPM_TOKEN secret."
           exit 1
+
+  # A failed release used to be entirely silent: the announcement job only fires
+  # on success, so nothing told the team when a publish was rejected. The Aug 11
+  # and Aug 13 failures went unnoticed for nine days while npm sat on 10.2.0 and
+  # every later run reported success. Alerting on failure is what turns that from
+  # a nine-day gap into a same-day fix. See DSS-215.
+  #
+  # `failure()` covers the release job failing and the icon export failing before
+  # it; a skipped or cancelled run does not alert.
+  notify-release-failure:
+    runs-on: ubuntu-latest
+    needs: [export-icons, release-changes]
+    if: failure()
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup ENV Vars
+        shell: bash
+        run: |
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
+          echo "PKG_VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+          # Report what the registry actually has, so the alert shows at a glance
+          # whether git and npm have diverged. Never fail the alert over this.
+          PKG=$(node -p "require('./package.json').name")
+          echo "NPM_LATEST=$(npm view "${PKG}" version 2>/dev/null || echo 'unknown')" >> "$GITHUB_ENV"
+
+      - name: Send Slack Notification
+        uses: slackapi/slack-github-action@v3.0.3
+        env:
+          CHANNEL_ID: ${{ vars.SLACK_CHANNEL_NAME }}
+          DATE: ${{ env.CURRENT_DATE }}
+          VERSION: ${{ env.PKG_VERSION }}
+          NPM_LATEST: ${{ env.NPM_LATEST }}
+          RUN_URL: "${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}"
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          errors: true
+          payload-templated: true
+          payload-file-path: "./.github/workflows/slack_payloads/release-failure.json"
 
   send-slack-notification:
     runs-on: ubuntu-latest
     needs: release-changes
-    # Only announce when a publish actually happened. On no-op nights (nx skips
-    # publishing, verify is gated off and the job goes green) there is nothing to
-    # announce, so this must not fire a "Pine Icon Release" for a version that was
-    # never tagged or shipped.
+    # Only announce when something actually reached npm. On no-op nights the
+    # current version is already published, so `published` is false and this must
+    # not fire a "Pine Icon Release" for a version that shipped days ago.
     if: needs.release-changes.outputs.published == 'true'
 
     steps:
