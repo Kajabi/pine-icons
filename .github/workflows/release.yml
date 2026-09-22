@@ -74,6 +74,11 @@ jobs:
   release-changes:
     runs-on: ubuntu-latest
     needs: export-icons
+    # Trusted publishing mints a short-lived OIDC token for npm. That needs
+    # id-token: write here and on the job in nightly.yml that calls this workflow.
+    permissions:
+      contents: write
+      id-token: write
     # Surface whether a publish actually happened so downstream jobs (e.g. the
     # Slack announcement) don't fire on no-op nights.
     outputs:
@@ -89,6 +94,18 @@ jobs:
         run: git pull
         shell: bash
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+
+      # Node 22 ships npm 10.x; trusted publishing needs npm 11.5.1 or newer.
+      - name: Upgrade npm for trusted publishing
+        shell: bash
+        run: |
+          npm install -g npm@11
+          npm --version
+
       - name: Install Dependencies
         run: npm install
         shell: bash
@@ -98,33 +115,29 @@ jobs:
           git config user.name "DSS Automation Bot"
           git config user.email "dev+github-bot@kajabi.com"
 
-      - name: Prepare NPM Token
-        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> .npmrc
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       # Fail before `nx release` touches git. nx versions, commits, tags, pushes
       # and creates the GitHub release *before* it publishes, and none of that is
       # undone when the publish fails. Because nx then resolves the current
-      # version from the newest git tag, one bad-token night leaves git
-      # permanently ahead of npm: every later run reports "No changes were
-      # detected using git history and the conventional commits standard", skips,
-      # and reports success. That is how 10.3.0 and 10.4.0 came to be tagged and
-      # released on GitHub while npm stayed on 10.2.0. Checking auth up front
-      # keeps an unusable token from ever reaching that state. See DSS-215.
-      - name: Verify npm authentication
+      # version from the newest git tag, one failed publish leaves git ahead of
+      # npm and every later run skips and reports success. That is how 10.3.0 and
+      # 10.4.0 came to be tagged and released on GitHub while npm stayed on
+      # 10.2.0 (DSS-215). npm now authenticates this job with a short-lived OIDC
+      # token exchanged for the Trusted Publisher configured on @pine-ds/icons
+      # (PE-2432), so there is no NPM_TOKEN to expire; the up-front check is that
+      # this job can mint that token and that npm is new enough to use it.
+      - name: Verify npm trusted publishing prerequisites
         shell: bash
         run: |
-          # Keep the registry's full reply in the log, but the annotation on one
-          # line — newlines inside ::error:: truncate the rendered message.
-          if ! NPM_AUTH_OUTPUT=$(npm whoami 2>&1); then
-            echo "npm whoami failed:"
-            echo "${NPM_AUTH_OUTPUT}"
-            echo "::error::npm authentication failed — the NPM_TOKEN secret is empty, expired, or revoked. Rotate it before releasing. Nothing has been versioned, tagged, or published."
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]; then
+            echo "::error::No OIDC token endpoint in this job. Trusted publishing needs 'id-token: write' on this job and on the job of any workflow that calls this one."
             exit 1
           fi
-          echo "Authenticated to npm as ${NPM_AUTH_OUTPUT}"
+          NPM_VERSION=$(npm --version)
+          if [ "$(printf '%s\n' 11.5.1 "$NPM_VERSION" | sort -V | head -n1)" != "11.5.1" ]; then
+            echo "::error::npm ${NPM_VERSION} is too old for trusted publishing (needs 11.5.1 or newer)."
+            exit 1
+          fi
+          echo "OIDC token endpoint available; npm ${NPM_VERSION}"
 
       - name: Build
         run: npx nx run @pine-ds/icons:build
@@ -195,7 +208,7 @@ jobs:
             echo "  not visible yet (attempt ${attempt}/6), waiting 10s…"
             sleep 10
           done
-          echo "::error::${PKG}@${VERSION} was NOT published to npm. Check the nx-release-publish output above and the NPM_TOKEN secret."
+          echo "::error::${PKG}@${VERSION} was NOT published to npm. Check the nx-release-publish output above and the package's Trusted Publisher settings on npmjs.com."
           exit 1
 
   # A failed release used to be entirely silent: the announcement job only fires
