@@ -1,13 +1,6 @@
 {
   "icons": [
     {
-      "name": "Property 1=Default",
-      "category": ".icon",
-      "tags": [
-        "Property 1=Default"
-      ]
-    },
-    {
       "name": "access-key",
       "category": "features",
       "tags": [
@@ -1378,17 +1371,6 @@
         "circle",
         "error",
         "warning"
-      ]
-    },
-    {
-      "name": "dataflow-01",
-      "category": "actions",
-      "tags": [
-        "data",
-        "database",
-        "dataflow",
-        "flow",
-        "server"
       ]
     },
     {
@@ -3824,16 +3806,6 @@
     {
       "name": "shopping-cart-filled",
       "category": "features",
-      "tags": [
-        "cart",
-        "ecommerce",
-        "purchase",
-        "shopping bag"
-      ]
-    },
-    {
-      "name": "shopping-cart-filled",
-      "category": "actions",
       "tags": [
         "cart",
         "ecommerce",

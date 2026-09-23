@@ -13,6 +13,8 @@ const error = chalk.red.bold;
 
 const libraryName = 'pds-icons';
 
+const validIconName = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
 /**
  * Builds the icons for distribution
  *
@@ -115,6 +117,10 @@ const getSvgs = async (srcDir: string, distSvgDir: string, distPineIconsDir: str
 
       // iconName: airplane-outline
       const iconName = dotSplit[0];
+
+      if (!validIconName.test(iconName)) {
+        throw new Error(`svg icon name "${iconName}" must be kebab-case (lowercase letters, numbers, and single hyphens)`);
+      }
 
       if (reservedKeywords.has(iconName)) {
         throw new Error(`svg icon name "${iconName}" is a reserved JavaScript keyword`);
@@ -298,6 +304,8 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
 
   data.icons = data.icons || [];
 
+  assertUniqueIconNames(data.icons, srcDataJsonPath);
+
   // Add any new icons
   srcSvgData.forEach((svgData) => {
     if (!data.icons.some((i) => i.name === svgData.iconName)) {
@@ -337,6 +345,23 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
 
   const distJsonStr = JSON.stringify(distJsonData, null, 2) + '\n';
   await fs.writeFile(distDataJsonPath, distJsonStr);
+}
+
+// The Figma export already dedupes, so a duplicate here means a hand edit whose intended entry we can't guess.
+const assertUniqueIconNames = (icons: JsonData['icons'], filePath: string) => {
+  const seenNames = new Set<string>();
+  const duplicates = new Set<string>();
+
+  icons.forEach((icon) => {
+    if (seenNames.has(icon.name)) {
+      duplicates.add(icon.name);
+    }
+    seenNames.add(icon.name);
+  });
+
+  if (duplicates.size > 0) {
+    throw new Error(`${filePath} has duplicate icon names: ${[...duplicates].join(', ')}`);
+  }
 }
 
 const createIconPackage = async (version: string, iconDir: string, srcSvgData: Array<SvgData>) => {
