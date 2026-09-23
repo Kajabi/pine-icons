@@ -143,10 +143,15 @@ jobs:
         run: npx nx run @pine-ds/icons:build
         shell: bash
 
+      - name: Record version before release
+        id: before
+        shell: bash
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
       - name: Release
         if: inputs.version == ''
         shell: bash
-        run: npx nx release --yes
+        run: npx nx release --skip-publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -156,43 +161,60 @@ jobs:
         # Pass inputs.version through the environment instead of interpolating
         # ${{ }} directly into the shell, so a caller-supplied value can't be
         # injected into the command (template-injection hardening).
-        run: npx nx release "$VERSION_INPUT" --yes
+        run: npx nx release "$VERSION_INPUT" --skip-publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION_INPUT: ${{ inputs.version }}
 
-      # The authoritative publish. The release step above already attempts one,
-      # but `nx release` discards the publish result and exits 0 even when npm
-      # rejects the upload (nx 20.1.2, src/command-line/release/release.js:219) —
-      # which is why a failed publish used to read as a green job. `nx release
-      # publish` inspects the per-project exit codes and returns 1 on failure
-      # (src/command-line/release/publish.js:21), so a rejected upload fails here.
+      # Publishing is its own step so its exit code counts. The release steps
+      # above run `nx release --skip-publish`, which versions, writes the
+      # changelog, commits, tags, pushes and creates the GitHub release but does
+      # not publish. Top-level `nx release` would also publish and then discard
+      # the result (nx 20.1.2, src/command-line/release/release.js:219), which is
+      # how a failed publish used to read as a green job; and running a second
+      # publish after it raced the registry, which lists an accepted publish only
+      # after several minutes and answers any retry in that window with "409
+      # Cannot publish over previously staged version" (npm/cli#9889). That race
+      # turned the successful 10.4.1 release on 2026-09-23 into a red run.
+      # `nx release publish` skips versions already on the registry and returns
+      # non-zero when an upload fails, so a rejected upload fails here, and a 409
+      # "previously staged" on a rerun is logged rather than treated as a failure;
+      # the verify step below waits for the version to appear.
       #
-      # Publishing is driven by "is this version on npm?" rather than by whether
-      # this run cut a new version. That also makes the pipeline self-healing: a
-      # version stranded in git by an earlier failed publish ships on the next run
-      # instead of wedging releases indefinitely. On a normal no-op night, when the
-      # version is already published, this costs a single `npm view`.
-      #
-      # Note `--yes` and `--skip-publish` are mutually exclusive in nx 20.1.2, so
-      # the release step's own publish attempt cannot simply be turned off.
-      - name: Publish any version missing from npm
+      # `published` means "this run put a new version on npm": a version was cut
+      # (package.json changed during the release step) or a version missing from
+      # npm had to be published here. It gates the verify step and the Slack
+      # announcement.
+      - name: Publish to npm
         id: publish
         shell: bash
+        env:
+          VERSION_BEFORE: ${{ steps.before.outputs.version }}
         run: |
+          set -uo pipefail
           PKG=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
-          if npm view "${PKG}@${VERSION}" version >/dev/null 2>&1; then
-            echo "${PKG}@${VERSION} is already on npm — nothing to publish."
-            echo "published=false" >> "$GITHUB_OUTPUT"
+          PUBLISHED=false
+          [ "$VERSION" != "$VERSION_BEFORE" ] && PUBLISHED=true
+          trap 'echo "published=${PUBLISHED}" >> "$GITHUB_OUTPUT"' EXIT
+
+          npx nx release publish 2>&1 | tee "$RUNNER_TEMP/nx-release-publish.log"
+          STATUS=${PIPESTATUS[0]}
+          if [ "$STATUS" -eq 0 ] && ! grep -q "already exists in" "$RUNNER_TEMP/nx-release-publish.log"; then
+            PUBLISHED=true
+          fi
+          if [ "$STATUS" -ne 0 ] && grep -q "Cannot publish over previously staged version" "$RUNNER_TEMP/nx-release-publish.log"; then
+            PUBLISHED=true
+            echo "::warning::npm already holds ${PKG}@${VERSION} from an earlier publish and is still processing it (npm/cli#9889). Not retrying; the next step waits for it to appear."
             exit 0
           fi
-          echo "${PKG}@${VERSION} is not on npm — publishing…"
-          npx nx release publish
-          echo "published=true" >> "$GITHUB_OUTPUT"
+          exit "$STATUS"
 
-      # Belt and braces: confirm the upload is actually queryable, covering a
-      # publish that reports success without landing.
+      # Confirm the release is actually queryable on npm. The window is generous
+      # because the registry can take several minutes to list an accepted
+      # publish. A version that never appears has most likely wedged in npm's
+      # internal staged state (npm/cli#9889); that number is burnt, and the fix
+      # is to release the next one, not to republish this one.
       - name: Verify npm publish landed
         if: steps.publish.outputs.published == 'true'
         shell: bash
@@ -200,15 +222,15 @@ jobs:
           PKG=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
           echo "Verifying ${PKG}@${VERSION} is available on npm…"
-          for attempt in 1 2 3 4 5 6; do
+          for attempt in $(seq 1 60); do
             if npm view "${PKG}@${VERSION}" version >/dev/null 2>&1; then
               echo "✓ ${PKG}@${VERSION} confirmed on npm"
               exit 0
             fi
-            echo "  not visible yet (attempt ${attempt}/6), waiting 10s…"
+            echo "  not visible yet (attempt ${attempt}/60), waiting 10s…"
             sleep 10
           done
-          echo "::error::${PKG}@${VERSION} was NOT published to npm. Check the nx-release-publish output above and the package's Trusted Publisher settings on npmjs.com."
+          echo "::error::${PKG}@${VERSION} is not on npm after 10 minutes. If the publish step reported '409 previously staged', npm accepted the version but never finished processing it (npm/cli#9889) and the number is burnt: release the next patch. Otherwise check the nx-release-publish output above and the package's Trusted Publisher settings on npmjs.com."
           exit 1
 
   # A failed release used to be entirely silent: the announcement job only fires
