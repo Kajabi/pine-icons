@@ -13,6 +13,8 @@ const error = chalk.red.bold;
 
 const libraryName = 'pds-icons';
 
+const validIconName = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
 /**
  * Builds the icons for distribution
  *
@@ -115,6 +117,10 @@ const getSvgs = async (srcDir: string, distSvgDir: string, distPineIconsDir: str
 
       // iconName: airplane-outline
       const iconName = dotSplit[0];
+
+      if (!validIconName.test(iconName)) {
+        throw new Error(`svg icon name "${iconName}" must be kebab-case (lowercase letters, numbers, and single hyphens)`);
+      }
 
       if (reservedKeywords.has(iconName)) {
         throw new Error(`svg icon name "${iconName}" is a reserved JavaScript keyword`);
@@ -312,6 +318,17 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
   // remove deleted icons
   data.icons = data.icons.filter((dataIcon) => {
     return srcSvgData.some((svgData) => dataIcon.name === svgData.iconName);
+  });
+
+  const seenNames = new Set<string>();
+  data.icons = data.icons.filter((dataIcon) => {
+    if (seenNames.has(dataIcon.name)) {
+      log(chalk.yellow(`Removing duplicate icon-data.json entry for "${dataIcon.name}"`));
+      return false;
+    }
+
+    seenNames.add(dataIcon.name);
+    return true;
   });
 
   // Sort the icons

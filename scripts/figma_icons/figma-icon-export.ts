@@ -149,8 +149,9 @@ const downloadImages = (icons: FigmaIcon[], outputDir: string, pageName: string)
     });
 };
 
+// Figma treats both "_" and "." prefixes as private, unpublished layers.
 const isNotIgnored = (value) => {
-  return !value.name.startsWith('_');
+  return !value.name.startsWith('_') && !value.name.startsWith('.');
 }
 
 const isNotText = (value) => {
@@ -196,7 +197,25 @@ const extractIcons = (pageData, ignoreFrames: string[], componentMetadata, pageN
     }
   });
 
-  return iconLibrary;
+  return dedupeIconsByName(iconLibrary);
+}
+
+// Duplicate names would race to write the same SVG file, so keep the first one Figma returns.
+const dedupeIconsByName = (icons: Array<FigmaIcon>) => {
+  const seen = new Map<string, FigmaIcon>();
+
+  icons.forEach((icon) => {
+    const kept = seen.get(icon.name);
+
+    if (kept) {
+      log(chalk.yellow(`Duplicate icon name "${icon.name}": keeping ${kept.id} (${kept.frame}), skipping ${icon.id} (${icon.frame})`));
+      return;
+    }
+
+    seen.set(icon.name, icon);
+  });
+
+  return [...seen.values()];
 }
 
 /**
