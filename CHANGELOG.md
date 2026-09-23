@@ -1,3 +1,7 @@
+## 10.4.2 (2026-09-23)
+
+This was a version bump only, there were no code changes.
+
 ## 10.4.1 (2026-09-23)
 
 This was a version bump only, there were no code changes.
