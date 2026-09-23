@@ -304,6 +304,8 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
 
   data.icons = data.icons || [];
 
+  assertUniqueIconNames(data.icons, srcDataJsonPath);
+
   // Add any new icons
   srcSvgData.forEach((svgData) => {
     if (!data.icons.some((i) => i.name === svgData.iconName)) {
@@ -318,17 +320,6 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
   // remove deleted icons
   data.icons = data.icons.filter((dataIcon) => {
     return srcSvgData.some((svgData) => dataIcon.name === svgData.iconName);
-  });
-
-  const seenNames = new Set<string>();
-  data.icons = data.icons.filter((dataIcon) => {
-    if (seenNames.has(dataIcon.name)) {
-      log(chalk.yellow(`Removing duplicate icon-data.json entry for "${dataIcon.name}"`));
-      return false;
-    }
-
-    seenNames.add(dataIcon.name);
-    return true;
   });
 
   // Sort the icons
@@ -354,6 +345,23 @@ const createDataJson = async (version: string, srcDir: string, distDir: string, 
 
   const distJsonStr = JSON.stringify(distJsonData, null, 2) + '\n';
   await fs.writeFile(distDataJsonPath, distJsonStr);
+}
+
+// The Figma export already dedupes, so a duplicate here means a hand edit whose intended entry we can't guess.
+const assertUniqueIconNames = (icons: JsonData['icons'], filePath: string) => {
+  const seenNames = new Set<string>();
+  const duplicates = new Set<string>();
+
+  icons.forEach((icon) => {
+    if (seenNames.has(icon.name)) {
+      duplicates.add(icon.name);
+    }
+    seenNames.add(icon.name);
+  });
+
+  if (duplicates.size > 0) {
+    throw new Error(`${filePath} has duplicate icon names: ${[...duplicates].join(', ')}`);
+  }
 }
 
 const createIconPackage = async (version: string, iconDir: string, srcSvgData: Array<SvgData>) => {
