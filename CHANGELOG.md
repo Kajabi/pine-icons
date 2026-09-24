@@ -1,3 +1,13 @@
+## 10.4.3 (2026-09-24)
+
+### Bug Fixes 🐛
+
+- **icons:** drop figma artifacts and duplicate names from catalog ([#61](https://github.com/Kajabi/pine-icons/pull/61))
+
+### ❤️  Thank You
+
+- Phillip Lovelace
+
 ## 10.4.2 (2026-09-23)
 
 This was a version bump only, there were no code changes.
