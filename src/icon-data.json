@@ -1729,6 +1729,18 @@
       ]
     },
     {
+      "name": "filter-2",
+      "category": "actions",
+      "tags": [
+        "hamburger",
+        "horizontal",
+        "lines",
+        "menu",
+        "nav",
+        "navigation"
+      ]
+    },
+    {
       "name": "flag",
       "category": "dialogues",
       "tags": [
