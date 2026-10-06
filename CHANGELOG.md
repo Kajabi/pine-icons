@@ -1,3 +1,13 @@
+## 10.5.1 (2026-10-06)
+
+### Bug Fixes 🐛
+
+- **pds-icon:** point cdn asset warning at the guides assets docs page ([#62](https://github.com/Kajabi/pine-icons/pull/62))
+
+### ❤️  Thank You
+
+- Phillip Lovelace
+
 ## 10.5.0 (2026-09-30)
 
 ### Features 🚀
