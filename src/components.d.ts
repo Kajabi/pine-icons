@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface PdsIcon {
         /**
-          * The color of the icon
+          * Sets the icon's fill color. Accepts a raw design token (--pine-color-foo), a CSS variable (var(--pine-color-foo)), or a literal CSS color value. Defaults to `currentColor`.
          */
         "color"?: string;
         /**
@@ -53,7 +53,7 @@ declare global {
 declare namespace LocalJSX {
     interface PdsIcon {
         /**
-          * The color of the icon
+          * Sets the icon's fill color. Accepts a raw design token (--pine-color-foo), a CSS variable (var(--pine-color-foo)), or a literal CSS color value. Defaults to `currentColor`.
          */
         "color"?: string;
         /**
