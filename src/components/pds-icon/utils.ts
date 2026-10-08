@@ -109,6 +109,27 @@ export const isStr = (val: any): val is string => typeof val === 'string'; // es
 export const toLower = (val: string) => val.toLowerCase();
 
 /**
+ * Normalizes a color value for use as a CSS custom property value: a bare
+ * design token (--pine-color-foo) is wrapped in var(...), an already-wrapped
+ * var(--token) is passed through unchanged, and anything else (a literal CSS
+ * color, or currentColor) is passed through as-is. Mirrors the equivalent
+ * utility in the `pine` repo's `libs/core/src/utils/utils.ts`
+ * (`normalizeColorValue`) — duplicated here rather than imported because
+ * `@pine-ds/core` already depends on `@pine-ds/icons`, so the reverse
+ * dependency would be circular.
+ */
+export const normalizeColorValue = (value: string | undefined): string | undefined => {
+  if (!isStr(value)) return undefined;
+  const trimmed = value.trim();
+  if (trimmed === '') return undefined;
+
+  if (trimmed.startsWith('var(')) return trimmed;
+  if (trimmed.startsWith('--')) return `var(${trimmed})`;
+
+  return trimmed;
+};
+
+/**
  * Elements inside of web components sometimes need to inherit global attributes
  * set on the host. For example, the inner input in `pds-input` should inherit
  * the `title` attribute that developers set directly on `pds-input`. This

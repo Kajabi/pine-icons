@@ -1,6 +1,6 @@
 import { Build, Component, Element, Host, Prop, State, Watch, h } from '@stencil/core';
 import { getSvgContent, pdsIconContent } from './request';
-import { getName, getUrl, inheritAttributes, isRTL, shouldRtlFlipIcon } from './utils';
+import { getName, getUrl, inheritAttributes, isRTL, normalizeColorValue, shouldRtlFlipIcon } from './utils';
 
 @Component({
   tag: 'pds-icon',
@@ -21,9 +21,9 @@ export class PdsIcon {
   @State() private svgContent?: string;
 
   /**
-   *
-   * The color of the icon
-   *
+   * Sets the icon's fill color. Accepts a raw design token (--pine-color-foo),
+   * a CSS variable (var(--pine-color-foo)), or a literal CSS color value.
+   * Defaults to `currentColor`.
    */
   @Prop() color?: string;
 
@@ -118,7 +118,7 @@ export class PdsIcon {
   setCSSVariables() {
     this.el.style.setProperty(`--dimension-icon-height`, this.iconSize());
     this.el.style.setProperty(`--dimension-icon-width`, this.iconSize());
-    this.el.style.setProperty(`--color-icon-fill`, typeof this.color !== 'undefined' ? this.color : 'currentColor');
+    this.el.style.setProperty(`--color-icon-fill`, normalizeColorValue(this.color) ?? 'currentColor');
   }
 
   connectedCallback() {

@@ -72,6 +72,26 @@ describe('pds-icon', () => {
     `);
   });
 
+  it('normalizes color when a raw design token is provided', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="archive" color="--pine-color-purple-500"></pds-icon>',
+    });
+
+    const el = root.shadowRoot.host as HTMLElement;
+    expect(el.style.getPropertyValue('--color-icon-fill')).toBe('var(--pine-color-purple-500)');
+  });
+
+  it('passes through var(...) for color', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="archive" color="var(--pine-color-purple-500)"></pds-icon>',
+    });
+
+    const el = root.shadowRoot.host as HTMLElement;
+    expect(el.style.getPropertyValue('--color-icon-fill')).toBe('var(--pine-color-purple-500)');
+  });
+
   it('renders custom aria-label', async () => {
     const { root } = await newSpecPage({
       components: [PdsIcon],
