@@ -1,3 +1,18 @@
+## 10.7.0 (2026-10-13)
+
+### Features 🚀
+
+- **icons:** v10.7.0, created: 0, modified: 14, renamed: 0, deleted: 0 ([7d48efd](https://github.com/Kajabi/pine-icons/commit/7d48efd))
+
+### Bug Fixes 🐛
+
+- **pds-icon:** normalize color prop through a shared helper ([#63](https://github.com/Kajabi/pine-icons/pull/63))
+
+### ❤️  Thank You
+
+- Kajabi Automation Bot
+- Quinton Jason
+
 ## 10.6.0 (2026-10-08)
 
 ### Features 🚀
