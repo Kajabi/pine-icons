@@ -2,6 +2,9 @@ import { Build, Component, Element, Host, Prop, State, Watch, h } from '@stencil
 import { getSvgContent, pdsIconContent } from './request';
 import { getName, getUrl, inheritAttributes, isRTL, normalizeColorValue, shouldRtlFlipIcon } from './utils';
 
+// The attributes that give an icon its own accessible name.
+const NAMING_ATTRIBUTES = ['aria-label', 'aria-labelledby'];
+
 @Component({
   tag: 'pds-icon',
   assetsDirs: ['svg'],
@@ -12,11 +15,13 @@ export class PdsIcon {
   private didLoadIcon = false;
   private iconName: string | null = null;
   private io?: IntersectionObserver;
-  private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
+  private mo?: MutationObserver;
+  private warnedUnnamedFocusable = false;
 
   @Element() el!: HTMLPdsIconElement;
 
-  @State() private ariaLabel?: string;
+  @State() private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @State() private isFocusable = false;
   @State() private isVisible = false;
   @State() private svgContent?: string;
 
@@ -110,9 +115,9 @@ export class PdsIcon {
   }
 
   componentWillLoad() {
-    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
+    this.inheritedAttributes = inheritAttributes(this.el, NAMING_ATTRIBUTES);
+    this.isFocusable = this.el.hasAttribute('tabindex');
     this.setCSSVariables();
-    this.setupInitialAriaLabel();
   }
 
   setCSSVariables() {
@@ -122,6 +127,8 @@ export class PdsIcon {
   }
 
   connectedCallback() {
+    this.observeNamingAttributes();
+
     // Handle re-connection during client-side navigation
     if (!this.isVisible && !this.svgContent) {
       this.waitUntilVisible(this.el, '50px', () => {
@@ -142,6 +149,11 @@ export class PdsIcon {
       this.io.disconnect();
       this.io = undefined;
     }
+
+    if (this.mo) {
+      this.mo.disconnect();
+      this.mo = undefined;
+    }
   }
 
   @Watch('size')
@@ -155,8 +167,6 @@ export class PdsIcon {
   @Watch('icon')
   onIconPropertyChange() {
     this.loadIcon();
-    // Update aria-label when icon properties change
-    this.setupInitialAriaLabel();
   }
 
   loadIcon() {
@@ -193,21 +203,39 @@ export class PdsIcon {
   }
 
   render() {
-    const { ariaLabel, flipRtl, iconName,inheritedAttributes } = this;
+    const { flipRtl, iconName, inheritedAttributes } = this;
     const shouldIconAutoFlip = iconName
       ? shouldRtlFlipIcon(iconName, this.el) && flipRtl !== false
       : false;
     const shouldFlip = flipRtl || shouldIconAutoFlip;
 
-    // Use inherited aria-label if provided, otherwise fall back to auto-generated one
-    const finalAriaLabel = inheritedAttributes['aria-label'] || ariaLabel;
+    // An icon is decorative unless the author names it. A decorative icon is hidden
+    // from assistive technology, so it contributes nothing to the accessible name of
+    // the button or link it sits inside. Naming it from `name` instead would put an
+    // icon id ("rocket-tone") into that control's name, where neither a screen reader
+    // nor a page-inspecting agent can tell it apart from the real label.
+    //
+    // A focusable icon stays exposed even without a name: hiding something that
+    // takes focus leaves keyboard users on an element a screen reader can't see.
+    const isNamed = NAMING_ATTRIBUTES.some((attr) => inheritedAttributes[attr] !== undefined);
+    const isDecorative = !isNamed && !this.isFocusable;
+
+    if (Build.isDev && !isNamed && this.isFocusable && !this.warnedUnnamedFocusable) {
+      this.warnedUnnamedFocusable = true;
+      console.warn(
+        '[pds-icon] A focusable icon needs an accessible name. Add an aria-label, or remove its tabindex.',
+        this.el,
+      );
+    }
 
     return (
 
       <Host
-        aria-label={finalAriaLabel !== undefined && !this.hasAriaHidden() ? finalAriaLabel : null }
+        // undefined, not null: null would strip an aria-hidden the author set on a
+        // named icon once the component re-renders.
+        aria-hidden={isDecorative ? 'true' : undefined}
         alt=""
-        role="img"
+        role={isDecorative ? null : 'img'}
         class={{
           ...createColorClasses(this.color),
           'flip-rtl': shouldFlip,
@@ -228,14 +256,33 @@ export class PdsIcon {
    * Private Methods
    ****/
 
-  private setupInitialAriaLabel() {
-    // Only set aria-label during initial load if one isn't already provided
-    if (!this.inheritedAttributes['aria-label']) {
-      const iconName = getName(this.name, this.icon);
-      if (iconName) {
-        this.ariaLabel = iconName.replace(/\-/g, ' ');
-      }
-    }
+  // The hide/expose decision reads the naming attributes and tabindex, which can
+  // change after load (a React prop going from undefined to a string, or
+  // setAttribute from script). Re-read them when they do.
+  private observeNamingAttributes() {
+    if (!Build.isBrowser || typeof MutationObserver === 'undefined' || this.mo) return;
+
+    this.mo = new MutationObserver(() => {
+      const next = { ...this.inheritedAttributes };
+      let changed = false;
+
+      NAMING_ATTRIBUTES.forEach((attr) => {
+        const value = this.el.getAttribute(attr) ?? undefined;
+        if (next[attr] !== value) {
+          if (value === undefined) {
+            delete next[attr];
+          } else {
+            next[attr] = value;
+          }
+          changed = true;
+        }
+      });
+
+      if (changed) this.inheritedAttributes = next;
+      this.isFocusable = this.el.hasAttribute('tabindex');
+    });
+
+    this.mo.observe(this.el, { attributes: true, attributeFilter: [...NAMING_ATTRIBUTES, 'tabindex'] });
   }
 
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
@@ -291,12 +338,6 @@ export class PdsIcon {
       rect.left < windowWidth &&
       rect.right > 0
     );
-  }
-
-  private hasAriaHidden = () => {
-    const { el } = this;
-
-    return el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
   }
 
   /**
