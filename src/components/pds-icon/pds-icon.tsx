@@ -16,7 +16,6 @@ export class PdsIcon {
 
   @Element() el!: HTMLPdsIconElement;
 
-  @State() private ariaLabel?: string;
   @State() private isVisible = false;
   @State() private svgContent?: string;
 
@@ -112,7 +111,6 @@ export class PdsIcon {
   componentWillLoad() {
     this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
     this.setCSSVariables();
-    this.setupInitialAriaLabel();
   }
 
   setCSSVariables() {
@@ -155,8 +153,6 @@ export class PdsIcon {
   @Watch('icon')
   onIconPropertyChange() {
     this.loadIcon();
-    // Update aria-label when icon properties change
-    this.setupInitialAriaLabel();
   }
 
   loadIcon() {
@@ -193,21 +189,26 @@ export class PdsIcon {
   }
 
   render() {
-    const { ariaLabel, flipRtl, iconName,inheritedAttributes } = this;
+    const { flipRtl, iconName, inheritedAttributes } = this;
     const shouldIconAutoFlip = iconName
       ? shouldRtlFlipIcon(iconName, this.el) && flipRtl !== false
       : false;
     const shouldFlip = flipRtl || shouldIconAutoFlip;
 
-    // Use inherited aria-label if provided, otherwise fall back to auto-generated one
-    const finalAriaLabel = inheritedAttributes['aria-label'] || ariaLabel;
+    // An icon is decorative unless the author names it. A decorative icon is hidden
+    // from assistive technology, so it contributes nothing to the accessible name of
+    // the button or link it sits inside. Naming it from `name` instead would put an
+    // icon id ("rocket-tone") into that control's name, where neither a screen reader
+    // nor a page-inspecting agent can tell it apart from the real label.
+    const authorLabel = inheritedAttributes['aria-label'];
+    const isDecorative = authorLabel === undefined;
 
     return (
 
       <Host
-        aria-label={finalAriaLabel !== undefined && !this.hasAriaHidden() ? finalAriaLabel : null }
+        aria-hidden={isDecorative ? 'true' : null}
         alt=""
-        role="img"
+        role={isDecorative ? null : 'img'}
         class={{
           ...createColorClasses(this.color),
           'flip-rtl': shouldFlip,
@@ -227,16 +228,6 @@ export class PdsIcon {
   /*****
    * Private Methods
    ****/
-
-  private setupInitialAriaLabel() {
-    // Only set aria-label during initial load if one isn't already provided
-    if (!this.inheritedAttributes['aria-label']) {
-      const iconName = getName(this.name, this.icon);
-      if (iconName) {
-        this.ariaLabel = iconName.replace(/\-/g, ' ');
-      }
-    }
-  }
 
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
     if (Build.isBrowser && typeof window !== 'undefined' && (window).IntersectionObserver) {
@@ -291,12 +282,6 @@ export class PdsIcon {
       rect.left < windowWidth &&
       rect.right > 0
     );
-  }
-
-  private hasAriaHidden = () => {
-    const { el } = this;
-
-    return el.hasAttribute('aria-hidden') && el.getAttribute('aria-hidden') === 'true';
   }
 
   /**

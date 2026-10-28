@@ -8,7 +8,7 @@ describe('pds-icon', () => {
       html: '<pds-icon></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon alt="" role="img" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: currentColor;">
+      <pds-icon alt="" aria-hidden="true" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: currentColor;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -22,7 +22,7 @@ describe('pds-icon', () => {
       html: '<pds-icon size="small"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon alt="" role="img" size="small" style="--dimension-icon-height: 12px; --dimension-icon-width: 12px; --color-icon-fill: currentColor;">
+      <pds-icon alt="" aria-hidden="true" size="small" style="--dimension-icon-height: 12px; --dimension-icon-width: 12px; --color-icon-fill: currentColor;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -36,7 +36,7 @@ describe('pds-icon', () => {
       html: '<pds-icon size="32px"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon alt="" role="img" size="32px" style="--dimension-icon-height: 32px; --dimension-icon-width: 32px; --color-icon-fill: currentColor;">
+      <pds-icon alt="" aria-hidden="true" size="32px" style="--dimension-icon-height: 32px; --dimension-icon-width: 32px; --color-icon-fill: currentColor;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -50,7 +50,7 @@ describe('pds-icon', () => {
       html: '<pds-icon name="archive"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon alt="" aria-label="archive" name="archive" role="img" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: currentColor;">
+      <pds-icon alt="" aria-hidden="true" name="archive" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: currentColor;">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -64,7 +64,7 @@ describe('pds-icon', () => {
       html: '<pds-icon name="archive" color="red"></pds-icon>',
     });
     expect(root).toEqualHtml(`
-      <pds-icon alt="" aria-label="archive" class="pds-color pds-color-red" color="red" name="archive" role="img" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: red">
+      <pds-icon alt="" aria-hidden="true" class="pds-color pds-color-red" color="red" name="archive" size="regular" style="--dimension-icon-height: 16px; --dimension-icon-width: 16px; --color-icon-fill: red">
         <mock:shadow-root>
           <div class="icon-inner"></div>
         </mock:shadow-root>
@@ -137,6 +137,53 @@ describe('pds-icon', () => {
     `);
   });
 
+
+  // An icon's `name` is an asset id, not human copy. Exposing it would put
+  // "rocket tone" into the accessible name of whatever button or link the icon
+  // sits inside, where nothing can distinguish it from the real label.
+  it('hides a decorative icon from assistive technology', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="rocket-tone"></pds-icon>',
+    });
+
+    expect(root.getAttribute('aria-hidden')).toBe('true');
+    expect(root.getAttribute('aria-label')).toBeNull();
+    expect(root.getAttribute('role')).toBeNull();
+  });
+
+  it('exposes an icon the author named, and does not hide it', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="rocket-tone" aria-label="Launch"></pds-icon>',
+    });
+
+    expect(root.getAttribute('aria-label')).toBe('Launch');
+    expect(root.getAttribute('role')).toBe('img');
+    expect(root.getAttribute('aria-hidden')).toBeNull();
+  });
+
+  it('never derives a label from the name, however the name changes', async () => {
+    const page = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="archive"></pds-icon>',
+    });
+
+    page.root.name = 'inbox-tone';
+    await page.waitForChanges();
+
+    expect(page.root.getAttribute('aria-label')).toBeNull();
+    expect(page.root.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('leaves an author-supplied aria-hidden in place', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="archive" aria-hidden="true"></pds-icon>',
+    });
+
+    expect(root.getAttribute('aria-hidden')).toBe('true');
+  });
 
   it('flips an icon that should be flipped in RTL mode', async () => {
     // Use an icon from the ICONS_TO_FLIP list (e.g., 'arrow-left')
