@@ -2,6 +2,9 @@ import { Build, Component, Element, Host, Prop, State, Watch, h } from '@stencil
 import { getSvgContent, pdsIconContent } from './request';
 import { getName, getUrl, inheritAttributes, isRTL, normalizeColorValue, shouldRtlFlipIcon } from './utils';
 
+// The attributes that give an icon its own accessible name.
+const NAMING_ATTRIBUTES = ['aria-label', 'aria-labelledby'];
+
 @Component({
   tag: 'pds-icon',
   assetsDirs: ['svg'],
@@ -12,10 +15,13 @@ export class PdsIcon {
   private didLoadIcon = false;
   private iconName: string | null = null;
   private io?: IntersectionObserver;
-  private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
+  private mo?: MutationObserver;
+  private warnedUnnamedFocusable = false;
 
   @Element() el!: HTMLPdsIconElement;
 
+  @State() private inheritedAttributes: { [k: string]: any } = {}; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @State() private isFocusable = false;
   @State() private isVisible = false;
   @State() private svgContent?: string;
 
@@ -109,7 +115,8 @@ export class PdsIcon {
   }
 
   componentWillLoad() {
-    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
+    this.inheritedAttributes = inheritAttributes(this.el, NAMING_ATTRIBUTES);
+    this.isFocusable = this.el.hasAttribute('tabindex');
     this.setCSSVariables();
   }
 
@@ -120,6 +127,8 @@ export class PdsIcon {
   }
 
   connectedCallback() {
+    this.observeNamingAttributes();
+
     // Handle re-connection during client-side navigation
     if (!this.isVisible && !this.svgContent) {
       this.waitUntilVisible(this.el, '50px', () => {
@@ -139,6 +148,11 @@ export class PdsIcon {
     if (this.io) {
       this.io.disconnect();
       this.io = undefined;
+    }
+
+    if (this.mo) {
+      this.mo.disconnect();
+      this.mo = undefined;
     }
   }
 
@@ -200,13 +214,26 @@ export class PdsIcon {
     // the button or link it sits inside. Naming it from `name` instead would put an
     // icon id ("rocket-tone") into that control's name, where neither a screen reader
     // nor a page-inspecting agent can tell it apart from the real label.
-    const authorLabel = inheritedAttributes['aria-label'];
-    const isDecorative = authorLabel === undefined;
+    //
+    // A focusable icon stays exposed even without a name: hiding something that
+    // takes focus leaves keyboard users on an element a screen reader can't see.
+    const isNamed = NAMING_ATTRIBUTES.some((attr) => inheritedAttributes[attr] !== undefined);
+    const isDecorative = !isNamed && !this.isFocusable;
+
+    if (Build.isDev && !isNamed && this.isFocusable && !this.warnedUnnamedFocusable) {
+      this.warnedUnnamedFocusable = true;
+      console.warn(
+        '[pds-icon] A focusable icon needs an accessible name. Add an aria-label, or remove its tabindex.',
+        this.el,
+      );
+    }
 
     return (
 
       <Host
-        aria-hidden={isDecorative ? 'true' : null}
+        // undefined, not null: null would strip an aria-hidden the author set on a
+        // named icon once the component re-renders.
+        aria-hidden={isDecorative ? 'true' : undefined}
         alt=""
         role={isDecorative ? null : 'img'}
         class={{
@@ -228,6 +255,35 @@ export class PdsIcon {
   /*****
    * Private Methods
    ****/
+
+  // The hide/expose decision reads the naming attributes and tabindex, which can
+  // change after load (a React prop going from undefined to a string, or
+  // setAttribute from script). Re-read them when they do.
+  private observeNamingAttributes() {
+    if (!Build.isBrowser || typeof MutationObserver === 'undefined' || this.mo) return;
+
+    this.mo = new MutationObserver(() => {
+      const next = { ...this.inheritedAttributes };
+      let changed = false;
+
+      NAMING_ATTRIBUTES.forEach((attr) => {
+        const value = this.el.getAttribute(attr) ?? undefined;
+        if (next[attr] !== value) {
+          if (value === undefined) {
+            delete next[attr];
+          } else {
+            next[attr] = value;
+          }
+          changed = true;
+        }
+      });
+
+      if (changed) this.inheritedAttributes = next;
+      this.isFocusable = this.el.hasAttribute('tabindex');
+    });
+
+    this.mo.observe(this.el, { attributes: true, attributeFilter: [...NAMING_ATTRIBUTES, 'tabindex'] });
+  }
 
   private waitUntilVisible(el: HTMLElement, rootMargin: string, cb: () => void) {
     if (Build.isBrowser && typeof window !== 'undefined' && (window).IntersectionObserver) {

@@ -44,6 +44,27 @@ describe('pds-icon', () => {
     expect(button).not.toBeNull();
     expect(button.name.trim()).toBe('Save');
   });
+
+  // The hide/expose decision has to follow a label set after load, as a React
+  // prop going from undefined to a string or a setAttribute call would.
+  it('exposes the icon when a label is added after load', async () => {
+    const page = await newE2EPage();
+
+    await page.setContent(`
+      <button><pds-icon name="check"></pds-icon></button>
+    `);
+    await page.waitForChanges();
+
+    await page.$eval('pds-icon', (el) => el.setAttribute('aria-label', 'Save'));
+    await page.waitForChanges();
+
+    const icon = await page.find('pds-icon');
+    expect(icon.getAttribute('aria-hidden')).toBeNull();
+    expect(icon.getAttribute('role')).toBe('img');
+
+    const snapshot = await page.accessibility.snapshot();
+    expect(findByRole(snapshot, 'button').name.trim()).toBe('Save');
+  });
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

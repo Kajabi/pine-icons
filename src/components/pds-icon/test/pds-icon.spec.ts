@@ -176,13 +176,43 @@ describe('pds-icon', () => {
     expect(page.root.getAttribute('aria-hidden')).toBe('true');
   });
 
-  it('leaves an author-supplied aria-hidden in place', async () => {
-    const { root } = await newSpecPage({
+  // A labelled icon renders no aria-hidden of its own, so the author's has to
+  // survive a re-render rather than only the first one.
+  it('leaves an author-supplied aria-hidden in place on a named icon', async () => {
+    const page = await newSpecPage({
       components: [PdsIcon],
-      html: '<pds-icon name="archive" aria-hidden="true"></pds-icon>',
+      html: '<pds-icon name="archive" aria-label="Archive" aria-hidden="true"></pds-icon>',
     });
 
-    expect(root.getAttribute('aria-hidden')).toBe('true');
+    page.root.size = 'large';
+    await page.waitForChanges();
+
+    expect(page.root.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('exposes an icon the author named with aria-labelledby', async () => {
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<span id="caption">Launch</span><pds-icon name="rocket-tone" aria-labelledby="caption"></pds-icon>',
+    });
+
+    expect(root.getAttribute('aria-labelledby')).toBe('caption');
+    expect(root.getAttribute('role')).toBe('img');
+    expect(root.getAttribute('aria-hidden')).toBeNull();
+  });
+
+  // Hiding something that takes focus strands keyboard users on an element a
+  // screen reader can't see (axe aria-hidden-focus).
+  it('does not hide a focusable icon that has no name, and warns', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { root } = await newSpecPage({
+      components: [PdsIcon],
+      html: '<pds-icon name="question-circle" tabindex="0"></pds-icon>',
+    });
+
+    expect(root.getAttribute('aria-hidden')).toBeNull();
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('focusable icon needs an accessible name'), root);
+    warn.mockRestore();
   });
 
   it('flips an icon that should be flipped in RTL mode', async () => {
