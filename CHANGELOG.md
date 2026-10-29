@@ -1,3 +1,13 @@
+## 10.8.1 (2026-10-29)
+
+### Bug Fixes 🐛
+
+- **pds-icon:** hide a decorative icon instead of labelling it from its name ([#65](https://github.com/Kajabi/pine-icons/pull/65))
+
+### ❤️  Thank You
+
+- Quinton Jason
+
 ## 10.8.0 (2026-10-20)
 
 ### Features 🚀
